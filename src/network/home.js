@@ -6,12 +6,18 @@ export function getHomeInfo() {
     })
 }
 
-//post方式
-// export function getDetail(id) {
-//     return request({
-//         url: '/api/proDetails.do',
-//         data: { id: id },
-//         method: 'post'
-//     })
+export function getProductList(id) {
+    return request({
+        url: '/api/getProductList.do?Id=1'
+    })
+}
 
-// }
+// post方式
+export function getDetail(id) {
+    return request({
+        url: '/api/proDetails.do',
+        data: { id: id },
+        method: 'post'
+    })
+
+}
