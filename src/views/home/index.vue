@@ -1,35 +1,45 @@
 <template>
   <div class="home">
+    ddd
+    动态路由参数 {{$route.params.id}}
     <div class="detail" v-html="productdetail"></div>
     <img alt="Vue logo" src="~assets/logo.png" />
 
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
+    <ul>
+      <li v-for="item in ProdeuctList" :key="item.id" :class="item">
+        >
+        <span>{{ item.Pro_Name }}</span>
+        <img :src="item.MemPrice" alt />
+      </li>
+    </ul>
   </div>
 </template>
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-import { getHomeInfo, getDetail } from '@/network/home'
+// import HelloWorld from '@/components/HelloWorld.vue'
+import { getHomeInfo, getDetail, getProductList } from '@/network/home'
 export default {
   name: 'Home',
   data() {
     return {
+      ProdeuctList: '',
       productdetail: ''
     }
   },
   components: {
-    HelloWorld
+    // HelloWorld
   },
   created() {
     //1.get提交方式
-    getHomeInfo()
-      .then(res => {
-        console.log(res)
-        this.productdetail = res.data.data.Pro_data
-      })
-      .catch(e => {
-        console.log(e)
-      })
+    // getProductList()
+    //   .then(res => {
+    //     this.ProdeuctList = res.data.list
+    //     console.log(this.ProdeuctList)
+    //   })
+    //   .catch(e => {
+    //     console.log(e)
+    //   })
     //post提交
     // getDetail(1).then(res => {
     //   console.log(res)

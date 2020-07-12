@@ -1,12 +1,21 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import home from './home'
+import bed from './bed'
+import clean from './clean'
+import house from './house'
+import lifeapp from './lifeapp'
+import slipper from './slipper'
+import towel from './towel'
+import underwear from './underwear'
+import baby from './baby'
 Vue.use(VueRouter)
 
+const routes = [...home, ...baby, ...bed, ...clean, ...house, ...lifeapp, ...slipper, ...towel, ...underwear]
 const router = new VueRouter({
     mode: 'history',
     base: process.env.BASE_URL,
-    routes: [...home]
+    routes
 })
 
 export default router

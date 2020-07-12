@@ -1,14 +1,14 @@
-import Home from '../views/home'
-const About = () =>
-    import ( /* webpackChunkName: "about" */ '../views/about')
+const home = () =>
+    import ('../views/home')
 export default [{
-        path: '/',
-        name: 'Home',
-        component: Home
+        path: '/home/:id?',
+        name: 'home',
+        component: home
     },
     {
-        path: '/about',
-        name: 'About',
-        component: About
+        path: '/',
+        name: 'home',
+        component: home
     }
+
 ]
