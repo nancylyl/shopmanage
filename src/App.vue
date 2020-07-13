@@ -6,8 +6,8 @@
         v-if="$store.state.shopmenustore.menulist.length>0&&$store.state.shopmenustore.navbar"
       ></breadcrumbVue>
     </div>
-    <router-view v-if="$store.state.shopmenustore.menulist.length>0" />  
-      <myfooter></myfooter>
+    <router-view v-if="$store.state.shopmenustore.menulist.length>0" />
+    <myfooter />
   </div>
 </template>
 <script>
@@ -45,5 +45,4 @@ export default {
 </script>
 <style>
 @import '~assets/css/base.scss';
-@import '~assets/font/iconfont.css';
 </style>

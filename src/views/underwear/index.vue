@@ -1,6 +1,6 @@
 <template>
   <div class="underwear">
-    <lifeapp></lifeapp> 
+    <h1>我是内衣内裤</h1>
     动态路由参数 {{$route.params.id}}
   </div>
 </template>
@@ -8,12 +8,8 @@
 
 <script>
 // import { formatNum } from '../../toolkit'
-import lifeapp from '../lifeapp/index'
 export default {
   name: 'underwear',
-   components: {
-    lifeapp
-  },
   methods: {}
 }
 </script>

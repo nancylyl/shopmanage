@@ -1,11 +1,6 @@
-$bg-grey:#EEEEEE;
-$font-grey:#6B6B6B;
-* {
-    margin: 0;
-    padding: 0;
-}
-
 .myfooter {
+    $bg-grey: #eeeeee;
+    $font-grey: #6b6b6b;
     background-color: $bg-grey;
     width: 100%;
     height: 200px;

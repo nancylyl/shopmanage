@@ -3,12 +3,11 @@
     ddd
     动态路由参数 {{$route.params.id}}
     <div class="detail" v-html="productdetail"></div>
-    <img alt="Vue logo" src="~assets/logo.png" />
-
+    <!-- <img src="../../assets/logo.png" alt /> -->
+    <!-- <img alt="Vue logo" :src="require(src)" /> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
     <ul>
       <li v-for="item in ProdeuctList" :key="item.id" :class="item">
-        >
         <span>{{ item.Pro_Name }}</span>
         <img :src="item.MemPrice" alt />
       </li>
@@ -23,7 +22,8 @@ export default {
   name: 'Home',
   data() {
     return {
-      ProdeuctList: '',
+      img: '../../assets/logo.png',
+      ProdeuctList: [],
       productdetail: ''
     }
   },
@@ -44,6 +44,15 @@ export default {
     // getDetail(1).then(res => {
     //   console.log(res)
     // })
+
+    getProductList()
+      .then(res => {
+        this.ProdeuctList = res.data.data
+        console.log(this.ProdeuctList)
+      })
+      .catch(e => {
+        console.log(e)
+      })
   }
 }
 </script>
