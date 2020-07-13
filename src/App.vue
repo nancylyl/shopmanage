@@ -28,6 +28,7 @@ export default {
       setTimeout(() => {
         document.querySelector('.header').className = 'header'
       }, 100)
+      console.log('111')
     }
   },
   methods: {
