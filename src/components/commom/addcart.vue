@@ -64,6 +64,6 @@
         },
    }
 </script>
-<style scoped>
-@import "~assets/css/addcart.css";
+<style lang="scss" scoped>
+@import "~assets/css/pop_up/addcart.scss";
 </style>

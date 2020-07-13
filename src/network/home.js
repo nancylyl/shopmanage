@@ -2,10 +2,8 @@ import { request } from "./request"
 //get 方式
 export function getHomeInfo() {
     return request({
-        url: '/api/getProductDetail.do?Id=1'
+        url: '/api/getIndex.do'
     })
-
-
 
 }
 
@@ -14,7 +12,6 @@ export function getHomeInfo() {
 //         url: '/api/getProductList.do?Id=1'
 //     })
 // }
-
 // // post方式
 // export function getDetail(id) {
 //     return request({
@@ -22,7 +19,6 @@ export function getHomeInfo() {
 //         data: { id: id },
 //         method: 'post'
 //     })
-
 // }
 export function getProductList() {
     return request({
