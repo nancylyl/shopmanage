@@ -4,6 +4,9 @@ export function getHomeInfo() {
     return request({
         url: '/api/getProductDetail.do?Id=1'
     })
+
+
+    
 }
 
 export function getProductList(id) {
