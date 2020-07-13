@@ -17,19 +17,6 @@
         margin-top: 40px;
         color: $font-grey;
         font-size: $font-size13;
-        .name {
-            height: 30px;
-            border-bottom: 1px solid $bg-grey;
-            span {
-                font-weight: $font-weight;
-                float: left;
-            }
-            a {
-                float: right;
-                text-decoration: none;
-                color: $font-blue;
-            }
-        }
         .sort {
             margin-top: 20px;
             height: 50px;
@@ -74,5 +61,25 @@
                     color: red;
                 }
             }
+        }
+    }
+    
+    .name {
+        width: 86%;
+        margin-left: 7%;
+        margin-top: 40px;
+        height: 30px;
+        line-height: 30px;
+        border-bottom: 1px solid $bg-grey;
+        color: $font-grey;
+        font-size: $font-size13;
+        span {
+            font-weight: $font-weight;
+            float: left;
+        }
+        a {
+            float: right;
+            text-decoration: none;
+            color: $font-blue;
         }
     }
