@@ -45,4 +45,5 @@ export default {
 </script>
 <style>
 @import '~assets/css/base.scss';
+@import '~assets/font/iconfont.css';
 </style>
