@@ -1,7 +1,9 @@
 <template>
   <div class="lifeapp">
     <div class="name">
-      <span>生活家电</span>
+      <span>
+         <breadcrumbVue></breadcrumbVue>
+      </span>
       <span style="margin-left:10px">商品筛选</span>
       <a href="">重置筛选条件</a>
     </div>
@@ -10,72 +12,37 @@
         <li>排序方式：</li>
         <li>最新</li>
         <li>销量</li>
-        <li>价格 ↑</li>
-        <li>价格 ↓</li>
+        <li>价格<span class="icon iconfont">&#xe6db;</span></li>
+        <li>价格<span class="icon iconfont">&#xe6da;</span></li>
       </ul>
     </div>
     <div class="products">
-      <div class="goods">
-        <img src="" alt="" class="big">
-        <div class="little">
-          <img src="" alt="">
-        </div>
-        <p>
-          <span>￥159</span>
-        </p>
-        <router-link to="#" active-class="active"  tag="li">支撑加热护颈</router-link>
-      </div>
-       <div class="goods">
-        <img src="" alt="" class="big">
-        <div class="little">
-          <img src="" alt="">
-        </div>
-        <p>
-          <span>￥159</span>
-        </p>
-        <router-link to="#" active-class="active"  tag="li">支撑加热护颈</router-link>
-      </div> <div class="goods">
-        <img src="" alt="" class="big">
-        <div class="little">
-          <img src="" alt="">
-        </div>
-        <p>
-          <span>￥159</span>
-        </p>
-        <router-link to="#" active-class="active"  tag="li">支撑加热护颈</router-link>
-      </div> <div class="goods">
-        <img src="" alt="" class="big">
-        <div class="little">
-          <img src="" alt="">
-        </div>
-        <p>
-          <span>￥159</span>
-        </p>
-        <router-link to="#" active-class="active"  tag="li">支撑加热护颈</router-link>
-      </div>
-       <div class="goods">
-        <img src="" alt="" class="big">
-        <div class="little">
-          <img src="" alt="">
-        </div>
-        <p>
-          <span>￥159</span>
-        </p>
-        <router-link to="#" active-class="active"  tag="li">支撑加热护颈</router-link>
-      </div>
+      <router-link to="">
+        <showbox></showbox>
+      </router-link>
     </div>
-    
-    <!-- <h1>我是生活家电</h1> -->
-
   </div>
 </template>
 
-
 <script>
 // import { formatNum } from '../../toolkit'
+import { mapGetters } from 'vuex'
+import breadcrumbVue from '@/components/content/breadcrumb'
+import showbox from './showbox'
 export default {
   name: 'lifeapp',
-  methods: {}
+  data(){
+     return{
+    
+    }
+  },
+components:{
+  breadcrumbVue,
+  showbox
+},
+  methods: {},
+  
+
 }
 </script>
 <style scoped lang="scss">
