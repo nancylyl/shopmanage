@@ -7,13 +7,14 @@
       ></breadcrumbVue>
     </div>
     <router-view v-if="$store.state.shopmenustore.menulist.length>0" />
+    <sidebar/>
   </div>
 </template>
 <script>
 import shopMenu from '@/components/content/shopMenu'
 import breadcrumbVue from '@/components/content/breadcrumb'
 import { mapActions, mapGetters } from 'vuex'
-
+import sidebar from '@/components/commom/sidebar'
 export default {
   data() {
     return {}
@@ -36,7 +37,8 @@ export default {
   },
   components: {
     shopMenu,
-    breadcrumbVue
+    breadcrumbVue,
+    sidebar
   }
 }
 </script>
