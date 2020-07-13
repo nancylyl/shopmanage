@@ -8,13 +8,13 @@
   margin-left: 15%;
   margin-right: 15%;
   height: auto;
-  margin-top: 40px;
+  margin-top: 10px;
   color: #6B6B6B;
   font-size: 13px;
 }
 
 .lifeapp .sort {
-  margin-top: 20px;
+  margin-top: 0px;
   height: 50px;
   border-top: 1px solid #E6E6E6;
   background: linear-gradient(#E6E6E6, 15%, #ffffff);
@@ -68,8 +68,8 @@
 }
 
 .name {
-  width: 86%;
-  margin-left: 7%;
+  width: 85%;
+  margin-left: 7.5%;
   margin-top: 40px;
   height: 30px;
   line-height: 30px;
@@ -87,4 +87,25 @@
   float: right;
   text-decoration: none;
   color: #4E8FC2;
+}
+
+.bedchose {
+  width: 70%;
+  margin-left: 15%;
+}
+
+.bedchose div {
+  height: 25px;
+  border-bottom: 1px solid #E6E6E6;
+}
+
+.bedchose div ul {
+  display: flex;
+}
+
+.bedchose div ul li {
+  margin-left: 10px;
+  color: #6B6B6B;
+  line-height: 25px;
+  font-size: 13px;
 }

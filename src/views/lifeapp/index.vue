@@ -1,12 +1,5 @@
 <template>
   <div class="lifeapp">
-    <!-- <div class="name">
-      <span>
-         <breadcrumbVue></breadcrumbVue>
-      </span>
-      <span style="margin-left:10px">商品筛选</span>
-      <a href="">重置筛选条件</a>
-    </div> -->
     <div class="sort">
       <ul>
         <li>排序方式：</li>
