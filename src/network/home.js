@@ -5,6 +5,7 @@ export function getHomeInfo() {
         url: '/api/getIndex.do'
     })
 
+<<<<<<< HEAD
 }
 
 // export function getProductList(id) {
@@ -13,6 +14,18 @@ export function getHomeInfo() {
 //     })
 // }
 
+=======
+
+
+}
+
+// export function getProductList(id) {
+//     return request({
+//         url: '/api/getProductList.do?Id=1'
+//     })
+// }
+
+>>>>>>> 382311cb0f00308694e00261f2b7944d188f684a
 // // post方式
 // export function getDetail(id) {
 //     return request({
@@ -21,4 +34,15 @@ export function getHomeInfo() {
 //         method: 'post'
 //     })
 
+<<<<<<< HEAD
 // }
+=======
+// }
+export function getProductList() {
+    return request({
+        url: '/api/getProductList.do',
+        data: { PageCount: 100, CurrentPage: 1, Key: '', P_Type_Menu_Id: 2 },
+        method: 'post'
+    })
+}
+>>>>>>> 382311cb0f00308694e00261f2b7944d188f684a
