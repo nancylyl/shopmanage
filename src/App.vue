@@ -13,7 +13,9 @@
 <script>
 import shopMenu from '@/components/content/shopMenu'
 import breadcrumbVue from '@/components/content/breadcrumb'
-import myfooter from '@/components/commom/myfooter'
+
+import myfooter from '@/components/content/myfooter'
+
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
@@ -45,4 +47,5 @@ export default {
 </script>
 <style>
 @import '~assets/css/base.scss';
+@import '~assets/font/iconfont.css';
 </style>

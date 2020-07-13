@@ -1,6 +1,6 @@
 <template>
   <div class="bed">
-    <h1>我是床品</h1>
+   <lifeapp></lifeapp>  
     动态路由参数 {{$route.params.id}}
   </div>
 </template>
@@ -8,6 +8,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import lifeapp from '../lifeapp/index'
 export default {
   name: 'bed',
   data() {
@@ -15,7 +16,9 @@ export default {
   },
   created() {},
   beforeUpdate() {},
-  components: {},
+  components: {
+    lifeapp
+  },
   methods: {}
 }
 </script>
