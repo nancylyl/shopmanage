@@ -35,3 +35,22 @@ a {
     text-decoration: none;
     cursor: pointer;
 }
+
+.nav {
+    width: 1010px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.el-breadcrumb__inner a,
+.el-breadcrumb__inner.is-link {
+    text-decoration: none;
+    transition: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    color: #615146 !important;
+    font-size: 12px !important;
+}
+
+.el-breadcrumb {
+    font-size: 12px !important;
+    line-height: 1 !important;
+}

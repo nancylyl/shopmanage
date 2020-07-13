@@ -1,6 +1,6 @@
 .shopMenu {
     width: 100%;
-    height: 120;
+    height: 60px;
     position: relative;
     z-index: 2;
     // .submenu-panel-bg {
@@ -12,7 +12,7 @@
         z-index: 3;
         &.submenu-panel-hide {
             .submenu-panel {
-                display: none!important;
+                display: none !important;
             }
         }
         .item {
@@ -68,22 +68,16 @@
                 .submenu-panel {
                     display: block;
                     &-bg {
-                        background-color: rgba(255, 255, 255, .9);
+                        background-color: rgba(255, 255, 255, 0.9);
                         left: -100vw;
                         top: 0;
                         width: 200vw;
-                        height: 270px;
+                        height: 550px;
                         position: absolute;
                         z-index: 1;
                     }
                 }
             }
         }
-    }
-    .nav {
-        // position: absolute;
-        width: 1200px;
-        left: 0;
-        top: 0
     }
 }
