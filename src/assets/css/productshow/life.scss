@@ -1,0 +1,73 @@
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    $font-grey:#6B6B6B;
+    $font-size13:13px;
+    $font-weight:bold;
+    $bg-grey:#BFBEBE;
+    $bg-grey2:#E6E6E6;
+    $font-blue :#4E8FC2;
+    .lifeapp {
+        width: 70%;
+        margin-left: 15%;
+        margin-right: 15%;
+        height: auto;
+        margin-top: 40px;
+        color: $font-grey;
+        font-size: $font-size13;
+        .name {
+            height: 30px;
+            border-bottom: 1px solid $bg-grey;
+            span {
+                font-weight: $font-weight;
+                float: left;
+            }
+            a {
+                float: right;
+                text-decoration: none;
+                color: $font-blue;
+            }
+        }
+        .sort {
+            margin-top: 20px;
+            height: 50px;
+            border-top: 1px solid $bg-grey2;
+            background: linear-gradient( $bg-grey2, 15%, #ffffff);
+            ul {
+                display: flex;
+                li {
+                    margin-left: 10px;
+                    line-height: 50px;
+                }
+            }
+        }
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            .goods {
+                width: 20%;
+                height: 300px;
+                margin-right: 4%;
+                border: 1px solid $bg-grey2;
+                margin-bottom: 20px;
+                .big {
+                    width: 100%;
+                    height: 200px;
+                }
+                .little {
+                    width: 35px;
+                    height: 35px;
+                    border: 2px solid #B1544F;
+                    margin-left: 20px;
+                    margin-top: 20px;
+                }
+                p {
+                    padding: 5px;
+                    color: red;
+                }
+            }
+        }
+    }
