@@ -46,6 +46,7 @@ export default {
   },
   created() {
     this.getMenuList()
+    console.log(222);
   },
   computed: {
     ...mapGetters(['menulist', 'list'])
