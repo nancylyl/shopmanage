@@ -2,7 +2,7 @@
   <div class="lifeapp">
     <div class="sort">
       <ul>
-        <li>排序方式：</li>
+        <li style="font-weight:bold;text-decoration:none;cursor: unset">排序方式：</li>
         <li>最新</li>
         <li>销量</li>
         <li>价格<span class="icon iconfont">&#xe6db;</span></li>
@@ -34,7 +34,7 @@ components:{
   showbox
 },
   methods: {},
-  
+ 
 
 }
 </script>

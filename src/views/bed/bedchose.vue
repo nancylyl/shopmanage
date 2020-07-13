@@ -2,7 +2,7 @@
   <div class="bedchose">
   <div>
     <ul>
-      <li style="font-weight:bold">根数：</li>
+      <li style="font-weight:bold;text-decoration:none;cursor: unset">根数：</li>
       <li>全部</li>
       <li>240根</li>
       <li>300根</li>
@@ -15,7 +15,7 @@
   </div>
   <div>
      <ul>
-      <li style="font-weight:bold">尺寸：</li>
+      <li style="font-weight:bold;text-decoration:none;cursor: unset">尺寸：</li>
        <li>全部</li>
       <li>2.0米</li>
       <li>1.8米</li>
@@ -25,7 +25,7 @@
   </div>
   <div>
      <ul>
-      <li style="font-weight:bold">类型：</li>
+      <li style="font-weight:bold;text-decoration:none;cursor: unset">类型：</li>
        <li>全部</li>
       <li>纯色</li>
       <li>磨毛</li>

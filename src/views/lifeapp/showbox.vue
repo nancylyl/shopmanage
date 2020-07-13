@@ -7,7 +7,7 @@
         <p>
           <span>￥159</span>
         </p>
-        <router-link to="#" active-class="active"  tag="li">支撑加热护颈</router-link>
+        <router-link to="#" active-class="active"  tag="li" style="color:#6B6B6B">支撑加热护颈</router-link>
       </div> 
 </template>
 

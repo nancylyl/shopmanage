@@ -32,6 +32,10 @@
                         font-size: 13px;
                     }
                 }
+                li:hover {
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
             }
         }
         .products {
@@ -97,6 +101,10 @@
                     color: $font-grey;
                     line-height: 25px;
                     font-size: $font-size13;
+                }
+                li:hover {
+                    text-decoration: underline;
+                    cursor: pointer;
                 }
             }
         }

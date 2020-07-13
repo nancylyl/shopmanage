@@ -3,7 +3,7 @@
     <div class="bedchose">
   <div>
     <ul>
-      <li style="font-weight:bold">风格：</li>
+      <li style="font-weight:bold;text-decoration:none;cursor: unset">风格：</li>
       <li>全部</li>
       <li>纯色</li>
       <li>格子</li>

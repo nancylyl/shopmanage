@@ -1,15 +1,17 @@
 <template>
-  <div class="towel">
-    <h1>我是毛巾浴巾</h1>
+  <div class="clean">
+    <lifeapp></lifeapp>
     动态路由参数 {{$route.params.id}}
   </div>
 </template>
 
-
 <script>
-// import { formatNum } from '../../toolkit'
+import lifeapp from '../lifeapp/index'
 export default {
-  name: 'towel',
+  name: 'clean',
+    components: {
+    lifeapp
+  },
   methods: {}
 }
 </script>
