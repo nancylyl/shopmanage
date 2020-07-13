@@ -6,12 +6,14 @@
         v-if="$store.state.shopmenustore.menulist.length>0&&$store.state.shopmenustore.navbar"
       ></breadcrumbVue>
     </div>
-    <router-view v-if="$store.state.shopmenustore.menulist.length>0" />
+    <router-view v-if="$store.state.shopmenustore.menulist.length>0" />  
+      <myfooter></myfooter>
   </div>
 </template>
 <script>
 import shopMenu from '@/components/content/shopMenu'
 import breadcrumbVue from '@/components/content/breadcrumb'
+import myfooter from '@/components/content/myfooter'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
@@ -36,7 +38,8 @@ export default {
   },
   components: {
     shopMenu,
-    breadcrumbVue
+    breadcrumbVue,
+    myfooter
   }
 }
 </script>

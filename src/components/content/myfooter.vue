@@ -57,6 +57,6 @@
     }
 </script>
 
-<style>
+<style scoped>
 @import "~assets/css/myfooter.css";
 </style>
