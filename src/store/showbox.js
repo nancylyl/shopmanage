@@ -27,7 +27,6 @@ const mutations = {
         state.showlist = data;
         console.log(state.showlist);
     }
-
 }
 export default {
     state,
