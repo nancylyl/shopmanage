@@ -6,22 +6,15 @@ export function getHomeInfo() {
     })
 
 }
-
-<<<<<<< HEAD
-export function getList(id) {
-
-=======
 export function getList(data) {
-    console.log("=======11111111111111111111111=======")
+
     console.log(data)
->>>>>>> 06c32c71cf62fbe6b0e696e7327c15c4276d8e8c
     return request({
         url: '/api/getProductList.do',
         data: data,
         method: 'post'
     })
 }
-<<<<<<< HEAD
 
 
 //商品详情
@@ -66,7 +59,7 @@ export function register() {
         method: 'post'
     })
 }
-=======
+
 // // post方式
 // export function getDetail(id) {
 //     return request({
@@ -88,4 +81,3 @@ export function register() {
 //         method: 'post'
 //     })
 // }
->>>>>>> 06c32c71cf62fbe6b0e696e7327c15c4276d8e8c

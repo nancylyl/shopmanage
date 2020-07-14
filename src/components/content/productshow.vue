@@ -1,12 +1,18 @@
 <template>
-  <div class="lifeapp" v-if="this.listpro.length>0">
+  <div class="lifeapp" v-if="$store.state.showbox.showlist.length>0">
     <div class="sort">
       <ul>
         <li style="font-weight:bold;text-decoration:none;cursor: unset">排序方式：</li>
         <li>最新</li>
         <li>销量</li>
-        <li>价格<span class="icon iconfont">&#xe6db;</span></li>
-        <li>价格<span class="icon iconfont">&#xe6da;</span></li>
+        <li>
+          价格
+          <span class="icon iconfont">&#xe6db;</span>
+        </li>
+        <li>
+          价格
+          <span class="icon iconfont">&#xe6da;</span>
+        </li>
       </ul>
     </div>
     <ul class="products">
@@ -20,48 +26,49 @@
 <script>
 // import { formatNum } from '../../toolkit'
 import { getList } from '@/network/home'
-import { mapGetters,mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import breadcrumbVue from '@/components/content/breadcrumb'
 import showbox from './showbox'
 export default {
   name: 'lifeapp',
-  data(){
-     return{
-      listpro:[] 
+  data() {
+    return {
+      listpro: []
     }
   },
-  props:["productType"],
-  components:{
+  props: ['productType'],
+  components: {
     breadcrumbVue,
     showbox
   },
-  created(){
-   this.getprolist();
-    this.listpro=this.showlist;
-console.log(this.listpro,this.showlist)
-    
+  created() {
+    this.getprolist()
+    setTimeout(() => {
+      this.listpro = this.showlist
+      console.log('22222') //
+    }, 100)
   },
-  mounted(){
-
-  },
+  mounted() {},
   methods: {
-    ...mapActions(["getshowlist"]),
+    ...mapActions(['getshowlist']),
 
- getprolist: async function(){
- let data = { PageCount: 100, CurrentPage: 1, Key: '', P_Type_Menu_Id: this.productType }
-    console.log(data)
-    this.getshowlist(data)
-
+    getprolist: async function() {
+      let data = {
+        PageCount: 100,
+        CurrentPage: 1,
+        Key: '',
+        P_Type_Menu_Id: this.productType
+      }
+      console.log(data)
+      this.getshowlist(data)
+      console.log('11111111111')
     }
-  
   },
-  computed:{
-   ...mapGetters(["showlist"])
+  computed: {
+    ...mapGetters(['showlist'])
   }
- 
-
 }
 </script>
 <style scoped lang="scss">
-@import "~assets/css/productshow/life.scss";
+@import '~assets/css/productshow/life.scss';
 </style>
