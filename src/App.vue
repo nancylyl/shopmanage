@@ -7,7 +7,7 @@
       ></breadcrumbVue>
     </div>
     <router-view v-if="$store.state.shopmenustore.menulist.length>0" />
-    <sidebar/>
+    <sidebar />
   </div>
 </template>
 <script>
@@ -25,6 +25,8 @@ export default {
       // 对路由变化作出响应...
       let nav = this.$route.params.id
       this.setNav(nav)
+      // console.log(to, from)
+
       document.querySelector('.header').className = 'header submenu-panel-hide'
       setTimeout(() => {
         document.querySelector('.header').className = 'header'
@@ -38,7 +40,7 @@ export default {
     shopMenu,
     breadcrumbVue,
     sidebar
-}
+  }
 }
 </script>
 <style>

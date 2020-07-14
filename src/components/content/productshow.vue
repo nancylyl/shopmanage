@@ -41,27 +41,28 @@ export default {
     breadcrumbVue,
     showbox
   },
-  created() {
-    this.getprolist()
-    setTimeout(() => {
+  created: async function() {
+    let isture = await this.getprolist()
+    if (isture) {
       this.listpro = this.showlist
-      // console.log('22222') 
-    }, 100)
+      // console.log(this.listpro, this.showlist)
+    }
   },
   mounted() {},
   methods: {
     ...mapActions(['getshowlist']),
 
-    getprolist: async function() {
-      let data = {
-        PageCount: 100,
-        CurrentPage: 1,
-        Key: '',
-        P_Type_Menu_Id: this.productType
-      }
-      console.log(data)
-      this.getshowlist(data)
-      console.log('11111111111')
+    getprolist: function() {
+      return new Promise(async (resolve, reject) => {
+        let data = {
+          PageCount: 100,
+          CurrentPage: 1,
+          Key: '',
+          P_Type_Menu_Id: this.productType
+        }
+        await this.getshowlist(data)
+        resolve(true)
+      })
     }
   },
   computed: {

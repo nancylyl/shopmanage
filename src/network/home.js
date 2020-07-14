@@ -8,7 +8,7 @@ export function getHomeInfo() {
 }
 export function getList(data) {
 
-    console.log(data)
+    //console.log(data)
     return request({
         url: '/api/getProductList.do',
         data: data,

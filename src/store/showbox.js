@@ -12,7 +12,7 @@ const getters = {
 const actions = {
     getshowlist({ commit }, data) {
 
-        getList(data)
+        return getList(data)
             .then(res => {
                 let data = res.data.data
                 commit('getshowlist', data)
