@@ -13,8 +13,8 @@
         <p>
           <span>¥{{price}}</span>
         </p>
-        <router-link to="#" active-class="active" class="textHide" style="color:#6B6B6B">{{tittle}}</router-link>
-      </div> 
+        <router-link to="#" class="textHide" tag="p">{{tittle}}</router-link>
+    </div> 
 </template>
 
 <script>
@@ -35,23 +35,20 @@ created(){
   this.bigImgUrl = this.chooseUrl[0].Pro_Url;
   // console.log(this.chooseUrl)
 },
-updated(){
-this.bigImgUrl = this.chooseUrl[0].Pro_Url;
-},
 methods: {
-  change(chooseUrl,index,bigImgUrl){
-    this.active=index;
-    this.bigImgUrl= chooseUrl[index].Pro_Url;
+  change(chooseUrl,index,bigImgUrl) {
+    this.active = index;
+    this.bigImgUrl = chooseUrl[index].Pro_Url;
+    // console.log(this.bigImgUrl)
   }
 },
 computed: {
   chooseUrl: function () {
     return this.imgSrc.filter(function (imgSrc) {
-      return imgSrc.Type==3
+      return imgSrc.Type==2
     })
   } 
 }
-
 }
 </script>
 <style scoped lang="scss">

@@ -45,7 +45,7 @@ export default {
     this.getprolist()
     setTimeout(() => {
       this.listpro = this.showlist
-      console.log('22222') //
+      // console.log('22222') 
     }, 100)
   },
   mounted() {},
