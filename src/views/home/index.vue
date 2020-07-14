@@ -17,7 +17,14 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
-import { getHomeInfo, getDetail, getProductList } from '@/network/home'
+import {
+  getHomeInfo,
+  getDetail,
+  getProductList,
+  login,
+  register,
+  getProductDetail
+} from '@/network/home'
 export default {
   name: 'Home',
   data() {
@@ -45,6 +52,18 @@ export default {
     //   console.log(res)
     // })
 
+    // login()
+    //   .then(res => {
+    //     console.log(res)
+    //   })
+    //   .catch(e => {
+    //     console.log(e)
+    //   })
+
+    register().then(res => {
+      console.log(res)
+    })
+
     getProductList()
       .then(res => {
         this.ProdeuctList = res.data.data
@@ -53,6 +72,9 @@ export default {
       .catch(e => {
         console.log(e)
       })
+    // getProductDetail().then(res => {
+    //   console.log(res)
+    // })
   }
 }
 </script>
