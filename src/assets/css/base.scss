@@ -57,3 +57,12 @@ a {
     font-size: 13px !important;
     line-height: 1 !important;
 }
+.el-input-number--small .el-input-number__decrease, .el-input-number--small .el-input-number__increase {
+    width: 32px ;
+    font-size: 13px;
+    height: 28px !important;
+    line-height: 28px;
+}
+.el-input-number__decrease>i,.el-input-number__increase>i{
+    line-height: 2.3;
+}

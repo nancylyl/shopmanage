@@ -7,14 +7,6 @@ export function getHomeInfo() {
 
 }
 
-<<<<<<< HEAD
-=======
-export function getList(id) {
-    return request({
-        url: '/api/getProductList.do'
-    })
-}
->>>>>>> 9de960aeccd149f1064f00bab6db903b2ff62ae1
 // // post方式
 // export function getDetail(id) {
 //     return request({

@@ -9,9 +9,10 @@ import slipper from './slipper'
 import towel from './towel'
 import underwear from './underwear'
 import baby from './baby'
+import productdetails from './productdetails'
 Vue.use(VueRouter)
 
-const routes = [...home, ...baby, ...bed, ...clean, ...house, ...lifeapp, ...slipper, ...towel, ...underwear]
+const routes = [...home, ...baby, ...bed, ...clean, ...house, ...lifeapp, ...slipper, ...towel, ...underwear,...productdetails]
 const router = new VueRouter({
     mode: 'history',
     base: process.env.BASE_URL,
