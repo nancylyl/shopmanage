@@ -7,6 +7,7 @@ const state = {
 }
 const getters = {
     showlist: state => state.showlist,
+
 }
 const actions = {
     //获取菜单栏信息

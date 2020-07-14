@@ -6,14 +6,22 @@ export function getHomeInfo() {
     })
 
 }
+<<<<<<< HEAD
 export function getList(data) {
+=======
+
+export function getList(id) {
+>>>>>>> 142ed5ce550b78894701f94472384a0458b7d789
     return request({
         url: '/api/getProductList.do',
         data: data,
         method: 'post'
     })
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 142ed5ce550b78894701f94472384a0458b7d789
 // // post方式
 // export function getDetail(id) {
 //     return request({
@@ -26,7 +34,11 @@ export function getList(data) {
 //     return request({
 //         url: '/api/getProductList.do',
 
+<<<<<<< HEAD
 //         data: { PageCount: 100, CurrentPage: 1, key: '张三' },
+=======
+        //   data: { PageCount: 100, CurrentPage: 1, key: '张三' },
+>>>>>>> 142ed5ce550b78894701f94472384a0458b7d789
 
 //         data: { PageCount: 100, CurrentPage: 1, Key: '', P_Type_Menu_Id: 2 },
 
