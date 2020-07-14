@@ -1,54 +1,48 @@
 <template>
   <div class="home">
-    ddd
-    动态路由参数 {{$route.params.id}}
-    <div class="detail" v-html="productdetail"></div>
-    <img alt="Vue logo" src="~assets/logo.png" />
+    <!-- <img :src="require('@/assets/images/bed/0035-0.png')"> -->
+    <!-- <img src="@/assets/images/bed/0035-0.png"> -->
+   <el-carousel :interval="4000" arrow="never" height="450px">
+      <el-carousel-item v-for="item in ProdeuctList[0]" :key="item.id">
+        <router-link :to="'/'+item.url+'/'+item.id">
+          <img :src="require(`../../assets/images/${item.Banner_src}`)" class="banner_img">
+        </router-link>
+      </el-carousel-item>
+    </el-carousel>
+    <div class="largeproduct">
+      <div v-for="item in ProdeuctList[1]" :key="item.id" class="bigPro_img">
+        <router-link :to="'/'+item.url+'/'+item.id">
+          <img :src="require(`../../assets/images/${item.Pro_Url}`)">
+        </router-link>
+      </div>
+    </div>
 
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
-    <ul>
-      <li v-for="item in ProdeuctList" :key="item.id" :class="item">
-        >
-        <span>{{ item.Pro_Name }}</span>
-        <img :src="item.MemPrice" alt />
-      </li>
-    </ul>
   </div>
-</template>
+</template> 
 <script>
 // @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
-import { getHomeInfo, getDetail, getProductList } from '@/network/home'
+import { getHomeInfo } from '@/network/home'
 export default {
   name: 'Home',
   data() {
     return {
-      ProdeuctList: '',
-      productdetail: ''
+      ProdeuctList: [],
     }
   },
   components: {
-    // HelloWorld
   },
   created() {
-    //1.get提交方式
-    // getProductList()
-    //   .then(res => {
-    //     this.ProdeuctList = res.data.list
-    //     console.log(this.ProdeuctList)
-    //   })
-    //   .catch(e => {
-    //     console.log(e)
-    //   })
-    //post提交
-    // getDetail(1).then(res => {
-    //   console.log(res)
-    // })
+    getHomeInfo()
+      .then(res => {
+        this.ProdeuctList = res.data.data
+        console.log(this.ProdeuctList)
+      })
+      .catch(e => {
+        console.log(e)
+      })
   }
 }
 </script>
-<style scoped>
-.detail {
-  width: 800px;
-}
+<style lang="scss"> 
+@import '~assets/css/home/home.scss';
 </style>

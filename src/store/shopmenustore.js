@@ -49,7 +49,6 @@ const actions = {
             .catch(e => {
                 console.log(e)
             })
-
     },
     /* 查找导航 */
     setNav({ commit }, str) {
