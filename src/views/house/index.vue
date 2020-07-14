@@ -1,34 +1,23 @@
 <template>
-  <div class="home">
-    <div class="bedchose">
   <div>
-    <ul>
-      <li style="font-weight:bold;text-decoration:none;cursor: unset">风格：</li>
-      <li>全部</li>
-      <li>纯色</li>
-      <li>格子</li>
-      <li>条纹</li>
-      <li>印花</li>
-    </ul>
-  </div>
-  </div>
-    <lifeapp></lifeapp>>
-    动态路由参数 {{$route.params.id}}
+    <productshow :productType="type_id" />
   </div>
 </template>
 
-
 <script>
-// import { formatNum } from '../../toolkit'
-import lifeapp from '../lifeapp/index'
+import productshow from '@/components/content/productshow'
 export default {
-  name: 'home',
-   components: {
-    lifeapp
+  name: 'lifeapp',
+  data(){
+      return{
+        type_id:33
+    }
   },
-  methods: {}
-}
+  components:{
+    productshow
+  }
+} 
 </script>
-<style lang="scss">
+<style scoped lang="scss">
 @import "~assets/css/productshow/life.scss";
 </style>

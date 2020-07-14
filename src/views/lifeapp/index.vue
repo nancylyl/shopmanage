@@ -1,28 +1,20 @@
 <template>
   <div>
-    <productshow/>
+    <productshow :productType="type_id" />
   </div>
 </template>
 
 <script>
-// import { formatNum } from '../../toolkit'
-// import { getList } from '@/network/home'
-// import { mapGetters,mapActions } from 'vuex'
 import productshow from '@/components/content/productshow'
-// import showbox from './showbox'
 export default {
   name: 'lifeapp',
   data(){
       return{
-      type_id:2
+        type_id:2
     }
   },
   components:{
     productshow
-  },
-  created(){
-    
-    this.type_id=productType
   }
 } 
 </script>

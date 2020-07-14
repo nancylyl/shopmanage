@@ -77,14 +77,13 @@
   height: 218px;
   z-index: 5;
   overflow: hidden;
-  box-sizing: border-box;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .lifeapp .products .goods .bigImgBox .big {
   width: 218px;
   height: 218px;
-  margin-bottom: 10px;
-  box-sizing: border-box;
 }
 
 .lifeapp .products .goods .bigImgBox .big:hover {

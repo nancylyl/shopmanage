@@ -1,7 +1,7 @@
 <template>
     <div class="goods"> 
-        <!-- <em class="left" v-if="this.chooseUrl.length>=4" @click="turnLeft(this)">&lt;</em>
-        <em class="right" v-if="this.chooseUrl.length>=4" @click="turnRight">&gt;</em> -->
+        <!-- <em class="left" v-if="this.chooseUrl.length>=4">&lt;</em>
+        <em class="right" v-if="this.chooseUrl.length>=4">&gt;</em> -->
         <router-link to="#" class="bigImgBox" tag="div">
           <img :src="require(`../../assets/images/${bigImgUrl}`)" class="big">
         </router-link>
@@ -40,14 +40,7 @@ methods: {
   change(chooseUrl,index,bigImgUrl){
     this.active=index;
     this.bigImgUrl= chooseUrl[index].Pro_Url;
-  },
-  turnLeft(obj){
-    let turnLeft = document.getElementsByClassName("little")
-    console.log(this)
-  },
-  turnRight(){
-    // console.log(turnRight)
-  },
+  }
 },
 computed: {
   chooseUrl: function () {

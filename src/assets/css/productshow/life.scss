@@ -70,12 +70,11 @@
                     height: 218px;
                     z-index: 5;
                     overflow: hidden;
-                    box-sizing: border-box;
+                    margin-bottom: 10px;
+                    cursor: pointer;
                     .big {
                         width: 218px;
                         height: 218px;
-                        margin-bottom: 10px;
-                        box-sizing: border-box;
                         &:hover {
                             transform: scale(1.1);
                             transition: 2s;

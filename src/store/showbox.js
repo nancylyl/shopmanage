@@ -10,8 +10,8 @@ const getters = {
 
 }
 const actions = {
-    //获取菜单栏信息
     getshowlist({ commit }, data) {
+
         getList(data)
             .then(res => {
                 let data = res.data.data
@@ -20,7 +20,6 @@ const actions = {
             .catch(e => {
                 console.log(e)
             })
-
     },
 }
 const mutations = {
