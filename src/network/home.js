@@ -7,6 +7,14 @@ export function getHomeInfo() {
 
 }
 
+<<<<<<< HEAD
+=======
+export function getList(id) {
+    return request({
+        url: '/api/getProductList.do'
+    })
+}
+>>>>>>> 9de960aeccd149f1064f00bab6db903b2ff62ae1
 // // post方式
 // export function getDetail(id) {
 //     return request({
@@ -15,3 +23,14 @@ export function getHomeInfo() {
 //         method: 'post'
 //     })
 // }
+export function getProductList() {
+    return request({
+        url: '/api/getProductList.do',
+
+        data: { PageCount: 100, CurrentPage: 1, key: '张三' },
+
+        data: { PageCount: 100, CurrentPage: 1, Key: '', P_Type_Menu_Id: 2 },
+
+        method: 'post'
+    })
+}

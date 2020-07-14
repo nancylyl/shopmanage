@@ -5,13 +5,11 @@
   </div>
 </template>
 
-
 <script>
-// import { formatNum } from '../../toolkit'
 import lifeapp from '../lifeapp/index'
 export default {
   name: 'clean',
-  components: {
+    components: {
     lifeapp
   },
   methods: {}
