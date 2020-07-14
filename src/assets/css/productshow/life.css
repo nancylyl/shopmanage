@@ -52,6 +52,7 @@
 
 .lifeapp .products {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   width: 100%;
 }
@@ -59,7 +60,7 @@
 .lifeapp .products .goods {
   width: 218px;
   height: 330px;
-  margin-right: 4%;
+  margin: 0 5px;
   border: 1px solid #E6E6E6;
   margin-bottom: 20px;
 }
@@ -81,4 +82,10 @@
 .lifeapp .products .goods p {
   padding: 5px;
   color: red;
+}
+
+.lifeapp .products .goods .textHide {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
