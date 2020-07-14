@@ -7,17 +7,14 @@
       ></breadcrumbVue>
     </div>
     <router-view v-if="$store.state.shopmenustore.menulist.length>0" />
-    <myfooter />
+    <sidebar/>
   </div>
 </template>
 <script>
 import shopMenu from '@/components/content/shopMenu'
 import breadcrumbVue from '@/components/content/breadcrumb'
-
-import myfooter from '@/components/content/myfooter'
-
 import { mapActions, mapGetters } from 'vuex'
-
+import sidebar from '@/components/commom/sidebar'
 export default {
   data() {
     return {}
@@ -32,7 +29,6 @@ export default {
       setTimeout(() => {
         document.querySelector('.header').className = 'header'
       }, 100)
-      console.log('111')
     }
   },
   methods: {
@@ -41,11 +37,14 @@ export default {
   components: {
     shopMenu,
     breadcrumbVue,
-    myfooter
-  }
+    sidebar
+}
 }
 </script>
 <style>
 @import '~assets/css/base.scss';
 @import '~assets/font/iconfont.css';
 </style>
+
+
+

@@ -10,28 +10,15 @@
     $bg-grey2:#E6E6E6;
     $font-blue :#4E8FC2;
     .lifeapp {
-        width: 70%;
-        margin-left: 15%;
+        width: 90%;
+        margin-left: 5%;
         margin-right: 15%;
         height: auto;
-        margin-top: 40px;
+        margin-top: 10px;
         color: $font-grey;
         font-size: $font-size13;
-        .name {
-            height: 30px;
-            border-bottom: 1px solid $bg-grey;
-            span {
-                font-weight: $font-weight;
-                float: left;
-            }
-            a {
-                float: right;
-                text-decoration: none;
-                color: $font-blue;
-            }
-        }
         .sort {
-            margin-top: 20px;
+            margin-top: 0px;
             height: 50px;
             border-top: 1px solid $bg-grey2;
             background: linear-gradient( $bg-grey2, 15%, #ffffff);
@@ -45,33 +32,130 @@
                         font-size: 13px;
                     }
                 }
+                li:hover {
+                    text-decoration: underline;
+                    cursor: pointer;
+                }
             }
         }
         .products {
             display: flex;
+            justify-content: center;
             flex-wrap: wrap;
             width: 100%;
             .goods {
                 width: 218px;
                 height: 330px;
-                margin-right: 4%;
+                margin: 0 5px;
+                position: relative;
+                margin-right: 15px;
                 border: 1px solid $bg-grey2;
                 margin-bottom: 20px;
-                .big {
+                .left {
+                    position: absolute;
+                    bottom: 70px;
+                    left: 0;
+                    font-size: 25px;
+                    cursor: pointer;
+                }
+                .right {
+                    position: absolute;
+                    bottom: 70px;
+                    right: 2px;
+                    font-size: 25px;
+                    cursor: pointer;
+                }
+                .bigImgBox {
                     width: 218px;
                     height: 218px;
-                    border: none;
+                    z-index: 5;
+                    overflow: hidden;
+                    box-sizing: border-box;
+                    .big {
+                        width: 218px;
+                        height: 218px;
+                        margin-bottom: 10px;
+                        box-sizing: border-box;
+                        &:hover {
+                            transform: scale(1.1);
+                            transition: 2s;
+                        }
+                    }
                 }
                 .little {
-                    width: 35px;
-                    height: 35px;
-                    border: 2px solid #B1544F;
-                    margin-left: 20px;
-                    margin-top: 20px;
+                    width: 205px;
+                    height: 39px;
+                    margin: 0 auto;
+                    overflow: hidden;
+                    margin-bottom: 20px;
+                    li:first-child {
+                        margin-left: 15px;
+                    }
+                    li {
+                        float: left;
+                        margin: 0 3px;
+                        height: 35px;
+                        border: 2px solid #aaa7a6;
+                    }
+                    .imgBorder {
+                        border: 2px solid #B1544F;
+                    }
+                    img {
+                        width: 35px;
+                        height: 35px;
+                        cursor: pointer;
+                    }
                 }
                 p {
                     padding: 5px;
                     color: red;
+                }
+                .textHide {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+            }
+        }
+    }
+    
+    .name {
+        // width: 100%;
+        // margin-left: 0;
+        margin-top: 40px;
+        height: 30px;
+        line-height: 30px;
+        border-bottom: 1px solid $bg-grey;
+        color: $font-grey;
+        font-size: $font-size13;
+        span {
+            font-weight: $font-weight;
+            float: left;
+        }
+        a {
+            float: right;
+            text-decoration: none;
+            color: $font-blue;
+        }
+    }
+    
+    .bedchose {
+        width: 90%;
+        margin-left: 5%;
+        div {
+            height: 25px;
+            border-bottom: 1px solid $bg-grey2;
+            ul {
+                display: flex;
+                li {
+                    margin-left: 10px;
+                    color: $font-grey;
+                    line-height: 25px;
+                    font-size: $font-size13;
+                }
+                li:hover {
+                    text-decoration: underline;
+                    cursor: pointer;
                 }
             }
         }

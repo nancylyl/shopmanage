@@ -35,8 +35,6 @@
         },
     }
 </script>
-<style scoped>
-@import "~assets/css/addcollect.css";
-    
-    
+<style lang="scss" scoped>
+@import "~assets/css/pop_up/addcollect.scss";   
 </style>
