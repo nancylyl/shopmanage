@@ -46,24 +46,65 @@
             .goods {
                 width: 218px;
                 height: 330px;
-<<<<<<< HEAD
                 margin: 0 5px;
-=======
+                position: relative;
                 margin-right: 15px;
->>>>>>> 9de960aeccd149f1064f00bab6db903b2ff62ae1
                 border: 1px solid $bg-grey2;
                 margin-bottom: 20px;
-                .big {
+                .left {
+                    position: absolute;
+                    bottom: 70px;
+                    left: 0;
+                    font-size: 25px;
+                    cursor: pointer;
+                }
+                .right {
+                    position: absolute;
+                    bottom: 70px;
+                    right: 2px;
+                    font-size: 25px;
+                    cursor: pointer;
+                }
+                .bigImgBox {
                     width: 218px;
                     height: 218px;
-                    border: none;
+                    z-index: 5;
+                    overflow: hidden;
+                    box-sizing: border-box;
+                    .big {
+                        width: 218px;
+                        height: 218px;
+                        margin-bottom: 10px;
+                        box-sizing: border-box;
+                        &:hover {
+                            transform: scale(1.1);
+                            transition: 2s;
+                        }
+                    }
                 }
                 .little {
-                    width: 35px;
-                    height: 35px;
-                    border: 2px solid #B1544F;
-                    margin-left: 20px;
-                    margin-top: 20px;
+                    width: 205px;
+                    height: 39px;
+                    margin: 0 auto;
+                    overflow: hidden;
+                    margin-bottom: 20px;
+                    li:first-child {
+                        margin-left: 15px;
+                    }
+                    li {
+                        float: left;
+                        margin: 0 3px;
+                        height: 35px;
+                        border: 2px solid #aaa7a6;
+                    }
+                    .imgBorder {
+                        border: 2px solid #B1544F;
+                    }
+                    img {
+                        width: 35px;
+                        height: 35px;
+                        cursor: pointer;
+                    }
                 }
                 p {
                     padding: 5px;

@@ -6,15 +6,14 @@ export function getHomeInfo() {
     })
 
 }
-
-<<<<<<< HEAD
-=======
-export function getList(id) {
+export function getList(data) {
     return request({
-        url: '/api/getProductList.do'
+        url: '/api/getProductList.do',
+        data: data,
+        method: 'post'
     })
 }
->>>>>>> 9de960aeccd149f1064f00bab6db903b2ff62ae1
+
 // // post方式
 // export function getDetail(id) {
 //     return request({
@@ -23,14 +22,14 @@ export function getList(id) {
 //         method: 'post'
 //     })
 // }
-export function getProductList() {
-    return request({
-        url: '/api/getProductList.do',
+// export function getProductList() {
+//     return request({
+//         url: '/api/getProductList.do',
 
-        data: { PageCount: 100, CurrentPage: 1, key: '张三' },
+//         data: { PageCount: 100, CurrentPage: 1, key: '张三' },
 
-        data: { PageCount: 100, CurrentPage: 1, Key: '', P_Type_Menu_Id: 2 },
+//         data: { PageCount: 100, CurrentPage: 1, Key: '', P_Type_Menu_Id: 2 },
 
-        method: 'post'
-    })
-}
+//         method: 'post'
+//     })
+// }

@@ -49,27 +49,76 @@
 .lifeapp .products .goods {
   width: 218px;
   height: 330px;
-<<<<<<< HEAD
   margin: 0 5px;
-=======
+  position: relative;
   margin-right: 15px;
->>>>>>> 9de960aeccd149f1064f00bab6db903b2ff62ae1
   border: 1px solid #E6E6E6;
   margin-bottom: 20px;
 }
 
-.lifeapp .products .goods .big {
+.lifeapp .products .goods .left {
+  position: absolute;
+  bottom: 70px;
+  left: 0;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.lifeapp .products .goods .right {
+  position: absolute;
+  bottom: 70px;
+  right: 2px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.lifeapp .products .goods .bigImgBox {
   width: 218px;
   height: 218px;
-  border: none;
+  z-index: 5;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.lifeapp .products .goods .bigImgBox .big {
+  width: 218px;
+  height: 218px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.lifeapp .products .goods .bigImgBox .big:hover {
+  transform: scale(1.1);
+  transition: 2s;
 }
 
 .lifeapp .products .goods .little {
+  width: 205px;
+  height: 39px;
+  margin: 0 auto;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.lifeapp .products .goods .little li:first-child {
+  margin-left: 15px;
+}
+
+.lifeapp .products .goods .little li {
+  float: left;
+  margin: 0 3px;
+  height: 35px;
+  border: 2px solid #aaa7a6;
+}
+
+.lifeapp .products .goods .little .imgBorder {
+  border: 2px solid #B1544F;
+}
+
+.lifeapp .products .goods .little img {
   width: 35px;
   height: 35px;
-  border: 2px solid #B1544F;
-  margin-left: 20px;
-  margin-top: 20px;
+  cursor: pointer;
 }
 
 .lifeapp .products .goods p {
@@ -77,12 +126,12 @@
   color: red;
 }
 
-<<<<<<< HEAD
 .lifeapp .products .goods .textHide {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-=======
+}
+
 .name {
   margin-top: 40px;
   height: 30px;
@@ -127,5 +176,4 @@
 .bedchose div ul li:hover {
   text-decoration: underline;
   cursor: pointer;
->>>>>>> 9de960aeccd149f1064f00bab6db903b2ff62ae1
 }

@@ -10,8 +10,8 @@ const getters = {
 }
 const actions = {
     //获取菜单栏信息
-    getshowlist({ commit }) {
-        getList()
+    getshowlist({ commit }, data) {
+        getList(data)
             .then(res => {
                 let data = res.data.data
                 commit('getshowlist', data)
