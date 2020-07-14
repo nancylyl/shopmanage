@@ -31,11 +31,13 @@ export default {
 components:{
     
 },
-created(chooseUrl){
+created(){
   this.bigImgUrl = this.chooseUrl[0].Pro_Url;
   // console.log(this.chooseUrl)
 },
-
+updated(){
+this.bigImgUrl = this.chooseUrl[0].Pro_Url;
+},
 methods: {
   change(chooseUrl,index,bigImgUrl){
     this.active=index;

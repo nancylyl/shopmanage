@@ -1,5 +1,5 @@
 <template>
-  <div class="lifeapp">
+  <div class="lifeapp" v-if="this.listpro.length>0">
     <div class="sort">
       <ul>
         <li style="font-weight:bold;text-decoration:none;cursor: unset">排序方式：</li>
@@ -10,7 +10,7 @@
       </ul>
     </div>
     <ul class="products">
-      <li v-for="item in showlist" :key="item.id">
+      <li v-for="item in listpro" :key="item.id">
         <showbox :imgSrc="item.children" :price="item.Price" :tittle="item.Pro_Name"></showbox>
       </li>
     </ul>
@@ -27,6 +27,7 @@ export default {
   name: 'lifeapp',
   data(){
      return{
+      listpro:[] 
     }
   },
   props:["productType"],
@@ -35,11 +36,25 @@ export default {
     showbox
   },
   created(){
-    let data = { PageCount: 100, CurrentPage: 1, Key: '', P_Type_Menu_Id: this.productType }
+   this.getprolist();
+    this.listpro=this.showlist;
+console.log(this.listpro,this.showlist)
+    
+  },
+  mounted(){
+
+  },
+  methods: {
+    ...mapActions(["getshowlist"]),
+
+ getprolist: async function(){
+ let data = { PageCount: 100, CurrentPage: 1, Key: '', P_Type_Menu_Id: this.productType }
     console.log(data)
     this.getshowlist(data)
+
+    }
+  
   },
-  methods: {...mapActions(["getshowlist"])},
   computed:{
    ...mapGetters(["showlist"])
   }
