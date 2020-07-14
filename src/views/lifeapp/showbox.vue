@@ -1,13 +1,13 @@
 <template>
     <div class="goods">
-        <img src="" alt="" class="big">
+        <img :src="imgSrc" alt="" class="big">
         <div class="little">
           <img src="" alt="">
         </div>
         <p>
-          <span>￥159</span>
+          <span>￥{{price}}</span>
         </p>
-        <router-link to="#" active-class="active"  tag="li" style="color:#6B6B6B">支撑加热护颈</router-link>
+        <router-link to="#" active-class="active"  tag="li" style="color:#6B6B6B">{{tittle}}</router-link>
       </div> 
 </template>
 
@@ -20,6 +20,7 @@ export default {
     
     }
   },
+  props:['imgSrc','price','tittle'],
 components:{
 
 },

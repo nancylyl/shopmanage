@@ -7,11 +7,11 @@ export function getHomeInfo() {
 
 }
 
-// export function getProductList(id) {
-//     return request({
-//         url: '/api/getProductList.do?Id=1'
-//     })
-// }
+export function getList(id) {
+    return request({
+        url: '/api/getProductList.do'
+    })
+}
 // // post方式
 // export function getDetail(id) {
 //     return request({

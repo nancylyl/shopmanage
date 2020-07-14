@@ -10,8 +10,8 @@
       </ul>
     </div>
     <div class="products">
-      <router-link to="">
-        <showbox></showbox>
+      <router-link to="/home" v-for="item in showlist" :key="item.id">
+        <showbox :price="item.Price" :tittle="item.Pro_Name"></showbox>
       </router-link>
     </div>
   </div>
@@ -19,7 +19,7 @@
 
 <script>
 // import { formatNum } from '../../toolkit'
-import { mapGetters } from 'vuex'
+import { mapGetters,mapActions } from 'vuex'
 import breadcrumbVue from '@/components/content/breadcrumb'
 import showbox from './showbox'
 export default {
@@ -29,11 +29,17 @@ export default {
     
     }
   },
-components:{
-  breadcrumbVue,
-  showbox
-},
-  methods: {},
+  components:{
+    breadcrumbVue,
+    showbox
+  },
+  created(){
+    this.getshowlist()
+  },
+  methods: {...mapActions(["getshowlist"])},
+  computed:{
+   ...mapGetters(["showlist"])
+  }
  
 
 }

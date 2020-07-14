@@ -10,8 +10,8 @@
     $bg-grey2:#E6E6E6;
     $font-blue :#4E8FC2;
     .lifeapp {
-        width: 70%;
-        margin-left: 15%;
+        width: 90%;
+        margin-left: 5%;
         margin-right: 15%;
         height: auto;
         margin-top: 10px;
@@ -45,7 +45,7 @@
             .goods {
                 width: 218px;
                 height: 330px;
-                margin-right: 4%;
+                margin-right: 15px;
                 border: 1px solid $bg-grey2;
                 margin-bottom: 20px;
                 .big {
@@ -69,8 +69,8 @@
     }
     
     .name {
-        width: 85%;
-        margin-left: 7.5%;
+        // width: 100%;
+        // margin-left: 0;
         margin-top: 40px;
         height: 30px;
         line-height: 30px;
@@ -89,8 +89,8 @@
     }
     
     .bedchose {
-        width: 70%;
-        margin-left: 15%;
+        width: 90%;
+        margin-left: 5%;
         div {
             height: 25px;
             border-bottom: 1px solid $bg-grey2;
