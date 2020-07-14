@@ -35,7 +35,8 @@ export default {
     showbox
   },
   created(){
-    let data = { PageCount: 100, CurrentPage: 1, Key: '', P_Type_Menu_Id: productType }
+    let data = { PageCount: 100, CurrentPage: 1, Key: '', P_Type_Menu_Id: this.productType }
+    console.log(data)
     this.getshowlist(data)
   },
   methods: {...mapActions(["getshowlist"])},

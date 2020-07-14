@@ -1,27 +1,23 @@
 <template>
-  <div class="bed">
-    <bedchose></bedchose>
-   <lifeapp></lifeapp>  
-    动态路由参数 {{$route.params.id}}
+  <div>
+    <productshow :productType="type_id" />
   </div>
 </template>
 
-
 <script>
-import { mapActions, mapGetters } from 'vuex'
-import lifeapp from '../lifeapp/index'
-import bedchose from './bedchose'
+import productshow from '@/components/content/productshow'
 export default {
-  name: 'bed',
-  data() {
-    return {}
+  name: 'lifeapp',
+  data(){
+      return{
+        type_id:3
+    }
   },
-  created() {},
-  beforeUpdate() {},
-  components: {
-    lifeapp,
-    bedchose
-  },
-  methods: {}
-}
+  components:{
+    productshow
+  }
+} 
 </script>
+<style scoped lang="scss">
+@import "~assets/css/productshow/life.scss";
+</style>

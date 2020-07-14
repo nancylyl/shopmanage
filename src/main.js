@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store/index'
-import axios from 'axios'
+// import axios from 'axios'
 
 // 引入饿了么的组件
 import ElementUI from 'element-ui'
