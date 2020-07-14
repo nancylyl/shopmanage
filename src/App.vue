@@ -7,12 +7,15 @@
       ></breadcrumbVue>
     </div>
     <router-view v-if="$store.state.shopmenustore.menulist.length>0" />
+      <productdeltails></productdeltails>
   </div>
+  
 </template>
 <script>
 import shopMenu from '@/components/content/shopMenu'
 import breadcrumbVue from '@/components/content/breadcrumb'
 import { mapActions, mapGetters } from 'vuex'
+import productdeltails from '@/components/content/productdetails'
 
 export default {
   data() {
@@ -36,7 +39,8 @@ export default {
   },
   components: {
     shopMenu,
-    breadcrumbVue
+    breadcrumbVue,
+    productdeltails
   }
 }
 </script>
