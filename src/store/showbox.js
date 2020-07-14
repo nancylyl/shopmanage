@@ -7,11 +7,12 @@ const state = {
 }
 const getters = {
     showlist: state => state.showlist,
+
 }
 const actions = {
-    //获取菜单栏信息
-    getshowlist({ commit }) {
-        getList()
+    getshowlist({ commit }, data) {
+
+        getList(data)
             .then(res => {
                 let data = res.data.data
                 commit('getshowlist', data)
@@ -19,7 +20,6 @@ const actions = {
             .catch(e => {
                 console.log(e)
             })
-
     },
 }
 const mutations = {
@@ -27,7 +27,6 @@ const mutations = {
         state.showlist = data;
         console.log(state.showlist);
     }
-
 }
 export default {
     state,

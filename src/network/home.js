@@ -6,7 +6,8 @@ export function getHomeInfo() {
     })
 
 }
-
+export function getList(data) {
+}
 // // post方式
 // export function getDetail(id) {
 //     return request({
@@ -15,14 +16,16 @@ export function getHomeInfo() {
 //         method: 'post'
 //     })
 // }
-export function getProductList() {
-    return request({
-        url: '/api/getProductList.do',
+// export function getProductList() {
+//     return request({
+//         url: '/api/getProductList.do',
 
-        data: { PageCount: 100, CurrentPage: 1, key: '张三' },
+//         data: { PageCount: 100, CurrentPage: 1, key: '张三' },
 
-        data: { PageCount: 100, CurrentPage: 1, Key: '', P_Type_Menu_Id: 2 },
+//   data: { PageCount: 100, CurrentPage: 1, key: '张三' },
 
-        method: 'post'
-    })
-}
+//         data: { PageCount: 100, CurrentPage: 1, Key: '', P_Type_Menu_Id: 2 },
+
+//         method: 'post'
+//     })
+// }

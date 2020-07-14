@@ -1,17 +1,23 @@
 <template>
-  <div class="clean">
-    <lifeapp></lifeapp>
-    动态路由参数 {{$route.params.id}}
+  <div>
+    <productshow :productType="type_id" />
   </div>
 </template>
 
 <script>
-import lifeapp from '../lifeapp/index'
+import productshow from '@/components/content/productshow'
 export default {
-  name: 'clean',
-    components: {
-    lifeapp
+  name: 'lifeapp',
+  data(){
+      return{
+        type_id:37
+    }
   },
-  methods: {}
-}
+  components:{
+    productshow
+  }
+} 
 </script>
+<style scoped lang="scss">
+@import "~assets/css/productshow/life.scss";
+</style>
