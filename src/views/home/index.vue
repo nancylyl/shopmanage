@@ -22,13 +22,12 @@
       </div>
     </div>
     <loginBut />
-    <hotShop />
   </div>
 </template>
 <script>
 // @ is an alias to /src
 import loginBut from "@/views/home/components/loginButton.vue";
-import hotShop from "./components/hotShop";
+// import hotShop from "./components/hotShop";
 import {
   getHomeInfo,
   getDetail,
@@ -46,8 +45,7 @@ export default {
     };
   },
   components: {
-    loginBut,
-    hotShop
+    loginBut
   },
   created() {
     // register().then(res => {

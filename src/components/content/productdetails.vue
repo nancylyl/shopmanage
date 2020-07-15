@@ -216,41 +216,44 @@ export default {
     // this.setActiveItem(piclist,intnum,picsrcbig);//需要触发的函数
   },
   created() {
-    getProductDetail(this.$route.params.id).then(res => {
-      this.pro_Id = this.$route.params.id;
-      this.productlist = res.data.data[0];
-      let piclist2 = res.data.data[1];
-      var newArr = piclist2.filter(item => item.Type == 3); //遍历数组拿到类型为3的数组
-      this.piclist = newArr;
-
-      if (res.data.data[0][0].Pro_Spe_Content1 != null) {
-        var newButton1 = res.data.data[0][0].Pro_Spe_Content1.split("$");
-      }
-      this.shopbutton1 = newButton1; //遍历字符串，以$分隔存入新数组
-      if (res.data.data[0][0].Pro_Spe_Content2 != null) {
-        var newButton2 = res.data.data[0][0].Pro_Spe_Content2.split("$");
-        this.shopbutton2 = newButton2; //遍历字符串，以$分隔存入新数组
-      }
-
-      let myurl = this.piclist[0].Pro_Url; //将拿到数据分别赋值给几个数组
-
-      this.picsrcbig = require(`../../assets/images/${myurl}`);
-      if (res.data.data[0][0].Pro_Spe_Title1 != null) {
-        //判断选择菜单2是否有数值，并且赋值
-        this.Pro_Spe_Title1 = res.data.data[0][0].Pro_Spe_Title1 + ":";
-      }
-      if (res.data.data[0][0].Pro_Spe_Title2 != null) {
-        //判断选择菜单2是否有数值，并且赋值
-        this.Pro_Spe_Title2 = res.data.data[0][0].Pro_Spe_Title2 + ":";
-      }
-      this.pro_data = res.data.data[0][0].pro_data;
-      //   console.log(33333333333333);
-      //   console.log(res.data.data[0]);
-      //   console.log(res.data.data[1]);
-      //   console.log(res.data.data[2]);
-    });
+    this.getProductDetail();
   },
   methods: {
+    getProductDetail() {
+      getProductDetail(this.$route.params.id).then(res => {
+        this.pro_Id = this.$route.params.id;
+        this.productlist = res.data.data[0];
+        let piclist2 = res.data.data[1];
+        var newArr = piclist2.filter(item => item.Type == 3); //遍历数组拿到类型为3的数组
+        this.piclist = newArr;
+
+        if (res.data.data[0][0].Pro_Spe_Content1 != null) {
+          var newButton1 = res.data.data[0][0].Pro_Spe_Content1.split("$");
+        }
+        this.shopbutton1 = newButton1; //遍历字符串，以$分隔存入新数组
+        if (res.data.data[0][0].Pro_Spe_Content2 != null) {
+          var newButton2 = res.data.data[0][0].Pro_Spe_Content2.split("$");
+          this.shopbutton2 = newButton2; //遍历字符串，以$分隔存入新数组
+        }
+
+        let myurl = this.piclist[0].Pro_Url; //将拿到数据分别赋值给几个数组
+
+        this.picsrcbig = require(`../../assets/images/${myurl}`);
+        if (res.data.data[0][0].Pro_Spe_Title1 != null) {
+          //判断选择菜单2是否有数值，并且赋值
+          this.Pro_Spe_Title1 = res.data.data[0][0].Pro_Spe_Title1 + ":";
+        }
+        if (res.data.data[0][0].Pro_Spe_Title2 != null) {
+          //判断选择菜单2是否有数值，并且赋值
+          this.Pro_Spe_Title2 = res.data.data[0][0].Pro_Spe_Title2 + ":";
+        }
+        this.pro_data = res.data.data[0][0].pro_data;
+        //   console.log(33333333333333);
+        //   console.log(res.data.data[0]);
+        //   console.log(res.data.data[1]);
+        //   console.log(res.data.data[2]);
+      });
+    },
     showdata() {
       this._data.productshow = { display: "block" };
       this._data.commentaryshow = { display: "none" };
@@ -330,6 +333,9 @@ export default {
   },
   components: {
     hotShop
+  },
+  updated() {
+    this.getProductDetail();
   }
 };
 </script>

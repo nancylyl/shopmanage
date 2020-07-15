@@ -38,9 +38,9 @@ export default {
   created() {
     getHotProduct().then(res => {
       this.hotList = res.data.data;
-      console.log("================");
+      // console.log("================");
 
-      console.log(this.hotList);
+      //console.log(this.hotList);
     });
   }
 };
