@@ -49,6 +49,7 @@ export default {
 <style scoped>
 #mainHot {
   width: 190px;
+  padding-left:30px;
   /* height: 1130px;
    */
   border: 1px solid gray;

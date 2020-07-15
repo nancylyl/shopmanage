@@ -144,7 +144,7 @@
         </div>
         <div class="shopbutton">
           <el-button type="warning" @click.native="addcart()"
-            >加入购物车</el-button
+            style="background-color:#B1544F">加入购物车</el-button
           >
         </div>
       </div>
@@ -345,8 +345,11 @@ export default {
   padding: 0px;
 }
 section {
+    margin-top:30px;
+    width: 90%;
+    margin-left:5%;
   height: 600px;
-  border: 1px solid #6b6b6b;
+  border: 1px solid #DCDCDC;
   position: relative;
   overflow: hidden;
 }
@@ -494,6 +497,9 @@ section {
 .huiyuan {
   color: #ffffff;
   background: #7f5b42;
+  padding-left:5px;
+   padding-right:5px;
+  border-radius: 5px;
   font-weight: bold;
   margin-top: 10px;
 }
@@ -511,6 +517,9 @@ section {
 .cuxiao {
   color: #ffffff;
   background: #b1544f;
+  padding-left:5px;
+   padding-right:5px;
+  border-radius: 5px;
   font-weight: bold;
   margin-top: 10px;
 }
@@ -559,6 +568,7 @@ section {
 }
 .rightdiv1 {
   display: inline;
+  margin-left:20px;
 }
 .rightdiv1 > a {
   padding-left: 10px;
