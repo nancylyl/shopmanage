@@ -23,7 +23,7 @@ export function request(config) {
     // }, err => {
     //     console.log(err);
     // })
-    console.log(config);
+    // console.log(config);
 
     return instance(config)
 }
