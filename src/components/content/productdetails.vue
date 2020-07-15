@@ -101,7 +101,7 @@
                     <el-input-number class="elbutton" size="small" v-model="num4" :min="0"></el-input-number>
                 </div>  
                 <div class="shopbutton">
-                    <el-button type="warning">加入购物车</el-button>
+                    <el-button type="warning" @click.native="addcart()">加入购物车</el-button>
                 </div>
             </div>
         </section>
@@ -143,6 +143,7 @@
             commentaryshow:{display:"none"},
             talklist:[],
             talktel:[],
+            pro_Id:""
             // pid:
         };
     },
@@ -158,7 +159,7 @@
     created() {
         getProductDetail(this.$route.params.id)
       .then(res => {
-       
+       this.pro_Id=this.$route.params.id
       this.productlist = res.data.data[0]
       let piclist2 = res.data.data[1]
       var newArr = piclist2.filter(item =>item.Type == 3);//遍历数组拿到类型为3的数组
@@ -262,6 +263,9 @@
             var shadow = this.$refs.shadow;
             larger.style.display = "none";
             shadow.style.display = "none";
+        },
+        addcart() {
+            console.log(this.pro_Id)
         }
     },
 };
