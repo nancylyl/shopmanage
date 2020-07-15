@@ -7,13 +7,15 @@
       ></breadcrumbVue>
     </div>
     <router-view v-if="$store.state.shopmenustore.menulist.length>0" />
-    <sidebar />
   </div>
+  
 </template>
 <script>
 import shopMenu from '@/components/content/shopMenu'
 import breadcrumbVue from '@/components/content/breadcrumb'
 import { mapActions, mapGetters } from 'vuex'
+import productdeltails from '@/components/content/productdetails'
+
 import sidebar from '@/components/commom/sidebar'
 export default {
   data() {
@@ -25,8 +27,6 @@ export default {
       // 对路由变化作出响应...
       let nav = this.$route.params.id
       this.setNav(nav)
-      // console.log(to, from)
-
       document.querySelector('.header').className = 'header submenu-panel-hide'
       setTimeout(() => {
         document.querySelector('.header').className = 'header'
@@ -39,7 +39,7 @@ export default {
   components: {
     shopMenu,
     breadcrumbVue,
-    sidebar
+    productdeltails
   }
 }
 </script>
