@@ -40,9 +40,11 @@
         }
         .products {
             display: flex;
-            justify-content: center;
             flex-wrap: wrap;
-            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+            padding-left: 30px;
+            width: 90%;
             .goods {
                 width: 218px;
                 // height: 330px;
