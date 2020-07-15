@@ -1,6 +1,7 @@
 <template>
     <div>
-        <section class="details" v-if="   this.productlist.length>0">
+        <addcart v-show="visible"/>
+        <section class="details" v-if="this.productlist.length>0">
             <div class="boxleft">
                 <div class="picbox">
                     <div class="choose" ref="choose">
@@ -83,14 +84,14 @@
                     <div class="spec-item specItem">
                         <span class="buttontitle"> {{ Pro_Spe_Title1 }}</span>
                         <div class="rightdiv1">
-                                <el-button type="info" size="small" v-for="(item,index) in shopbutton1" :key="index" name="item" >
+                                <el-button type="info" size="small" v-for="(item,index) in shopbutton1" :key="index" name="item" @click.native="value1(item)">
                                     {{ item }}
                                 </el-button>
                         </div>
                         <br><br>
                         <span class="buttontitle"> {{ Pro_Spe_Title2 }}</span>
                         <div class="rightdiv1">
-                            <el-button type="info" size="small" v-for="(item,index) in shopbutton2" :key="index" name="item" >
+                            <el-button type="info" size="small" v-for="(item,index) in shopbutton2" :key="index" name="item" @click.native="value2(item)">
                                 {{ item }}
                             </el-button>    
                         </div>
@@ -98,10 +99,10 @@
                 </div>
                 <div class="buyinfo clearfix">
                     数量:
-                    <el-input-number class="elbutton" size="small" v-model="num4" :min="0"></el-input-number>
+                    <el-input-number class="elbutton" size="small" v-model="num4" :min="0" :max="productlist[0].Pro_SumCount" ></el-input-number><!-- @change="handleChange(num4)" -->
                 </div>  
                 <div class="shopbutton">
-                    <el-button type="warning" @click.native="addcart()">加入购物车</el-button>
+                    <el-button type="warning" @click.native="addcart(productlist[0].Pro_Id,productlist[0].Pro_Name,productlist[0].Price,Pro_Spe_Title1,Title1_value,Pro_Spe_Title2,Title2_value,num4,picsrcbig,productlist[0].Pro_SumCount )">加入购物车</el-button>
                 </div>
             </div>
         </section>
@@ -122,11 +123,14 @@
     </div>
     
 </template>
-  <script>
-      import { getProductDetail } from '@/network/productdetails'
-      export default {
+<script>
+    import addcart from '@/components/commom/addcart'
+    import  {mapActions} from 'vuex'
+    import { getProductDetail } from '@/network/productdetails'
+    export default {
     data() {
         return {
+            visible:false,
             intnum:0,
             num4:1,
             productlist:[],//产品的信息表
@@ -143,9 +147,16 @@
             commentaryshow:{display:"none"},
             talklist:[],
             talktel:[],
-            pro_Id:""
+            // product_Name: this.productlist[0].Pro_Name,
+            // product_Price:this.productlist[0].Price,
+            Title1_value:"",
+            Title2_value:"",
+            // cartProductList:{product_Name,product_Price,Title1_value,Title2_value,num4}
             // pid:
         };
+    },
+    components: {
+        addcart
     },
     mounted:function(){
         // let piclist = this.piclist
@@ -264,13 +275,48 @@
             larger.style.display = "none";
             shadow.style.display = "none";
         },
-        addcart() {
-            console.log(this.pro_Id)
-        }
+        addcart(a,b,c,d,e,f,g,h,i,j) {
+            if(e==""||g=="") {
+                
+            }       
+            console.log(a,b,c,d,e,f,g,h,i,j)
+            this.addToCart({ 
+                id:a,
+                product_Name: b,
+                product_Price: c,
+                Title1:d,
+                Title1value: e,
+                Title2:f,
+                Title2value: g,
+                num: h,
+                img: i,
+                stock: j})
+        },
+        // addcart() {    
+        //     this.$store.dispatch("addToCart", { 
+        //         product_Name: this.productlist[0].Pro_Name,
+        //         product_Price:this.productlist[0].Price,
+        //         Title1value:this.Title1_value,
+        //         Title2value:this.Title2_value,
+        //         num:this.num4,
+        //         img:this.picsrcbig });
+        // },
+        value1(event) {
+            this.Title1_value=event
+            // console.log(event)
+        },
+        value2(event) {
+             this.Title2_value=event
+            // console.log(event)
+        },
+        // handleChange(event) {
+        //     console.log(event)
+        // }
+         ...mapActions(['addToCart'])
     },
 };
-  </script>
-  <style scoped>
+</script>
+    <style scoped>
       * {
             margin: 0px;
             padding: 0px;
@@ -541,4 +587,4 @@
             color: #6B6B6B;
         }
         
-  </style>
+</style>

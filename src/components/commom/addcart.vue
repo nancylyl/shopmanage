@@ -39,29 +39,29 @@
                 this.isshow=false;
             }
         },
-        created(){
-            this.$axios.interceptors.request.use( (config)=> {
-            // 在发送请求之前做些什么
-            this.visible=true;
-            this.isshow=false;
-            this.msg="正在加入购物车";
-            return config;
-            }, function (error) {
-            // 对请求错误做些什么
-            return Promise.reject(error);
-            });
-            this.$axios.interceptors.response.use( (response)=> {
-            // 对响应数据做点什么
-            console.log("响应拦截");
-            this.visible=true;
-            this.isshow=false;
-            this.msg="成功加入购物车";
-            return response;
-            }, function (error) {
-            // 对响应错误做点什么
-            return Promise.reject(error);
-            });
-        },
+        // created(){
+        //     this.$axios.interceptors.request.use( (config)=> {
+        //     // 在发送请求之前做些什么
+        //     this.visible=true;
+        //     this.isshow=false;
+        //     this.msg="正在加入购物车";
+        //     return config;
+        //     }, function (error) {
+        //     // 对请求错误做些什么
+        //     return Promise.reject(error);
+        //     });
+        //     this.$axios.interceptors.response.use( (response)=> {
+        //     // 对响应数据做点什么
+        //     console.log("响应拦截");
+        //     this.visible=true;
+        //     this.isshow=false;
+        //     this.msg="成功加入购物车";
+        //     return response;
+        //     }, function (error) {
+        //     // 对响应错误做点什么
+        //     return Promise.reject(error);
+        //     });
+        // },
    }
 </script>
 <style lang="scss" scoped>
