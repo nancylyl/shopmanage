@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class="details">
+        <section class="details" v-if="   this.productlist.length>0">
             <div class="boxleft">
                 <div class="picbox">
                     <div class="choose" ref="choose">
@@ -143,6 +143,7 @@
             commentaryshow:{display:"none"},
             talklist:[],
             talktel:[],
+            // pid:
         };
     },
     mounted:function(){
@@ -155,8 +156,9 @@
         // this.setActiveItem(piclist,intnum,picsrcbig);//需要触发的函数
     },
     created() {
-        getProductDetail()
+        getProductDetail(this.$route.params.id)
       .then(res => {
+       
       this.productlist = res.data.data[0]
       let piclist2 = res.data.data[1]
       var newArr = piclist2.filter(item =>item.Type == 3);//遍历数组拿到类型为3的数组
