@@ -1,13 +1,16 @@
 <template>
   <div id="app">
-    <shopMenu></shopMenu>
-    <div class="nav">
-      <breadcrumbVue
-        v-if="
-          $store.state.shopmenustore.menulist.length > 0 &&
-            $store.state.shopmenustore.navbar
-        "
-      ></breadcrumbVue>
+    <!-- <person /> -->
+    <div v-if="ishow">
+      <shopMenu></shopMenu>
+      <div class="nav">
+        <breadcrumbVue
+          v-if="
+            $store.state.shopmenustore.menulist.length > 0 &&
+              $store.state.shopmenustore.navbar
+          "
+        ></breadcrumbVue>
+      </div>
     </div>
     <router-view v-if="$store.state.shopmenustore.menulist.length > 0" />
     <sidebar />
@@ -19,20 +22,44 @@ import breadcrumbVue from "@/components/content/breadcrumb";
 import { mapActions, mapGetters } from "vuex";
 import productdeltails from "@/components/content/productdetails";
 import sidebar from "@/components/commom/sidebar";
+import person from "@/views/person/components/wode";
 export default {
   data() {
-    return {};
+    name: "app";
+    return {
+      ishow: true
+    };
   },
-  created() {},
+  created() {
+    console.log(this.$route.path.indexOf("PerCenter"));
+
+    if (this.$route.path.indexOf("PerCenter") > 0) {
+      this.ishow = false;
+    } else {
+      this.ishow = true;
+    }
+  },
   watch: {
     $route(to, from) {
+      // console.log(to.path);
+      if (to.path.indexOf("PerCenter") > 0) {
+        this.ishow = false;
+      } else {
+        this.ishow = true;
+      }
       // 对路由变化作出响应...
-      let nav = this.$route.params.id;
-      this.setNav(nav);
-      document.querySelector(".header").className = "header submenu-panel-hide";
-      setTimeout(() => {
-        document.querySelector(".header").className = "header";
-      }, 100);
+      console.log(to.name);
+      console.log(this);
+
+      try {
+        let nav = this.$route.params.id;
+        this.setNav(nav);
+        document.querySelector(".header").className =
+          "header submenu-panel-hide";
+        setTimeout(() => {
+          document.querySelector(".header").className = "header";
+        }, 100);
+      } catch {}
     }
   },
   methods: {
@@ -42,7 +69,8 @@ export default {
     shopMenu,
     breadcrumbVue,
     productdeltails,
-    sidebar
+    sidebar,
+    person
   }
 };
 </script>
