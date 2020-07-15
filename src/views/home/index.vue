@@ -42,10 +42,6 @@ export default {
   },
   components: {},
   created() {
-    register().then(res => {
-      console.log(res);
-    });
-
     getHomeInfo()
       .then(res => {
         this.ProdeuctList = res.data.data;
