@@ -83,7 +83,6 @@
                 <div>
                     <p style="color:red">优惠金额：¥{{discountts}}</p>
                 </div>
-<<<<<<< HEAD
                 <div>
                     <p style="font-weight:700">商品总金额(不含运费)：¥{{totalPrice-discountts}}</p>
                 </div>
@@ -93,16 +92,6 @@
                 </div>
             </div>
         </div>  
-=======
-            </td>
-            <td>
-                <span>¥799</span>
-            </td>
-            <td >
-                <button class="mydelete">删除</button>
-            </td>
-        </tr>
-    </table>
     <div class="down">
         <h3>已享受到的促销优惠：</h3>
         <p>满88包邮</p>
@@ -121,12 +110,11 @@
         <button class="one" @click="tohome"> 继续购物</button>
         <button @click="toorder">去结算</button>
     </div>
->>>>>>> affc917deae6f42756537a43b4c9ce5a8ef52bb5
     </div>
 </template>
 
 <script>
-<<<<<<< HEAD
+    import {getcartlist} from '@/network/cart'
     import  {mapActions,mapGetters} from 'vuex'
     export default {
         name: 'cart',
@@ -145,13 +133,20 @@
                 }else{
                     this.isshow = false
                 }
+            }),
+            getcartlist()
+            .then(res => {
+                console.log(res);
             })
         },
         methods:{
             ...mapActions(['delProduct','submitOrder']),
+            toorder(){
+                this.$router.push("/order")
+            },
             tohome(){
-            this.$router.push("/home")
-            },   
+                this.$router.push("/home")
+            },
             handleSelectionChange(val) {
                 this.multipleSelection = val   
             },
@@ -189,32 +184,6 @@
             ...mapGetters(['cartProducts'])       
         },
     }
-=======
-import {
-  getcartlist
-} from '@/network/cart'
-export default {
-  name: 'cart',
-  data(){
-     return{
-    }
-  },
-  methods:{
-    toorder(){
-      this.$router.push("/order")
-    },
-    tohome(){
-        this.$router.push("/home")
-    }
-  },
-   created() {
-        getcartlist()
-      .then(res => {
-          console.log(res);
-      })
-   }
-}
->>>>>>> affc917deae6f42756537a43b4c9ce5a8ef52bb5
 </script>
 <style scoped lang="scss">
 @import "~assets/css/cart/cart.scss";

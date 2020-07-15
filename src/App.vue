@@ -12,13 +12,8 @@
         ></breadcrumbVue>
       </div>
     </div>
-<<<<<<< HEAD
     <router-view v-if="$store.state.shopmenustore.menulist.length>0" />
      <sidebar /> 
-=======
-    <router-view v-if="$store.state.shopmenustore.menulist.length > 0" />
-    <sidebar />
->>>>>>> affc917deae6f42756537a43b4c9ce5a8ef52bb5
   </div>
 </template>
 <script>
@@ -74,12 +69,8 @@ export default {
     shopMenu,
     breadcrumbVue,
     productdeltails,
-<<<<<<< HEAD
-    sidebar
-=======
     sidebar,
     person
->>>>>>> affc917deae6f42756537a43b4c9ce5a8ef52bb5
   }
 };
 </script>

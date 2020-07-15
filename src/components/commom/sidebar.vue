@@ -41,16 +41,8 @@ export default {
     tohome() {
       this.$router.push("/home");
     },
-<<<<<<< HEAD
-    toperson(){
-      this.$router.push("/person")
-    },
-    tocart(){
-     this.$router.push("/cart")
-=======
     toperson() {
       this.$router.push("/PerCenter");
->>>>>>> affc917deae6f42756537a43b4c9ce5a8ef52bb5
     },
     tocart() {
       this.$router.push("/cart");

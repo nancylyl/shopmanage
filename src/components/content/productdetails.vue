@@ -289,6 +289,7 @@
     import addcart from '@/components/commom/addcart'
     import  {mapActions} from 'vuex'
     import { getProductDetail } from '@/network/productdetails'
+    import hotShop from "@/components/content/hotShop";
     export default {
     data() {
         return {
@@ -309,6 +310,7 @@
             commentaryshow:{display:"none"},
             talklist:[],
             talktel:[],
+            pro_Id: "",
             // product_Name: this.productlist[0].Pro_Name,
             // product_Price:this.productlist[0].Price,
             Title1_value:"",
@@ -328,40 +330,7 @@
         // console.log(url);
         // picsrcbig = "require(`../../assets/images/${url}`)",
         // this.setActiveItem(piclist,intnum,picsrcbig);//需要触发的函数
-import { getProductDetail } from "@/network/productdetails";
-import hotShop from "@/components/content/hotShop";
-export default {
-  data() {
-    return {
-      intnum: 0,
-      num4: 1,
-      productlist: [], //产品的信息表
-      ProdeuctList: [],
-      piclist: [], //产品图片表
-      Pro_Spe_Title1: "",
-      Pro_Spe_Title2: "",
-      picsrcbig: "", //轮播图切换存放图片地址的
-      shopbutton1: [],
-      shopbutton2: [],
-      isCollapse: false,
-      pro_data: "",
-      productshow: "",
-      commentaryshow: { display: "none" },
-      talklist: [],
-      talktel: [],
-      pro_Id: ""
-      // pid:
-    };
-  },
-  mounted: function() {
-    // let piclist = this.piclist
-    // let intnum = this.intnum
-    // let url = this.piclist[0].Pro_Url
-    // console.log(2222222222222222);
-    // console.log(url);
-    // picsrcbig = "require(`../../assets/images/${url}`)",
-    // this.setActiveItem(piclist,intnum,picsrcbig);//需要触发的函数
-  },
+    },
   created() {
     this.getProductDetail();
   },
@@ -453,13 +422,11 @@ export default {
       if (Y >= maxY) {
         Y = maxY;
       }
-<<<<<<< HEAD
       this.pro_data = res.data.data[0][0].pro_data;
     //   console.log(33333333333333);
     //   console.log(res.data.data[0]);
     //   console.log(res.data.data[1]);
     //   console.log(res.data.data[2]);
-      })
   },
     methods: {
         showdata() {
@@ -572,24 +539,9 @@ export default {
         // handleChange(event) {
         //     console.log(event)
         // }
-         ...mapActions(['addToCart'])
-=======
-      // 防止遮罩层粘滞，跟随鼠标一起滑出大图位置
-      var bigX = (X * bigRect.width) / contentRect.width;
-      var bigY = (Y * bigRect.height) / contentRect.height;
-      //  bigX / bigW = X / contentW,主图和遮罩层之间存在两倍关系，放大图和原图之间也有两倍关系
-      shadow.style.left = X + "px";
-      shadow.style.top = Y + "px";
-
-      // console.log(X, Y, bigX, bigY);
-
-      big.style.left = -bigX + "px";
-      big.style.top = -bigY + "px";
-
-      larger.style.display = "block";
-      shadow.style.display = "block";
->>>>>>> affc917deae6f42756537a43b4c9ce5a8ef52bb5
-    },
+         ...mapActions(['addToCart']),
+    
+    },  
     notshow() {
       var larger = this.$refs.larger;
       var shadow = this.$refs.shadow;
@@ -608,7 +560,6 @@ export default {
   }
 };
 </script>
-<<<<<<< HEAD
     <style scoped>
       * {
             margin: 0px;
@@ -881,7 +832,6 @@ export default {
         }
         
 </style>
-=======
 <style scoped>
 * {
   margin: 0px;
@@ -1178,4 +1128,3 @@ section {
   width: 80%;
 }
 </style>
->>>>>>> affc917deae6f42756537a43b4c9ce5a8ef52bb5
