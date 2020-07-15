@@ -37,7 +37,7 @@ a {
 }
 
 .nav {
-    width: 1010px;
+    width: 89%;
     text-align: center;
     margin: 0 auto;
 }
@@ -55,7 +55,9 @@ a {
 
 .el-breadcrumb {
     font-size: 13px !important;
-    line-height: 1 !important;
+    line-height: 30px !important;
+    height: 30px;
+    line-height: 30px;
 }
 
 .el-input-number--small .el-input-number__decrease,
@@ -68,5 +70,9 @@ a {
 
 .el-input-number__decrease>i,
 .el-input-number__increase>i {
+<<<<<<< HEAD
     line-height: 2.2;
+=======
+    line-height: 2.3;
+>>>>>>> affc917deae6f42756537a43b4c9ce5a8ef52bb5
 }

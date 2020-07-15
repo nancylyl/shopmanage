@@ -1,12 +1,12 @@
 <template>
   <div :key="$store.state.shopmenustore.navbar">
-    <el-breadcrumb separator="/" separator-class="el-icon-arrow-right">
+    <!-- <el-breadcrumb separator="/" separator-class="el-icon-arrow-right">
       <el-breadcrumb-item v-for="(item,index) in showbar" :to="item.url" :key="index">{{item.name}}</el-breadcrumb-item>
-    </el-breadcrumb>
+    </el-breadcrumb> -->
     <div class="name">
       <span>
         <el-breadcrumb separator="/" separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item v-for="(item,index) in showbar" :to="item.url" :key="index">{{item.name}}</el-breadcrumb-item>
+      <el-breadcrumb-item v-for="(item,index) in showbar" :to="item.url" :key="index" >{{item.name}}</el-breadcrumb-item>
     </el-breadcrumb>
       </span>
       <span style="margin-left:10px">商品筛选</span>

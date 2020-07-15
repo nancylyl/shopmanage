@@ -35,8 +35,19 @@ table {
         width: 80px;
         height: 80px;
     }
+<<<<<<< HEAD
     .goBuy {
         margin: 0 auto;
+=======
+    .mydelete {
+        width: 60px;
+        border-radius: 5px;
+        height: 40px;
+        border: none;
+        background-color: #dc3545;
+        color: white;
+        cursor: pointer;
+>>>>>>> affc917deae6f42756537a43b4c9ce5a8ef52bb5
     }
 }
 
@@ -66,10 +77,28 @@ table {
         width: 100%;
         margin-top: 20px;
     }
+<<<<<<< HEAD
+=======
+    button {
+        width: 70px;
+        border-radius: 5px;
+        height: 40px;
+        border: none;
+        background-color: #dc3545;
+        margin-left: 10px;
+        color: white;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #890D17;
+    }
+>>>>>>> affc917deae6f42756537a43b4c9ce5a8ef52bb5
     .mybutton {
         display: flex;
         margin-left: auto;
+        cursor: pointer;
         justify-content: flex-end;
+        margin-bottom: 100px;
     }
     .one {
         background-color: #717171;
