@@ -74,6 +74,9 @@
 </template>
 
 <script>
+import {
+  getcartlist
+} from '@/network/cart'
 export default {
   name: 'cart',
   data(){
@@ -87,9 +90,13 @@ export default {
     tohome(){
         this.$router.push("/home")
     }
-  }
- 
-
+  },
+   created() {
+        getcartlist()
+      .then(res => {
+          console.log(res);
+      })
+   }
 }
 </script>
 <style scoped lang="scss">
