@@ -7,6 +7,7 @@
       ></breadcrumbVue>
     </div>
     <router-view v-if="$store.state.shopmenustore.menulist.length>0" />
+      <sidebar/>
   </div>
   
 </template>
@@ -39,7 +40,8 @@ export default {
   components: {
     shopMenu,
     breadcrumbVue,
-    productdeltails
+    productdeltails,
+    sidebar
   }
 }
 </script>
