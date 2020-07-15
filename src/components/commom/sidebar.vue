@@ -48,7 +48,7 @@ export default {
       this.$router.push("/person")
     },
     tocart(){
-     
+     this.$router.push("/cart")
     },
   }
 }
