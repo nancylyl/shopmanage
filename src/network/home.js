@@ -49,17 +49,6 @@ export function login(data) {
         method: 'post'
     })
 }
-
-
-export function register() {
-    console.log('333');
-    return request({
-        url: '/api/register.do',
-        data: { Phone: 'adm3333in', Password: '33' },
-        method: 'post'
-    })
-}
-
 // // post方式
 // export function getDetail(id) {
 //     return request({
