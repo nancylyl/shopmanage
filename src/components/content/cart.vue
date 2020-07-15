@@ -46,9 +46,7 @@
                 <span>¥799</span>
             </td>
             <td >
-                <button class="mydelete">
-                    <a href="">删除</a>
-                    </button>
+                <button class="mydelete">删除</button>
             </td>
         </tr>
     </table>
@@ -67,12 +65,8 @@
         <p style="font-weight:700">商品总金额(不含运费)：￥799</p>
     </div>
     <div class="mybutton">
-        <button class="one">
-            <a href="">继续购物</a>
-        </button>
-        <button>
-            <a href="">去结算</a>
-        </button>
+        <button class="one" @click="tohome"> 继续购物</button>
+        <button @click="toorder">去结算</button>
     </div>
     </div>
     
@@ -87,8 +81,11 @@ export default {
     }
   },
   methods:{
+    toorder(){
+      this.$router.push("/order")
+    },
     tohome(){
-      this.$router.push("/home")
+        this.$router.push("/home")
     }
   }
  

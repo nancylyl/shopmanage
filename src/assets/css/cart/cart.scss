@@ -63,10 +63,8 @@ table {
         height: 40px;
         border: none;
         background-color: #dc3545;
-        a {
-            color: white;
-            text-decoration: none;
-        }
+        color: white;
+        cursor: pointer;
     }
 }
 
@@ -103,10 +101,8 @@ table {
         border: none;
         background-color: #dc3545;
         margin-left: 10px;
-        a {
-            color: white;
-            text-decoration: none;
-        }
+        color: white;
+        cursor: pointer;
     }
     button:hover {
         background-color: #890D17;
@@ -114,7 +110,9 @@ table {
     .mybutton {
         display: flex;
         margin-left: auto;
+        cursor: pointer;
         justify-content: flex-end;
+        margin-bottom: 100px;
     }
     .one {
         background-color: #717171;
