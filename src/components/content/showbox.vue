@@ -2,7 +2,7 @@
     <div class="goods"> 
         <!-- <em class="left" v-if="this.chooseUrl.length>=4">&lt;</em>
         <em class="right" v-if="this.chooseUrl.length>=4">&gt;</em> -->
-        <router-link to="#" class="bigImgBox" tag="div">
+        <router-link :to="{path: '/productdetails/' +Pro_Id }" class="bigImgBox" tag="div">
           <img :src="require(`../../assets/images/${bigImgUrl}`)" class="big">
         </router-link>
         <ul class="little">
@@ -13,7 +13,7 @@
         <p>
           <span>¥{{price}}</span>
         </p>
-        <router-link to="#" class="textHide" tag="p">{{tittle}}</router-link>
+        <router-link :to="{path: '/productdetails/' +Pro_Id }" class="textHide" tag="p">{{tittle}}</router-link>
     </div> 
 </template>
 
@@ -27,7 +27,7 @@ export default {
       bigImgUrl:""
     }
   },
-  props:['imgSrc','price','tittle'],
+  props:['imgSrc','price','tittle','Pro_Id'],
 components:{
     
 },

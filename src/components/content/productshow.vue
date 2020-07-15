@@ -17,7 +17,7 @@
     </div>
     <ul class="products">
       <li v-for="item in listpro" :key="item.id">
-        <showbox :imgSrc="item.children" :price="item.Price" :tittle="item.Pro_Name"></showbox>
+        <showbox :imgSrc="item.children" :price="item.Price" :tittle="item.Pro_Name" :Pro_Id="item.Pro_Id"></showbox>
       </li>
     </ul>
   </div>
