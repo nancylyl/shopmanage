@@ -1,57 +1,69 @@
 <template>
-    <div class="goods"> 
-        <!-- <em class="left" v-if="this.chooseUrl.length>=4">&lt;</em>
-        <em class="right" v-if="this.chooseUrl.length>=4">&gt;</em> -->
-        <router-link :to="{path: '/productdetails/' +Pro_Id }" class="bigImgBox" tag="div">
-          <img :src="require(`../../assets/images/${bigImgUrl}`)" class="big">
-        </router-link>
-        <ul class="little">
-          <li v-for="(item,index) in chooseUrl" :key="item.id"  :class="active==index ? 'imgBorder' : ''">
-            <img :src="require(`../../assets/images/${item.Pro_Url}`)" @click.stop="change(chooseUrl,index,bigImgUrl)">      
-          </li>
-        </ul>
-        <p>
-          <span>¥{{price}}</span>
-        </p>
-        <router-link :to="{path: '/productdetails/' +Pro_Id }" class="textHide" tag="p">{{tittle}}</router-link>
-    </div> 
+  <div class="goods">
+    <!-- <em class="left" v-if="this.chooseUrl.length>=4">&lt;</em>
+    <em class="right" v-if="this.chooseUrl.length>=4">&gt;</em>-->
+    <router-link :to="{path: '/productdetails/' +Pro_Id }" class="bigImgBox" tag="div">
+      <img :src="require(`../../assets/images/${bigImgUrl}`)" class="big" />
+    </router-link>
+    <ul class="little">
+      <li
+        v-for="(item,index) in chooseUrl"
+        :key="item.id"
+        :class="active==index ? 'imgBorder' : ''"
+      >
+        <img
+          :src="require(`../../assets/images/${item.Pro_Url}`)"
+          @click.stop="change(chooseUrl,index,bigImgUrl)"
+        />
+      </li>
+    </ul>
+    <p>
+      <span>¥{{price}}</span>
+    </p>
+    <router-link :to="{path: '/productdetails/' +Pro_Id }" class="textHide" tag="p">{{tittle}}</router-link>
+  </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 export default {
   name: 'showbox',
-  data(){
-     return{
-      active:0, 
-      bigImgUrl:""
+  data() {
+    return {
+      active: 0,
+      bigImgUrl: ''
     }
   },
-  props:['imgSrc','price','tittle','Pro_Id'],
-components:{
-    
-},
-created(){
-  this.bigImgUrl = this.chooseUrl[0].Pro_Url;
-  // console.log(this.chooseUrl)
-},
-methods: {
-  change(chooseUrl,index,bigImgUrl) {
-    this.active = index;
-    this.bigImgUrl = chooseUrl[index].Pro_Url;
+  props: ['imgSrc', 'price', 'tittle', 'Pro_Id'],
+  components: {},
+  created() {
+    this.bigImgUrl = this.chooseUrl[0].Pro_Url
     // console.log(this.bigImgUrl)
+  },
+  methods: {
+    change(chooseUrl, index, bigImgUrl) {
+      this.active = index
+      this.bigImgUrl = chooseUrl[index].Pro_Url
+      // console.log(this.bigImgUrl)
+    }
+  },
+  computed: {
+    chooseUrl: function() {
+      return this.imgSrc.filter(function(imgSrc) {
+        return imgSrc.Type == 2
+      })
+    }
+  },
+  watch: {
+    Pro_Id: function() {
+      this.bigImgUrl = this.chooseUrl[0].Pro_Url
+    }
   }
-},
-computed: {
-  chooseUrl: function () {
-    return this.imgSrc.filter(function (imgSrc) {
-      return imgSrc.Type==2
-    })
-  } 
-}
+  // updated() {
+  //   this.bigImgUrl = this.chooseUrl[0].Pro_Url
+  // }
 }
 </script>
 <style scoped lang="scss">
-
-@import "~assets/css/productshow/life.scss";
+@import '~assets/css/productshow/life.scss';
 </style>

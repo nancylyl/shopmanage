@@ -4,12 +4,7 @@
       <div class="boxleft">
         <div class="picbox">
           <div class="choose" ref="choose">
-            <div
-              class="content"
-              ref="content"
-              @mousemove="handleMove"
-              @mouseleave="notshow"
-            >
+            <div class="content" ref="content" @mousemove="handleMove" @mouseleave="notshow">
               <img :src="picsrcbig" />
               <div class="shadow" ref="shadow"></div>
             </div>
@@ -26,10 +21,7 @@
                 name="item.id"
                 @click.native="setActiveItem(piclist, index, picsrcbig)"
               >
-                <img
-                  :src="require(`../../assets/images/${item.Pro_Url}`)"
-                  class="medium"
-                />
+                <img :src="require(`../../assets/images/${item.Pro_Url}`)" class="medium" />
               </el-carousel-item>
             </el-carousel>
           </div>
@@ -38,18 +30,19 @@
           </div>
         </div>
         <!-- 收藏按钮 -->
-        <a href="">
+        <a href>
           <div id="shoucangbg" class="shoucang"></div>
         </a>
         <!-- 分享按钮 -->
-        <a href="">
+        <a href>
           <div id="bshare-shareto" class="shareto">&nbsp;</div>
         </a>
       </div>
       <div class="boxright">
         <h1 class="goods-name">{{ productlist[0].Pro_Name }}</h1>
         <div class="product-id clearfix">
-          商品编码：&nbsp;<span id="goodsBn">{{ productlist[0].Pro_Num }}</span>
+          商品编码：&nbsp;
+          <span id="goodsBn">{{ productlist[0].Pro_Num }}</span>
         </div>
         <div class="goods-price-box clearfix">
           <div style="margin:0px;padding:0px;">
@@ -58,16 +51,15 @@
         </div>
         <div class="goods-price-box clearfix">
           <span class="huiyuan">会员价</span>&nbsp;&nbsp;
-          <span class="mlvprice" style="color:#7F5B42;font-weight:bold;"
-            >￥{{ productlist[0].MemPrice }}</span
-          >
+          <span
+            class="mlvprice"
+            style="color:#7F5B42;font-weight:bold;"
+          >￥{{ productlist[0].MemPrice }}</span>
           <a
             class="how"
             target="_blank"
             href="http://www.dapu.com/index.php/article-bangzhuzhongxin_tesesuwu-24.html"
-          >
-            如何成为会员？
-          </a>
+          >如何成为会员？</a>
         </div>
         <div id="promotion_show" class="clearfix">
           <span class="cuxiao">促销</span>
@@ -76,37 +68,23 @@
         <div class="score-wrap">
           <ul>
             <li>
-              <p class="score-num">
-                {{ productlist[0].Pro_SumCount - productlist[0].Pro_NewCount }}
-              </p>
-              <p class="score-name">
-                销量
-              </p>
+              <p class="score-num">{{ productlist[0].Pro_SumCount - productlist[0].Pro_NewCount }}</p>
+              <p class="score-name">销量</p>
             </li>
             <li>
-              <p class="score-num">
-                {{ productlist[0].CNum }}
-              </p>
-              <p class="score-name">
-                用户评论数
-              </p>
+              <p class="score-num">{{ productlist[0].CNum }}</p>
+              <p class="score-name">用户评论数</p>
             </li>
             <li>
-              <p class="score-num">
-                {{ productlist[0].Score }}
-              </p>
-              <p class="score-name">
-                评论送积分
-              </p>
+              <p class="score-num">{{ productlist[0].Score }}</p>
+              <p class="score-name">评论送积分</p>
             </li>
           </ul>
         </div>
-        <div class="tagline">
-          {{ productlist[0].Pro_Title }}
-        </div>
+        <div class="tagline">{{ productlist[0].Pro_Title }}</div>
         <div id="goods-spec" class="goods-spec">
           <div class="spec-item specItem">
-            <span class="buttontitle"> {{ Pro_Spe_Title1 }}</span>
+            <span class="buttontitle">{{ Pro_Spe_Title1 }}</span>
             <div class="rightdiv1">
               <el-button
                 type="info"
@@ -114,12 +92,11 @@
                 v-for="(item, index) in shopbutton1"
                 :key="index"
                 name="item"
-              >
-                {{ item }}
-              </el-button>
+              >{{ item }}</el-button>
             </div>
-            <br /><br />
-            <span class="buttontitle"> {{ Pro_Spe_Title2 }}</span>
+            <br />
+            <br />
+            <span class="buttontitle">{{ Pro_Spe_Title2 }}</span>
             <div class="rightdiv1">
               <el-button
                 type="info"
@@ -127,50 +104,34 @@
                 v-for="(item, index) in shopbutton2"
                 :key="index"
                 name="item"
-              >
-                {{ item }}
-              </el-button>
+              >{{ item }}</el-button>
             </div>
           </div>
         </div>
         <div class="buyinfo clearfix">
           数量:
-          <el-input-number
-            class="elbutton"
-            size="small"
-            v-model="num4"
-            :min="0"
-          ></el-input-number>
+          <el-input-number class="elbutton" size="small" v-model="num4" :min="0"></el-input-number>
         </div>
         <div class="shopbutton">
-          <el-button type="warning" @click.native="addcart()"
-            style="background-color:#B1544F">加入购物车</el-button
-          >
+          <el-button type="warning" @click.native="addcart()" style="background-color:#B1544F">加入购物车</el-button>
         </div>
       </div>
     </section>
 
     <div class="bottomcontent">
-      <div class="btshop"><hotShop /></div>
+      <div class="btshop">
+        <hotShop />
+      </div>
       <div class="btright">
         <div id="buttonbox">
           <el-radio-group v-model="isCollapse">
-            <el-radio-button :label="false" @click.native="showdata()"
-              >产品详情</el-radio-button
-            >
-            <el-radio-button :label="true" @click.native="showcommentary()"
-              >用户评论</el-radio-button
-            >
+            <el-radio-button :label="false" @click.native="showdata()">产品详情</el-radio-button>
+            <el-radio-button :label="true" @click.native="showcommentary()">用户评论</el-radio-button>
           </el-radio-group>
         </div>
         <div class="otherbox" v-html="pro_data" :style="productshow"></div>
         <div class="otherbox" :style="commentaryshow">
-          <div
-            class="talk"
-            v-for="item in piclist"
-            :key="item.id"
-            name="item.id"
-          >
+          <div class="talk" v-for="item in piclist" :key="item.id" name="item.id">
             <span class="tel">13388886666</span>
             <div class="talktext">啊哈哈哈哈哈！！！！！！！</div>
             <div class="talkdate">2070-12-05</div>
@@ -181,8 +142,8 @@
   </div>
 </template>
 <script>
-import { getProductDetail } from "@/network/productdetails";
-import hotShop from "@/components/content/hotShop";
+import { getProductDetail } from '@/network/productdetails'
+import hotShop from '@/components/content/hotShop'
 export default {
   data() {
     return {
@@ -191,20 +152,20 @@ export default {
       productlist: [], //产品的信息表
       ProdeuctList: [],
       piclist: [], //产品图片表
-      Pro_Spe_Title1: "",
-      Pro_Spe_Title2: "",
-      picsrcbig: "", //轮播图切换存放图片地址的
+      Pro_Spe_Title1: '',
+      Pro_Spe_Title2: '',
+      picsrcbig: '', //轮播图切换存放图片地址的
       shopbutton1: [],
       shopbutton2: [],
       isCollapse: false,
-      pro_data: "",
-      productshow: "",
-      commentaryshow: { display: "none" },
+      pro_data: '',
+      productshow: '',
+      commentaryshow: { display: 'none' },
       talklist: [],
       talktel: [],
-      pro_Id: ""
+      pro_Id: ''
       // pid:
-    };
+    }
   },
   mounted: function() {
     // let piclist = this.piclist
@@ -216,128 +177,128 @@ export default {
     // this.setActiveItem(piclist,intnum,picsrcbig);//需要触发的函数
   },
   created() {
-    this.getProductDetail();
+    this.getProductDetail()
   },
   methods: {
     getProductDetail() {
       getProductDetail(this.$route.params.id).then(res => {
-        this.pro_Id = this.$route.params.id;
-        this.productlist = res.data.data[0];
-        let piclist2 = res.data.data[1];
-        var newArr = piclist2.filter(item => item.Type == 3); //遍历数组拿到类型为3的数组
-        this.piclist = newArr;
+        this.pro_Id = this.$route.params.id
+        this.productlist = res.data.data[0]
+        let piclist2 = res.data.data[1]
+        var newArr = piclist2.filter(item => item.Type == 3) //遍历数组拿到类型为3的数组
+        this.piclist = newArr
 
         if (res.data.data[0][0].Pro_Spe_Content1 != null) {
-          var newButton1 = res.data.data[0][0].Pro_Spe_Content1.split("$");
+          var newButton1 = res.data.data[0][0].Pro_Spe_Content1.split('$')
         }
-        this.shopbutton1 = newButton1; //遍历字符串，以$分隔存入新数组
+        this.shopbutton1 = newButton1 //遍历字符串，以$分隔存入新数组
         if (res.data.data[0][0].Pro_Spe_Content2 != null) {
-          var newButton2 = res.data.data[0][0].Pro_Spe_Content2.split("$");
-          this.shopbutton2 = newButton2; //遍历字符串，以$分隔存入新数组
+          var newButton2 = res.data.data[0][0].Pro_Spe_Content2.split('$')
+          this.shopbutton2 = newButton2 //遍历字符串，以$分隔存入新数组
         }
 
-        let myurl = this.piclist[0].Pro_Url; //将拿到数据分别赋值给几个数组
+        let myurl = this.piclist[0].Pro_Url //将拿到数据分别赋值给几个数组
 
-        this.picsrcbig = require(`../../assets/images/${myurl}`);
+        this.picsrcbig = require(`../../assets/images/${myurl}`)
         if (res.data.data[0][0].Pro_Spe_Title1 != null) {
           //判断选择菜单2是否有数值，并且赋值
-          this.Pro_Spe_Title1 = res.data.data[0][0].Pro_Spe_Title1 + ":";
+          this.Pro_Spe_Title1 = res.data.data[0][0].Pro_Spe_Title1 + ':'
         }
         if (res.data.data[0][0].Pro_Spe_Title2 != null) {
           //判断选择菜单2是否有数值，并且赋值
-          this.Pro_Spe_Title2 = res.data.data[0][0].Pro_Spe_Title2 + ":";
+          this.Pro_Spe_Title2 = res.data.data[0][0].Pro_Spe_Title2 + ':'
         }
-        this.pro_data = res.data.data[0][0].pro_data;
+        this.pro_data = res.data.data[0][0].pro_data
         //   console.log(33333333333333);
         //   console.log(res.data.data[0]);
         //   console.log(res.data.data[1]);
         //   console.log(res.data.data[2]);
-      });
+      })
     },
     showdata() {
-      this._data.productshow = { display: "block" };
-      this._data.commentaryshow = { display: "none" };
+      this._data.productshow = { display: 'block' }
+      this._data.commentaryshow = { display: 'none' }
     },
     showcommentary(productshow) {
-      this._data.productshow = { display: "none" };
-      this._data.commentaryshow = { display: "block" };
+      this._data.productshow = { display: 'none' }
+      this._data.commentaryshow = { display: 'block' }
     },
     setActiveItem(piclist, name, picsrcbig) {
-      let srcnow = piclist[name].Pro_Url;
-      this.picsrcbig = require(`../../assets/images/${srcnow}`);
+      let srcnow = piclist[name].Pro_Url
+      this.picsrcbig = require(`../../assets/images/${srcnow}`)
     },
     // 获取元素到文档区域的坐标
     getPosition: function(element) {
       var dc = document,
         rec = element.getBoundingClientRect(),
         x = rec.left, // 获取元素相对浏览器视窗window的左、上坐标
-        y = rec.top;
+        y = rec.top
       // 与html或body元素的滚动距离相加就是元素相对于文档区域document的坐标位置
-      x += dc.documentElement.scrollLeft || dc.body.scrollLeft;
-      y += dc.documentElement.scrollTop || dc.body.scrollTop;
+      x += dc.documentElement.scrollLeft || dc.body.scrollLeft
+      y += dc.documentElement.scrollTop || dc.body.scrollTop
       return {
         left: x,
         top: y
-      };
+      }
     },
     handleMove(evt) {
-      var larger = this.$refs.larger;
-      var shadow = this.$refs.shadow;
-      var big = this.$refs.big;
-      var pos = this.getPosition(this.$refs.choose);
-      var shadowRect = shadow.getBoundingClientRect();
-      var bigRect = big.getBoundingClientRect();
-      var contentRect = this.$refs.content.getBoundingClientRect();
-      var maxX = contentRect.width - shadowRect.width;
-      var maxY = contentRect.height - shadowRect.height;
+      var larger = this.$refs.larger
+      var shadow = this.$refs.shadow
+      var big = this.$refs.big
+      var pos = this.getPosition(this.$refs.choose)
+      var shadowRect = shadow.getBoundingClientRect()
+      var bigRect = big.getBoundingClientRect()
+      var contentRect = this.$refs.content.getBoundingClientRect()
+      var maxX = contentRect.width - shadowRect.width
+      var maxY = contentRect.height - shadowRect.height
 
-      var X = evt.pageX - pos.left - shadowRect.width / 2;
-      var Y = evt.pageY - pos.top - shadowRect.height / 2;
+      var X = evt.pageX - pos.left - shadowRect.width / 2
+      var Y = evt.pageY - pos.top - shadowRect.height / 2
 
       if (X <= 0) {
-        X = 0;
+        X = 0
       }
       if (X >= maxX) {
-        X = maxX;
+        X = maxX
       }
       if (Y <= 0) {
-        Y = 0;
+        Y = 0
       }
       if (Y >= maxY) {
-        Y = maxY;
+        Y = maxY
       }
       // 防止遮罩层粘滞，跟随鼠标一起滑出大图位置
-      var bigX = (X * bigRect.width) / contentRect.width;
-      var bigY = (Y * bigRect.height) / contentRect.height;
+      var bigX = (X * bigRect.width) / contentRect.width
+      var bigY = (Y * bigRect.height) / contentRect.height
       //  bigX / bigW = X / contentW,主图和遮罩层之间存在两倍关系，放大图和原图之间也有两倍关系
-      shadow.style.left = X + "px";
-      shadow.style.top = Y + "px";
+      shadow.style.left = X + 'px'
+      shadow.style.top = Y + 'px'
 
       // console.log(X, Y, bigX, bigY);
 
-      big.style.left = -bigX + "px";
-      big.style.top = -bigY + "px";
+      big.style.left = -bigX + 'px'
+      big.style.top = -bigY + 'px'
 
-      larger.style.display = "block";
-      shadow.style.display = "block";
+      larger.style.display = 'block'
+      shadow.style.display = 'block'
     },
     notshow() {
-      var larger = this.$refs.larger;
-      var shadow = this.$refs.shadow;
-      larger.style.display = "none";
-      shadow.style.display = "none";
+      var larger = this.$refs.larger
+      var shadow = this.$refs.shadow
+      larger.style.display = 'none'
+      shadow.style.display = 'none'
     },
     addcart() {
-      console.log(this.pro_Id);
+      console.log(this.pro_Id)
     }
   },
   components: {
     hotShop
   },
   updated() {
-    this.getProductDetail();
+    //  this.getProductDetail();
   }
-};
+}
 </script>
 <style scoped>
 * {
@@ -345,11 +306,11 @@ export default {
   padding: 0px;
 }
 section {
-    margin-top:30px;
-    width: 90%;
-    margin-left:5%;
+  margin-top: 30px;
+  width: 90%;
+  margin-left: 5%;
   height: 600px;
-  border: 1px solid #DCDCDC;
+  border: 1px solid #dcdcdc;
   position: relative;
   overflow: hidden;
 }
@@ -497,8 +458,8 @@ section {
 .huiyuan {
   color: #ffffff;
   background: #7f5b42;
-  padding-left:5px;
-   padding-right:5px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-radius: 5px;
   font-weight: bold;
   margin-top: 10px;
@@ -517,8 +478,8 @@ section {
 .cuxiao {
   color: #ffffff;
   background: #b1544f;
-  padding-left:5px;
-   padding-right:5px;
+  padding-left: 5px;
+  padding-right: 5px;
   border-radius: 5px;
   font-weight: bold;
   margin-top: 10px;
@@ -568,7 +529,7 @@ section {
 }
 .rightdiv1 {
   display: inline;
-  margin-left:20px;
+  margin-left: 20px;
 }
 .rightdiv1 > a {
   padding-left: 10px;
