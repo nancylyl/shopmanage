@@ -10,9 +10,7 @@
         <div v-if="cartProducts != ''">   
             <div class="tittle">
                 <strong style="float:left">我的购物车</strong>
-                <a href="">
-                    <strong style="float:right">清空购物车</strong>
-                </a>
+                <strong class="fRight" @click="delAll">清空购物车</strong>
             </div>
             <el-table
                 :header-cell-style="{textAlign:'center',color:'#555'}"
@@ -32,10 +30,10 @@
                     <el-table-column
                     label="商品信息" >
                         <template slot-scope="scope">
-                            <a href="">
+                            <router-link :to="{ path: '/productdetails/' + scope.row.id }">
                                 <img :src="scope.row.img" alt="" style="float:left">
-                            </a>
-                            <a href="">{{scope.row.product_Name}}</a>
+                            </router-link>
+                            <router-link :to="{ path: '/productdetails/' + scope.row.id }">{{scope.row.product_Name}}</router-link>
                             <p>{{scope.row.Title1+" "+scope.row.Title1value+" 、"+scope.row.Title2+""+scope.row.Title2value}}</p>
                         </template>
                     </el-table-column>
@@ -68,7 +66,7 @@
                     label="操作"
                     width="140">
                         <template slot-scope="scope">
-                                <el-button  type="danger" @click="delProduct(scope.row)">删除</el-button>
+                            <el-button  type="danger" @click="delProduct(scope.row)">删除</el-button>
                         </template>
                     </el-table-column>
             </el-table>
@@ -115,17 +113,13 @@
                 }else{
                     this.isshow = false
                 }
-            }),
-            getcartlist()
-            .then(res => {
-                console.log(res);
             })
         },
         methods:{
-            ...mapActions(['delProduct','submitOrder']),
-            toorder(){
-                this.$router.push("/order")
-            },
+            ...mapActions(['delProduct','delAll','submitOrder']),
+            // toorder(){
+            //     this.$router.push("/order")
+            // },
             tohome(){
                 this.$router.push("/home")
             },

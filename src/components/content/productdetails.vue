@@ -1,260 +1,111 @@
 <template>
-    <div>
-        <addcart v-show="visible"/>
-        <section class="details" v-if="this.productlist.length>0">
-            <div class="boxleft">
-                <div class="picbox">
-                    <div class="choose" ref="choose">
-                        <div class="content" ref="content" @mousemove="handleMove" @mouseleave="notshow">
-                            <img :src="picsrcbig">
-                            <div class="shadow" ref="shadow"></div>
-                        </div>
-                        <el-carousel type="card" height="100px" :autoplay="false" indicator-position="none" arrow="never">
-                            <el-carousel-item v-for="(item,index) in piclist" :key="item.id" name="item.id" @click.native="setActiveItem(piclist,index,picsrcbig)">
-                              <img :src="require(`../../assets/images/${item.Pro_Url}`)" class="medium"/>
-                            </el-carousel-item>
-                          </el-carousel>
-                    </div>
-                    <div class="larger" ref="larger">
-                        <img :src="picsrcbig" ref="big" />
-                    </div>
-                </div>
-                <!-- 收藏按钮 -->
-                <a href="">
-                    <div id="shoucangbg" class="shoucang"></div> 
-                </a>
-                <!-- 分享按钮 -->
-                <a href="">
-                    <div id="bshare-shareto" class="shareto"> &nbsp;</div>
-                </a>
-            </div>
-            <div class="boxright">
-                <h1 class="goods-name">{{ productlist[0].Pro_Name }}</h1>
-                <div class="product-id clearfix" >
-                    商品编码：&nbsp;<span id="goodsBn">{{ productlist[0].Pro_Num }}</span>
-                </div>
-                <div class="goods-price-box clearfix">
-                    <div style="margin:0px;padding:0px;">
-                        <span class="goodsprice">￥{{ productlist[0].Price }}</span>
-                    </div>
-                </div>
-                <div class="goods-price-box clearfix">
-                    <span class="huiyuan">会员价</span>&nbsp;&nbsp;
-                    <span class="mlvprice" style="color:#7F5B42;font-weight:bold;">￥{{ productlist[0].MemPrice }}</span>
-                    <a class="how" target="_blank" href="http://www.dapu.com/index.php/article-bangzhuzhongxin_tesesuwu-24.html">
-                        如何成为会员？
-                    </a>
-                </div>
-                <div id="promotion_show" class="clearfix">
-                    <span class="cuxiao">促销</span>
-                    <span id="promotion_msg">满88包邮</span>
-                </div>
-                <div class="score-wrap">
-                    <ul>
-                        <li>
-                            <p class="score-num" >
-                                {{ productlist[0].Pro_SumCount - productlist[0].Pro_NewCount }}
-                            </p>
-                            <p class="score-name">
-                                销量
-                            </p>
-                        </li>
-                        <li>
-                            <p class="score-num">
-                                {{ productlist[0].CNum }}
-                            </p>
-                            <p class="score-name">
-                                用户评论数
-                            </p>
-                        </li>
-                        <li>
-                            <p class="score-num">
-                                {{ productlist[0].Score }}
-                            </p>
-                            <p class="score-name">
-                                评论送积分
-                            </p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="tagline" >
-                    {{ productlist[0].Pro_Title }}
-                </div>
-                <div id="goods-spec" class="goods-spec">
-                    <div class="spec-item specItem">
-                        <span class="buttontitle"> {{ Pro_Spe_Title1 }}</span>
-                        <div class="rightdiv1">
-                                <el-button type="info" size="small" v-for="(item,index) in shopbutton1" :key="index" name="item" @click.native="value1(item)">
-                                    {{ item }}
-                                </el-button>
-                        </div>
-                        <br><br>
-                        <span class="buttontitle"> {{ Pro_Spe_Title2 }}</span>
-                        <div class="rightdiv1">
-                            <el-button type="info" size="small" v-for="(item,index) in shopbutton2" :key="index" name="item" @click.native="value2(item)">
-                                {{ item }}
-                            </el-button>    
-                        </div>
-                    </div>
-                </div>
-                <div class="buyinfo clearfix">
-                    数量:
-                    <el-input-number class="elbutton" size="small" v-model="num4" :min="0" :max="productlist[0].Pro_SumCount" ></el-input-number><!-- @change="handleChange(num4)" -->
-                </div>  
-                <div class="shopbutton">
-                    <el-button type="warning" @click.native="addcart(productlist[0].Pro_Id,productlist[0].Pro_Name,productlist[0].Price,Pro_Spe_Title1,Title1_value,Pro_Spe_Title2,Title2_value,num4,picsrcbig,productlist[0].Pro_SumCount )">加入购物车</el-button>
-                </div>
   <div>
-    <section class="details" v-if="this.productlist.length > 0">
+    <addcart v-show="visible"/>
+    <section class="details" v-if="this.productlist.length>0">
       <div class="boxleft">
-        <div class="picbox">
-          <div class="choose" ref="choose">
-            <div
-              class="content"
-              ref="content"
-              @mousemove="handleMove"
-              @mouseleave="notshow"
-            >
-              <img :src="picsrcbig" />
-              <div class="shadow" ref="shadow"></div>
-            </div>
-            <el-carousel
-              type="card"
-              height="100px"
-              :autoplay="false"
-              indicator-position="none"
-              arrow="never"
-            >
-              <el-carousel-item
-                v-for="(item, index) in piclist"
-                :key="item.id"
-                name="item.id"
-                @click.native="setActiveItem(piclist, index, picsrcbig)"
-              >
-                <img
-                  :src="require(`../../assets/images/${item.Pro_Url}`)"
-                  class="medium"
-                />
-              </el-carousel-item>
-            </el-carousel>
+          <div class="picbox">
+              <div class="choose" ref="choose">
+                  <div class="content" ref="content" @mousemove="handleMove" @mouseleave="notshow">
+                      <img :src="picsrcbig">
+                      <div class="shadow" ref="shadow"></div>
+                  </div>
+                  <el-carousel type="card" height="100px" :autoplay="false" indicator-position="none" arrow="never">
+                      <el-carousel-item v-for="(item,index) in piclist" :key="item.id" name="item.id" @click.native="setActiveItem(piclist,index,picsrcbig)">
+                        <img :src="require(`../../assets/images/${item.Pro_Url}`)" class="medium"/>
+                      </el-carousel-item>
+                    </el-carousel>
+              </div>
+              <div class="larger" ref="larger">
+                  <img :src="picsrcbig" ref="big" />
+              </div>
           </div>
-          <div class="larger" ref="larger">
-            <img :src="picsrcbig" ref="big" />
-          </div>
-        </div>
-        <!-- 收藏按钮 -->
-        <a href="">
-          <div id="shoucangbg" class="shoucang"></div>
-        </a>
-        <!-- 分享按钮 -->
-        <a href="">
-          <div id="bshare-shareto" class="shareto">&nbsp;</div>
-        </a>
+          <!-- 收藏按钮 -->
+          <a href="">
+              <div id="shoucangbg" class="shoucang"></div> 
+          </a>
+          <!-- 分享按钮 -->
+          <a href="">
+              <div id="bshare-shareto" class="shareto"> &nbsp;</div>
+          </a>
       </div>
       <div class="boxright">
         <h1 class="goods-name">{{ productlist[0].Pro_Name }}</h1>
-        <div class="product-id clearfix">
-          商品编码：&nbsp;<span id="goodsBn">{{ productlist[0].Pro_Num }}</span>
+        <div class="product-id clearfix" >
+            商品编码：&nbsp;<span id="goodsBn">{{ productlist[0].Pro_Num }}</span>
         </div>
         <div class="goods-price-box clearfix">
-          <div style="margin:0px;padding:0px;">
-            <span class="goodsprice">￥{{ productlist[0].Price }}</span>
-          </div>
+            <div style="margin:0px;padding:0px;">
+                <span class="goodsprice">￥{{ productlist[0].Price }}</span>
+            </div>
         </div>
         <div class="goods-price-box clearfix">
-          <span class="huiyuan">会员价</span>&nbsp;&nbsp;
-          <span class="mlvprice" style="color:#7F5B42;font-weight:bold;"
-            >￥{{ productlist[0].MemPrice }}</span
-          >
-          <a
-            class="how"
-            target="_blank"
-            href="http://www.dapu.com/index.php/article-bangzhuzhongxin_tesesuwu-24.html"
-          >
-            如何成为会员？
-          </a>
+            <span class="huiyuan">会员价</span>&nbsp;&nbsp;
+            <span class="mlvprice" style="color:#7F5B42;font-weight:bold;">￥{{ productlist[0].MemPrice }}</span>
+            <a class="how" target="_blank" href="http://www.dapu.com/index.php/article-bangzhuzhongxin_tesesuwu-24.html">
+                如何成为会员？
+            </a>
         </div>
         <div id="promotion_show" class="clearfix">
-          <span class="cuxiao">促销</span>
-          <span id="promotion_msg">满88包邮</span>
+            <span class="cuxiao">促销</span>
+            <span id="promotion_msg">满88包邮</span>
         </div>
         <div class="score-wrap">
-          <ul>
-            <li>
-              <p class="score-num">
-                {{ productlist[0].Pro_SumCount - productlist[0].Pro_NewCount }}
-              </p>
-              <p class="score-name">
-                销量
-              </p>
-            </li>
-            <li>
-              <p class="score-num">
-                {{ productlist[0].CNum }}
-              </p>
-              <p class="score-name">
-                用户评论数
-              </p>
-            </li>
-            <li>
-              <p class="score-num">
-                {{ productlist[0].Score }}
-              </p>
-              <p class="score-name">
-                评论送积分
-              </p>
-            </li>
-          </ul>
+            <ul>
+                <li>
+                    <p class="score-num" >
+                        {{ productlist[0].Pro_SumCount - productlist[0].Pro_NewCount }}
+                    </p>
+                    <p class="score-name">
+                        销量
+                    </p>
+                </li>
+                <li>
+                    <p class="score-num">
+                        {{ productlist[0].CNum }}
+                    </p>
+                    <p class="score-name">
+                        用户评论数
+                    </p>
+                </li>
+                <li>
+                    <p class="score-num">
+                        {{ productlist[0].Score }}
+                    </p>
+                    <p class="score-name">
+                        评论送积分
+                    </p>
+                </li>
+            </ul>
         </div>
-        <div class="tagline">
-          {{ productlist[0].Pro_Title }}
+        <div class="tagline" >
+            {{ productlist[0].Pro_Title }}
         </div>
         <div id="goods-spec" class="goods-spec">
-          <div class="spec-item specItem">
-            <span class="buttontitle"> {{ Pro_Spe_Title1 }}</span>
-            <div class="rightdiv1">
-              <el-button
-                type="info"
-                size="small"
-                v-for="(item, index) in shopbutton1"
-                :key="index"
-                name="item"
-              >
-                {{ item }}
-              </el-button>
+            <div class="spec-item specItem">
+                <span class="buttontitle"> {{ Pro_Spe_Title1 }}</span>
+                <div class="rightdiv1">
+                        <el-button type="info" size="small" v-for="(item,index) in shopbutton1" :key="index" name="item" @click.native="value1(item)">
+                            {{ item }}
+                        </el-button>
+                </div>
+                <br><br>
+                <span class="buttontitle"> {{ Pro_Spe_Title2 }}</span>
+                <div class="rightdiv1">
+                    <el-button type="info" size="small" v-for="(item,index) in shopbutton2" :key="index" name="item" @click.native="value2(item)">
+                        {{ item }}
+                    </el-button>    
+                </div>
             </div>
-            <br /><br />
-            <span class="buttontitle"> {{ Pro_Spe_Title2 }}</span>
-            <div class="rightdiv1">
-              <el-button
-                type="info"
-                size="small"
-                v-for="(item, index) in shopbutton2"
-                :key="index"
-                name="item"
-              >
-                {{ item }}
-              </el-button>
-            </div>
-          </div>
         </div>
         <div class="buyinfo clearfix">
-          数量:
-          <el-input-number
-            class="elbutton"
-            size="small"
-            v-model="num4"
-            :min="0"
-          ></el-input-number>
-        </div>
+            数量:
+            <el-input-number class="elbutton" size="small" v-model="num4" :min="0" :max="productlist[0].Pro_SumCount" ></el-input-number><!-- @change="handleChange(num4)" -->
+        </div>  
         <div class="shopbutton">
-          <el-button type="warning" @click.native="addcart()"
-            style="background-color:#B1544F">加入购物车</el-button
-          >
+            <el-button type="warning" @click.native="addcart(productlist[0].Pro_Id,productlist[0].Pro_Name,productlist[0].Price,Pro_Spe_Title1,Title1_value,Pro_Spe_Title2,Title2_value,num4,picsrcbig,productlist[0].Pro_SumCount )">加入购物车</el-button>
         </div>
       </div>
     </section>
-
     <div class="bottomcontent">
       <div class="btshop"><hotShop /></div>
       <div class="btright">
@@ -286,51 +137,52 @@
   </div>
 </template>
 <script>
-    import addcart from '@/components/commom/addcart'
-    import  {mapActions} from 'vuex'
-    import { getProductDetail } from '@/network/productdetails'
-    import hotShop from "@/components/content/hotShop";
-    export default {
-    data() {
-        return {
-            visible:false,
-            intnum:0,
-            num4:1,
-            productlist:[],//产品的信息表
-            ProdeuctList:[],
-            piclist:[],//产品图片表
-            Pro_Spe_Title1:'',
-            Pro_Spe_Title2:'',
-            picsrcbig:'',//轮播图切换存放图片地址的
-            shopbutton1:[],
-            shopbutton2:[],
-            isCollapse: false,
-            pro_data:'',
-            productshow:'',
-            commentaryshow:{display:"none"},
-            talklist:[],
-            talktel:[],
-            pro_Id: "",
-            // product_Name: this.productlist[0].Pro_Name,
-            // product_Price:this.productlist[0].Price,
-            Title1_value:"",
-            Title2_value:"",
-            // cartProductList:{product_Name,product_Price,Title1_value,Title2_value,num4}
-            // pid:
-        };
-    },
-    components: {
-        addcart
-    },
-    mounted:function(){
-        // let piclist = this.piclist
-        // let intnum = this.intnum
-        // let url = this.piclist[0].Pro_Url
-        // console.log(2222222222222222);
-        // console.log(url);
-        // picsrcbig = "require(`../../assets/images/${url}`)",
-        // this.setActiveItem(piclist,intnum,picsrcbig);//需要触发的函数
-    },
+  import addcart from '@/components/commom/addcart'
+  import  {mapActions} from 'vuex'
+  import { getProductDetail } from '@/network/productdetails'
+  import hotShop from "@/components/content/hotShop";
+  export default {
+  data() {
+      return {
+          visible:false,
+          intnum:0,
+          num4:1,
+          productlist:[],//产品的信息表
+          ProdeuctList:[],
+          piclist:[],//产品图片表
+          Pro_Spe_Title1:'',
+          Pro_Spe_Title2:'',
+          picsrcbig:'',//轮播图切换存放图片地址的
+          shopbutton1:[],
+          shopbutton2:[],
+          isCollapse: false,
+          pro_data:'',
+          productshow:'',
+          commentaryshow:{display:"none"},
+          talklist:[],
+          talktel:[],
+          pro_Id: "",
+          // product_Name: this.productlist[0].Pro_Name,
+          // product_Price:this.productlist[0].Price,
+          Title1_value:"",
+          Title2_value:"",
+          // cartProductList:{product_Name,product_Price,Title1_value,Title2_value,num4}
+          // pid:
+      };
+  },
+  components: {
+      addcart,
+      hotShop
+  },
+  mounted:function(){
+      // let piclist = this.piclist
+      // let intnum = this.intnum
+      // let url = this.piclist[0].Pro_Url
+      // console.log(2222222222222222);
+      // console.log(url);
+      // picsrcbig = "require(`../../assets/images/${url}`)",
+      // this.setActiveItem(piclist,intnum,picsrcbig);//需要触发的函数
+  },
   created() {
     this.getProductDetail();
   },
@@ -428,116 +280,44 @@
     //   console.log(res.data.data[1]);
     //   console.log(res.data.data[2]);
   },
-    methods: {
-        showdata() {
-            this._data.productshow = {display:'block'}
-            this._data.commentaryshow = {display:"none"}
-            },
-            showcommentary(productshow) {
-                this._data.productshow = {display:'none'}
-                this._data.commentaryshow = {display:"block"}
-            },
-        setActiveItem(piclist,name,picsrcbig) {
-            let srcnow = piclist[name].Pro_Url;
-            this.picsrcbig = require(`../../assets/images/${srcnow}`)
-        },
-        // 获取元素到文档区域的坐标 
-        getPosition: function(element){ 
-            var dc = document, 
-            rec = element.getBoundingClientRect(), 
-            x = rec.left, // 获取元素相对浏览器视窗window的左、上坐标 
-            y = rec.top; 
-            // 与html或body元素的滚动距离相加就是元素相对于文档区域document的坐标位置 
-            x += dc.documentElement.scrollLeft || dc.body.scrollLeft; 
-            y += dc.documentElement.scrollTop || dc.body.scrollTop; 
-            return { 
-                left: x, 
-                top: y 
-            }; 
-        },
-        handleMove(evt) {
-            var larger = this.$refs.larger;
-            var shadow = this.$refs.shadow;
-            var big = this.$refs.big;
-            var pos = this.getPosition(this.$refs.choose);
-            var shadowRect = shadow.getBoundingClientRect();
-            var bigRect = big.getBoundingClientRect();
-            var contentRect = this.$refs.content.getBoundingClientRect();
-            var maxX = contentRect.width - shadowRect.width;
-            var maxY = contentRect.height - shadowRect.height;
- 
-            var X = evt.pageX - pos.left - shadowRect.width / 2;
-            var Y = evt.pageY - pos.top - shadowRect.height / 2;
- 
-            if (X <= 0) {
-                X = 0;
-            }
-            if (X >= maxX) {
-                X = maxX;
-            }
-            if (Y <= 0) {
-                Y = 0;
-            }
-            if (Y >= maxY) {
-                Y = maxY;
-            }
-            // 防止遮罩层粘滞，跟随鼠标一起滑出大图位置
-            var bigX = X * bigRect.width / contentRect.width;
-            var bigY = Y * bigRect.height / contentRect.height;
-            //  bigX / bigW = X / contentW,主图和遮罩层之间存在两倍关系，放大图和原图之间也有两倍关系
-            shadow.style.left = X + "px";
-            shadow.style.top = Y + "px";
- 
-            // console.log(X, Y, bigX, bigY);
- 
-            big.style.left = -bigX + "px";
-            big.style.top = -bigY + "px";
- 
-            larger.style.display = "block";
-            shadow.style.display = "block";
-        },
-        notshow() {
-            var larger = this.$refs.larger;
-            var shadow = this.$refs.shadow;
-            larger.style.display = "none";
-            shadow.style.display = "none";
-        },
-        addcart(a,b,c,d,e,f,g,h,i,j) {
-            if(e==""||g=="") {
-                
-            }       
-            console.log(a,b,c,d,e,f,g,h,i,j)
-            this.addToCart({ 
-                id:a,
-                product_Name: b,
-                product_Price: c,
-                Title1:d,
-                Title1value: e,
-                Title2:f,
-                Title2value: g,
-                num: h,
-                img: i,
-                stock: j})
-        },
-        value1(event) {
-            this.Title1_value=event
-            // console.log(event)
-        },
-        value2(event) {
-             this.Title2_value=event
-            // console.log(event)
-        },
-         ...mapActions(['addToCart']),    
-    },  
-    notshow() {
+  notshow() {
       var larger = this.$refs.larger;
       var shadow = this.$refs.shadow;
       larger.style.display = "none";
       shadow.style.display = "none";
-    }
   },
-  components: {
-    hotShop
+  addcart(a,b,c,d,e,f,g,h,i,j) {
+      if(e==""||g=="") {
+          
+      }       
+      console.log(a,b,c,d,e,f,g,h,i,j)
+      this.addToCart({ 
+          id:a,
+          product_Name: b,
+          product_Price: c,
+          Title1:d,
+          Title1value: e,
+          Title2:f,
+          Title2value: g,
+          num: h,
+          img: i,
+          stock: j})
+  },
+  value1(event) {
+      this.Title1_value=event
+      // console.log(event)
+  },
+  value2(event) {
+        this.Title2_value=event
+      // console.log(event)
+  },
+    ...mapActions(['addToCart']),    
+  },  
+  notshow() {
+    var larger = this.$refs.larger;
+    var shadow = this.$refs.shadow;
+    larger.style.display = "none";
+    shadow.style.display = "none";
   },
   updated() {
     this.getProductDetail();

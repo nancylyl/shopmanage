@@ -18,6 +18,10 @@ const actions = {
     delProduct(ctx, product) {
         ctx.commit("delCart", product)
     },
+    // 清除购物车
+    delAll(ctx) {
+        ctx.commit("delAllCart")
+    },
     // 提交购物车
     submitOrder(context, obj) {
         context.commit("submitOrder", obj);
@@ -42,6 +46,10 @@ const mutations = {
                 state.added.splice(index, 1)
             }
         })
+    },
+    // 清除购物车
+    delAllCart(state) {
+        state.added = []
     },
     // 提交购物车 
     submitOrder(state, value) {
