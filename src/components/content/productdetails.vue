@@ -311,46 +311,43 @@ export default {
       larger.style.display = 'none'
       shadow.style.display = 'none'
     },
-    addcart() {
-      console.log(this.pro_Id)
+    addcart(a, b, c, d, e, f, g, h, i, j) {
+      if (e == '' || g == '') {
+      }
+      console.log(a, b, c, d, e, f, g, h, i, j)
+      this.addToCart({
+        id: a,
+        product_Name: b,
+        product_Price: c,
+        Title1: d,
+        Title1value: e,
+        Title2: f,
+        Title2value: g,
+        num: h,
+        img: i,
+        stock: j
+      })
+    },
+    value1(event) {
+      this.Title1_value = event
+      // console.log(event)
+    },
+    value2(event) {
+      this.Title2_value = event
+      // console.log(event)
+    },
+    notshow() {
+      var larger = this.$refs.larger
+      var shadow = this.$refs.shadow
+      larger.style.display = 'none'
+      shadow.style.display = 'none'
+    },
+    updated() {
+      // this.getProductDetail();
     }
-  },
-  addcart(a, b, c, d, e, f, g, h, i, j) {
-    if (e == '' || g == '') {
-    }
-    console.log(a, b, c, d, e, f, g, h, i, j)
-    this.addToCart({
-      id: a,
-      product_Name: b,
-      product_Price: c,
-      Title1: d,
-      Title1value: e,
-      Title2: f,
-      Title2value: g,
-      num: h,
-      img: i,
-      stock: j
-    })
-  },
-  value1(event) {
-    this.Title1_value = event
-    // console.log(event)
-  },
-  value2(event) {
-    this.Title2_value = event
-    // console.log(event)
-  },
-  notshow() {
-    var larger = this.$refs.larger
-    var shadow = this.$refs.shadow
-    larger.style.display = 'none'
-    shadow.style.display = 'none'
-  },
-  updated() {
-    // this.getProductDetail();
   }
 }
-</script>
+</script> 
     <style scoped>
 * {
   margin: 0px;
