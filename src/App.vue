@@ -12,8 +12,8 @@
         ></breadcrumbVue>
       </div>
     </div>
-    <router-view v-if="$store.state.shopmenustore.menulist.length > 0" />
-    <sidebar />
+    <router-view v-if="$store.state.shopmenustore.menulist.length>0" />
+     <sidebar /> 
   </div>
 </template>
 <script>
