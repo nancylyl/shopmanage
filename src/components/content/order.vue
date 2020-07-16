@@ -1,5 +1,5 @@
 <template>
-  <div class="order" v-if="siteList.length>0">
+  <div class="order">
   <div class="jiantou">
     <img alt="大朴" src="http://p2.dapuimg.com/themes/blue/images/images/icons/logo2015.png" width="200" height="50" border="0" @click="tohome">
     <ol>
@@ -159,16 +159,6 @@ export default {
       totalPrice: 0,
       freight: 0,
       Deltimeid: 0
-    //   index: [{
-    // 　　"indexId":0,
-    // 　　"name": "工作日、双休日与假日均可送货"
-    // 　　}, {
-    // 　　"indexId":1,
-    // 　　"name": "点菜新用户数"
-    // 　　}, {
-    // 　　"indexId":2,
-    // 　　"name": "首次留联系方式人数"
-    // 　　}]
     }
   },
   created() {  
