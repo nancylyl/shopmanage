@@ -92,24 +92,6 @@
                 </div>
             </div>
         </div>  
-    <div class="down">
-        <h3>已享受到的促销优惠：</h3>
-        <p>满88包邮</p>
-    </div>
-    <div class="mydown">
-        <div>
-        <p>原始金额：￥799</p>
-    </div>
-    <div>
-        <p style="color:red">优惠金额：￥0</p>
-    </div>
-    <div>
-        <p style="font-weight:700">商品总金额(不含运费)：￥799</p>
-    </div>
-    <div class="mybutton">
-        <button class="one" @click="tohome"> 继续购物</button>
-        <button @click="toorder">去结算</button>
-    </div>
     </div>
 </template>
 
