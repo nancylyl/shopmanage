@@ -11,13 +11,8 @@
         ></breadcrumbVue>
       </div>
     </div>
-<<<<<<< HEAD
     <router-view v-if="showRouter" />
     <sidebar />
-=======
-    <router-view v-if="$store.state.shopmenustore.menulist.length>0" />
-     <sidebar /> 
->>>>>>> ae410c0ab58eeb0bff39398cec0be6da9642ee69
   </div>
 </template>
 <script>
