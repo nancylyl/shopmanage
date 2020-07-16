@@ -32,6 +32,7 @@ const actions = {
 const mutations = {
     getshowlist(state, data) {
         state.showlist = data;
+<<<<<<< HEAD
         // console.log(data);
     },
     setkey(state, key) {
@@ -39,6 +40,9 @@ const mutations = {
         state.key = key;
         // console.log(state.key);
 
+=======
+        // console.log(state.showlist);
+>>>>>>> ae410c0ab58eeb0bff39398cec0be6da9642ee69
     }
 }
 export default {

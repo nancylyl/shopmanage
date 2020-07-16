@@ -1,123 +1,88 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-
-.tittle {
-    width: 90%;
-    margin-left: 5%;
-    margin-bottom: 35px;
-    strong {
-        margin-right: 10px;
+    // * {
+    //     margin: 0;
+    //     padding: 0;
+    // }
+    .logo {
+        width: 250px;
+        height: 100px;
+        margin-bottom: 20px;
+        cursor: pointer;
     }
-}
-
-a {
-    color: black;
-}
-
-a:hover {
-    color: #548E87;
-    text-decoration: underline;
-}
-
-table {
-    width: 90%;
-    margin-left: 5%;
-    border-collapse: collapse;
-    tr,
-    th,
-    td {
-        border: 1px solid #dee2e6;
-        padding: .75rem;
-        text-align: center;
-        vertical-align: top;
+    
+    .empty {
+        height: 300px;
+        line-height: 300px;
+    }
+    
+    .tittle {
+        width: 85%;
+        height: 40px;
+        margin: 0 auto;
+        .fRight {
+            float: right;
+            margin-right: 10px;
+            cursor: pointer;
+            &:hover {
+                color: #548E87;
+            }
+        }
+    }
+    
+    a {
+        color: black;
+        &:hover {
+            color: #548E87;
+            text-decoration: underline;
+        }
+    }
+    
+    table {
         img {
             width: 80px;
             height: 80px;
         }
+        .goBuy {
+            margin: 0 auto;
+        }
+    }
+    
+    .down {
+        width: 85%;
+        margin: 50px auto 0;
+        height: 120px;
+        background-color: #dee2e6;
+        // padding: 20px;
+        text-align: left;
+        p {
+            padding-left: 20px;
+        }
+        h3 {
+            padding: 20px 0 0 20px;
+            font-size: 1.75rem;
+            font-weight: 500;
+        }
+    }
+    
+    .mydown {
+        margin: 20px auto 50px;
+        width: 85%;
+        text-align: right;
+        // margin-left: 5%; 
         div {
+            // width: 100%; 
+            margin-top: 20px;
+        }
+        .mybutton {
             display: flex;
-            flex-basis: content;
-            button {
-                width: 40px;
-                height: 40px;
-                background-color: white;
-                border: 1px solid #6B6B6B;
-            }
-            input {
-                height: 40px;
-                width: 100px;
-            }
+            margin-left: auto;
+            cursor: pointer;
+            justify-content: flex-end;
+            margin-bottom: 100px;
+        }
+        .one {
+            background-color: #717171;
+        }
+        .one:hover {
+            background-color: #3E3E3E;
         }
     }
-    th {
-        font-size: 16px;
-        input {
-            width: 20px;
-        }
-    }
-    .mydelete {
-        width: 60px;
-        border-radius: 5px;
-        height: 40px;
-        border: none;
-        background-color: #dc3545;
-        color: white;
-        cursor: pointer;
-    }
-}
-
-.down {
-    width: 90%;
-    margin-left: 5%;
-    margin-top: 70px;
-    height: 100px;
-    background-color: #dee2e6;
-    padding: 20px;
-    text-align: left;
-    p {
-        margin-top: 10px;
-    }
-    h3 {
-        font-size: 1.75rem;
-        font-weight: 500;
-    }
-}
-
-.mydown {
-    margin-top: 20px;
-    width: 90%;
-    text-align: right;
-    margin-left: 5%;
-    div {
-        width: 100%;
-        margin-top: 20px;
-    }
-    button {
-        width: 70px;
-        border-radius: 5px;
-        height: 40px;
-        border: none;
-        background-color: #dc3545;
-        margin-left: 10px;
-        color: white;
-        cursor: pointer;
-    }
-    button:hover {
-        background-color: #890D17;
-    }
-    .mybutton {
-        display: flex;
-        margin-left: auto;
-        cursor: pointer;
-        justify-content: flex-end;
-        margin-bottom: 100px;
-    }
-    .one {
-        background-color: #717171;
-    }
-    .one:hover {
-        background-color: #3E3E3E;
-    }
-}

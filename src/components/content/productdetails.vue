@@ -1,6 +1,7 @@
 <template>
   <div>
-    <section class="details" v-if="this.productlist.length > 0">
+    <addcart v-show="visible"/>
+    <section class="details" v-if="this.productlist.length>0">
       <div class="boxleft">
         <div class="picbox">
           <div class="choose" ref="choose">
@@ -45,11 +46,12 @@
           <span id="goodsBn">{{ productlist[0].Pro_Num }}</span>
         </div>
         <div class="goods-price-box clearfix">
-          <div style="margin:0px;padding:0px;">
-            <span class="goodsprice">￥{{ productlist[0].Price }}</span>
-          </div>
+            <div style="margin:0px;padding:0px;">
+                <span class="goodsprice">￥{{ productlist[0].Price }}</span>
+            </div>
         </div>
         <div class="goods-price-box clearfix">
+<<<<<<< HEAD
           <span class="huiyuan">会员价</span>&nbsp;&nbsp;
           <span
             class="mlvprice"
@@ -60,12 +62,20 @@
             target="_blank"
             href="http://www.dapu.com/index.php/article-bangzhuzhongxin_tesesuwu-24.html"
           >如何成为会员？</a>
+=======
+            <span class="huiyuan">会员价</span>&nbsp;&nbsp;
+            <span class="mlvprice" style="color:#7F5B42;font-weight:bold;">￥{{ productlist[0].MemPrice }}</span>
+            <a class="how" target="_blank" href="http://www.dapu.com/index.php/article-bangzhuzhongxin_tesesuwu-24.html">
+                如何成为会员？
+            </a>
+>>>>>>> ae410c0ab58eeb0bff39398cec0be6da9642ee69
         </div>
         <div id="promotion_show" class="clearfix">
-          <span class="cuxiao">促销</span>
-          <span id="promotion_msg">满88包邮</span>
+            <span class="cuxiao">促销</span>
+            <span id="promotion_msg">满88包邮</span>
         </div>
         <div class="score-wrap">
+<<<<<<< HEAD
           <ul>
             <li>
               <p class="score-num">{{ productlist[0].Pro_SumCount - productlist[0].Pro_NewCount }}</p>
@@ -105,19 +115,72 @@
                 :key="index"
                 name="item"
               >{{ item }}</el-button>
+=======
+            <ul>
+                <li>
+                    <p class="score-num" >
+                        {{ productlist[0].Pro_SumCount - productlist[0].Pro_NewCount }}
+                    </p>
+                    <p class="score-name">
+                        销量
+                    </p>
+                </li>
+                <li>
+                    <p class="score-num">
+                        {{ productlist[0].CNum }}
+                    </p>
+                    <p class="score-name">
+                        用户评论数
+                    </p>
+                </li>
+                <li>
+                    <p class="score-num">
+                        {{ productlist[0].Score }}
+                    </p>
+                    <p class="score-name">
+                        评论送积分
+                    </p>
+                </li>
+            </ul>
+        </div>
+        <div class="tagline" >
+            {{ productlist[0].Pro_Title }}
+        </div>
+        <div id="goods-spec" class="goods-spec">
+            <div class="spec-item specItem">
+                <span class="buttontitle"> {{ Pro_Spe_Title1 }}</span>
+                <div class="rightdiv1">
+                        <el-button type="info" size="small" v-for="(item,index) in shopbutton1" :key="index" name="item" @click.native="value1(item)">
+                            {{ item }}
+                        </el-button>
+                </div>
+                <br><br>
+                <span class="buttontitle"> {{ Pro_Spe_Title2 }}</span>
+                <div class="rightdiv1">
+                    <el-button type="info" size="small" v-for="(item,index) in shopbutton2" :key="index" name="item" @click.native="value2(item)">
+                        {{ item }}
+                    </el-button>    
+                </div>
+>>>>>>> ae410c0ab58eeb0bff39398cec0be6da9642ee69
             </div>
-          </div>
         </div>
         <div class="buyinfo clearfix">
+<<<<<<< HEAD
           数量:
           <el-input-number class="elbutton" size="small" v-model="num4" :min="0"></el-input-number>
         </div>
         <div class="shopbutton">
           <el-button type="warning" @click.native="addcart()" style="background-color:#B1544F">加入购物车</el-button>
+=======
+            数量:
+            <el-input-number class="elbutton" size="small" v-model="num4" :min="0" :max="productlist[0].Pro_SumCount" ></el-input-number><!-- @change="handleChange(num4)" -->
+        </div>  
+        <div class="shopbutton">
+            <el-button type="warning" style="background-color:#B1544F" @click.native="addcart(productlist[0].Pro_Id,productlist[0].Pro_Name,productlist[0].Price,Pro_Spe_Title1,Title1_value,Pro_Spe_Title2,Title2_value,num4,picsrcbig,productlist[0].Pro_SumCount )">加入购物车</el-button>
+>>>>>>> ae410c0ab58eeb0bff39398cec0be6da9642ee69
         </div>
       </div>
     </section>
-
     <div class="bottomcontent">
       <div class="btshop">
         <hotShop />
@@ -142,6 +205,7 @@
   </div>
 </template>
 <script>
+<<<<<<< HEAD
 import { getProductDetail } from '@/network/productdetails'
 import hotShop from '@/components/content/hotShop'
 export default {
@@ -166,15 +230,50 @@ export default {
       pro_Id: ''
       // pid:
     }
+=======
+  import addcart from '@/components/commom/addcart'
+  import  {mapActions} from 'vuex'
+  import { getProductDetail } from '@/network/productdetails'
+  import hotShop from "@/components/content/hotShop";
+  export default {
+  data() {
+      return {
+          visible:false,
+          intnum:0,
+          num4:1,
+          productlist:[],//产品的信息表
+          ProdeuctList:[],
+          piclist:[],//产品图片表
+          Pro_Spe_Title1:'',
+          Pro_Spe_Title2:'',
+          picsrcbig:'',//轮播图切换存放图片地址的
+          shopbutton1:[],
+          shopbutton2:[],
+          isCollapse: false,
+          pro_data:'',
+          productshow:'',
+          commentaryshow:{display:"none"},
+          talklist:[],
+          talktel:[],
+          pro_Id: "",
+          Title1_value:"",
+          Title2_value:"",
+          // pid:
+      };
+>>>>>>> ae410c0ab58eeb0bff39398cec0be6da9642ee69
   },
-  mounted: function() {
-    // let piclist = this.piclist
-    // let intnum = this.intnum
-    // let url = this.piclist[0].Pro_Url
-    // console.log(2222222222222222);
-    // console.log(url);
-    // picsrcbig = "require(`../../assets/images/${url}`)",
-    // this.setActiveItem(piclist,intnum,picsrcbig);//需要触发的函数
+  components: {
+      addcart,
+      hotShop
+  },
+  mounted:function(){
+      // let piclist = this.piclist
+      // let intnum = this.intnum
+      // let url = this.piclist[0].Pro_Url
+      // console.log(2222222222222222);
+      // console.log(url);
+      // picsrcbig = "require(`../../assets/images/${url}`)",
+      // this.setActiveItem(piclist,intnum,picsrcbig);//需要触发的函数
   },
   created() {
     this.getProductDetail()
@@ -267,7 +366,11 @@ export default {
       if (Y >= maxY) {
         Y = maxY
       }
+<<<<<<< HEAD
       // 防止遮罩层粘滞，跟随鼠标一起滑出大图位置
+=======
+       // 防止遮罩层粘滞，跟随鼠标一起滑出大图位置
+>>>>>>> ae410c0ab58eeb0bff39398cec0be6da9642ee69
       var bigX = (X * bigRect.width) / contentRect.width
       var bigY = (Y * bigRect.height) / contentRect.height
       //  bigX / bigW = X / contentW,主图和遮罩层之间存在两倍关系，放大图和原图之间也有两倍关系
@@ -281,6 +384,7 @@ export default {
 
       larger.style.display = 'block'
       shadow.style.display = 'block'
+<<<<<<< HEAD
     },
     notshow() {
       var larger = this.$refs.larger
@@ -291,15 +395,330 @@ export default {
     addcart() {
       console.log(this.pro_Id)
     }
+=======
+      
   },
-  components: {
-    hotShop
+  notshow() {
+      var larger = this.$refs.larger;
+      var shadow = this.$refs.shadow;
+      larger.style.display = "none";
+      shadow.style.display = "none";
+>>>>>>> ae410c0ab58eeb0bff39398cec0be6da9642ee69
+  },
+  addcart(a,b,c,d,e,f,g,h,i,j) {
+      if(e==""||g=="") {
+          
+      }       
+      console.log(a,b,c,d,e,f,g,h,i,j)
+      this.addToCart({ 
+          id:a,
+          product_Name: b,
+          product_Price: c,
+          Title1:d,
+          Title1value: e,
+          Title2:f,
+          Title2value: g,
+          num: h,
+          img: i,
+          stock: j})
+  },
+  value1(event) {
+      this.Title1_value=event
+      // console.log(event)
+  },
+  value2(event) {
+        this.Title2_value=event
+      // console.log(event)
+  },
+    ...mapActions(['addToCart']),    
+  },  
+  notshow() {
+    var larger = this.$refs.larger;
+    var shadow = this.$refs.shadow;
+    larger.style.display = "none";
+    shadow.style.display = "none";
   },
   updated() {
+<<<<<<< HEAD
     //  this.getProductDetail();
+=======
+    // this.getProductDetail();
+>>>>>>> ae410c0ab58eeb0bff39398cec0be6da9642ee69
   }
 }
 </script>
+    <style scoped>
+      * {
+            margin: 0px;
+            padding: 0px;
+        }
+        section {
+            height: 600px;
+            border: 1px solid #6B6B6B;
+            position: relative;
+        }
+        .boxleft {
+            width: 400px;
+            float: left;
+        }
+        .choose {
+            width: 400px;
+            height: 600px;
+            float: left;
+            margin: 10px 0 0 10px;
+        }
+        
+        .content {
+            width: 400px;
+            height: 400px;
+            position: relative;
+        }
+        
+        .content img {
+            width: 400px;
+            height: 400px;
+        }
+        #listshow {
+            width: 400px;
+            height: 100px;
+            margin-top: 20px;
+        }
+        
+        #listshow li {
+            width: 98px;
+            height: 100px;
+            float: left;
+            border: 1px solid #666;
+        }
+        
+        #listshow li img {
+            width: 98px;
+            height: 100px;
+        }
+        
+        #listshow .selected {
+            border-color: brown;
+        }
+        
+        .larger {
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            top: 22px;
+            left: 420px;
+            float: left;
+            overflow: hidden;
+            display: none;
+            z-index: 10;
+        }
+        
+        .larger img {
+            width: 800px;
+            height: 800px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .shadow {
+            width: 200px;
+            height: 200px;
+            background-color: rgba(145, 200, 200, 0.4);
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 10;
+            display: none;
+        }
+        .el-carousel__item h3 {
+            color: #475669;
+            font-size: 14px;
+            opacity: 0.75;
+            line-height: 200px;
+            margin: 0;
+        }
+        
+        .el-carousel__item:nth-child(2n) {
+            background-color: #ffffff;
+        }
+        
+        .el-carousel__item:nth-child(2n+1) {
+            background-color: #ffffff;
+        }
+        /* 收藏按键 */
+        #shoucangbg {   
+            width:80px;
+            height:20px;
+            background-image: url(http://www.dapu.com/themes/blue/images/favorite01.png);
+            position: absolute;
+            top: 530px;
+            left: 250px;
+        }
+        .shareto {
+            display: inline;
+            padding-left: 115px;
+            padding-top: 80px;
+            background: url(http://www.dapu.com/themes/blue/images/bshare01.png) no-repeat;
+           
+            top: 430px;
+            left: 200px;
+        }
+        .medium {
+            width: 150px;
+            height: 100px;
+        }
+        .boxright {
+            text-align: left;
+            padding-top: 10px;
+            padding-left: 450px;
+        }
+        .goods-name {
+            font-size:16px;
+            color:#6B6B6B;
+            font-family:微软雅黑;
+            background-color:#FFFFFF;
+            margin-top: 10px;
+        }
+        .product-id {
+            font-size:14px;
+            color:#6B6B6B;
+            font-family:微软雅黑;
+            background-color:#FFFFFF;
+            margin-top: 10px;
+        }
+        .goods-price-box {
+            color:#6B6B6B;
+            font-family:微软雅黑;
+            background-color:#FFFFFF;
+            margin-top: 10px;
+        }
+        .goodsprice {
+           font-weight:bold;
+           font-size:24px;
+           color:#7F5B42;
+           margin-top: 10px;
+        }
+        .huiyuan {
+            color:#FFFFFF;
+            background:#7F5B42;
+            font-weight:bold;
+            margin-top: 10px;
+        }
+        .how {
+            color: #ff0000;
+            text-decoration: none;
+        }
+        #promotion_show {
+            margin:0px 0px 5px;
+            color:#6B6B6B;
+            font-family:微软雅黑;
+            background-color:#FFFFFF;
+            margin-top: 10px;
+        }
+        .cuxiao {
+            color:#FFFFFF;
+            background:#B1544F;
+            font-weight:bold;
+            margin-top: 10px;
+        }
+        #promotion_msg {
+            padding-left: 22px;
+            color: #2c3e50;
+            font-size: 12px;
+        }
+        .score-wrap {
+            background:#F6F5F3;
+            color:#6B6B6B;
+            font-family:微软雅黑;
+            height: 60px;
+            margin-top: 10px;
+        }
+        .score-wrap>ul {
+            text-align:center;
+            display: flex;
+            line-height: 30px;
+            width:80%;
+        }
+        .score-wrap li {
+            flex:1
+        }
+        .score-num {
+            font-size:18px;
+            color:#B1544F;
+        }
+        .tagline {
+            margin:10px 0px;
+            font-size:14px;
+            font-weight:700;
+            color:#6B6B6B;
+            font-family:微软雅黑;
+            background-color:#FFFFFF;
+        }
+        .goods-spec {
+           background:#F6F5F3;
+           color:#6B6B6B;
+           font-family:微软雅黑;
+           padding:10px 8px;
+        }
+        .buttontitle {
+          color:#333333;
+          font-weight:bold;
+        }
+        .rightdiv1 {
+            display: inline;
+        }
+        .rightdiv1>a {
+            padding-left: 10px;
+        }
+        .buyinfo {
+            height: 35px;
+            margin:10px 0px;
+            color:#6B6B6B;
+            font-family:微软雅黑;
+            background-color:#FFFFFF;
+        }
+        .shopbutton {
+            padding-top: 20px;
+            border-top: 1px solid #6b6b6bda;
+        }
+        #buttonbox {
+            margin-top: 30px;
+            margin-right: 350px;
+        }
+        .otherbox {
+            border: 1px solid rgba(145, 200, 200, 0.4);
+            margin-left: 350px;
+            min-height:500px;
+            padding: 20px;
+        }
+        .el-menu-vertical-demo:not(.el-menu--collapse) {
+            width: 200px;
+            min-height: 400px;
+        }
+        .tel {
+            font: 16px/1.5 Arial,simsun;
+            text-align: left;
+            color: #6B6B6B;
+            
+        }
+        .talk {
+            margin: 5px;
+            text-align: left;
+        }
+        .talktext {
+            border: 1px solid #dedede;
+            padding: 15px 15px;
+            line-height: 15px;
+            font: 12px/1.5;
+            color: #6B6B6B;
+        }
+        .talkdate {
+            text-align: right;
+            font: 12px/1.5;
+            color: #6B6B6B;
+        }
+        
+</style>
 <style scoped>
 * {
   margin: 0px;
