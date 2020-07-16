@@ -189,10 +189,10 @@ export default {
       this.$router.push("/home")
     },
     indexSelect(event){
-      console.log(event.target.value)
+      this.Deltimeid = event.target.value
+      // console.log(event.target.value)
     },
     upOrder() {
-      // let data = 
       let orderList = []   
       
       this.cartData.map((item, index) => {
@@ -220,8 +220,8 @@ export default {
                 Deltime:  this.Deltimeid   // 送货时间种类  
             })
       })
-      console.log(orderList)
-      // console.log(this.defaultSite[0].S_Name)
+      // console.log(orderList)
+      // console.log(this.defaultSite[0])
       // console.log(this.checkedData[0])
       // console.log(this.cartData)
       addOrder(orderList)
