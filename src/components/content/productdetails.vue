@@ -155,48 +155,48 @@
   </div>
 </template>
 <script>
-  import addcart from '@/components/commom/addcart'
-  import  {mapActions} from 'vuex'
-  import { getProductDetail } from '@/network/productdetails'
-  import hotShop from "@/components/content/hotShop";
-  export default {
+import addcart from '@/components/commom/addcart'
+import { mapActions } from 'vuex'
+import { getProductDetail } from '@/network/productdetails'
+import hotShop from '@/components/content/hotShop'
+export default {
   data() {
-      return {
-          visible:false,
-          intnum:0,
-          num4:1,
-          productlist:[],//产品的信息表
-          ProdeuctList:[],
-          piclist:[],//产品图片表
-          Pro_Spe_Title1:'',
-          Pro_Spe_Title2:'',
-          picsrcbig:'',//轮播图切换存放图片地址的
-          shopbutton1:[],
-          shopbutton2:[],
-          isCollapse: false,
-          pro_data:'',
-          productshow:'',
-          commentaryshow:{display:"none"},
-          talklist:[],
-          talktel:[],
-          pro_Id: "",
-          Title1_value:"",
-          Title2_value:"",
-          // pid:
-      };
+    return {
+      visible: false,
+      intnum: 0,
+      num4: 1,
+      productlist: [], //产品的信息表
+      ProdeuctList: [],
+      piclist: [], //产品图片表
+      Pro_Spe_Title1: '',
+      Pro_Spe_Title2: '',
+      picsrcbig: '', //轮播图切换存放图片地址的
+      shopbutton1: [],
+      shopbutton2: [],
+      isCollapse: false,
+      pro_data: '',
+      productshow: '',
+      commentaryshow: { display: 'none' },
+      talklist: [],
+      talktel: [],
+      pro_Id: '',
+      Title1_value: '',
+      Title2_value: ''
+      // pid:
+    }
   },
   components: {
-      addcart,
-      hotShop
+    addcart,
+    hotShop
   },
-  mounted:function(){
-      // let piclist = this.piclist
-      // let intnum = this.intnum
-      // let url = this.piclist[0].Pro_Url
-      // console.log(2222222222222222);
-      // console.log(url);
-      // picsrcbig = "require(`../../assets/images/${url}`)",
-      // this.setActiveItem(piclist,intnum,picsrcbig);//需要触发的函数
+  mounted: function() {
+    // let piclist = this.piclist
+    // let intnum = this.intnum
+    // let url = this.piclist[0].Pro_Url
+    // console.log(2222222222222222);
+    // console.log(url);
+    // picsrcbig = "require(`../../assets/images/${url}`)",
+    // this.setActiveItem(piclist,intnum,picsrcbig);//需要触发的函数
   },
   created() {
     this.getProductDetail()
@@ -314,41 +314,42 @@
       console.log(this.pro_Id)
     }
   },
-  addcart(a,b,c,d,e,f,g,h,i,j) {
-      if(e==""||g=="") {
-          
-      }       
-      console.log(a,b,c,d,e,f,g,h,i,j)
-      this.addToCart({ 
-          id:a,
-          product_Name: b,
-          product_Price: c,
-          Title1:d,
-          Title1value: e,
-          Title2:f,
-          Title2value: g,
-          num: h,
-          img: i,
-          stock: j})
+  addcart(a, b, c, d, e, f, g, h, i, j) {
+    if (e == '' || g == '') {
+    }
+    console.log(a, b, c, d, e, f, g, h, i, j)
+    this.addToCart({
+      id: a,
+      product_Name: b,
+      product_Price: c,
+      Title1: d,
+      Title1value: e,
+      Title2: f,
+      Title2value: g,
+      num: h,
+      img: i,
+      stock: j
+    })
   },
   value1(event) {
-      this.Title1_value=event
-      // console.log(event)
+    this.Title1_value = event
+    // console.log(event)
   },
   value2(event) {
-        this.Title2_value=event
-      // console.log(event)
+    this.Title2_value = event
+    // console.log(event)
   },
-    ...mapActions(['addToCart']),    
-  },  
+
+  ...mapActions(['addToCart']),
+
   notshow() {
-    var larger = this.$refs.larger;
-    var shadow = this.$refs.shadow;
-    larger.style.display = "none";
-    shadow.style.display = "none";
+    var larger = this.$refs.larger
+    var shadow = this.$refs.shadow
+    larger.style.display = 'none'
+    shadow.style.display = 'none'
   },
   updated() {
-    //  this.getProductDetail();
+    // this.getProductDetail();
   }
 }
 </script>
