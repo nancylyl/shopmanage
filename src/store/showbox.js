@@ -11,7 +11,6 @@ const getters = {
 }
 const actions = {
     getshowlist({ commit }, data) {
-
         return getList(data)
             .then(res => {
                 let data = res.data.data
@@ -25,7 +24,7 @@ const actions = {
 const mutations = {
     getshowlist(state, data) {
         state.showlist = data;
-        console.log(state.showlist);
+        // console.log(state.showlist);
     }
 }
 export default {

@@ -25,7 +25,6 @@
 
 <script>
 // import { formatNum } from '../../toolkit'
-import { getList } from '@/network/home'
 import { mapGetters, mapActions } from 'vuex'
 import breadcrumbVue from '@/components/content/breadcrumb'
 import showbox from './showbox'

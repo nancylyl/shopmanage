@@ -3,7 +3,6 @@ import Vuex from 'vuex'
 Vue.use(Vuex);
 const state = {
     added: [],
-    cartData: []
 }
 const getters = {
     cartProducts: state => state.added,
@@ -21,10 +20,6 @@ const actions = {
     // 清除购物车
     delAll(ctx) {
         ctx.commit("delAllCart")
-    },
-    // 提交购物车
-    submitOrder(context, obj) {
-        context.commit("submitOrder", obj);
     }
 }
 const mutations = {
@@ -50,12 +45,7 @@ const mutations = {
     // 清除购物车
     delAllCart(state) {
         state.added = []
-    },
-    // 提交购物车 
-    submitOrder(state, value) {
-        state.cartData.push({...value })
-        console.log(state.cartData)
-    },
+    }
 }
 export default {
     state,

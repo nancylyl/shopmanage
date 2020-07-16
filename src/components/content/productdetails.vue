@@ -102,7 +102,7 @@
             <el-input-number class="elbutton" size="small" v-model="num4" :min="0" :max="productlist[0].Pro_SumCount" ></el-input-number><!-- @change="handleChange(num4)" -->
         </div>  
         <div class="shopbutton">
-            <el-button type="warning" @click.native="addcart(productlist[0].Pro_Id,productlist[0].Pro_Name,productlist[0].Price,Pro_Spe_Title1,Title1_value,Pro_Spe_Title2,Title2_value,num4,picsrcbig,productlist[0].Pro_SumCount )">加入购物车</el-button>
+            <el-button type="warning" style="background-color:#B1544F" @click.native="addcart(productlist[0].Pro_Id,productlist[0].Pro_Name,productlist[0].Price,Pro_Spe_Title1,Title1_value,Pro_Spe_Title2,Title2_value,num4,picsrcbig,productlist[0].Pro_SumCount )">加入购物车</el-button>
         </div>
       </div>
     </section>
@@ -162,11 +162,8 @@
           talklist:[],
           talktel:[],
           pro_Id: "",
-          // product_Name: this.productlist[0].Pro_Name,
-          // product_Price:this.productlist[0].Price,
           Title1_value:"",
           Title2_value:"",
-          // cartProductList:{product_Name,product_Price,Title1_value,Title2_value,num4}
           // pid:
       };
   },
@@ -274,11 +271,21 @@
       if (Y >= maxY) {
         Y = maxY;
       }
-      this.pro_data = res.data.data[0][0].pro_data;
-    //   console.log(33333333333333);
-    //   console.log(res.data.data[0]);
-    //   console.log(res.data.data[1]);
-    //   console.log(res.data.data[2]);
+       // 防止遮罩层粘滞，跟随鼠标一起滑出大图位置
+      var bigX = (X * bigRect.width) / contentRect.width
+      var bigY = (Y * bigRect.height) / contentRect.height
+      //  bigX / bigW = X / contentW,主图和遮罩层之间存在两倍关系，放大图和原图之间也有两倍关系
+      shadow.style.left = X + 'px'
+      shadow.style.top = Y + 'px'
+
+      // console.log(X, Y, bigX, bigY);
+
+      big.style.left = -bigX + 'px'
+      big.style.top = -bigY + 'px'
+
+      larger.style.display = 'block'
+      shadow.style.display = 'block'
+      
   },
   notshow() {
       var larger = this.$refs.larger;
@@ -320,7 +327,7 @@
     shadow.style.display = "none";
   },
   updated() {
-    this.getProductDetail();
+    // this.getProductDetail();
   }
 };
 </script>

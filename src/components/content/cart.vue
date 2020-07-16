@@ -34,7 +34,7 @@
                                 <img :src="scope.row.img" alt="" style="float:left">
                             </router-link>
                             <router-link :to="{ path: '/productdetails/' + scope.row.id }">{{scope.row.product_Name}}</router-link>
-                            <p>{{scope.row.Title1+" "+scope.row.Title1value+" 、"+scope.row.Title2+""+scope.row.Title2value}}</p>
+                            <p><span>{{scope.row.Title1+" "+scope.row.Title1value}}</span> <span v-if="scope.row.Title2!=''">{{"、"+scope.row.Title2+""+scope.row.Title2value}}</span></p>
                         </template>
                     </el-table-column>
                     <el-table-column
@@ -45,7 +45,7 @@
                         </template>
                     </el-table-column>
                     <el-table-column
-                    prop="num"
+                    
                     label="商品数量"
                     width="200"
                     show-overflow-tooltip>
@@ -86,7 +86,7 @@
                 </div>
                 <div class="mybutton">
                     <el-button type="info" @click="tohome">继续购物</el-button>
-                    <el-button  type="danger" @click="submitOrder(multipleSelection)">去结算</el-button>
+                    <el-button  type="danger" @click="toOrder(multipleSelection)">去结算</el-button>
                 </div>
             </div>
         </div>  
@@ -94,7 +94,6 @@
 </template>
 
 <script>
-    import {getcartlist} from '@/network/cart'
     import  {mapActions,mapGetters} from 'vuex'
     export default {
         name: 'cart',
@@ -117,9 +116,10 @@
         },
         methods:{
             ...mapActions(['delProduct','delAll','submitOrder']),
-            // toorder(){
-            //     this.$router.push("/order")
-            // },
+            toOrder(value) {
+                this.$router.push("/order")
+                this.$store.dispatch("submitOrder",value) 
+            },
             tohome(){
                 this.$router.push("/home")
             },

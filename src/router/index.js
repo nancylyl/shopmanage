@@ -11,11 +11,12 @@ import underwear from './underwear'
 import baby from './baby'
 import cart from './cart'
 import order from './order'
+import paybyway from './paybyway'
 import person from './person'
 import productdetails from './productdetails'
 Vue.use(VueRouter)
 
-const routes = [...home, ...baby, ...bed, ...clean, ...house, ...lifeapp, ...slipper, ...towel, ...underwear, ...productdetails, ...cart, ...person, ...order]
+const routes = [...home, ...baby, ...bed, ...clean, ...house, ...lifeapp, ...slipper, ...towel, ...underwear, ...productdetails, ...cart, ...person, ...order, ...paybyway]
 const router = new VueRouter({
     mode: 'history',
     base: process.env.BASE_URL,
