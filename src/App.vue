@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <!-- <person /> -->
     <div v-if="ishow">
       <shopMenu></shopMenu>
       <div class="nav">
@@ -12,58 +11,67 @@
         ></breadcrumbVue>
       </div>
     </div>
-    <router-view v-if="$store.state.shopmenustore.menulist.length>0" />
-     <sidebar /> 
+    <router-view v-if="showRouter" />
+    <sidebar />
   </div>
 </template>
 <script>
-import shopMenu from "@/components/content/shopMenu";
-import breadcrumbVue from "@/components/content/breadcrumb";
-import { mapActions, mapGetters } from "vuex";
-import productdeltails from "@/components/content/productdetails";
-import sidebar from "@/components/commom/sidebar";
-import person from "@/views/person/components/wode";
+import shopMenu from '@/components/content/shopMenu'
+import breadcrumbVue from '@/components/content/breadcrumb'
+import { mapActions, mapGetters } from 'vuex'
+import productdeltails from '@/components/content/productdetails'
+import sidebar from '@/components/commom/sidebar'
+import person from '@/views/person/components/wode'
+import head from '@/views/person/components/head'
+
 export default {
   data() {
-    name: "app";
+    name: 'app'
     return {
       ishow: true
-    };
+    }
   },
   created() {
-    console.log(this.$route.path.indexOf("PerCenter"));
-
-    if (this.$route.path.indexOf("PerCenter") > 0) {
-      this.ishow = false;
+    if (this.$route.path.indexOf('PerCenter') > 0) {
+      this.ishow = false
     } else {
-      this.ishow = true;
+      this.ishow = true
     }
   },
   watch: {
     $route(to, from) {
-      // console.log(to.path);
-      if (to.path.indexOf("PerCenter") > 0) {
-        this.ishow = false;
+      console.log(to.path)
+      if (to.path.indexOf('PerCenter') > 0 || to.path.indexOf('denglu') > 0) {
+        this.ishow = false
       } else {
-        this.ishow = true;
+        this.ishow = true
       }
       // 对路由变化作出响应...
-      console.log(to.name);
-      console.log(this);
+      // console.log(to.name)
+      // console.log(this)
 
       try {
-        let nav = this.$route.params.id;
-        this.setNav(nav);
-        document.querySelector(".header").className =
-          "header submenu-panel-hide";
+        let nav = this.$route.params.id
+        this.setNav(nav)
+        document.querySelector('.header').className =
+          'header submenu-panel-hide'
         setTimeout(() => {
-          document.querySelector(".header").className = "header";
-        }, 100);
+          document.querySelector('.header').className = 'header'
+        }, 100)
       } catch {}
     }
   },
+  computed: {
+    showRouter: function() {
+      return (
+        // 等待菜单数据加载完成再显示 || 在订单页面显示
+        this.$store.state.shopmenustore.menulist.length > 0 ||
+        this.$route.path.indexOf('PerCenter') > 0
+      )
+    }
+  },
   methods: {
-    ...mapActions(["setNav"])
+    ...mapActions(['setNav'])
   },
   components: {
     shopMenu,
@@ -72,9 +80,9 @@ export default {
     sidebar,
     person
   }
-};
+}
 </script>
 <style>
-@import "~assets/css/base.scss";
-@import "~assets/font/iconfont.css";
+@import '~assets/css/base.scss';
+@import '~assets/font/iconfont.css';
 </style>

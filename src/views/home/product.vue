@@ -1,23 +1,20 @@
 <template>
   <div>
-    <!-- <bedchose></bedchose>   -->
     <productshow :productType="type_id" />
   </div>
 </template>
 
 <script>
 import productshow from '@/components/content/productshow'
-import bedchose from './bedchose'
 export default {
   name: 'lifeapp',
   data() {
     return {
-      type_id: 3
+      type_id: 0
     }
   },
   components: {
-    productshow,
-    bedchose
+    productshow
   }
 }
 </script>
