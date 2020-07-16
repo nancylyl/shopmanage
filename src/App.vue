@@ -27,29 +27,11 @@ import head from '@/views/person/components/head'
 export default {
   data() {
     name: 'app'
-    return {
-      ishow: true
-    }
+    return {}
   },
-  created() {
-    if (this.$route.path.indexOf('PerCenter') > 0) {
-      this.ishow = false
-    } else {
-      this.ishow = true
-    }
-  },
+  created() {},
   watch: {
     $route(to, from) {
-      console.log(to.path)
-      if (to.path.indexOf('PerCenter') > 0 || to.path.indexOf('denglu') > 0) {
-        this.ishow = false
-      } else {
-        this.ishow = true
-      }
-      // 对路由变化作出响应...
-      // console.log(to.name)
-      // console.log(this)
-
       try {
         let nav = this.$route.params.id
         this.setNav(nav)
@@ -58,15 +40,30 @@ export default {
         setTimeout(() => {
           document.querySelector('.header').className = 'header'
         }, 100)
-      } catch {}
+      } catch (e) {
+        console.log(e)
+      }
     }
   },
   computed: {
+    ishow: function() {
+      if (
+        this.$route.path.indexOf('PerCenter') > 0 ||
+        this.$route.path.indexOf('denglu') > 0 ||
+        this.$route.path.indexOf('zhuce') > 0
+      ) {
+        return false
+      } else {
+        return true
+      }
+    },
     showRouter: function() {
       return (
         // 等待菜单数据加载完成再显示 || 在订单页面显示
         this.$store.state.shopmenustore.menulist.length > 0 ||
-        this.$route.path.indexOf('PerCenter') > 0
+        this.$route.path.indexOf('PerCenter') > 0 ||
+        this.$route.path.indexOf('denglu') > 0 ||
+        this.$route.path.indexOf('zhuce') > 0
       )
     }
   },

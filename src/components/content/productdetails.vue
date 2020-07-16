@@ -201,6 +201,17 @@ export default {
   created() {
     this.getProductDetail()
   },
+  watch: {
+    $route(to, from) {
+      try {
+        if (to.name === 'productdetails') {
+          this.getProductDetail()
+        }
+      } catch (e) {
+        console.log(e)
+      }
+    }
+  },
   methods: {
     ...mapActions(['addToCart']),
     getProductDetail() {

@@ -94,6 +94,7 @@ export default {
 }
 .selectdiv {
   width: 400px;
+  overflow: hidden;
 }
 .search {
   display: flex;
@@ -101,9 +102,10 @@ export default {
   margin: 20px auto;
   width: 400px;
   text-align: center;
-  box-shadow: 0px 1px 4px #3f3f3f;
+  box-shadow: 0px 0 0 1px #3f3f3f inset;
   border-radius: 5px;
-  border: 1px solid #dcdfe6;
+  overflow: hidden;
+  /* border: 1px solid #dcdfe6; */
 }
 .btnserch {
   margin-left: -5px;
@@ -120,7 +122,9 @@ export default {
     7px;
   background-color: rgba(255, 255, 255, 0);
   cursor: pointer;
-  right: 5px;
+  /* right: 5px; */
+  outline: none;
+  margin-right: 10px;
 }
 
 >>> .el-input__inner {
@@ -132,11 +136,12 @@ export default {
   color: #606266;
   display: inline-block;
   font-size: inherit;
-  height: 40px;
-  line-height: 40px;
+  height: 37px;
+  line-height: 37px;
   outline: 0;
   padding: 0px;
   transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
   width: 100%;
+  margin-top: 1px;
 }
 </style>

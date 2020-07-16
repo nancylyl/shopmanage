@@ -3,7 +3,7 @@
     <!-- <em class="left" v-if="this.chooseUrl.length>=4">&lt;</em>
     <em class="right" v-if="this.chooseUrl.length>=4">&gt;</em>-->
     <router-link :to="{path: '/productdetails/' +Pro_Id }" class="bigImgBox" tag="div">
-      <img :src="require(`../../assets/images/${bigImgUrl}`)" class="big" />
+      <img :src="bigImgUrl && require(`../../assets/images/${bigImgUrl}`)" class="big" />
     </router-link>
     <ul class="little">
       <li
@@ -37,7 +37,10 @@ export default {
   props: ['imgSrc', 'price', 'tittle', 'Pro_Id'],
   components: {},
   created() {
-    this.bigImgUrl = this.chooseUrl[0].Pro_Url
+    if (this.chooseUrl && this.chooseUrl.length > 0) {
+      this.bigImgUrl = this.chooseUrl[0].Pro_Url
+    }
+    // this.bigImgUrl = this.chooseUrl[0].Pro_Url
     // console.log(this.bigImgUrl)
   },
   methods: {
@@ -49,14 +52,17 @@ export default {
   },
   computed: {
     chooseUrl: function() {
-      return this.imgSrc.filter(function(imgSrc) {
+      const result = this.imgSrc.filter(function(imgSrc) {
         return imgSrc.Type == 2
       })
+      return result
     }
   },
   watch: {
     Pro_Id: function() {
-      this.bigImgUrl = this.chooseUrl[0].Pro_Url
+      if (this.chooseUrl && this.chooseUrl.length > 0) {
+        this.bigImgUrl = this.chooseUrl[0].Pro_Url
+      }
     }
   }
   // updated() {

@@ -1,22 +1,20 @@
 <template>
-  <div>
-    <div class="box">
-      <div class="header">
-        <div class="tu"></div>
-        <a class="text">无甲醛棉品，来自大朴</a>
-        <div class="gouWu">购物</div>
-      </div>
+  <div class="box">
+    <div class="header">
+      <div class="tu"></div>
+      <a class="text">无甲醛棉品，来自大朴</a>
+      <div class="gouWu">购物</div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "tou",
+  name: 'tou',
   data() {
-    return {};
+    return {}
   }
-};
+}
 </script>
 
 <style scoped>
@@ -33,14 +31,14 @@ export default {
   z-index: 100;
 }
 .header {
-  width: 1200px;
+  /* width: 1200px; */
   height: 50px;
-  margin: 0px auto;
+  margin: 0px 80px;
 }
 .tu {
   width: 245px;
   height: 149px;
-  background: url("w.png");
+  background: url('w.png') no-repeat;
   float: left;
 }
 .text {
@@ -57,7 +55,7 @@ export default {
   text-decoration: none;
   word-spacing: 8px;
   letter-spacing: 10px;
-  font-family: "微软雅黑";
+  font-family: '微软雅黑';
 }
 .gouWu {
   border: 1px solid #ffffff;
