@@ -144,7 +144,7 @@
 <script>
 import addcart from '@/components/commom/addcart'
 import { mapActions ,mapGetters } from 'vuex'
-import { getProductDetail } from '@/network/productdetails'
+import { getProductDetail, getComment } from '@/network/productdetails'
 import hotShop from '@/components/content/hotShop'
 export default {
   data() {
@@ -194,6 +194,8 @@ export default {
   },
   created() {
     this.getProductDetail()
+    // this.getComment(data)
+    console.log(this.$route.params.id)
   },
   watch: {
     $route(to, from) {
