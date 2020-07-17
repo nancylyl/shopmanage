@@ -6,7 +6,10 @@
       <el-carousel-item v-for="item in ProdeuctList[0]" :key="item.id">
         <!-- <router-link :to="'/productdetails/'+item.Pro_id"> -->
         <router-link :to="{ path: '/productdetails/' + item.Pro_id }">
-          <img :src="require(`../../assets/images/${item.Banner_src}`)" class="banner_img" />
+          <img
+            :src="require(`../../assets/images/${item.Banner_src}`)"
+            class="banner_img"
+          />
           <!-- <router-link :to="{path: '/supply/information/' +aId + '/edit' }" exact title="�༭"> �༭ </router-link> -->
         </router-link>
       </el-carousel-item>
@@ -31,14 +34,14 @@ import {
   login,
   register,
   getProductDetail
-} from '@/network/home'
+} from "@/network/home";
 
 export default {
-  name: 'Home',
+  name: "Home",
   data() {
     return {
       ProdeuctList: []
-    }
+    };
   },
   components: {},
   created() {
@@ -48,18 +51,18 @@ export default {
 
     getHomeInfo()
       .then(res => {
-        this.ProdeuctList = res.data.data
-        console.log(this.ProdeuctList)
+        this.ProdeuctList = res.data.data;
+        console.log(this.ProdeuctList);
       })
       .catch(e => {
-        console.log(e)
-      })
+        console.log(e);
+      });
     // getProductDetail().then(res => {
     //   console.log(res)
     // })
   }
-}
+};
 </script>
 <style lang="scss">
-@import '~assets/css/home/home.scss';
+@import "~assets/css/home/home.scss";
 </style>
