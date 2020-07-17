@@ -66,7 +66,7 @@
                     label="操作"
                     width="140">
                         <template slot-scope="scope">
-                            <el-button  type="danger" @click="delProduct(scope.row)">删除</el-button>
+                            <el-button  type="danger" @click="delProduct(scope.row,)">删除</el-button>
                         </template>
                     </el-table-column>
             </el-table>
@@ -86,7 +86,7 @@
                 </div>
                 <div class="mybutton">
                     <el-button type="info" @click="tohome">继续购物</el-button>
-                    <el-button :disabled="disable" type="danger" @click="toOrder(multipleSelection)">去结算</el-button>
+                    <el-button v-model="disable" :disabled="disable" type="danger" @click="toOrder(multipleSelection)">去结算</el-button>
                 </div>
             </div>
         </div>      
@@ -136,6 +136,7 @@
                 }else{
                     this.totalPrice -= row.product_Price*row.num
                 }
+                
             },
             selectAll(selection){
                 let selected = selection.length
@@ -159,7 +160,8 @@
                 }
             },
         computed:{
-            ...mapGetters(['cartProducts','cartData'])       
+            ...mapGetters(['cartProducts','cartData'])   
+
         },
     }
 </script>
