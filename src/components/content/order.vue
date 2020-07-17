@@ -52,7 +52,7 @@
       <div class="address" style="margin-top:25px">
       <div class="th" >
         <span>配送及支付方式</span>
-        <router-link to="/paybyway">修改</router-link>
+        <router-link :to="{path:'/paybyway',query:{id:1}}">修改</router-link>
       </div>
       <p>
         <label>配送方式：</label>

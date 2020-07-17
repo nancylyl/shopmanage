@@ -122,14 +122,20 @@
     },
     methods:{
         ensure(a,b) {
-            console.log(this.paylist)
+            // console.log(this.paylist)
             this.paylist.map((item, index) => {
                 if (item.Pay_Name == this.checked2 ) {
-                    console.log(item.Pay_Id)
+                    // console.log(item.Pay_Id)
                     this.checkedData[0].payId = item.Pay_Id
                 }
             })
-            this.$router.push("/order")
+            var id = this.$route.query.id
+            // console.log(id)
+            if(id==1){
+                this.$router.push("/order")
+            }else if(id==2){
+                this.$router.push("/payOrder")
+            }          
             this.checkedData[0].payway = this.checked1
             this.checkedData[0].whichway = this.checked2
         }
@@ -153,6 +159,7 @@
     }
     .orderbox {
         width: 100%;
+        height: 100%;
         position: relative;
     }
     

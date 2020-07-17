@@ -48,13 +48,13 @@ export default {
 
 <style scoped>
 #mainHot {
-  width: 190px;
-  padding-left:30px;
+  width: 156px;
+  padding: 0 25px;
   /* height: 1130px;
    */
-  border: 1px solid gray;
+  border: 1px solid #dcdcdc;
 }
-.#mainHot > a {
+#mainHot > a {
   display: inline-block;
 }
 #hotSh {
@@ -70,8 +70,8 @@ export default {
   margin-left: 20px;
 }
 .hot {
-  width: 188px;
-  height: 210px;
+  /* width: 145px; */
+  /* height: 210px; */
   /*outline: 1px solid red;*/
   margin-top: 10px;
 }

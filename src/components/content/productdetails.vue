@@ -1,6 +1,6 @@
 <template>
   <div>
-    <addcart v-show="visible" />
+    <addcart @showbox="toshow" v-show="visible" :isshow='visible' :kind = this.allkind :totalNum = this.allnum :totalPrice = this.allprice />
     <section class="details" v-if="this.productlist.length>0">
       <div class="boxleft">
         <div class="picbox">
@@ -86,33 +86,19 @@
         <div id="goods-spec" class="goods-spec">
           <div class="spec-item specItem">
             <span class="buttontitle">{{ Pro_Spe_Title1 }}</span>
-            <div class="rightdiv1">
-              <el-button
-                type="info"
-                size="small"
-                v-for="(item,index) in shopbutton1"
-                :key="index"
-                name="item"
-                @click.native="value1(item)"
-              >{{ item }}</el-button>
+            <div class="rightdiv1" v-for="(item,index) in shopbutton1" :key="index" >
+                <span class="title1" :class="activeClass == index ? 'redBorder':''" @click="value1(item,index)">{{ item }}</span>
             </div>
             <br />
             <br />
             <span class="buttontitle">{{ Pro_Spe_Title2 }}</span>
-            <div class="rightdiv1">
-              <el-button
-                type="info"
-                size="small"
-                v-for="(item,index) in shopbutton2"
-                :key="index"
-                name="item"
-                @click.native="value2(item)"
-              >{{ item }}</el-button>
+            <div class="rightdiv1" v-for="(item,index) in shopbutton2" :key="item.id">
+              <span class="title2" :class="activeClass1 == index ? 'redBorder':''" @click="value2(item,index)">{{ item }}</span>
             </div>
           </div>
         </div>
         <div class="buyinfo clearfix">
-          数量:
+          数量: 
           <el-input-number
             class="elbutton"
             size="small"
@@ -124,8 +110,9 @@
         </div>
         <div class="shopbutton">
           <el-button
-            type="warning"
-            style="background-color:#B1544F"
+            type="danger"
+            :style="disable"
+            @mouseenter.native="enter(Pro_Spe_Title1,Title1_value,Pro_Spe_Title2,Title2_value )"
             @click.native="addcart(productlist[0].Pro_Id,productlist[0].Pro_Name,productlist[0].Price,Pro_Spe_Title1,Title1_value,Pro_Spe_Title2,Title2_value,num4,picsrcbig,productlist[0].Pro_SumCount,productlist[0].Score )"
           >加入购物车</el-button>
         </div>
@@ -156,12 +143,13 @@
 </template>
 <script>
 import addcart from '@/components/commom/addcart'
-import { mapActions } from 'vuex'
+import { mapActions ,mapGetters } from 'vuex'
 import { getProductDetail } from '@/network/productdetails'
 import hotShop from '@/components/content/hotShop'
 export default {
   data() {
     return {
+      // addshow:false,
       visible: false,
       intnum: 0,
       num4: 1,
@@ -181,7 +169,13 @@ export default {
       talktel: [],
       pro_Id: '',
       Title1_value: '',
-      Title2_value: ''
+      Title2_value: '',
+      activeClass: -1,
+      activeClass1: -1,
+      disable: '',
+      allkind: 0,
+      allnum: 0,
+      allprice: 0,
       // pid:
     }
   },
@@ -322,10 +316,52 @@ export default {
       larger.style.display = 'none'
       shadow.style.display = 'none'
     },
-    addcart(a, b, c, d, e, f, g, h, i, j, k) {
-      if (e == '' || g == '') {
-      }
+    toshow(visible) {
+        this.visible = false;
+    },
+    value1(text,index) {
+      this.Title1_value = text
+      this.activeClass = index; 
+      // console.log(index,text)
+    },
+    value2(text,index) {
+      this.Title2_value = text
+      this.activeClass1 = index; 
+      //  console.log(index,text)
+    },
+    enter(a,b,c,d) {
+      if(a!=''&&c!=''){
+        if(b!= '' && d!='') {
+         this.disable = { cursor: 'pointer'};
+        }
+        else{
+          this.disable = { cursor: 'not-allowed'}
+          this.$message.error('请选择商品信息');
+        }
+        }else if(a!=''&&c==''){
+          if(b!= '') {
+             this.disable = { cursor: 'pointer'};
+          }
+          else{
+          this.$message.error('请选择商品信息');
+           this.disable = { cursor: 'not-allowed'}
+          }
+        }   
+    },
+    addcart(a, b, c, d, e, f, g, h, i, j, k) {      
+      if(d!=''&&f!=''){
+        if(e!= '' && g!='') {
+          this.sureadd(a, b, c, d, e, f, g, h, i, j, k)
+        }
+      }else if(d!=''&&f==''){
+        if(e!= '') {
+             this.sureadd(a, b, c, d, e, f, g, h, i, j, k)  
+        }
+      }      
+    },
+    sureadd(a, b, c, d, e, f, g, h, i, j, k){
       console.log(a, b, c, d, e, f, g, h, i, j,k)
+      this.visible = true;
       this.addToCart({
         id: a,
         product_Name: b,
@@ -339,14 +375,15 @@ export default {
         stock: j,
         Score: k
       })
-    },
-    value1(event) {
-      this.Title1_value = event
-      // console.log(event)
-    },
-    value2(event) {
-      this.Title2_value = event
-      // console.log(event)
+      // 购物车弹框显示数据
+      this.allkind = this.cartProducts.length
+      this.allnum = 0;
+      this.allprice = 0;
+      this.cartProducts.map((item, index) => {         
+        this.allnum += item.num
+        this.allprice += item.num*item.product_Price
+        // console.log(this.allkind+'==='+this.allnum+'==='+this.allprice)
+      })
     },
     notshow() {
       var larger = this.$refs.larger
@@ -357,9 +394,12 @@ export default {
     updated() {
       // this.getProductDetail();
     }
+  },
+  computed:{
+    ...mapGetters(['cartProducts'])       
   }
 }
 </script> 
-<style scoped>
-@import "~assets/css/productdetails/productdetails.css";
+<style lang="scss" scoped>
+  @import "~assets/css/productdetails/productdetails.scss";
 </style>
