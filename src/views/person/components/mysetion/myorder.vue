@@ -1,15 +1,15 @@
 <template>
   <div>
-    <div class="box">
+    <div class="box" v-if="Myorder.length>0">
       <div class="header">
 
           <img src="../mydd.gif" alt=""  class="tu">
 
 
         <div class="text">
-          <p class="name">13540238949</p>
-          <p>新用户</p>
-          <p>累计消费:</p>
+          <p class="name">{{Myorder[0][0].Name}}</p>
+          <p>{{Myorder[0][0].userTypeName}}</p>
+          <p>累计消费:{{Myorder[0][0].totalMoney}}</p>
         </div>
       </div>
       <div class="season">
@@ -35,8 +35,27 @@
 </template>
 
 <script>
+  import {getMyOder,} from '../../../../network/person'
     export default {
-        name: "myorder"
+        name: "myorder",
+       data(){
+         return{
+           Myorder:[]
+         }
+       },
+
+      beforeCreate(){
+        getMyOder()
+          .then(res=>{
+            this.Myorder =res.data.data;
+            console.log( this.Myorder);
+
+          })
+          .catch(e => {
+            console.log(e)
+          })
+      }
+
     }
 </script>
 
@@ -110,6 +129,7 @@ h3{
     background: #da5278;
   }
   .daiZhiFu{
+    transition: all .3s;
     width: 120px;
     height: 50px;
     line-height: 50px;
@@ -120,7 +140,6 @@ h3{
     padding: 0px 10px;
     text-align: center;
     text-decoration: none;
-    transition: all .4s ease 0s;
     cursor: pointer;
     background: 0 0;
   }
@@ -145,4 +164,10 @@ h3{
     font-size: 14px;
     color: #6b6b6b;
   }
+ .daiZhiFu:hover{
+   color: whitesmoke;
+   background-color: #da5278;
+   transition: all .3s;
+ }
+
 </style>

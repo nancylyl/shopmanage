@@ -1,7 +1,7 @@
 <template>
     <div>
-      <div class="mycenter">
-        <router-link to="/PerCenter" class="cloor">个人中心</router-link>
+      <div>
+        <button to="/PerCenter" @click="hreftwo" class="mycenter">个人中心</button>
       </div>
 
     </div>
@@ -10,13 +10,26 @@
 
 <script>
     export default {
-        name: "sd"
+      name: "sd",
+      methods: { //跳转页面
+
+        hreftwo() {
+
+          this.$router.push({path: '/PerCenter/myorder'})
+
+        }
+
+      }
     }
 </script>
 
 <style scoped>
 .mycenter{
-  width: 60px;
+  z-index: 100;
+  position: absolute;
+  top: 40px;
+  right: 80px;
+  width: 80px;
   padding: 0px 15px 0;
   height: 40px;
   background-color: rgb(177, 84, 79);
@@ -25,7 +38,5 @@
   font-size: 12px;
   border: 0px solid;
 }
-  .cloor{
-    color: #FFFFFF;
-  }
+
 </style>

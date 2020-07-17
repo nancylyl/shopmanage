@@ -100,9 +100,13 @@ label{
     color: #da5278;
     text-align: center;
     text-decoration: none;
-    transition: all .4s ease 0s;
+    transition: all .3s;
     cursor: pointer;
-    background: 0 0;
+  }
+  .baoCun:hover{
+    color: whitesmoke;
+    background-color: #da5278;
+    transition: all .3s;
   }
 
 </style>
