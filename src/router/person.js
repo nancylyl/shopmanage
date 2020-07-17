@@ -9,6 +9,8 @@ import Information from "../views/person/components/mysetion/Information";
 import Mypoints from "../views/person/components/mysetion/Mypoints";
 import MyCoupon from "../views/person/components/mysetion/MyCoupon";
 import MyMessage from "../views/person/components/mysetion/MyMessage";
+import ChangeWord from "./ChangeWord";
+import ChangeAdd from "./ChangeAdd";
 export default [{
 
         path: '/PerCenter',
@@ -59,6 +61,16 @@ export default [{
                 name: 'MyMessage',
                 component: MyMessage,
             },
+          {
+            path: '/PerCenter/ChangeWord',
+            name: 'ChangeWord',
+            component: ChangeWord,
+          },
+          {
+            path: '/PerCenter/ChangeAdd',
+            name: 'ChangeAdd',
+            component: ChangeAdd,
+          },
 
 
         ]

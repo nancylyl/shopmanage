@@ -8,90 +8,80 @@
           <table>
             <tbody class="body1">
               <tr>
-                <td id="add" class="td"><input type="button" class="Inputbut pointer" value="创建新地址"></td>
+                <td id="add" class="td"><input type="button" @click="chuangjian"  class="Inputbut pointer" value="创建新地址"></td>
                 <td class="td2">
                   物流配送网络覆盖全国，异地购物，全国配送，方便快捷，送装及时。<br></td>
               </tr>
             </tbody>
           </table>
         </div>
+        <div class="content">暂无收货地址</div>
 
-          <form action="">
+          <form action="/addMyAddress.do" v-if="cj" method="post">
             <div class="sesion">
               <table>
                 <tbody>
                 <tr>
                   <td class="td1">收货人姓名：</td>
                   <td class="td2">
-                    <input autocomplete="off" class="Input" name="name" type="text">
+                    <input v-model="S_Name" class="Input" name="name" type="text">
                   </td>
                 </tr>
-                <tr>
-                  <td class="td1">省份：</td>
-                  <td class="td2">
-                    <select class="xiala">
-                      <option>请选择...</option>
-                      <option value="1">北京</option>
-                      <option value="21">上海</option>
-                      <option value="42">天津</option>
-                      <option value="62">重庆</option>
-                      <option value="104">安徽</option>
-                      <option value="227">福建</option>
-                      <option value="322">甘肃</option>
-                      <option value="423">广东</option>
-                      <option value="566">广西</option>
-                      <option value="690">贵州</option>
-                      <option value="788">海南</option>
-                      <option value="814">河北</option>
-                      <option value="998">河南</option>
-                      <option value="1176">黑龙江</option>
-                      <option value="1320">湖北</option>
-                      <option value="1436">湖南</option>
-                      <option value="1573">吉林</option>
-                      <option value="1643">江苏</option>
-                      <option value="1763">江西</option>
-                      <option value="1874">辽宁</option>
-                      <option value="1989">内蒙古</option>
-                      <option value="2103">宁夏</option>
-                      <option value="2130">青海</option>
-                      <option value="2182">山东</option>
-                      <option value="2340">山西</option>
-                      <option value="2471">陕西</option>
-                      <option value="2589">四川</option>
-                      <option value="2792">西藏</option>
-                      <option value="2873">新疆</option>
-                      <option value="2987">云南</option>
-                      <option value="3133">浙江</option>
-                      <option value="3235">香港</option>
-                      <option value="3239">澳门</option>
-                      <option value="3242">台湾</option></select>
-                  </td>
-                </tr>
+
+               <tr>
+                <td class="td1">省份：</td>
+                <td class="td2">
+                  <div class="city-box">
+                    <div style="overflow: hidden">
+                      <div class="select-l g-f-l">
+                        <select v-model="selected" v-if="provinceL" class="select-box t-city" @change="show" >
+                          <option value="" label="">请选择省</option>
+                          <option v-for="(item,index) in provinceL" :value="item">{{ item.name }}</option>
+                        </select>
+                      </div>
+                      <div class="select-l g-f-l g-ml-5">
+                        <select v-model="citySelected" v-if="cityL" class="select-box t-city" v-show="se1" @change="show2" >
+                          <option value="">请选择市</option>
+                          <option v-for="(item,index) in cityL" :value="item">{{ item.name }}</option>
+                        </select>
+                      </div>
+                      <div class="select-l g-f-l g-ml-5">
+                        <select v-model="areaSelected" v-if="areaL" class="select-box t-city" v-show="se2">
+                          <option value="">请选择区县</option>
+                          <option v-for="(item,index) in areaL" :value="item">{{ item.name }}</option>
+                        </select>
+                      </div>
+                      <div v-show="notice.province">请选择{{ provinceMsg }}</div>
+                    </div>
+                    <!--                   <a href="javascript:;" @click="submitCity()">提交</a>-->
+                  </div>
+                </td>
+               </tr>
                 <tr>
                   <td class="td1">地址：</td>
-                  <td class="td2"><textarea class="dizhi" type="textarea" name="addr" rows="2" cols="30"></textarea></td>
+                  <td class="td2"><textarea class="dizhi" type="textarea" v-model="Address"  rows="2" cols="30"></textarea></td>
                 </tr>
                 <tr>
                   <td class="td1">手机号码：</td>
                   <td class="td2">
-                    <input autocomplete="off" class="Input" name="name" type="text">
+                    <input autocomplete="off" class="Input" v-model="Phone"  type="text">
                   </td>
                 </tr>
                 <tr>
                   <td class="td1">固定电话：</td>
                   <td class="td2">
-                    <input autocomplete="off" class="Input" name="name" type="text">
+                    <input autocomplete="off" class="Input" v-model="Tel"  type="text">
                   </td>
                 </tr>
                 <tr>
                   <td class="td1">邮政编码：</td>
                   <td class="td2">
-                    <input autocomplete="off" class="Input" name="name" type="text">
+                    <input autocomplete="off" class="Input"  v-model="Mail" type="text">
                   </td>
                 </tr>
                 <td class="td1"></td>
                 <td class="td2">
-                  <button class="queDing">确定</button>
+                  <button class="queDing" @click="chuangjianQD" type="button">确定</button>
                 </td>
                 <tr>
                 </tr>
@@ -99,18 +89,208 @@
               </table>
             </div>
           </form>
+        <div class="SHXX2" v-for="(item,index) in huoQu" v-if="huoQu.length>0">
+          <table class="TableBoderNone">
+            <tbody><tr>
+              <td class="td1">收货人姓名：</td>
+              <td colspan="4" class="td2">{{huoQu[index].S_Name}}</td>
+            </tr>
+            <tr>
+              <td align="right">手机号码：</td>
+              <td colspan="4" align="left">{{huoQu[index].Phone}}</td>
+            </tr>
+            <tr>
+              <td align="right">固定电话：</td>
+              <td colspan="4" align="left">{{huoQu[index].Tel}}</td>
+            </tr>
+            <tr>
+              <td align="right">邮政编码：</td>
+              <td colspan="4" align="left">{{huoQu[index].Mail}}</td>
+            </tr>
+            <tr>
+              <td height="64" align="right" valign="top">地区：</td>
+              <td colspan="4" align="left">{{huoQu[index].Province}}-{{huoQu[index].City}}-{{huoQu[index].Axis}}</td>
+            </tr>
+            <tr>
+              <td height="64" align="right" valign="top">地址：</td>
+              <td colspan="4" align="left">{{huoQu[index].Address}}</td>
+            </tr>
+            <tr class="Bg" style="background:#dedede;">
+              <td colspan="3" align="left"><a href="#" rel="_request"><input type="radio" name="radiobutton" value="radiobutton" class="Radio" checked="checked"></a>
+                默认</td>
+              <td align="left"><router-link to="/PerCenter/ChangeAdd" href="/#" class="cYellow">修改</router-link></td>
+              <td align="left"><a href="/delMyAddress.do?id={{huoQu[index].Id}}" class="cYellow">删除</a></td>
+            </tr>
+            </tbody></table></div>
 
       </div>
     </div>
+
+
 </template>
 
 <script>
+
+  import { province, city, area } from '../../../../network/vue-area.js'
+  import {addMyAddress, getMyAddress,} from '../../../../network/person'
     export default {
-        name: "ShiAddress"
+        name: "ShiAddress",
+      data(){
+        return {
+          cj:false,
+          se1:false,
+          se2:false,
+          counter:[],
+          huoQu:[],
+          selected: '',
+          citySelected: '',
+          areaSelected: '',
+          S_Name:"",
+          Address:"",
+          Mail:"",
+          Phone:"",
+          Tel:"",
+          Is_True:"",
+          provinceL: [],
+          cityL: [],
+          areaL: [],
+          selectedData: '',
+          citySelectedData: '',
+          areaSelectedData: '',
+          provinceMsg:'',
+          notice: {
+            province: false
+          }
+        }
+      },
+      created() {
+
+      },
+
+      mounted() {
+        this.provinceL = [...province] /*取出省市数据*/
+        // this.cityList = [...city]
+      },
+      watch: {
+        selected: function () {
+          // 清除区县
+          this.citySelected = {}
+          this.cityL = city.filter((item) => item.parentId == this.selected.code)
+          for (const i in this.cityL) {
+            if (this.cityL[i].code == this.citySelectedData && this.cityL[i].parentId == this.selected.code) {
+              this.citySelected = this.cityL[i]
+            }
+          }
+        },
+        citySelected: function () {
+          this.areaSelected = {}
+          if (this.citySelected){
+            this.areaL = area.filter((item) => item.parentId === this.citySelected.code)
+          }
+          for (const i in this.areaL) {
+            if (this.areaL[i].code == this.areaSelectedData && this.areaL[i].parentId == this.citySelected.code) {
+              this.areaSelected = this.areaL[i]
+            }
+          }
+        }
+      },
+      methods:{
+
+          show(){
+            this.se1=true
+          },
+        show2(){
+          this.se2=true
+        },
+        chuangjian(){
+          // this.document.getElementById(cj).style.display="block"
+          this.cj=true;
+        },
+
+        chuangjianQD(){
+          this.cj=false;
+          this.counter.push({});
+          let S_Name=this.S_Name; // S_Name,  --收货人
+          let Province=this.selected.name; // Province, --省份
+          console.log(typeof Province);
+          let City=this.citySelected.name;  // City, --城市
+          let Area=this.areaSelected.name;// AREA, --区域
+          let Address=this.Address; // Address, --地址
+          let Mail=this.Mail;// Mail, --邮编
+          let Phone=this.Phone;// Phone,--电话
+          let Tel=this.Tel; // Tel, --手机
+          let Is_True=0;// Is_True--是否是默认地址
+          let UId=3;
+
+          let data={S_Name,Province,City,Area,Address,Mail,Phone,Tel,Is_True,UId};
+          console.log(data);
+          addMyAddress(data)
+            .then(res=>{
+              console.log(res.data.message)
+            })
+            .catch(e=>{
+              console.log(e)
+            })
+
+        },
+        /*从后台获取用户提交的省市区信息*/
+        getCity(addr) {
+          this.citySelectedData = addr.City
+          this.areaSelectedData = addr.County
+          for (const i in this.provinceL) {
+            if (Number(addr.Province) == this.provinceL[i].code) {
+              this.selectedData = this.provinceL[i].name
+              this.selected = this.provinceL[i]
+            }
+          }
+        }, submitCity() {
+          /*市默认显示第一个时*/
+          /*if (this.province == ''){
+            alert("请选择地址")
+            return
+          }*/
+          /*没有默认选择时*/
+          if (this.selected == '') {
+            this.notice.province = true
+            this.provinceMsg = '省'
+            return
+          }else {
+            this.notice.province = false
+          }
+          if (this.citySelected == undefined) {
+            this.notice.province = true
+            this.provinceMsg = '市'
+            return
+          }else {
+            this.notice.province = false
+          }
+          if (this.areaSelected == undefined) {
+            this.notice.province = true
+            this.provinceMsg = '区县'
+            return
+          }else {
+            this.notice.province = false
+          }
+          console.log('提交成功')
+        }
+
+      },
+      beforeCreate(){
+        getMyAddress()
+          .then(res=>{
+           this.huoQu =res.data.data;
+            console.log(this.huoQu);
+          })
+          .catch(e => {
+            console.log(e)
+          })
+      }
+
     }
 </script>
 
 <style scoped>
+
 .box{
   background-color: rgb(239,239,239);
   width:970px;
@@ -208,7 +388,7 @@ td {
   .Input{
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2) inset;
     width: 206px;
-    height: 20px;
+    height: 22px;
     border: 1px solid #ccc;
     padding: 3px 5px;
   }
@@ -239,6 +419,7 @@ select {
   border-radius: 0px;
   border-width: 1px;
   border-style: solid;
+  color: #0f0f0f;
   border-image: initial;
 }
   .dizhi{
@@ -256,5 +437,48 @@ select {
     color: #615146;
     font-size: 12px;
   }
+  .content{
+    font-size: 12px;
+    text-align: left;
+    padding: 10px 10px;
+    line-height: 24px;
+    position: relative;
+    padding-bottom: 20px;
+  }
+  .SHXX{
+    text-align: left;
+    padding: 10px 10px;
+    line-height: 24px;
+    position: relative;
+    padding-bottom: 20px;
+  }
+  .SHXX2{
+    float: left;
+    width: 90%;
+    margin: 10px 0;
+    padding: 5px;
+    border-radius: 8px 8px 8px 8px;
+    border: 1px solid #dedede;
+  }
+.td1{
+  width:22%;
+  text-align:right
+}
+  .td2{
+    text-align:left
+  }
+.g-f-l{
+  float: left;
+}
+.g-ml-5 {
+  margin-left: 5px;
+}
+.city-box{
+  width: 400px;
 
+}
+.select-box{
+  width: 100px;
+  height: 22px;
+}
 </style>

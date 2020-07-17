@@ -23,7 +23,11 @@
 </template>
 
 <script>
-  import {getProductDetail, getUserInfo} from '../../../../network/person'
+  // pro_name-- 产品
+  // pro_title,--产品标题
+  // Price --价格
+  // pro_url --路径
+  import {getComment,} from '../../../../network/person'
     export default {
       name: "mycomment",
         data() {
@@ -32,16 +36,19 @@
          }
         },
 
-      // beforeCreate(){
-      //   getProductDetail()
-      //     .then(res=>{
-      //       this.mycomment =res.data.data;
-      //       console.log( this.mycomment);
-      //     })
-      //     .catch(e => {
-      //       console.log(e)
-      //     })
-      // }
+      beforeCreate(){
+        getComment()
+          .then(res=>{
+            this.mycomment =res.data.data;
+            console.log( this.mycomment);
+
+          })
+          .catch(e => {
+            console.log(e)
+          })
+      }
+
+
 
 
     }
