@@ -195,7 +195,8 @@ export default {
   },
   components: {
     addcart,
-    hotShop
+    hotShop,
+    myCollect
   },
   mounted: function() {
     // let piclist = this.piclist
