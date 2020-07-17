@@ -3,12 +3,13 @@
       <div class="box">
         <div class="header">
           <h3>我的收藏</h3>
-          <table id="" class="mem-table">
-            <tbody><tr class="mem-thead">
-              <th width="15%">商品图片</th>
-              <th width="45%" align="center">商品名称</th>
-              <th width="15%">价格</th>
-              <th width="25%">操作</th>
+          <table id="" class="title">
+            <tbody>
+            <tr>
+              <th class="th1">商品图片</th>
+              <th class="th2">商品名称</th>
+              <th class="th1">价格</th>
+              <th class="th3">操作</th>
             </tr>
             </tbody>
           </table>
@@ -48,6 +49,34 @@
     text-align: left;
   }
   th{
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  .th1{
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
     text-align: left;
+    width: 15%;
+  }
+  .th2{
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+    width: 45%;
+    text-align: center;
+  }
+  .th3{
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+    text-align: left;
+    width: 25%;
+  }
+  .title{
+    border-bottom: 1px solid #888;
+    width: 870px;
+    height: 50px;
   }
 </style>

@@ -14,8 +14,8 @@
           <router-link to="/PerCenter/Mypoints" class="dingDan2">我的积分</router-link>
           <router-link to="/PerCenter/MyCoupon" class="dingDan2">我的优惠券</router-link>
           <router-link to="/PerCenter/MyMessage" class="dingDan2">我的消息</router-link>
-          <p class="dingDan2">我的收藏</p>
-          <p class="dingDan2">修改密码</p>
+          <router-link to="/PerCenter/MyCollection" class="dingDan2">我的收藏</router-link>
+          <router-link to="/PerCenter/ChangeWord" class="dingDan2">修改密码</router-link>
 
         </div>
         <div class="neiRong">
