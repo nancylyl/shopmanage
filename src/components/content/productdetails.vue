@@ -31,9 +31,21 @@
           </div>
         </div>
         <!-- 收藏按钮 -->
-        <a href>
-          <div id="shoucangbg" class="shoucang"></div>
-        </a>
+        <!--                <div>-->
+        <!--                  <a href="/collect.do" >-->
+        <div id="shoucangbg" class="shoucang" @click="tiaoShoucang"></div>
+        <!--                  </a>-->
+
+        <myCollect class="tanchuK" v-if="ifTan" ref="son">
+          <template slot="mySlot">
+            <img src="../../assets/images/home/cha2.jpg" alt="" @click="guanbi">
+          </template>
+          <template slot="mySlot2">
+            <router-link to="/PerCenter/MyCollection"><a href="" class="myMy" >我的收藏</a></router-link>
+          </template>
+        </myCollect>
+
+        <!--                </div>-->
         <!-- 分享按钮 -->
         <a href>
           <div id="bshare-shareto" class="shareto">&nbsp;</div>
@@ -142,6 +154,8 @@
   </div>
 </template>
 <script>
+import  myCollect from '@/views/home/components/myCollect.vue'
+import {collectPro} from "@/network/collectPro";
 import addcart from '@/components/commom/addcart'
 import { mapActions ,mapGetters } from 'vuex'
 import { getProductDetail, getComment } from '@/network/productdetails'
@@ -149,7 +163,6 @@ import hotShop from '@/components/content/hotShop'
 export default {
   data() {
     return {
-      // addshow:false,
       visible: false,
       intnum: 0,
       num4: 1,
@@ -176,6 +189,7 @@ export default {
       allkind: 0,
       allnum: 0,
       allprice: 0,
+      ifTan:false
       // pid:
     }
   },
@@ -318,6 +332,45 @@ export default {
       larger.style.display = 'none'
       shadow.style.display = 'none'
     },
+      /*关闭弹出框*/
+    guanbi(){
+      this.ifTan=false;
+    },
+
+    /*收藏产品*/
+    tiaoShoucang(){
+      console.log(11111)
+      /*弹出收藏框*/
+      if(this.ifTan==false) {
+        // this.$refs.son.myClose();
+        this.ifTan = true;
+        console.log(this.ifTan)
+      }
+
+      let UId=sessionStorage.myUser;
+
+      if(UId!=undefined && UId!=''){
+        let PId=this.$route.params.id;
+        // console.log(proId);
+        let data={UId,PId};
+        // let data={PId}
+        collectPro(data)
+          .then(resp=>{
+              console.log(resp.data.message);
+          })
+          .catch(e=>{
+            console.log(e);
+          });
+      }
+    },
+
+    /*跳到个人中心收藏*/
+        /*runShouCang(){
+          this.$route.push({
+            path:`/PerCenter/MyCollection`
+          })
+        }*/
+
     toshow(visible) {
         this.visible = false;
     },
@@ -404,4 +457,22 @@ export default {
 </script> 
 <style lang="scss" scoped>
   @import "~assets/css/productdetails/productdetails.scss";
+    /*收藏*/
+  .tanchuK {
+    /*margin-top:300px;*/
+    /*margin-left: 320px;*/
+    position: fixed;
+    top: 50%;
+    margin-top: -100px;
+    left: 50%;
+    margin-left: -200px;
+    z-index: 20;
+  }
+  .myMy {
+    color: red;
+    text-decoration: none;
+  }
+  .myMy:hover {
+    text-decoration: underline;
+  }
 </style>

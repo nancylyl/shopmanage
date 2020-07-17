@@ -1,13 +1,5 @@
 <template>
   <div class="lifeapp" v-if="$store.state.showbox.showlist.length>0&& this.listpro!=null">
-    <div class="nav">
-        <breadcrumbVue
-          v-if="
-            $store.state.shopmenustore.menulist.length > 0 &&
-              $store.state.shopmenustore.navbar
-          "
-        ></breadcrumbVue>
-      </div>
     <div class="sort">
       <ul>
         <li style="font-weight:bold;text-decoration:none;cursor: unset">排序方式：</li>

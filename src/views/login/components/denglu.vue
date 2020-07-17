@@ -77,11 +77,11 @@ export default {
               this.$cookie.set("userinfo", res.data.data, 1);
               console.log(this.$cookie.get("userinfo"));
 
-              // setTimeout(() => {
-              //   this.$router.push({
-              //     path: `/home`
-              //   });
-              // }, 200);
+              setTimeout(() => {
+                this.$router.push({
+                  path: `/home`
+                });
+              }, 200);
             } else {
               this.$message({
                 message: res.data.message,

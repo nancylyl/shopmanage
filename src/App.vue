@@ -2,7 +2,14 @@
   <div id="app">
     <div v-if="ishow">
       <shopMenu></shopMenu>
-      
+      <div class="nav">
+        <breadcrumbVue
+          v-if="
+            $store.state.shopmenustore.menulist.length > 0 &&
+              $store.state.shopmenustore.navbar
+          "
+        ></breadcrumbVue>
+      </div>
     </div>
     <router-view v-if="showRouter" />
     <sidebar />

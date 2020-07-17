@@ -31,13 +31,12 @@ const mutations = {
         } else {
             state.added.push({...obj })
         }
-        // console.log(state.added)
     },
     //删除：state.购物车数据.splice()
     delCart(state, product) {
         console.log(product)
         state.added.map((item, index) => {
-            // console.log(item)
+            console.log(item)
             if (item.id == product.id && item.Title1value == product.Title1value && item.Title2value == product.Title2value) {
                 state.added.splice(index, 1)
             }
