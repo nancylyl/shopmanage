@@ -1,24 +1,17 @@
 import { request } from "./request"
 
-export function getUserInfo(id) {
+export function getUserInfo(id) {//获取个人资料
   return request({
     url: '/api/getUserInfo.do'
   })
 }
-export function updataUserInfo(data) {
-  return request({
-    url: '/api/updataUserInfo.do',
-    data: data,
-    method: 'post'
-  })
+export function baoCunNew(data) {//个人资料保存
+   return request({
+     url: '/api/getUserBC.do',
+     data:data,
+     method:'post'
+   })
 }
-// export function baoCunNew(data) {//个人资料保存
-//   return request({
-//     url: '/api/updataUserInfo.do',
-//     data:data,
-//     method:'post'
-// })
-// }
 export function getMyOder(id) {//获取我的订单用户信息
   return request({
     url: '/api/getMyOder.do'
@@ -35,7 +28,7 @@ export function updataPass(data) {//获取我的订单用户信息
     data:data,
     method:'post'
   })
-}export function addMyAddress(data) {//保存我的订单用户信息
+}export function addMyAddress(data) {//保存我的收获地址
   return request({
     url: '/api/addMyAddress.do',
     data:data,
@@ -43,9 +36,27 @@ export function updataPass(data) {//获取我的订单用户信息
   })
 }
 
-export function getMyAddress() {//获取我的订单用户信息
+export function getMyAddress() {//获取我的收获地址
   return request({
     url: '/api/getMyAddress.do',
 
   })
 }
+
+export function delMyAddress(data) {//删除我的订单用户信息
+  return request({
+    url: '/api/delMyAddress.do',
+    data:data,
+    method:'post'
+
+  })
+}
+export function updateMyAddress(data) {//删除我的订单用户信息
+  return request({
+    url: '/api/updateMyAddress.do',
+    data:data,
+    method:'post'
+
+  })
+}
+

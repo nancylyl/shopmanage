@@ -26,8 +26,8 @@
               <td class="td2" >
 <!--                <input type="radio" :checked="nan"/><span class="font">男</span>-->
 <!--                <input type="radio" :checked="nv" name="sex"/><span class="font">女</span>-->
-                <el-radio v-model="radio" label="0">男</el-radio>
-                <el-radio v-model="radio" label="1">女</el-radio>
+                <el-radio v-model="Sex" label="0">男</el-radio>
+                <el-radio v-model="Sex" label="1">女</el-radio>
               </td>
             </tr>
             <tr>
@@ -82,7 +82,7 @@
 
 <script>
   import xiuGai from "./xiuGai";
-import { getUserInfo,updataUserInfo } from '../../../../network/person'
+import { getUserInfo,baoCunNew } from '../../../../network/person'
   export default {
     name: "personalData",
     data() {
@@ -115,7 +115,7 @@ import { getUserInfo,updataUserInfo } from '../../../../network/person'
         value1: '',
         value2: '',
         personList:[],
-        radio: '',
+        Sex: '',
         Name:"",
         nan:"",
         nv:""
@@ -129,12 +129,12 @@ import { getUserInfo,updataUserInfo } from '../../../../network/person'
       baoCun(){
         let Name=this.personList[0].Name;
         let Code=this.personList[0].Code;
-        let Sex=0
-        let Birthday=this.personList[0].Birthday;
-        // console.log(thdy);
-        let data={Name,Code,Birthday,Sex};
+        let Sex=this.personList[0].Sex;
+        let thdy=this.personList[0].Birthday;
+        console.log(thdy);
+        let data={Name,Code,thdy};
         console.log(data);
-        updataUserInfo(data)
+        baoCunNew(data)
             .then(res=>{
               console.log(res.data.message)
             })
@@ -154,11 +154,11 @@ import { getUserInfo,updataUserInfo } from '../../../../network/person'
         this.personList =res.data.data;
         console.log(1111111);
         if (this.personList[0].Sex==0){
-          this.radio="0"
+          this.Sex="0"
 
 
         }else {
-          this.radio="1";
+          this.Sex="1";
         }
         console.log( this.personList);
        console.log(this.personList[0].Account)

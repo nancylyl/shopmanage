@@ -118,13 +118,16 @@
             <tr class="Bg" style="background:#dedede;">
               <td colspan="3" align="left"><a href="#" rel="_request"><input type="radio" name="radiobutton" value="radiobutton" class="Radio" checked="checked"></a>
                 默认</td>
-              <td align="left"><router-link to="/PerCenter/ChangeAdd" href="/#" class="cYellow">修改</router-link></td>
-              <td align="left"><a href="/delMyAddress.do?id={{huoQu[index].Id}}" class="cYellow">删除</a></td>
+              <td align="left"><router-link :to="{path:'/PerCenter/ChangeAdd',query: {name: huoQu[index].Id}}" class="cYellow">修改</router-link></td>
+<!--              "/PerCenter/ChangeAdd"-->
+              <td align="left"><div @click="del(huoQu[index].Id)" class="cYellow">删除</div></td>
             </tr>
             </tbody></table></div>
 
       </div>
-    </div>
+
+
+      </div>
 
 
 </template>
@@ -132,7 +135,7 @@
 <script>
 
   import { province, city, area } from '../../../../network/vue-area.js'
-  import {addMyAddress, getMyAddress,} from '../../../../network/person'
+  import {addMyAddress, getMyAddress,delMyAddress} from '../../../../network/person'
     export default {
         name: "ShiAddress",
       data(){
@@ -195,6 +198,29 @@
         }
       },
       methods:{
+          del(id){
+            let Id=id;
+            let data={Id};
+            console.log(data);
+            delMyAddress(data)
+              .then(res=>{
+                console.log(res.data.message)
+              })
+              .catch(e=>{
+                console.log(e)
+              })
+            getMyAddress()
+              .then(res=>{
+                this.huoQu =res.data.data;
+                console.log(this.huoQu);
+              })
+              .catch(e => {
+                console.log(e)
+              })
+          }
+
+
+          ,
 
           show(){
             this.se1=true
@@ -229,6 +255,14 @@
               console.log(res.data.message)
             })
             .catch(e=>{
+              console.log(e)
+            })
+          getMyAddress()
+            .then(res=>{
+              this.huoQu =res.data.data;
+              console.log(this.huoQu);
+            })
+            .catch(e => {
               console.log(e)
             })
 
@@ -476,6 +510,9 @@ select {
 .city-box{
   width: 400px;
 
+}
+.cYellow{
+  cursor: pointer;
 }
 .select-box{
   width: 100px;
