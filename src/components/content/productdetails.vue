@@ -1,6 +1,10 @@
 <template>
   <div>
-    <addcart @showbox="toshow" v-show="visible" :isshow='visible' :kind = this.allkind :totalNum = this.allnum :totalPrice = this.allprice />
+    <div class="mask" v-show="visible" @click="visible=false"></div>
+    <div class="mask" v-show="ifTan" @click="ifTan=false"></div>
+    <div>
+      <addcart @showbox="toshow" v-show="visible" :isshow='visible' :kind = this.allkind :totalNum = this.allnum :totalPrice = this.allprice />
+    </div>    
     <section class="details" v-if="this.productlist.length>0">
       <div class="boxleft">
         <div class="picbox">
@@ -458,6 +462,17 @@ export default {
 </script> 
 <style lang="scss" scoped>
   @import "~assets/css/productdetails/productdetails.scss";
+
+  .mask {
+    background-color: transparent;
+    // opacity: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1
+  }
     /*收藏*/
   .tanchuK {
     /*margin-top:300px;*/
