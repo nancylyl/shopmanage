@@ -190,6 +190,7 @@ export default {
                 PId:  this.cartData[index].id, // 购买物品id
                 Price: this.cartData[index].product_Price, // 商品价格
                 Num:  this.cartData[index].num, // 购买商品数量
+                Score: this.cartData[index].Score, // 购买商品积分
                 Is_Invoic:  0, // 是否开具发票
                 Invoic_Type:  1,// 发票种类
                 IS_Coupon:  0, // 是否使用优惠券

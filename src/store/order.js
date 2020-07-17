@@ -42,9 +42,8 @@ const mutations = {
     },
     // 提交购物车 
     submitOrder(state, value) {
-        console.log(value)
         state.cartData = value
-            // console.log(state.cartData)
+        console.log(state.cartData)
     },
 }
 export default {
