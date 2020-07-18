@@ -7,7 +7,7 @@
 
 
         <div class="text">
-          <p class="name">{{Myorder[0][0].Name}}</p>
+          <p class="name">{{Myorder[0][0].NAME}}</p>
           <p>{{Myorder[0][0].userTypeName}}</p>
           <p>累计消费:{{Myorder[0][0].totalMoney}}</p>
         </div>
@@ -19,15 +19,58 @@
         <div class="daiZhiFu">已取消的订单</div>
       </div>
       <div class="footer">
-        <table>
-          <thead>
-          <tr><th >订单商品</th>
-            <th>收货人</th>
-            <th>订单金额</th>
-            <th>下单时间</th>
-            <th>订单状态</th>
-            <th>操作</th>
-          </tr></thead>
+        <table class="footerorder">
+            <thead>
+              <th>订单商品</th>
+              <th>收货人</th>
+              <th>订单金额</th>
+              <th>下单时间</th>
+              <th>订单状态</th>
+              <th>操作</th>
+            </thead>
+            <tr>
+              <td>
+                订单id：
+                <span>123123213213</span>
+              </td>
+              <td>张三</td>
+              <td>￥299</td>
+              <td>2090292022</td>
+              <td>未付款[未发货]</td>
+              <td>  
+                  <div>
+                    <el-button  @click="open2" type="text" >
+                      <div class="mem-btn">
+                      付款
+                      </div>
+                    </el-button>
+                  </div>
+                  <div>
+                    <el-button type="text" @click="dialogFormVisible = true">
+                      <div class="mem-btn">
+                        评论
+                      </div>
+                    </el-button>
+                  </div>
+                  <el-dialog title="订单评价" :visible.sync="dialogFormVisible">
+                    <el-form :model="form">
+                      <el-form-item label="请为订单打分" :label-width="formLabelWidth">
+                        <el-rate
+                          v-model="form.Star"
+                          show-text>
+                        </el-rate>
+                      </el-form-item>
+                      <el-form-item label="请您评价订单" :label-width="formLabelWidth">
+                        <el-input v-model="form.Content" autocomplete="off"></el-input>
+                      </el-form-item>
+                    </el-form>
+                    <div slot="footer" class="dialog-footer">
+                      <el-button @click="dialogFormVisible = false">取 消</el-button>
+                      <el-button type="primary" @click="dialogFormVisible = false" @click.native="pinglun(form)">确 定</el-button>
+                    </div>
+                  </el-dialog>
+              </td>
+            </tr>
         </table>
       </div>
     </div>
@@ -35,27 +78,54 @@
 </template>
 
 <script>
-  import {getMyOder,} from '../../../../network/person'
+  import { getMyOder } from '../../../../network/person'
+  import { addcomment } from '@/network/addcomment'
     export default {
         name: "myorder",
        data(){
          return{
-           Myorder:[]
-         }
+           Myorder:[],
+           orderlist:[],
+           dialogFormVisible: false,
+           form: {
+            Content: '',
+            OrderNum: '',
+            Star:4,
+          },
+        formLabelWidth: '120px'
+        }
        },
-
-      beforeCreate(){
-        getMyOder()
-          .then(res=>{
+       methods: {
+        open2() {
+        this.$message({
+          message: '恭喜你，已经付款成功',
+          type: 'success'
+        });
+      },
+        getMyOder(){
+          getMyOder().then(res => {
             this.Myorder =res.data.data;
+            console.log(11111111111111111111)
             console.log( this.Myorder);
-
+            })
+        },
+        pinglun(data) {
+          data.OrderNum =this.Myorder[2][0].ordernum;
+          console.log(data);
+          let add = {
+            Content: '',
+            OrderNum: '',
+            Star:4,
+          }
+          addcomment(add).then(res => {
+            console.log(123213213213);
+            console.log(data);
           })
-          .catch(e => {
-            console.log(e)
-          })
-      }
-
+        }
+      },
+       created() {
+        this.getMyOder()
+      } 
     }
 </script>
 
@@ -110,10 +180,10 @@
     padding-left: 50px;
     padding-top: 20px;
   }
-h3{
-  text-align: left;
-  color: #6b6b6b;
-}
+  h3{
+    text-align: left;
+    color: #6b6b6b;
+  }
   .quanBu{
     width: 120px;
     height: 50px;
@@ -145,19 +215,13 @@ h3{
   }
   .footer{
     width: 920px;
-    height: 90px;
-    position: relative;
     background-color: #efefef;
     padding-left: 50px;
     padding-top: 20px;
     padding-bottom: 20px;
   }
   table{
-    cellpadding:0;
-    cellspacing:0;
     width: 920px;
-   position: absolute;
-    left: 0;
   }
   th{
     font-weight: bold;
@@ -169,5 +233,49 @@ h3{
    background-color: #da5278;
    transition: all .3s;
  }
-
+ .footerorder {
+   text-align: center;
+ }
+ .footerorder td {
+  color: #6B6B6B;
+  font-family: "微软雅黑";
+  line-height: 30px;
+  font-size: 14px;
+  height: 20px;
+ }
+ .footerorder span {
+  color: #da5278;
+ }
+ .mem-btn {
+    width: 120px;
+    line-height: 28px;
+    border: 1px solid #da5278;
+    color: #da5278;
+    text-align: center;
+    text-decoration: none;
+    transition: all .4s ease 0s;
+    cursor: pointer;
+    background: 0 0;
+ }
+.mem-btn:hover {
+  color: aliceblue;
+  background-color: #da5278;
+}
+.el-button {
+    display: inline-block;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    color: #606266;
+    -webkit-appearance: none;
+    text-align: center;
+    box-sizing: border-box;
+    outline: 0;
+    margin: 0;
+    transition: .1s;
+    font-weight: 500;
+    padding: 5px 20px;
+    font-size: 14px;
+    border-radius: 4px;
+}
 </style>
