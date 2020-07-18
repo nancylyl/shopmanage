@@ -59,12 +59,9 @@ export default {
     }
   },
   created() {
-    console.log('2222')
     getMyUserInfo().then(res => {
       let data = res.data.data[0]
-      console.log(data)
       overUserInfo(data)
-      console.log(isLogin())
       if (isLogin()) {
         this.myLogin = getUserInfo().Account
         this.myRegis = '退出'
