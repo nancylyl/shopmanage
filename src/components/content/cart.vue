@@ -86,7 +86,7 @@
                 </div>
                 <div class="mybutton">
                     <el-button type="info" @click="tohome">继续购物</el-button>
-                    <el-button v-model="disable" :disabled="disable" type="danger" @click="toOrder(multipleSelection)">去结算</el-button>
+                    <el-button :disabled="disable" type="danger" @click="toOrder(multipleSelection)">去结算</el-button>
                 </div>
             </div>
         </div>      
@@ -125,8 +125,14 @@
                 this.$router.push("/home")
             },
             handleSelectionChange(val) {
-                this.multipleSelection = val  
-                this.disable = !this.disable
+                this.multipleSelection = val   
+                let resdata=JSON.parse(JSON.stringify(val));    
+                // console.log(resdata)
+                if(resdata == ''){
+                    this.disable = true
+                } else {
+                    this.disable = false
+                }
             },
             onTableSelect(rows, row) {
                 let selected = rows.length && rows.indexOf(row) !== -1
