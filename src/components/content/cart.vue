@@ -20,8 +20,6 @@
                 border
                 style="width: 85%; margin:0 auto;"
                 tooltip-effect="dark" 
-                @select='onTableSelect'
-                @select-all="selectAll"
                 @selection-change="handleSelectionChange">
                     <el-table-column
                     type="selection"
@@ -44,8 +42,7 @@
                             <span>¥{{scope.row.product_Price}}</span>
                         </template>
                     </el-table-column>
-                    <el-table-column
-                    
+                    <el-table-column                   
                     label="商品数量"
                     width="200"
                     show-overflow-tooltip>
@@ -126,36 +123,17 @@
             },
             handleSelectionChange(val) {
                 this.multipleSelection = val   
-                let resdata=JSON.parse(JSON.stringify(val));    
+                let resdata=JSON.parse(JSON.stringify(this.multipleSelection));    
                 // console.log(resdata)
                 if(resdata == ''){
                     this.disable = true
                 } else {
                     this.disable = false
                 }
-            },
-            onTableSelect(rows, row) {
-                let selected = rows.length && rows.indexOf(row) !== -1
-                // console.log(selected)  // true就是选中，0或者false是取消选中
-                if(selected){
-                    this.totalPrice += row.product_Price*row.num
-                }else{
-                    this.totalPrice -= row.product_Price*row.num
-                }
-                
-            },
-            selectAll(selection){
-                let selected = selection.length
-                // console.log(selection)
-                // console.log(selected)
-                if(selected != 0){
-                    this.totalPrice = 0
-                selection.map((item,index)=>{      
+                this.totalPrice = 0;
+                resdata.map((item,index)=>{      
                     this.totalPrice += item.product_Price*item.num
                 })
-                }else{
-                    this.totalPrice = 0
-                }
             },
             isChang() {
                 this.totalPrice = 0

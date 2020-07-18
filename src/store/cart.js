@@ -35,7 +35,6 @@ const mutations = {
     delCart(state, product) {
         console.log(product)
         state.added.map((item, index) => {
-            console.log(item)
             if (item.id == product.id && item.Title1value == product.Title1value && item.Title2value == product.Title2value) {
                 state.added.splice(index, 1)
             }

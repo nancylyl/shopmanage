@@ -147,9 +147,9 @@
         </div>
         <div class="otherbox" v-html="pro_data" :style="productshow"></div>
         <div class="otherbox" :style="commentaryshow">
-          <div class="talk" v-for="item in piclist" :key="item.id" name="item.id">
+          <div class="talk" v-for="item in this.comment" :key="item.id" name="item.id">
             <span class="tel">13388886666</span>
-            <div class="talktext">啊哈哈哈哈哈！！！！！！！</div>
+            <div class="talktext">{{item.Content}}</div>
             <div class="talkdate">2070-12-05</div>
           </div>
         </div>
@@ -193,7 +193,8 @@ export default {
       allkind: 0,
       allnum: 0,
       allprice: 0,
-      ifTan:false
+      ifTan: false,
+      comment: []
       // pid:
     }
   },
@@ -215,6 +216,10 @@ export default {
     this.getProductDetail()
     // this.getComment(data)
     console.log(this.$route.params.id)
+     getProductDetail(this.$route.params.id).then(res => {
+       console.log(res.data.data[2])
+       this.comment = res.data.data[2]
+     })
   },
   watch: {
     $route(to, from) {
@@ -368,14 +373,6 @@ export default {
           });
       }
     },
-
-    /*跳到个人中心收藏*/
-        /*runShouCang(){
-          this.$route.push({
-            path:`/PerCenter/MyCollection`
-          })
-        }*/
-
     toshow(visible) {
         this.visible = false;
     },
