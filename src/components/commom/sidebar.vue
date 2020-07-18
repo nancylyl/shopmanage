@@ -7,7 +7,10 @@
       </li>
       <li>
         <p class="iconfont icon-gerenzhongxin-2"></p>
-        <b @click="toperson">我的<br />订单</b>
+        <b @click="toperson">
+          我的
+          <br />订单
+        </b>
       </li>
       <li>
         <p class="iconfont icon-gouwuche"></p>
@@ -22,34 +25,37 @@
         <p>
           <img src="~assets/images/other/side5.png" />
         </p>
-        <b @click="toTop">回到<br />顶部</b>
+        <b @click="toTop">
+          回到
+          <br />顶部
+        </b>
       </li>
     </ul>
   </div>
 </template>
 <script>
 export default {
-  name: "sidebar",
+  name: 'sidebar',
   data() {
-    return {};
+    return {}
   },
   components: {},
   methods: {
     toTop() {
-      scrollTo(0, 0);
+      scrollTo(0, 0)
     },
     tohome() {
-      this.$router.push("/home");
+      this.$router.push('/home')
     },
     toperson() {
-      this.$router.push("/PerCenter");
+      this.$router.push('/PerCenter')
     },
     tocart() {
-      this.$router.push("/cart");
+      this.$router.push('/cart')
     }
   }
-};
+}
 </script>
 <style lang="scss" scoped>
-@import "~assets/css/pop_up/sidebar.scss";
+@import '~assets/css/pop_up/sidebar.scss';
 </style>

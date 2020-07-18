@@ -45,64 +45,58 @@
 </template>
 
 <script>
-import { login } from "@/network/login";
-
+import { login } from '@/network/login'
+import { overUserInfo } from '../../../toolkit'
 export default {
-  name: "denglu",
+  name: 'denglu',
   data() {
     return {
-      Account: "admin",
-      PassWord: "4444",
-      tiao: ""
-    };
+      Account: 'admin',
+      PassWord: '4444',
+      tiao: ''
+    }
   },
   created() {},
   methods: {
     userlogin() {
-      let data = { Account: this.Account, PassWord: this.PassWord };
-      console.log(data);
-      if (this.Account == "" || this.PassWord == "") {
+      let data = { Account: this.Account, PassWord: this.PassWord }
+      if (this.Account == '' || this.PassWord == '') {
         this.$message({
-          message: "请输入账号密码！",
-          type: "warning"
-        });
+          message: '请输入账号密码！',
+          type: 'warning'
+        })
       } else {
         login(data)
           .then(res => {
             if (res.data.success) {
-              this.$message("登录成功");
-              // sessionStorage.myUser = this.Account
-              // sessionStorage.myQuit = '退出'
-              //     this.$cookie.get('userinfo')
-              this.$cookie.set("userinfo", res.data.data, 1);
-              console.log(this.$cookie.get("userinfo"));
-
+              this.$message('登录成功')
+              overUserInfo(res.data.data)
               setTimeout(() => {
                 this.$router.push({
                   path: `/home`
-                });
-              }, 200);
+                })
+              }, 200)
             } else {
               this.$message({
                 message: res.data.message,
-                type: "warning"
-              });
+                type: 'warning'
+              })
             }
           })
           .catch(e => {
-            console.log(e);
-          });
+            console.log(e)
+          })
       }
     }
   }
-};
+}
 </script>
 
 <style scoped>
 #mylogin {
   width: 1000px;
   height: 410px;
-  background: url("../../../assets/images/home/dapu_login.jpg");
+  background: url('../../../assets/images/home/dapu_login.jpg');
   margin: 0 auto;
   position: relative;
 }
@@ -117,7 +111,7 @@ export default {
 h3 {
   border-bottom: 1px solid #877b74;
   color: #877b74;
-  font-family: "微软雅黑";
+  font-family: '微软雅黑';
   font-size: 24.5px;
   padding-bottom: 10px;
   width: 500px;
