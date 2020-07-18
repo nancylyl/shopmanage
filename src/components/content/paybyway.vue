@@ -129,7 +129,13 @@
                     this.checkedData[0].payId = item.Pay_Id
                 }
             })
-            this.$router.push("/order")
+             var id = this.$route.query.id
+            console.log(id)
+            if(id==1){
+                this.$router.push("/order")
+            }else if(id==2){
+                this.$router.push("/payOrder")
+            }  
             this.checkedData[0].payway = this.checked1
             this.checkedData[0].whichway = this.checked2
         }
