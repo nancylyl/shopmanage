@@ -13,6 +13,9 @@
 </template>
 
 <script>
+import { getUserInfo, isLogin, overUserInfo } from '../../../toolkit'
+import { exitLogin } from '@/network/login'
+import { getMyUserInfo } from '@/network/home'
 export default {
   name: 'loginButton',
   data() {
@@ -21,13 +24,20 @@ export default {
       myRegis: '注册'
     }
   },
+  computed: {},
   methods: {
     /*判断是去注册还是退出*/
     quitUser() {
       if (this.myRegis == '退出') {
-        sessionStorage.clear()
-        this.$router.push({
-          path: `/home`
+        exitLogin().then(res => {
+          console.log(res)
+          if (res.data.success) {
+            console.log('退出')
+            overUserInfo([])
+            // this.$router.push({
+            //   path: `/home`
+            // })
+          }
         })
       } else if (this.myRegis == '注册') {
         this.$router.push({
@@ -49,18 +59,21 @@ export default {
     }
   },
   created() {
-    /*把用户名存到sessionStorage里面*/
-    setInterval(() => {
-      // console.log(typeof sessionStorage.myUser);
-      if (sessionStorage.myUser == '' || sessionStorage.myUser == undefined) {
-        this.myLogin = '登录'
+    console.log('2222')
+    getMyUserInfo().then(res => {
+      let data = res.data.data[0]
+      console.log(data)
+      overUserInfo(data)
+      console.log(isLogin())
+      if (isLogin()) {
+        this.myLogin = getUserInfo().Account
+        this.myRegis = '退出'
       } else {
-        this.myLogin = sessionStorage.myUser
-        this.myRegis = sessionStorage.myQuit
+        this.myLogin = '登录'
+        this.myRegis = '注册'
       }
-    }, 100)
-  },
-  computed: {}
+    })
+  }
 }
 </script>
 
