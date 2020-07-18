@@ -66,7 +66,7 @@
                     label="操作"
                     width="140">
                         <template slot-scope="scope">
-                            <el-button  type="danger" @click="delProduct(scope.row)">删除</el-button>
+                            <el-button  type="danger" @click="delProduct(scope.row,)">删除</el-button>
                         </template>
                     </el-table-column>
             </el-table>
@@ -86,10 +86,10 @@
                 </div>
                 <div class="mybutton">
                     <el-button type="info" @click="tohome">继续购物</el-button>
-                    <el-button  type="danger" @click="toOrder(multipleSelection)">去结算</el-button>
+                    <el-button v-model="disable" :disabled="disable" type="danger" @click="toOrder(multipleSelection)">去结算</el-button>
                 </div>
             </div>
-        </div>  
+        </div>      
     </div>
 </template>
 
@@ -102,7 +102,8 @@
                 multipleSelection: [],
                 discountts: 0,
                 totalPrice: 0,
-                isshow:""
+                isshow:"",
+                disable: true
             }
         },
         created() {
@@ -117,14 +118,15 @@
         methods:{
             ...mapActions(['delProduct','delAll','submitOrder']),
             toOrder(value) {
-                this.$router.push("/order")
+                this.$router.push("/order");             
                 this.$store.dispatch("submitOrder",value) 
             },
             tohome(){
                 this.$router.push("/home")
             },
             handleSelectionChange(val) {
-                this.multipleSelection = val   
+                this.multipleSelection = val  
+                this.disable = !this.disable
             },
             onTableSelect(rows, row) {
                 let selected = rows.length && rows.indexOf(row) !== -1
@@ -134,6 +136,7 @@
                 }else{
                     this.totalPrice -= row.product_Price*row.num
                 }
+                
             },
             selectAll(selection){
                 let selected = selection.length
@@ -157,7 +160,8 @@
                 }
             },
         computed:{
-            ...mapGetters(['cartProducts'])       
+            ...mapGetters(['cartProducts','cartData'])   
+
         },
     }
 </script>

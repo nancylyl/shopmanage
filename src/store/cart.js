@@ -6,7 +6,6 @@ const state = {
 }
 const getters = {
     cartProducts: state => state.added,
-
 }
 const actions = {
     // 添加购物车

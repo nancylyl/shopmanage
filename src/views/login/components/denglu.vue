@@ -46,7 +46,7 @@
 
 <script>
 import { login } from "@/network/login";
-
+import { overUserInfo } from "../../../toolkit";
 export default {
   name: "denglu",
   data() {
@@ -60,7 +60,6 @@ export default {
   methods: {
     userlogin() {
       let data = { Account: this.Account, PassWord: this.PassWord };
-      console.log(data);
       if (this.Account == "" || this.PassWord == "") {
         this.$message({
           message: "请输入账号密码！",
@@ -71,16 +70,9 @@ export default {
           .then(res => {
             if (res.data.success) {
               this.$message("登录成功");
-              // sessionStorage.myUser = this.Account
-              // sessionStorage.myQuit = '退出'
-              //     this.$cookie.get('userinfo')
-              this.$cookie.set("userinfo", res.data.data, 1);
-              console.log(this.$cookie.get("userinfo"));
-
+              overUserInfo(res.data.data);
               setTimeout(() => {
-                this.$router.push({
-                  path: `/home`
-                });
+                window.location.href = "/";
               }, 200);
             } else {
               this.$message({
