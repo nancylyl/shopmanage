@@ -1,39 +1,78 @@
 <template>
-    <div>
-      <div class="box1">
-        <div class="header1">
-          <span>修改手机号</span>
-        </div>
-        <div class="sesion">
-          <form>
-            <table class="biao">
-              <tbody>
-               <tr>
-                 <td class="TD1">原有手机号码：</td>
-                 <td class="TD2">135*****949</td>
-               </tr>
-                <tr>
-                  <td class="TD1">修改号码：</td>
-                  <td class="TD2"><input type=""></input></td>
-                </tr>
-              </tbody>
-            </table>
-          </form>
-        </div>
-        <div class="footer1">
-          <div class="BT">
-            <button class="queDing">确定</button>
-            <button class="quXiao">取消</button>
-          </div>
+  <div>
+    <div class="box1" v-if="xiuGai.length>0">
+      <div class="header1">
+        <span>修改手机号</span>
+      </div>
+      <div class="sesion">
+        <form action="/updataPhoe.do" method="post">
+          <table class="biao">
+            <tbody>
+            <tr>
+              <td class="TD1">原有手机号码：</td>
+              <td class="TD2">{{greet( xiuGai[0].Phone)}}</td>
+            </tr>
+            <tr>
+              <td class="TD1">修改号码：</td>
+              <td class="TD2"><input type="password" v-model="Phone"></input></td>
+            </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+      <div class="footer1">
+        <div class="BT">
+          <button class="queDing" @click="xiuGaiPhone" type="button">确定</button>
+          <button class="quXiao" @click="quxiao">取消</button>
         </div>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: "xiuGai"
+  import {getUserInfo, updataPhoe} from '../../../../network/person'
+  export default {
+    name: "xiuGai",
+    data(){
+      return{
+        xiuGai:[],
+        Phone:""
+      }
+    },
+    methods:{
+      xiuGaiPhone(){
+        let Phone=this.Phone;
+        console.log(Phone)
+        let UId=window.pageConfig.userInfo.UId
+        let data={Phone,UId}
+
+        updataPhoe(data)
+          .then(res=>{
+            console.log(res.data.message)
+          })
+          .catch(e=>{
+            console.log(e)
+          })
+        this.$router.go(-1)
+      },
+      greet:function(a){
+        return a.replace(a.substring(3, a.length - 3), '****')
+      },
+      quxiao(){
+        this.$router.go(-1)
+      }
+    },
+    beforeCreate(){
+      getUserInfo()
+        .then(res=>{
+          this.xiuGai =res.data.data;
+        })
+        .catch(e => {
+          console.log(e)
+        })
     }
+  }
 </script>
 
 <style scoped>
@@ -58,7 +97,7 @@
     height: 24px;
     padding: 5px 13px;
     background-color: rgb(98,81,71);
-  box-shadow: 1px 1px 6px black ;
+    box-shadow: 1px 1px 6px black ;
   }
   .header1 span{
     font-weight: bold;
@@ -118,14 +157,14 @@
   }
   .queDing{
     margin-top: 10px;
-  margin-left: 80px;
+    margin-left: 80px;
     color: #e3e3e3;
     font-size: 13px;
     width: 52px;
     border: 0;
     height: 27px;
     border-radius: 3px;
-   background-color: rgb(133,119,111);
+    background-color: rgb(133,119,111);
   }
   .quXiao{
     margin-top: 10px;

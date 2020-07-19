@@ -109,7 +109,7 @@
             </tr>
             <tr>
               <td height="64" align="right" valign="top">地区：</td>
-              <td colspan="4" align="left">{{huoQu[index].Province}}-{{huoQu[index].City}}-{{huoQu[index].Axis}}</td>
+              <td colspan="4" align="left">{{huoQu[index].Province}}-{{huoQu[index].City}}-{{huoQu[index].Area}}</td>
             </tr>
             <tr>
               <td height="64" align="right" valign="top">地址：</td>

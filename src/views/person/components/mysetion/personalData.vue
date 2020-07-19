@@ -82,7 +82,7 @@
 
 <script>
   import xiuGai from "./xiuGai";
-import { getUserInfo,baoCunNew } from '../../../../network/person'
+import { getUserInfo,updataUserInfo } from '../../../../network/person'
   export default {
     name: "personalData",
     data() {
@@ -115,7 +115,7 @@ import { getUserInfo,baoCunNew } from '../../../../network/person'
         value1: '',
         value2: '',
         personList:[],
-        Sex: '',
+        Sex: '0',
         Name:"",
         nan:"",
         nv:""
@@ -129,12 +129,11 @@ import { getUserInfo,baoCunNew } from '../../../../network/person'
       baoCun(){
         let Name=this.personList[0].Name;
         let Code=this.personList[0].Code;
-        let Sex=this.personList[0].Sex;
-        let thdy=this.personList[0].Birthday;
-        console.log(thdy);
-        let data={Name,Code,thdy};
+        let Sex=this.Sex;
+        let Birthday=this.personList[0].Birthday;
+        let data={Name,Code,Birthday,Sex};
         console.log(data);
-        baoCunNew(data)
+        updataUserInfo(data)
             .then(res=>{
               console.log(res.data.message)
             })

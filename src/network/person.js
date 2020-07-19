@@ -5,9 +5,9 @@ export function getUserInfo(id) {//获取个人资料
     url: '/api/getUserInfo.do'
   })
 }
-export function baoCunNew(data) {//个人资料保存
+export function updataUserInfo(data) {//个人资料保存
    return request({
-     url: '/api/getUserBC.do',
+     url: '/api/updataUserInfo.do',
      data:data,
      method:'post'
    })
@@ -59,4 +59,25 @@ export function updateMyAddress(data) {//删除我的订单用户信息
 
   })
 }
+export function updataUserINV(data) {//发票信息修改
+  return request({
+    url: '/api/updataUserINV.do',
+    data:data,
+    method:'post'
 
+  })
+}
+export function getUserINV(id) {//获取我的订单用户信息
+  return request({
+    url: '/api/getUserINV.do'
+  })
+}
+
+export function updataPhoe(data) {//发票信息修改
+  return request({
+    url: '/api/updataPhoe.do',
+    data:data,
+    method:'post'
+
+  })
+}
