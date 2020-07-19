@@ -63,7 +63,8 @@ export default {
       if (
         this.$route.path.indexOf('PerCenter') > 0 ||
         this.$route.path.indexOf('denglu') > 0 ||
-        this.$route.path.indexOf('zhuce') > 0
+        this.$route.path.indexOf('zhuce') > 0 ||
+        this.$route.path.indexOf('forgetPwd') > 0
       ) {
         return false
       } else {
@@ -76,7 +77,8 @@ export default {
         this.$store.state.shopmenustore.menulist.length > 0 ||
         this.$route.path.indexOf('PerCenter') > 0 ||
         this.$route.path.indexOf('denglu') > 0 ||
-        this.$route.path.indexOf('zhuce') > 0
+        this.$route.path.indexOf('zhuce') > 0 ||
+        this.$route.path.indexOf('forgetPwd') > 0
       )
     },
     showbreadcrumb() {
