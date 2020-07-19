@@ -118,8 +118,7 @@ export default {
   height: 30px;
   padding: 0px 0px;
   border: none;
-  background: url(http://activity.dapuimg.com/dapu_homeseach.png) no-repeat 7px
-    7px;
+  background: url(~assets/images/other/homeseach.png) no-repeat 7px 7px;
   background-color: rgba(255, 255, 255, 0);
   cursor: pointer;
   /* right: 5px; */
