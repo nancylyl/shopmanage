@@ -183,17 +183,17 @@ export default {
       // console.log(event.target.value)
     },
     upOrder() {
-          // console.log(this.cartData)
-          // console.log(this.cartProducts)
-      for(let i=0;i<this.cartData.length;i++){
+      // console.log(this.cartData)
+      // console.log(this.cartProducts)
+      // console.log(this.defaultSite[0])
+      if(this.defaultSite[0]!=undefined){
+        for(let i=0;i<this.cartData.length;i++){
         for(let j=this.cartProducts.length-1;j>=0;j--){
           if(this.cartData[i].id == this.cartProducts[j].id &&this.cartData[i].Title1value == this.cartProducts[j].Title1value && this.cartData[i].Title2value == this.cartProducts[j].Title2value){
               this.cartProducts.splice(j, 1)
           }
         }
       }
-      // console.log(this.defaultSite[0])
-      if(this.defaultSite[0]!=undefined){
         this.$router.push("/payOrder")
         let orderList = []         
         this.cartData.map((item, index) => {

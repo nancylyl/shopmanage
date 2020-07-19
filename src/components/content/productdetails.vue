@@ -148,9 +148,9 @@
         <div class="otherbox" v-html="pro_data" :style="productshow"></div>
         <div class="otherbox" :style="commentaryshow">
           <div class="talk" v-for="item in this.comment" :key="item.id" name="item.id">
-            <span class="tel">13388886666</span>
+            <span class="tel">{{item.Name}}</span>
             <div class="talktext">{{item.Content}}</div>
-            <div class="talkdate">2070-12-05</div>
+            <div class="talkdate">{{item.CreateDate}}</div>
           </div>
         </div>
       </div>
@@ -194,7 +194,7 @@ export default {
       allnum: 0,
       allprice: 0,
       ifTan: false,
-      comment: []
+      comment: [] 
       // pid:
     }
   },
@@ -214,12 +214,8 @@ export default {
   },
   created() {
     this.getProductDetail()
-    // this.getComment(data)
-    console.log(this.$route.params.id)
-     getProductDetail(this.$route.params.id).then(res => {
-       console.log(res.data.data[2])
-       this.comment = res.data.data[2]
-     })
+    // console.log(this.$route.params.id)
+   
   },
   watch: {
     $route(to, from) {
@@ -268,6 +264,15 @@ export default {
         //   console.log(res.data.data[1]);
         //   console.log(res.data.data[2]);
       })
+      getComment(this.$route.params.id).then(res => {
+      // console.log(res.data.data[2])
+      this.comment = res.data.data;
+       console.log(this.comment);
+       this.comment.map((item, index) => {
+        return item.CreateDate = new Date(+new Date(item.CreateDate) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
+          console.log(item.CreateDate)
+       })
+    })   
     },
     showdata() {
       this._data.productshow = { display: 'block' }

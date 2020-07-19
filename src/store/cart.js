@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex);
 const state = {
-    added: [],
+    added: []
 }
 const getters = {
     cartProducts: state => state.added,
@@ -33,7 +33,6 @@ const mutations = {
     },
     //删除：state.购物车数据.splice()
     delCart(state, product) {
-        console.log(product)
         state.added.map((item, index) => {
             if (item.id == product.id && item.Title1value == product.Title1value && item.Title2value == product.Title2value) {
                 state.added.splice(index, 1)
