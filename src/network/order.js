@@ -16,10 +16,8 @@ export function getPayBylist() {
 export  function  addOrder(data)  {   
     console.log(data)    
     return  request({        
-        url:   '/api/addOrder.do',
-                
+        url:   '/api/addOrder.do',     
         data:   { data },
-
         method:   'post'    
     })
 }

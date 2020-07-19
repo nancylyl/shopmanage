@@ -183,9 +183,20 @@ export default {
       // console.log(event.target.value)
     },
     upOrder() {
-      this.$router.push("/payOrder")
-      let orderList = []         
-      this.cartData.map((item, index) => {
+      // console.log(this.cartData)
+      // console.log(this.cartProducts)
+      // console.log(this.defaultSite[0])
+      if(this.defaultSite[0]!=undefined){
+        for(let i=0;i<this.cartData.length;i++){
+        for(let j=this.cartProducts.length-1;j>=0;j--){
+          if(this.cartData[i].id == this.cartProducts[j].id &&this.cartData[i].Title1value == this.cartProducts[j].Title1value && this.cartData[i].Title2value == this.cartProducts[j].Title2value){
+              this.cartProducts.splice(j, 1)
+          }
+        }
+      }
+        this.$router.push("/payOrder")
+        let orderList = []         
+        this.cartData.map((item, index) => {
           orderList.push({
                 PId:  this.cartData[index].id, // 购买物品id
                 Price: this.cartData[index].product_Price, // 商品价格
@@ -210,16 +221,15 @@ export default {
                 New_Tel:  this.defaultSite[0].Tel,
                 Deltime:  this.Deltimeid   // 送货时间种类  
             })
-      })
-      // console.log(orderList)
-      // console.log(this.defaultSite[0])
-      // console.log(this.checkedData[0])
-      // console.log(this.cartData)
+        })
       addOrder(orderList)
+      }else{
+        this.$message.error('请选择收货地址');
+      }
     }
   },
   computed: {
-    ...mapGetters(['siteList','cartData','checkedData']),
+    ...mapGetters(['siteList','cartData','checkedData','cartProducts']),
     defaultSite: function () {
       return this.siteList.filter(function (siteList) {
         return siteList.Is_True==1
