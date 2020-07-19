@@ -14,9 +14,7 @@
       </div>
       <div class="season">
         <h3>我的订单</h3>
-        <div class="quanBu">全部订单</div>
-        <div class="daiZhiFu">待支付</div>
-        <div class="daiZhiFu">已取消的订单</div>
+        <div v-for="(items,indexs) in buttonlist" @click="changeclass(indexs)" :class="{'change':getclass == indexs}" class="daiZhiFu"  v-on:click="getMyOder(indexs)">{{ items.select }}</div>
       </div>
       <div class="footer">
         <table class="footerorder">
@@ -28,15 +26,17 @@
               <th>订单状态</th>
               <th>操作</th>
             </thead>
-            <tr>
+            <tr v-for="(item, index) in Myorder[2]"
+            :key="item.id"
+            name="item.id">
               <td>
-                订单id：
-                <span>123123213213</span>
+                订单编号：
+                <span>{{ item.ordernum }}</span>
               </td>
-              <td>张三</td>
-              <td>￥299</td>
-              <td>2090292022</td>
-              <td>未付款[未发货]</td>
+              <td>{{ item.New_Name }}</td>
+              <td>￥{{ item.TotalPrice }}</td>
+              <td>{{ item.CreateDate | dateFmt('YYYY-MM-DD HH:mm:ss')}}</td>
+              <td v-text="typelist(item.State)"></td>
               <td>  
                   <div>
                     <el-button  @click="open2" type="text" >
@@ -66,9 +66,41 @@
                     </el-form>
                     <div slot="footer" class="dialog-footer">
                       <el-button @click="dialogFormVisible = false">取 消</el-button>
-                      <el-button type="primary" @click="dialogFormVisible = false" @click.native="pinglun(form)">确 定</el-button>
+                      <el-button type="primary" plain
+                    @click="dialogFormVisible = false " @click.native="pinglun(form,index)">确 定
+                      </el-button>
                     </div>
                   </el-dialog>
+                  <div>
+                    <el-button type="text" @click="drawer = true">
+                      <div class="mem-btn">
+                        查看
+                      </div>
+                    </el-button>
+                  </div>
+                  <el-drawer
+                    size="50%"
+                    :visible.sync="drawer"
+                    :direction="direction">
+                    <h2>查看商品详情</h2>
+                    <div class="drawbox"  v-for="(itemp, indexp) in Myorder[1]" 
+                    :key="item.id"
+                    name="item.id" 
+                    v-if="item.ordernum == itemp.OrderNum">
+                        <div class="draw">
+                          {{ itemp.Pro_Name }}
+                        </div>
+                        <div>
+                          <img :src="require(`@/assets/images/${itemp.Pro_Url}`)">
+                        </div>
+                        <div class="draw">
+                          {{ itemp.Num }}件
+                        </div>
+                        <div class="draw">
+                          单价￥{{ itemp.Price }}
+                        </div>
+                    </div>
+                  </el-drawer>
               </td>
             </tr>
         </table>
@@ -84,6 +116,15 @@
         name: "myorder",
        data(){
          return{
+          getclass: 0,
+          active: false,
+　　　　　 buttonlist: [
+　　　　　  {select:'全部订单'},
+　　　　　　{select:'待支付'},
+　　　　　　{select:'已取消的订单'},
+　　　　　　　   　],
+           drawer: false,
+           direction: 'rtl',
            Myorder:[],
            orderlist:[],
            dialogFormVisible: false,
@@ -95,41 +136,80 @@
         formLabelWidth: '120px'
         }
        },
+       computed:{
+              typelist() {
+          return function(i) {
+            console.log(i);
+            let res;
+            switch (Number(i)) {
+              case 2:
+                res = "未付款";
+                break;
+              case 1:
+                res = "已付款";
+                break;
+              case 3:
+                res = "未发货";
+                break;
+              case 4:
+                res = "已发货";
+                break;
+              case 5:
+                res = "已收货";
+                break;
+              case 5:
+                res = "已完成";
+                break;
+              default:
+                res = "订单有误";
+                break;
+            }
+            return res;
+          };
+        },
+       },
        methods: {
+        open1() {
+        this.$notify({
+          title: '成功',
+          message: '这是一条成功的提示消息',
+          type: 'success'
+        });
+      },
+        changeclass(indexs) {
+            this.getclass = indexs
+        },
         open2() {
         this.$message({
           message: '恭喜你，已经付款成功',
           type: 'success'
         });
       },
-        getMyOder(){
-          getMyOder().then(res => {
+        getMyOder(state){
+          getMyOder(state).then(res => {
             this.Myorder =res.data.data;
-            console.log(11111111111111111111)
-            console.log( this.Myorder);
             })
         },
-        pinglun(data) {
-          data.OrderNum =this.Myorder[2][0].ordernum;
-          console.log(data);
-          let add = {
-            Content: '',
-            OrderNum: '',
-            Star:4,
-          }
-          addcomment(add).then(res => {
-            console.log(123213213213);
-            console.log(data);
+        pinglun(data,index) {
+          data.OrderNum =this.Myorder[2][index].ordernum;
+          addcomment(data).then(res => {
           })
-        }
+        },
+        
       },
        created() {
-        this.getMyOder()
+        this.getMyOder(0)
       } 
     }
 </script>
 
 <style scoped>
+  .active{
+    color:red;
+  }　
+　.unactive{
+  color:#000;
+  }
  .box{
    width: 970px;
    height: 540px;
@@ -183,6 +263,20 @@
   h3{
     text-align: left;
     color: #6b6b6b;
+  }
+  .change {
+    width: 120px;
+    height: 50px;
+    line-height: 50px;
+    margin-right: 10px;
+    float: left;
+    border: 1px solid #fff!important;
+    color: #fff!important;
+    text-align: center;
+    text-decoration: none;
+    transition: all .4s ease 0s;
+    cursor: pointer;
+    background: #da5278!important;
   }
   .quanBu{
     width: 120px;
@@ -277,5 +371,21 @@
     padding: 5px 20px;
     font-size: 14px;
     border-radius: 4px;
+}
+
+.drawbox {
+  width: 700px;
+  height: 120px;
+}
+.draw {
+  float: left;
+  padding-top: 50px;
+  padding-left: 40px;
+  padding-right: 50px;
+}
+.drawbox img {
+  float: left;
+  padding-top: 5px;
+  height: 100px;
 }
 </style>
