@@ -22,7 +22,7 @@ const getters = {
 const actions = {
   showPro(){
     state.collectProList=[];
-    let UId=sessionStorage.myUser;
+    let UId=window.pageConfig.userInfo.UId;
     let mypid;//图片ID
 
     showCollect(UId)
@@ -71,7 +71,7 @@ const mutations = {
     /*该产品ID*/
     let PId=product.PId;
     /*用户ID*/
-    let UId=sessionStorage.myUser;
+    let UId=window.pageConfig.userInfo.UId;
 
     let data={PId,UId};
     deleteCollectPro(data)

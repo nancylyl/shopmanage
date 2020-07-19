@@ -1,14 +1,14 @@
 <template>
   <div>
-    <div class="logo">
+    <!--<div class="logo">
       <img src="@/assets/images/logo.png" alt />
-    </div>
+    </div>-->
     <div id="forget">
       <div id="searchPwd">
         <h3>找回密码</h3>
-        <router-link to="/denglu">
-          <a href>返回登录</a>
-        </router-link>
+<!--        <router-link to="/denglu">-->
+          <a href="/denglu">返回登录</a>
+<!--        </router-link>-->
       </div>
 
       <div id="buzhou">
@@ -162,11 +162,11 @@ button {
   background-color: white;
   margin-top: 15px;
 }
-.logo {
+/*.logo {
   margin: 50px;
 }
 .logo > img {
   width: 187px;
   height: 73px;
-}
+}*/
 </style>

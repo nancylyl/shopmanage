@@ -19,7 +19,9 @@ export function getMyOder(id) {//获取我的订单用户信息
 }
 export function getComment(id) {//获取我的订单用户信息
   return request({
-    url: '/api/getComment.do'
+    url: '/api/getComment.do',
+    method:'post',
+    data:id
   })
 }
 export function updataPass(data) {//获取我的订单用户信息
