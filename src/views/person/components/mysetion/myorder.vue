@@ -286,6 +286,7 @@ export default {
 
   /*background-color: #00aaf1;*/
 }
+
 .header {
   text-align: left;
   height: 128px;
@@ -379,11 +380,14 @@ h3 {
   background: 0 0;
 }
 .footer {
-  width: 920px;
-  background-color: #efefef;
-  padding-left: 50px;
   padding-top: 20px;
-  padding-bottom: 20px;
+  /* width: 920px; */
+  background-color: #efefef;
+
+  /* padding-left: 50px;
+ 
+  padding-bottom: 20px; */
+  /* margin: 0 auto; */
 }
 table {
   width: 920px;
@@ -399,10 +403,14 @@ th {
   transition: all 0.3s;
 }
 .footerorder {
-  text-align: center;
+  /* text-align: center; */
+  border-collapse: collapse;
+  width: 100%;
 }
+
 .footerorder td {
   color: #6b6b6b;
+  padding-left: 20px;
   font-family: "微软雅黑";
   line-height: 30px;
   font-size: 14px;
@@ -427,8 +435,7 @@ th {
   background-color: #da5278;
 }
 .trout {
-  /* outline: 1px solid #da5278; */
-  border-bottom: 1px solid red;
+  border-bottom: 2px solid #fff;
 }
 .el-button {
   display: inline-block;
