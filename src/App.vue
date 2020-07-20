@@ -21,10 +21,7 @@ import productdeltails from "@/components/content/productdetails";
 import sidebar from "@/components/commom/sidebar";
 import person from "@/views/person/components/wode";
 import head from "@/views/person/components/head";
-<<<<<<< HEAD
-=======
 import myfooter from "@/components/content/myfooter";
->>>>>>> 2eff788efaa3814697419b520205fb295ff54425
 import { isLogin } from "./toolkit";
 
 export default {
