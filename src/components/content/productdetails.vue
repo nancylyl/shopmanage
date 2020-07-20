@@ -214,8 +214,15 @@ export default {
   },
   created() {
     this.getProductDetail()
-    // console.log(this.$route.params.id)
-   
+    getComment(this.$route.params.id).then(res => {
+      console.log( res.data)
+      this.comment = res.data.data;
+       console.log(this.comment);
+       this.comment.map((item, index) => {
+        return item.CreateDate = new Date(+new Date(item.CreateDate) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
+          console.log(item.CreateDate)
+       })
+    })   
   },
   watch: {
     $route(to, from) {
@@ -264,15 +271,7 @@ export default {
         //   console.log(res.data.data[1]);
         //   console.log(res.data.data[2]);
       })
-      getComment(this.$route.params.id).then(res => {
-      // console.log(res.data.data[2])
-      this.comment = res.data.data;
-       console.log(this.comment);
-       this.comment.map((item, index) => {
-        return item.CreateDate = new Date(+new Date(item.CreateDate) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
-          console.log(item.CreateDate)
-       })
-    })   
+      
     },
     showdata() {
       this._data.productshow = { display: 'block' }
