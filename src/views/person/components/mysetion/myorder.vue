@@ -1,108 +1,124 @@
 <template>
   <div>
-    <div class="box" v-if="Myorder.length>0">
+    <div class="box" v-if="Myorder.length > 0">
       <div class="header">
-
-          <img src="../mydd.gif" alt=""  class="tu">
-
+        <img src="../mydd.gif" alt="" class="tu" />
 
         <div class="text">
-          <p class="name">{{Myorder[0][0].NAME}}</p>
-          <p>{{Myorder[0][0].userTypeName}}</p>
-          <p>累计消费:{{Myorder[0][0].totalMoney}}</p>
+          <p class="name">{{ Myorder[0][0].NAME }}</p>
+          <p>{{ Myorder[0][0].userTypeName }}</p>
+          <p>累计消费:{{ Myorder[0][0].totalMoney }}</p>
         </div>
       </div>
       <div class="season">
         <h3>我的订单</h3>
-        <div v-for="(items,indexs) in buttonlist" @click="changeclass(indexs)" :class="{'change':getclass == indexs}" class="daiZhiFu"  v-on:click="getMyOder(indexs)">{{ items.select }}</div>
+        <div
+          v-for="(items, indexs) in buttonlist"
+          @click="changeclass(indexs)"
+          :class="{ change: getclass == indexs }"
+          class="daiZhiFu"
+          v-on:click="getMyOder(indexs)"
+        >
+          {{ items.select }}
+        </div>
       </div>
       <div class="footer">
         <table class="footerorder">
-            <thead>
-              <th>订单商品</th>
-              <th>收货人</th>
-              <th>订单金额</th>
-              <th>下单时间</th>
-              <th>订单状态</th>
-              <th>操作</th>
-            </thead>
-            <tr v-for="(item, index) in Myorder[2]"
-            :key="item.id"
-            name="item.id">
-              <td>
-                订单编号：
-                <span>{{ item.ordernum }}</span>
-              </td>
-              <td>{{ item.New_Name }}</td>
-              <td>￥{{ item.TotalPrice }}</td>
-              <td>{{ item.CreateDate | dateFmt('YYYY-MM-DD HH:mm:ss')}}</td>
-              <td v-text="typelist(item.State)"></td>
-              <td>  
-                  <div>
-                    <el-button  @click="open2" type="text" >
-                      <div class="mem-btn">
-                      付款
-                      </div>
-                    </el-button>
+          <thead>
+            <th>订单商品</th>
+            <th>收货人</th>
+            <th>订单金额</th>
+            <th>下单时间</th>
+            <th>订单状态</th>
+            <th>操作</th>
+          </thead>
+          <tr v-for="(item, index) in Myorder[2]" :key="item.id" name="item.id">
+            <td>
+              订单编号：
+              <span>{{ item.ordernum }}</span>
+            </td>
+            <td>{{ item.New_Name }}</td>
+            <td>￥{{ item.TotalPrice }}</td>
+            <td>{{ item.CreateDate | dateFmt("YYYY-MM-DD HH:mm:ss") }}</td>
+            <td v-text="typelist(item.State)"></td>
+            <td>
+              <div>
+                <el-button @click="open2" type="text">
+                  <div class="mem-btn">
+                    付款
+                  </div>
+                </el-button>
+              </div>
+              <div>
+                <el-button type="text" @click="dialogFormVisible = true">
+                  <div class="mem-btn">
+                    评论
+                  </div>
+                </el-button>
+              </div>
+              <el-dialog title="订单评价" :visible.sync="dialogFormVisible">
+                <el-form :model="form">
+                  <el-form-item
+                    label="请为订单打分"
+                    :label-width="formLabelWidth"
+                  >
+                    <el-rate v-model="form.Star" show-text> </el-rate>
+                  </el-form-item>
+                  <el-form-item
+                    label="请您评价订单"
+                    :label-width="formLabelWidth"
+                  >
+                    <el-input
+                      v-model="form.Content"
+                      autocomplete="off"
+                    ></el-input>
+                  </el-form-item>
+                </el-form>
+                <div slot="footer" class="dialog-footer">
+                  <el-button @click="dialogFormVisible = false"
+                    >取 消</el-button
+                  >
+                  <el-button
+                    type="primary"
+                    plain
+                    @click="dialogFormVisible = false"
+                    @click.native="pinglun(form, index)"
+                    >确 定
+                  </el-button>
+                </div>
+              </el-dialog>
+              <div>
+                <el-button type="text" @click="drawer = true">
+                  <div class="mem-btn">
+                    查看
+                  </div>
+                </el-button>
+              </div>
+              <el-drawer
+                size="50%"
+                :visible.sync="drawer"
+                :direction="direction"
+              >
+                <h2>查看商品详情</h2>
+                <div
+                  class="drawbox"
+                  v-for="(itemp, indexp) in Myorder[1]"
+                  :key="item.id"
+                  name="item.id"
+                  v-if="item.ordernum == itemp.OrderNum"
+                >
+                  <div class="draw">
+                    {{ itemp.Pro_Name }}
                   </div>
                   <div>
-                    <el-button type="text" @click="dialogFormVisible = true">
-                      <div class="mem-btn">
-                        评论
-                      </div>
-                    </el-button>
+                    <img :src="require(`@/assets/images/${itemp.Pro_Url}`)" />
                   </div>
-                  <el-dialog title="订单评价" :visible.sync="dialogFormVisible">
-                    <el-form :model="form">
-                      <el-form-item label="请为订单打分" :label-width="formLabelWidth">
-                        <el-rate
-                          v-model="form.Star"
-                          show-text>
-                        </el-rate>
-                      </el-form-item>
-                      <el-form-item label="请您评价订单" :label-width="formLabelWidth">
-                        <el-input v-model="form.Content" autocomplete="off"></el-input>
-                      </el-form-item>
-                    </el-form>
-                    <div slot="footer" class="dialog-footer">
-                      <el-button @click="dialogFormVisible = false">取 消</el-button>
-                      <el-button type="primary" plain
-                    @click="dialogFormVisible = false " @click.native="pinglun(form,index)">确 定
-                      </el-button>
-                    </div>
-                  </el-dialog>
-                  <div>
-                    <el-button type="text" @click="drawer = true">
-                      <div class="mem-btn">
-                        查看
-                      </div>
-                    </el-button>
-                  </div>
-                  <el-drawer
-                    size="50%"
-                    :visible.sync="drawer"
-                    :direction="direction">
-                    <h2>查看商品详情</h2>
-                    <div class="drawbox"  v-for="(itemp, indexp) in Myorder[1]" 
-                    :key="item.id"
-                    name="item.id" 
-                    v-if="item.ordernum == itemp.OrderNum">
-                        <div class="draw">
-                          {{ itemp.Pro_Name }}
-                        </div>
-                        <div>
-                          <img :src="require(`@/assets/images/${itemp.Pro_Url}`)">
-                        </div>
-                        <div class="draw">
-                          {{ itemp.Num }}件
-                        </div>
-                        <div class="draw">
-                          单价￥{{ itemp.Price }}
-                        </div>
-                    </div>
-                  </el-drawer>
-              </td>
-            </tr>
+                  <div class="draw">{{ itemp.Num }}件</div>
+                  <div class="draw">单价￥{{ itemp.Price }}</div>
+                </div>
+              </el-drawer>
+            </td>
+          </tr>
         </table>
       </div>
     </div>
@@ -110,267 +126,265 @@
 </template>
 
 <script>
-  import { getMyOder } from '../../../../network/person'
-  import { addcomment } from '@/network/addcomment'
-    export default {
-        name: "myorder",
-       data(){
-         return{
-          getclass: 0,
-          active: false,
-　　　　　 buttonlist: [
-　　　　　  {select:'全部订单'},
-　　　　　　{select:'待支付'},
-　　　　　　{select:'已取消的订单'},
-　　　　　　　   　],
-           drawer: false,
-           direction: 'rtl',
-           Myorder:[],
-           orderlist:[],
-           dialogFormVisible: false,
-           form: {
-            Content: '',
-            OrderNum: '',
-            Star:4,
-          },
-        formLabelWidth: '120px'
+import { getMyOder } from "../../../../network/person";
+import { addcomment } from "@/network/addcomment";
+export default {
+  name: "myorder",
+  data() {
+    return {
+      getclass: 0,
+      active: false,
+      buttonlist: [
+        { select: "全部订单" },
+        { select: "待支付" },
+        { select: "已取消的订单" }
+      ],
+      drawer: false,
+      direction: "rtl",
+      Myorder: [],
+      orderlist: [],
+      dialogFormVisible: false,
+      form: {
+        Content: "",
+        OrderNum: "",
+        Star: 4
+      },
+      formLabelWidth: "120px"
+    };
+  },
+  computed: {
+    typelist() {
+      return function(i) {
+        console.log(i);
+        let res;
+        switch (Number(i)) {
+          case 2:
+            res = "未付款";
+            break;
+          case 1:
+            res = "已付款";
+            break;
+          case 3:
+            res = "未发货";
+            break;
+          case 4:
+            res = "已发货";
+            break;
+          case 5:
+            res = "已收货";
+            break;
+          case 5:
+            res = "已完成";
+            break;
+          default:
+            res = "订单有误";
+            break;
         }
-       },
-       computed:{
-              typelist() {
-          return function(i) {
-            console.log(i);
-            let res;
-            switch (Number(i)) {
-              case 2:
-                res = "未付款";
-                break;
-              case 1:
-                res = "已付款";
-                break;
-              case 3:
-                res = "未发货";
-                break;
-              case 4:
-                res = "已发货";
-                break;
-              case 5:
-                res = "已收货";
-                break;
-              case 5:
-                res = "已完成";
-                break;
-              default:
-                res = "订单有误";
-                break;
-            }
-            return res;
-          };
-        },
-       },
-       methods: {
-        open1() {
-        this.$notify({
-          title: '成功',
-          message: '这是一条成功的提示消息',
-          type: 'success'
-        });
-      },
-        changeclass(indexs) {
-            this.getclass = indexs
-        },
-        open2() {
-        this.$message({
-          message: '恭喜你，已经付款成功',
-          type: 'success'
-        });
-      },
-        getMyOder(state){
-          getMyOder(state).then(res => {
-            this.Myorder =res.data.data;
-            })
-        },
-        pinglun(data,index) {
-          data.OrderNum =this.Myorder[2][index].ordernum;
-          addcomment(data).then(res => {
-          })
-        },
-        
-      },
-       created() {
-        this.getMyOder(0)
-      } 
+        return res;
+      };
     }
+  },
+  methods: {
+    open1() {
+      this.$notify({
+        title: "成功",
+        message: "这是一条成功的提示消息",
+        type: "success"
+      });
+    },
+    changeclass(indexs) {
+      this.getclass = indexs;
+    },
+    open2() {
+      this.$message({
+        message: "恭喜你，已经付款成功",
+        type: "success"
+      });
+    },
+    getMyOder(state) {
+      getMyOder(state).then(res => {
+        this.Myorder = res.data.data;
+      });
+    },
+    pinglun(data, index) {
+      data.OrderNum = this.Myorder[2][index].ordernum;
+      addcomment(data).then(res => {});
+    }
+  },
+  created() {
+    this.getMyOder(0);
+  }
+};
 </script>
 
 <style scoped>
-  .active{
-    color:red;
-  }　
-　.unactive{
-  color:#000;
-  }
- .box{
-   width: 970px;
-   height: 540px;
+.active {
+  color: red;
+}
+　 　.unactive {
+  color: #000;
+}
+.box {
+  width: 970px;
+  height: 540px;
   position: absolute;
-   top: 60px;
-   right: 7%;
-   /*background-color: #00aaf1;*/
- }
-  .header{
-    text-align: left;
-    height: 128px;
-    position: relative;
-    line-height: 128px;
-    background-color: #efefef;
-    margin-bottom: 20px;
-    padding: 30px 50px;
-  }
-  .text{
-    display: inline-block;
-    width: 170px;
-    height: 100px;
-    position: absolute;
-    top: -20px;
-    left: 230px;
-  }
-  .tu{
-    overflow: hidden;
-    display: inline-block;
-  }
-  .name{
-    color: rgb(107,107,107);
-    font-size: 25px;
-    font-weight: bold;
-  }
-  p{
-    width: 170px;
-    margin-top: 20px;
-    height: 10px;
-    font-size: 14px;
-    color: #da5278;
-  }
-  .season{
-    width: 920px;
-    height: 142px;
-    position: relative;
-    background-color: #efefef;
-    margin-bottom: 20px;
-    padding-left: 50px;
-    padding-top: 20px;
-  }
-  h3{
-    text-align: left;
-    color: #6b6b6b;
-  }
-  .change {
-    width: 120px;
-    height: 50px;
-    line-height: 50px;
-    margin-right: 10px;
-    float: left;
-    border: 1px solid #fff!important;
-    color: #fff!important;
-    text-align: center;
-    text-decoration: none;
-    transition: all .4s ease 0s;
-    cursor: pointer;
-    background: #da5278!important;
-  }
-  .quanBu{
-    width: 120px;
-    height: 50px;
-    line-height: 50px;
-    margin-right: 10px;
-    float: left;
-    border: 1px solid #fff;
-    color: #fff;
-    text-align: center;
-    text-decoration: none;
-    transition: all .4s ease 0s;
-    cursor: pointer;
-    background: #da5278;
-  }
-  .daiZhiFu{
-    transition: all .3s;
-    width: 120px;
-    height: 50px;
-    line-height: 50px;
-    margin-right: 10px;
-    float: left;
-    border: 1px solid #da5278;
-    color: #da5278;
-    padding: 0px 10px;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    background: 0 0;
-  }
-  .footer{
-    width: 920px;
-    background-color: #efefef;
-    padding-left: 50px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
-  table{
-    width: 920px;
-  }
-  th{
-    font-weight: bold;
-    font-size: 14px;
-    color: #6b6b6b;
-  }
- .daiZhiFu:hover{
-   color: whitesmoke;
-   background-color: #da5278;
-   transition: all .3s;
- }
- .footerorder {
-   text-align: center;
- }
- .footerorder td {
-  color: #6B6B6B;
+  top: 60px;
+  right: 7%;
+  /*background-color: #00aaf1;*/
+}
+.header {
+  text-align: left;
+  height: 128px;
+  position: relative;
+  line-height: 128px;
+  background-color: #efefef;
+  margin-bottom: 20px;
+  padding: 30px 50px;
+}
+.text {
+  display: inline-block;
+  width: 170px;
+  height: 100px;
+  position: absolute;
+  top: -20px;
+  left: 230px;
+}
+.tu {
+  overflow: hidden;
+  display: inline-block;
+}
+.name {
+  color: rgb(107, 107, 107);
+  font-size: 25px;
+  font-weight: bold;
+}
+p {
+  width: 170px;
+  margin-top: 20px;
+  height: 10px;
+  font-size: 14px;
+  color: #da5278;
+}
+.season {
+  width: 920px;
+  height: 142px;
+  position: relative;
+  background-color: #efefef;
+  margin-bottom: 20px;
+  padding-left: 50px;
+  padding-top: 20px;
+}
+h3 {
+  text-align: left;
+  color: #6b6b6b;
+}
+.change {
+  width: 120px;
+  height: 50px;
+  line-height: 50px;
+  margin-right: 10px;
+  float: left;
+  border: 1px solid #fff !important;
+  color: #fff !important;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.4s ease 0s;
+  cursor: pointer;
+  background: #da5278 !important;
+}
+.quanBu {
+  width: 120px;
+  height: 50px;
+  line-height: 50px;
+  margin-right: 10px;
+  float: left;
+  border: 1px solid #fff;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.4s ease 0s;
+  cursor: pointer;
+  background: #da5278;
+}
+.daiZhiFu {
+  transition: all 0.3s;
+  width: 120px;
+  height: 50px;
+  line-height: 50px;
+  margin-right: 10px;
+  float: left;
+  border: 1px solid #da5278;
+  color: #da5278;
+  padding: 0px 10px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  background: 0 0;
+}
+.footer {
+  width: 920px;
+  background-color: #efefef;
+  padding-left: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+table {
+  width: 920px;
+}
+th {
+  font-weight: bold;
+  font-size: 14px;
+  color: #6b6b6b;
+}
+.daiZhiFu:hover {
+  color: whitesmoke;
+  background-color: #da5278;
+  transition: all 0.3s;
+}
+.footerorder {
+  text-align: center;
+}
+.footerorder td {
+  color: #6b6b6b;
   font-family: "微软雅黑";
   line-height: 30px;
   font-size: 14px;
   height: 20px;
- }
- .footerorder span {
+}
+.footerorder span {
   color: #da5278;
- }
- .mem-btn {
-    width: 120px;
-    line-height: 28px;
-    border: 1px solid #da5278;
-    color: #da5278;
-    text-align: center;
-    text-decoration: none;
-    transition: all .4s ease 0s;
-    cursor: pointer;
-    background: 0 0;
- }
+}
+.mem-btn {
+  width: 120px;
+  line-height: 28px;
+  border: 1px solid #da5278;
+  color: #da5278;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.4s ease 0s;
+  cursor: pointer;
+  background: 0 0;
+}
 .mem-btn:hover {
   color: aliceblue;
   background-color: #da5278;
 }
 .el-button {
-    display: inline-block;
-    line-height: 1;
-    white-space: nowrap;
-    cursor: pointer;
-    color: #606266;
-    -webkit-appearance: none;
-    text-align: center;
-    box-sizing: border-box;
-    outline: 0;
-    margin: 0;
-    transition: .1s;
-    font-weight: 500;
-    padding: 5px 20px;
-    font-size: 14px;
-    border-radius: 4px;
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  color: #606266;
+  -webkit-appearance: none;
+  text-align: center;
+  box-sizing: border-box;
+  outline: 0;
+  margin: 0;
+  transition: 0.1s;
+  font-weight: 500;
+  padding: 5px 20px;
+  font-size: 14px;
+  border-radius: 4px;
 }
 
 .drawbox {

@@ -41,20 +41,23 @@
                   <div class="city-box">
                     <div style="overflow: hidden">
                       <div class="select-l g-f-l">
-                        <select v-model="selected" v-if="provinceL" class="select-box t-city" @change="show" >
-                          <option value="" label="">请选择省</option>
-                          <option v-for="(item,index) in provinceL" :value="item">{{ item.name }}</option>
+                        <select v-model="selected" v-if="provinceL" class="select-box t-city"  >
+<!--                          <option value="" label="" >请选择省</option>-->
+                          <option value="" label="" >{{myPCA[0].Province}}</option>
+                          <option v-for="(item,index) in provinceL" :value="item" >{{ item.name }}</option>
                         </select>
                       </div>
                       <div class="select-l g-f-l g-ml-5">
-                        <select v-model="citySelected" v-if="cityL" class="select-box t-city" v-show="se1" @change="show2" >
-                          <option value="">请选择市</option>
+                        <select v-model="citySelected" v-if="cityL" class="select-box t-city">
+<!--                          <option value="">请选择市</option>-->
+                          <option value="">{{myPCA[0].City}}</option>
                           <option v-for="(item,index) in cityL" :value="item">{{ item.name }}</option>
                         </select>
                       </div>
                       <div class="select-l g-f-l g-ml-5">
-                        <select v-model="areaSelected" v-if="areaL" class="select-box t-city" v-show="se2">
-                          <option value="">请选择区县</option>
+                        <select v-model="areaSelected" v-if="areaL" class="select-box t-city">
+<!--                          <option value="">请选择区县</option>-->
+                          <option value="">{{myPCA[0].Area}}</option>
                           <option v-for="(item,index) in areaL" :value="item">{{ item.name }}</option>
                         </select>
                       </div>
@@ -76,8 +79,10 @@
               </tr>
               <td class="td1"></td>
               <td class="td2">
-                <button class="queDing" type="button" @click="xiuGai">确定</button>
-                <button class="quxiao">取消</button>
+<!--                <button class="queDing" type="button" @click="xiuGai">确定</button>-->
+                <el-button :plain="true" @click="xiuGai" class="queDing">确定</el-button>
+                <el-button :plain="true" @click="quxiao" class="quxiao">取消</el-button>
+<!--                <button class="quxiao" @click="quxiao" type="button">取消</button>-->
               </td>
               <tr>
               </tr>
@@ -118,6 +123,7 @@
           citySelectedData: '',
           areaSelectedData: '',
           provinceMsg:'',
+          myPCA:[],
           notice: {
             province: false
           }
@@ -156,6 +162,10 @@
         }
       },
       methods:{
+
+        quxiao(){
+          this.$router.go(-1)
+        },
         show(){
           this.se1=true
         },
@@ -163,6 +173,7 @@
           this.se2=true
         },
         xiuGai() {
+
           let S_Name = this.S_Name; // S_Name,  --收货人
           let Province = this.selected.name; // Province, --省份
           console.log(typeof Province);
@@ -186,6 +197,10 @@
               console.log(e)
             })
           this.$router.go(-1)
+          this.$message({
+            message: '修改成功',
+            type: 'success'
+          });
         },
         /*从后台获取用户提交的省市区信息*/
         getCity(addr) {
@@ -231,10 +246,43 @@
 
 
 
+      },
+     created(){
+          console.log(this.$route.query.PCA);
+          let PCA=this.$route.query.PCA;
+       this.myPCA.push(PCA);
+       console.log(this.myPCA)
+        let Id = this.$route.query.name
+        let S_Name = this.$route.query.S_Name
+        let Province = this.$route.query.Province
+        let City = this.$route.query.City
+        let Area = this.$route.query.Area
+        let Address = this.$route.query.Address
+        let Phone = this.$route.query.Phone
+        let Mail = this.$route.query.Mail
+        let Tel = this.$route.query.Tel
+        let Is_True = this.$route.query.Is_True
+       console.log(Is_True)
+       this.S_Name=S_Name;
+       if (Is_True==1){
+         this.radio=1
+       }
+       //  this.selected=Province
+       //  console.log(this.selected)
+       //  this.citySelected=City
+       // console.log( this.citySelected)
+       //  this.areaSelected=Area
+       // console.log(this.areaSelected)
+        this.Address=Address
+        this.Phone=Phone
+        this.Tel=Tel
+        this.Mail=Mail
       }
 
 
     }
+
+
 </script>
 
 <style scoped>
@@ -307,7 +355,7 @@
   .Input{
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2) inset;
     width: 206px;
-    height: 22px;
+    height: 25px;
     border: 1px solid #ccc;
     padding: 3px 5px;
   }
@@ -351,6 +399,7 @@
     border-radius: 4px;
     width: 92px;
     height: 29px;
+    line-height: 5px;
     border: solid 1px #c1c1c1;
     background-color: rgb(249,249,249);
     color: #615146;
@@ -361,6 +410,7 @@
     border-radius: 4px;
     width: 92px;
     height: 29px;
+    line-height: 5px;
     border: solid 1px #c1c1c1;
     background-color: rgb(249,249,249);
     color: #615146;
