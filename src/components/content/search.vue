@@ -58,9 +58,9 @@ export default {
     ...mapActions(["setKey"]),
 
     remoteMethod(query) {
+      this.keyvalue = query;
       if (query !== "") {
         this.loading = true;
-        this.keyvalue = query;
         setTimeout(() => {
           this.loading = false;
           getProductListByKey(query).then(res => {
