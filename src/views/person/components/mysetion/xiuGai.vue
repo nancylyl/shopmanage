@@ -23,7 +23,7 @@
       <div class="footer1">
         <div class="BT">
           <button class="queDing" @click="xiuGaiPhone" type="button">确定</button>
-          <button class="quXiao" @click="quxiao">取消</button>
+          <butt class="quXiao" @click="quxiao">取消</router-link>
         </div>
       </div>
     </div>
@@ -41,6 +41,9 @@
       }
     },
     methods:{
+      quxiao(){
+        this.$router.go(-1)
+      },
       xiuGaiPhone(){
         let Phone=this.Phone;
         console.log(Phone)
@@ -59,9 +62,7 @@
       greet:function(a){
         return a.replace(a.substring(3, a.length - 3), '****')
       },
-      quxiao(){
-        this.$router.go(-1)
-      }
+
     },
     beforeCreate(){
       getUserInfo()
