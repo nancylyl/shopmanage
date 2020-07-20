@@ -12,7 +12,7 @@
    <div class="address">
       <div class="th">
         <span>收货人信息</span>
-        <a href="">修改</a>
+        <router-link to="/PerCenter/ShiAddress">修改</router-link>
       </div>
       <div v-for="item in defaultSite" :key="item.id"> 
         <p>

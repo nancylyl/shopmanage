@@ -23,7 +23,7 @@
           </tbody>
         </table>
       </div>
-      <div class="content" v-if="adds">暂无收货地址</div>
+      <div class="content" v-if="huoQu==''">暂无收货地址</div>
 
       <form action="/addMyAddress.do" v-if="cj" method="post">
         <div class="sesion">
