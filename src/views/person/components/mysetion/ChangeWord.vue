@@ -57,7 +57,7 @@ export default {
       // console.log(PassWord)
       // console.log(thdy);
       let data = { PassWord, UId };
-      console.log(data);
+
       updataPass(data)
         .then(res => {
           this.$message(res.data.message);
