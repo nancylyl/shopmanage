@@ -23,7 +23,7 @@
       <div class="footer1">
         <div class="BT">
           <button class="queDing" @click="xiuGaiPhone" type="button">确定</button>
-          <button class="quXiao" @click="quxiao">取消</button>>
+          <button class="quXiao" @click="quxiao">取消</button>
         </div>
       </div>
     </div>

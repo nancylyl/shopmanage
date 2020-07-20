@@ -77,7 +77,7 @@
               <td class="td1"></td>
               <td class="td2">
                 <button class="queDing" type="button" @click="xiuGai">确定</button>
-                <button class="quxiao">取消</button>
+                <button class="quxiao" @click="quxiao" type="button">取消</button>
               </td>
               <tr>
               </tr>
@@ -156,6 +156,9 @@
         }
       },
       methods:{
+        quxiao(){
+          this.$router.go(-1)
+        },
         show(){
           this.se1=true
         },
