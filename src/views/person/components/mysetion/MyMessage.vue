@@ -32,10 +32,8 @@ import { getMymessage } from "@/network/person";
          created(){
           // this.getMymessage();
            getMymessage().then(res => {
-            console.log(res.data);
             this.myNewMessage = res.data.data;
-            console.log(this.myNewMessage);
-
+            // console.log(this.myNewMessage);
             for(let i=0;i<this.myNewMessage.length;i++){   
             if(this.myNewMessage[i].Message_Type==0){
              this.myNewMessage[i].Message_Type="活动通知"
@@ -46,7 +44,7 @@ import { getMymessage } from "@/network/person";
             else if(this.myNewMessage[i].Message_Type==2){
             this.myNewMessage[i].Message_Type="积分变动通知"
             }            
-              console.log(this.myNewMessage[i].Message_Type)
+              // console.log(this.myNewMessage[i].Message_Type)
             }           
            });     
         },
@@ -57,23 +55,7 @@ import { getMymessage } from "@/network/person";
                 this.myNewMessage.splice(index,1);
               }
             })
-            console.log(Message_Id)
           },
-          mytype2(){
-             console.log(this.myNewMessage)
-            this.myNewMessage.map((item,index)=>{
-              if(item.Message_Type==0){
-              return this.mytype="活动通知"
-            }
-            if(item.Message_Type==1){
-              return this.mytype="优惠券通知"
-            }
-            if(item.Message_Type==2){
-              return this.mytype="积分通知"
-            }
-            })
-            console.log(this.mytype)
-          }
         },
        
          computed:{
