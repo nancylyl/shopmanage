@@ -9,3 +9,11 @@ export function addcomment(data) {
     method: 'post'
   })
 }
+
+export function updateOrderState(orderNum,state) {
+
+  //console.log(data)
+  return request({
+    url: '/api/updateOrderState.do?orderNum='+orderNum +'&state='+state,
+  })
+}

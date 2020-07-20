@@ -60,24 +60,25 @@
 <script>
 import { showCollect, CollectProSrc } from "@/network/showCollect";
 
+<<<<<<< HEAD
 // import  {showCollect,CollectProSrc} from '@/network/showCollect'
+=======
+import { mapActions, mapGetters } from "vuex";
+export default {
+  name: "MyCollection",
+  data() {
+    return {
+      showList: []
+    };
+  },
+  created() {
+    console.log("开始收藏");
+    this.$store.dispatch("showPro");
+    console.log(this.$store.state.collectPro.collectProList);
+    this.showList = this.$store.state.collectPro.collectProList;
+>>>>>>> ce0be906b1a8f055681981ff87dc7837ef321140
 
-import {mapActions,mapGetters} from 'vuex'
-  export default {
-    name: "MyCollection",
-    data() {
-      return {
-        showList: []
-      }
-    },
-    created() {
-      console.log("开始收藏");
-      this.$store.dispatch('showPro');
-      console.log(this.$store.state.collectPro.collectProList);
-      this.showList = this.$store.state.collectPro.collectProList;
-
-
-      /*let UId=window.pageConfig.userInfo.UId;
+    /*let UId=window.pageConfig.userInfo.UId;
       let mypid;//图片ID
 
       showCollect(UId)
@@ -102,16 +103,14 @@ import {mapActions,mapGetters} from 'vuex'
               })
           })
         })*/
-    },
-    methods: {
-      ...mapActions(['showPro', 'deleteCollect'])
-    },
-    computed: {
-      ...mapGetters(['showCartList'])
-    }
+  },
+  methods: {
+    ...mapActions(["showPro", "deleteCollect"])
+  },
+  computed: {
+    ...mapGetters(["showCartList"])
   }
-
-
+};
 </script>
 
 <style scoped>

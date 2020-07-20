@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bigbox">
     <div class="box">
       <div class="header">
         <h3>我的消息</h3>
@@ -17,7 +17,7 @@
           <p class="p1">{{ item.Message_Type }}</p>
           <p class="p2">{{ item.Message_Text }}</p>
           <i @click="delmessage(item.Message_Id)">删除</i>
-          <p style="text-align: center;">
+          <p style="text-align: center;margin-top:-5px;">
             {{ item.Message_Time | dateFmt("YYYY-MM-DD HH:mm:ss") }}
           </p>
         </div>
@@ -29,38 +29,68 @@
 <script>
 import { mapGetters } from "vuex";
 import { getMymessage } from "@/network/person";
-
+import { getDleMessage } from "@/network/person";
 export default {
   name: "MyMessage",
   data() {
     return {
-      myNewMessage: []
+      myNewMessage: [],
+      delOldMessage: []
     };
   },
   created() {
-    // this.getMymessage();
-    getMymessage().then(res => {
-      this.myNewMessage = res.data.data;
-      // console.log(this.myNewMessage);
-      for (let i = 0; i < this.myNewMessage.length; i++) {
-        if (this.myNewMessage[i].Message_Type == 0) {
-          this.myNewMessage[i].Message_Type = "活动通知";
-        } else if (this.myNewMessage[i].Message_Type == 1) {
-          this.myNewMessage[i].Message_Type = "优惠券变动通知";
-        } else if (this.myNewMessage[i].Message_Type == 2) {
-          this.myNewMessage[i].Message_Type = "积分变动通知";
-        }
-        // console.log(this.myNewMessage[i].Message_Type)
-      }
-    });
+    this.getMymessage();
   },
   methods: {
-    delmessage(Message_Id) {
-      this.myNewMessage.map((item, index) => {
-        if (item.Message_Id == Message_Id) {
-          this.myNewMessage.splice(index, 1);
+    getMymessage() {
+      getMymessage().then(res => {
+        console.log(res.data);
+        this.myNewMessage = res.data.data;
+        console.log(this.myNewMessage);
+
+        for (let i = 0; i < this.myNewMessage.length; i++) {
+          if (this.myNewMessage[i].Message_Type == 0) {
+            this.myNewMessage[i].Message_Type = "活动通知";
+          } else if (this.myNewMessage[i].Message_Type == 1) {
+            this.myNewMessage[i].Message_Type = "优惠券变动通知";
+          } else if (this.myNewMessage[i].Message_Type == 2) {
+            this.myNewMessage[i].Message_Type = "积分变动通知";
+          }
+          console.log(this.myNewMessage[i].Message_Type);
         }
       });
+    },
+    delmessage(Message_Id) {
+      getDleMessage(Message_Id).then(res => {
+        if (res.data.success) {
+          this.$message("删除成功");
+          this.getMymessage();
+          // this.$router.push("/MyMessageome")
+        } else {
+        }
+      });
+
+      // this.myNewMessage.map((item,index)=>{
+      //   if(item.Message_Id==Message_Id){
+      //     this.myNewMessage.splice(index,1);
+      //   }
+      // })
+      // console.log(Message_Id)
+    },
+    mytype2() {
+      console.log(this.myNewMessage);
+      this.myNewMessage.map((item, index) => {
+        if (item.Message_Type == 0) {
+          return (this.mytype = "活动通知");
+        }
+        if (item.Message_Type == 1) {
+          return (this.mytype = "优惠券通知");
+        }
+        if (item.Message_Type == 2) {
+          return (this.mytype = "积分通知");
+        }
+      });
+      console.log(this.mytype);
     }
   },
 
@@ -75,20 +105,22 @@ export default {
   font-size: 14px;
   color: #6b6b6b;
 }
+.bigbox {
+  height: auto;
+  margin-bottom: 30px;
+}
 .box {
   width: 970px;
-  /* position: absolute; */
-  top: 60px;
-  right: 7%;
+  height: auto;
+
+  margin: 20px 0;
 }
 .header {
-  position: relative;
   background-color: #efefef;
   margin-bottom: 20px;
   padding: 30px 50px;
 }
 h3 {
-  position: relative;
   top: -10px;
   font-size: 18px;
   color: #6b6b6b;
@@ -98,15 +130,15 @@ p {
   text-align: left;
 }
 .setion {
-  position: relative;
   background-color: #efefef;
   margin-bottom: 20px;
   padding: 30px 50px;
+  height: auto;
+  z-index: 1;
 }
 .xiaoXi {
   background: #fff;
   padding: 10px 20px;
-  position: relative;
 }
 .p2 {
   padding-right: 50px;
@@ -116,10 +148,8 @@ i {
   height: 50px;
   border-radius: 50%;
   display: inline-block;
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  margin-top: -25px;
+  margin-left: 700px;
+  margin-top: -65px;
   border: 1px solid #da5278;
   color: #da5278;
   line-height: 50px;
