@@ -84,8 +84,8 @@ export default {
   },
 
   beforeCreate() {
-    let UId = window.pageConfig.userInfo.UId;
-    getComment(UId)
+    // let UId = window.pageConfig.userInfo.UId;
+    getComment()
       .then(res => {
         // console.log(res.data);
         console.log("开始评论");
