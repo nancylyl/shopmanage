@@ -60,6 +60,9 @@
 <script>
 import { showCollect, CollectProSrc } from "@/network/showCollect";
 
+// <<<<<<< HEAD
+// import  {showCollect,CollectProSrc} from '@/network/showCollect'
+// =======
 import { mapActions, mapGetters } from "vuex";
 export default {
   name: "MyCollection",
@@ -73,6 +76,7 @@ export default {
     this.$store.dispatch("showPro");
     console.log(this.$store.state.collectPro.collectProList);
     this.showList = this.$store.state.collectPro.collectProList;
+// >>>>>>> ce0be906b1a8f055681981ff87dc7837ef321140
 
     /*let UId=window.pageConfig.userInfo.UId;
       let mypid;//图片ID
