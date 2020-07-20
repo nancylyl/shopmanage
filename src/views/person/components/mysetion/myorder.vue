@@ -1,13 +1,15 @@
 <template>
   <div>
-    <div class="box" v-if="Myorder.length > 0">
+    <div class="box" v-if="Myorder.length>0">
       <div class="header">
-        <img src="../mydd.gif" alt="" class="tu" />
+
+          <img src="../mydd.gif" alt=""  class="tu">
+
 
         <div class="text">
-          <p class="name">{{ Myorder[0][0].NAME }}</p>
-          <p>{{ Myorder[0][0].userTypeName }}</p>
-          <p>累计消费:{{ Myorder[0][0].totalMoney }}</p>
+          <p class="name">{{Myorder[0][0].NAME}}</p>
+          <p>{{Myorder[0][0].userTypeName}}</p>
+          <p>累计消费:{{Myorder[0][0].totalMoney}}</p>
         </div>
       </div>
       <div class="season">
@@ -243,16 +245,17 @@
 </script>
 
 <style scoped>
-.active {
-  color: red;
-}
-　 　.unactive {
-  color: #000;
-}
-.box {
-  width: 970px;
-  height: 540px;
+  .active{
+    color:red;
+  }　
+　.unactive{
+  color:#000;
+  }
+ .box{
+   width: 970px;
+   height: 540px;
   position: absolute;
+<<<<<<< HEAD
   top: 60px;
   right: 7%;
   /*background-color: #00aaf1;*/
@@ -371,25 +374,148 @@ th {
 }
 .footerorder td {
   color: #6b6b6b;
+=======
+   top: 60px;
+   right: 7%;
+   /*background-color: #00aaf1;*/
+ }
+  .header{
+    text-align: left;
+    height: 128px;
+    position: relative;
+    line-height: 128px;
+    background-color: #efefef;
+    margin-bottom: 20px;
+    padding: 30px 50px;
+  }
+  .text{
+    display: inline-block;
+    width: 170px;
+    height: 100px;
+    position: absolute;
+    top: -20px;
+    left: 230px;
+  }
+  .tu{
+    overflow: hidden;
+    display: inline-block;
+  }
+  .name{
+    color: rgb(107,107,107);
+    font-size: 25px;
+    font-weight: bold;
+  }
+  p{
+    width: 170px;
+    margin-top: 20px;
+    height: 10px;
+    font-size: 14px;
+    color: #da5278;
+  }
+  .season{
+    width: 920px;
+    height: 142px;
+    position: relative;
+    background-color: #efefef;
+    margin-bottom: 20px;
+    padding-left: 50px;
+    padding-top: 20px;
+  }
+  h3{
+    text-align: left;
+    color: #6b6b6b;
+  }
+  .change {
+    width: 120px;
+    height: 50px;
+    line-height: 50px;
+    margin-right: 10px;
+    float: left;
+    border: 1px solid #fff!important;
+    color: #fff!important;
+    text-align: center;
+    text-decoration: none;
+    transition: all .4s ease 0s;
+    cursor: pointer;
+    background: #da5278!important;
+  }
+  .drawname {
+    width: 210px;
+  }
+  .quanBu{
+    width: 120px;
+    height: 50px;
+    line-height: 50px;
+    margin-right: 10px;
+    float: left;
+    border: 1px solid #fff;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    transition: all .4s ease 0s;
+    cursor: pointer;
+    background: #da5278;
+  }
+  .daiZhiFu{
+    transition: all .3s;
+    width: 120px;
+    height: 50px;
+    line-height: 50px;
+    margin-right: 10px;
+    float: left;
+    border: 1px solid #da5278;
+    color: #da5278;
+    padding: 0px 10px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    background: 0 0;
+  }
+  .footer{
+    width: 920px;
+    background-color: #efefef;
+    padding-left: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  table{
+    width: 920px;
+  }
+  th{
+    font-weight: bold;
+    font-size: 14px;
+    color: #6b6b6b;
+  }
+ .daiZhiFu:hover{
+   color: whitesmoke;
+   background-color: #da5278;
+   transition: all .3s;
+ }
+ .footerorder {
+   text-align: center;
+ }
+ .footerorder td {
+  color: #6B6B6B;
+>>>>>>> 1f8e4150623a52dc386dfd6093dbf4f276f77e60
   font-family: "微软雅黑";
   line-height: 30px;
   font-size: 14px;
   height: 20px;
-}
-.footerorder span {
+ }
+ .footerorder span {
   color: #da5278;
-}
-.mem-btn {
-  width: 120px;
-  line-height: 28px;
-  border: 1px solid #da5278;
-  color: #da5278;
-  text-align: center;
-  text-decoration: none;
-  transition: all 0.4s ease 0s;
-  cursor: pointer;
-  background: 0 0;
-}
+ }
+ .mem-btn {
+    width: 120px;
+    line-height: 28px;
+    border: 1px solid #da5278;
+    color: #da5278;
+    text-align: center;
+    text-decoration: none;
+    transition: all .4s ease 0s;
+    cursor: pointer;
+    background: 0 0;
+ }
 .mem-btn:hover {
   color: aliceblue;
   background-color: #da5278;
@@ -398,21 +524,21 @@ th {
   outline: 1px solid #da5278;
 }
 .el-button {
-  display: inline-block;
-  line-height: 1;
-  white-space: nowrap;
-  cursor: pointer;
-  color: #606266;
-  -webkit-appearance: none;
-  text-align: center;
-  box-sizing: border-box;
-  outline: 0;
-  margin: 0;
-  transition: 0.1s;
-  font-weight: 500;
-  padding: 5px 20px;
-  font-size: 14px;
-  border-radius: 4px;
+    display: inline-block;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    color: #606266;
+    -webkit-appearance: none;
+    text-align: center;
+    box-sizing: border-box;
+    outline: 0;
+    margin: 0;
+    transition: .1s;
+    font-weight: 500;
+    padding: 5px 20px;
+    font-size: 14px;
+    border-radius: 4px;
 }
 
 .drawbox {
