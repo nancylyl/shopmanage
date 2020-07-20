@@ -147,17 +147,11 @@
         </div>
         <div class="otherbox" v-html="pro_data" :style="productshow"></div>
         <div class="otherbox" :style="commentaryshow">
-          <div v-if="this.comment==''">
-            <p>暂无评论...</p>  
+          <div class="talk" v-for="item in this.comment" :key="item.id" name="item.id">
+            <span class="tel">{{item.Name}}</span>
+            <div class="talktext">{{item.Content}}</div>
+            <div class="talkdate">{{item.CreateDate}}</div>
           </div>
-          <div v-if="this.comment!=''">
-              <div class="talk" v-for="item in this.comment" :key="item.id" name="item.id">
-              <span class="tel">{{item.Name}}</span>
-              <div class="talktext">{{item.Content}}</div>
-              <div class="talkdate">{{item.CreateDate}}</div>
-            </div>
-          </div>
-          
         </div>
       </div>
     </div>
@@ -221,6 +215,15 @@ export default {
   },
   created() {
     this.getProductDetail()
+    getComment(this.$route.params.id).then(res => {
+      console.log( res.data)
+      this.comment = res.data.data;
+       console.log(this.comment);
+       this.comment.map((item, index) => {
+        return item.CreateDate = new Date(+new Date(item.CreateDate) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
+          console.log(item.CreateDate)
+       })
+    })   
   },
   watch: {
     $route(to, from) {
@@ -268,15 +271,8 @@ export default {
         //   console.log(res.data.data[0]);
         //   console.log(res.data.data[1]);
         //   console.log(res.data.data[2]);
-      }),
-      getComment(this.$route.params.id).then(res => {
-      this.comment = res.data.data;
-      //  console.log(this.comment);
-       this.comment.map((item, index) => {
-        return item.CreateDate = new Date(+new Date(item.CreateDate) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
-          console.log(item.CreateDate)
-       })
-    })       
+      })
+      
     },
     showdata() {
       this._data.productshow = { display: 'block' }
@@ -411,12 +407,14 @@ export default {
         }
         else{
           this.disable = { cursor: 'not-allowed'}
+          this.$message.error('请选择商品信息');
         }
         }else if(a!=''&&c==''){
           if(b!= '') {
              this.disable = { cursor: 'pointer'};
           }
           else{
+          this.$message.error('请选择商品信息');
            this.disable = { cursor: 'not-allowed'}
           }
         }   
@@ -519,13 +517,7 @@ export default {
 </script> 
 <style lang="scss" scoped>
   @import "~assets/css/productdetails/productdetails.scss";
-  .otherbox{
-    p{
-      text-align: center;
-      margin-top: 50px;
-      font-size: 25px;
-    }
-  }
+
   .mask {
     background-color: transparent;
     opacity: 0;
