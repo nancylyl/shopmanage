@@ -97,7 +97,7 @@
 
 <script>
   import { province, city, area } from '../../../../network/vue-area.js'
-  import {updateMyAddress} from "../../../../network/person";
+  import {updateMyAddress} from "../../../../network/person"
     export default {
         name: "ChangeAdd",
       data () {

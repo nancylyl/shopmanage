@@ -1,147 +1,115 @@
 <template>
   <div>
-    <div class="box" v-if="Myorder.length > 0">
+    <div class="box" v-if="Myorder.length>0">
       <div class="header">
-        <img src="../mydd.gif" alt="" class="tu" />
+
+          <img src="../mydd.gif" alt=""  class="tu">
+
 
         <div class="text">
-          <p class="name">{{ Myorder[0][0].NAME }}</p>
-          <p>{{ Myorder[0][0].userTypeName }}</p>
-          <p>累计消费:{{ Myorder[0][0].totalMoney }}</p>
+          <p class="name">{{Myorder[0][0].NAME}}</p>
+          <p>{{Myorder[0][0].userTypeName}}</p>
+          <p>累计消费:{{Myorder[0][0].totalMoney}}</p>
         </div>
       </div>
       <div class="season">
         <h3>我的订单</h3>
-        <div
-          v-for="(items, indexs) in buttonlist"
-          @click="changeclass(indexs)"
-          :class="{ change: getclass == indexs }"
-          class="daiZhiFu"
-          v-on:click="getMyOder(indexs - 1)"
-        >
-          {{ items.select }}
-        </div>
+        <div v-for="(items,indexs) in buttonlist" @click="changeclass(indexs)" :class="{'change':getclass == indexs}" class="daiZhiFu"  v-on:click="getMyOder(indexs-1)">{{ items.select }}</div>
       </div>
       <div class="footer">
         <table class="footerorder">
-          <thead>
-            <th>订单商品</th>
-            <th>收货人</th>
-            <th>订单金额</th>
-            <th>下单时间</th>
-            <th>订单状态</th>
-            <th>操作</th>
-          </thead>
-          <tr
-            v-for="(item, index) in Myorder[2]"
+            <thead>
+              <th>订单商品</th>
+              <th>收货人</th>
+              <th>订单金额</th>
+              <th>下单时间</th>
+              <th>订单状态</th>
+              <th>操作</th>
+            </thead>
+            <tr v-for="(item, index) in Myorder[2]"
             :key="item.id"
-            name="item.id"
-            class="trout"
-          >
-            <td>
-              订单编号：
-              <span>{{ item.ordernum }}</span>
-            </td>
-            <td>{{ item.New_Name }}</td>
-            <td>￥{{ item.TotalPrice }}</td>
-            <td>{{ item.CreateDate | dateFmt("YYYY-MM-DD HH:mm:ss") }}</td>
-            <td v-text="typelist(item.State)"></td>
-            <td>
-              <div v-if="item.State == 0">
-                <el-button @click="open2(item, index)" type="text">
-                  <div class="mem-btn">
-                    付款
+            name="item.id" class="trout">
+              <td>
+                订单编号：
+                <span>{{ item.ordernum }}</span>
+              </td>
+              <td>{{ item.New_Name }}</td>
+              <td>￥{{ item.TotalPrice }}</td>
+              <td>{{ item.CreateDate | dateFmt('YYYY-MM-DD HH:mm:ss')}}</td>
+              <td v-text="typelist(item.State)"></td>
+              <td>  
+                  <div v-if="item.State == 0">
+                    <el-button  @click="open2(item,index)" type="text" >
+                      <div class="mem-btn">
+                      付款
+                      </div>
+                    </el-button>
                   </div>
-                </el-button>
-              </div>
-              <div v-if="item.State >= 1 && item.State <= 5">
-                <el-button @click="open3(item, index)" type="text">
-                  <div class="mem-btn">
-                    退款
-                  </div>
-                </el-button>
-              </div>
-              <div>
-                <el-button
-                  type="text"
-                  @click="dialogFormVisible = true"
-                  @click.native="getplorder(item)"
-                >
-                  <div
-                    v-if="item.State >= 1 && item.State <= 5"
-                    class="mem-btn"
-                  >
-                    评论
-                  </div>
-                </el-button>
-              </div>
-              <el-dialog title="订单评价" :visible.sync="dialogFormVisible">
-                <el-form :model="form">
-                  <el-form-item
-                    label="请为订单打分"
-                    :label-width="formLabelWidth"
-                  >
-                    <el-rate v-model="form.Star" show-text> </el-rate>
-                  </el-form-item>
-                  <el-form-item
-                    label="请您评价订单"
-                    :label-width="formLabelWidth"
-                  >
-                    <el-input
-                      v-model="form.Content"
-                      autocomplete="off"
-                    ></el-input>
-                  </el-form-item>
-                </el-form>
-                <div slot="footer" class="dialog-footer">
-                  <el-button @click="dialogFormVisible = false"
-                    >取 消</el-button
-                  >
-                  <el-button
-                    type="primary"
-                    plain
-                    @click="dialogFormVisible = false"
-                    @click.native="pinglun(item, index, form)"
-                    >确 定
-                  </el-button>
-                </div>
-              </el-dialog>
-              <div>
-                <el-button
-                  type="text"
-                  @click="drawer = true"
-                  @click.native="getchakanorder(item)"
-                >
-                  <div class="mem-btn">
-                    查看
-                  </div>
-                </el-button>
-              </div>
-              <el-drawer
-                size="50%"
-                :visible.sync="drawer"
-                :direction="direction"
-              >
-                <h2>查看商品详情</h2>
-                <div
-                  class="drawbox"
-                  v-for="(itemp, indexp) in Myorder[1]"
-                  :key="item.id"
-                  name="item.id"
-                  v-if="chakanorder == itemp.OrderNum"
-                >
-                  <div class="draw drawname">
-                    {{ itemp.Pro_Name }}
+                  <div v-if="item.State >= 1 && item.State <= 5">
+                    <el-button  @click="open3(item,index)" type="text" >
+                      <div class="mem-btn">
+                      退款
+                      </div>
+                    </el-button>
                   </div>
                   <div>
-                    <img :src="require(`@/assets/images/${itemp.Pro_Url}`)" />
+                    <el-button type="text" @click="dialogFormVisible = true"  @click.native="getplorder(item)">
+                      <div v-if="item.State >= 1 && item.State <= 5 " class="mem-btn">
+                        评论
+                      </div>
+                    </el-button>
                   </div>
-                  <div class="draw">{{ itemp.Num }}件</div>
-                  <div class="draw">单价￥{{ itemp.Price }}</div>
-                </div>
-              </el-drawer>
-            </td>
-          </tr>
+                  <el-dialog title="订单评价" :visible.sync="dialogFormVisible">
+                    <el-form :model="form">
+                      <el-form-item label="请为订单打分" :label-width="formLabelWidth">
+                        <el-rate
+                          v-model="form.Star"
+                          show-text>
+                        </el-rate>
+                      </el-form-item>
+                      <el-form-item label="请您评价订单" :label-width="formLabelWidth">
+                        <el-input v-model="form.Content" autocomplete="off"></el-input>
+                      </el-form-item>
+                    </el-form>
+                    <div slot="footer" class="dialog-footer">
+                      <el-button @click="dialogFormVisible = false">取 消</el-button>
+                      <el-button type="primary" plain
+                    @click="dialogFormVisible = false " @click.native="pinglun(item,index,form)">确 定
+                      </el-button>
+                    </div>
+                  </el-dialog>
+                  <div>
+                    <el-button type="text" @click="drawer = true"  @click.native="getchakanorder(item)">
+                      <div class="mem-btn">
+                        查看
+                      </div>
+                    </el-button>
+                  </div>
+                  <el-drawer
+                    size="50%"
+                    :visible.sync="drawer"
+                    :direction="direction">
+                    <h2>查看商品详情</h2>
+                    <div class="drawbox"  v-for="(itemp, indexp) in Myorder[1]" 
+                    :key="item.id"
+                    name="item.id" 
+                    v-if="chakanorder == itemp.OrderNum">
+                        <div class="draw drawname">
+                          {{ itemp.Pro_Name }}
+                        </div>
+                        <div>
+                          <img :src="require(`@/assets/images/${itemp.Pro_Url}`)">
+                        </div>
+                        <div class="draw">
+                          {{ itemp.Num }}件
+                        </div>
+                        <div class="draw">
+                          单价￥{{ itemp.Price }}
+                        </div>
+                    </div>
+                  </el-drawer>
+              </td>
+            </tr>
         </table>
       </div>
     </div>
@@ -149,129 +117,132 @@
 </template>
 
 <script>
-import { getMyOder } from "../../../../network/person";
-import { addcomment } from "@/network/addcomment";
-import { updateOrderState } from "@/network/addcomment";
+  import { getMyOder } from '../../../../network/person'
+  import { addcomment } from '@/network/addcomment'
+  import { updateOrderState } from '@/network/addcomment'
 
-export default {
-  name: "myorder",
-  data() {
-    return {
-      newsList: [],
-      getclass: 0,
-      active: false,
-      buttonlist: [
-        { select: "全部订单" },
-        { select: "待支付" },
-        { select: "已取消的订单" }
-      ],
-      drawer: false,
-      direction: "rtl",
-      Myorder: [],
-      orderlist: [],
-      chakanorder: "",
-      dialogFormVisible: false,
-      form: {
-        Content: "",
-        OrderNum: "",
-        Star: 4
-      },
-      formLabelWidth: "120px"
-    };
-  },
-  computed: {
-    typelist() {
-      return function(i) {
-        console.log(i);
-        let res;
-        switch (Number(i)) {
-          case 0:
-            res = "未付款";
-            break;
-          case 2:
-            res = "已付款";
-            break;
-          case 3:
-            res = "未发货";
-            break;
-          case 4:
-            res = "已发货";
-            break;
-          case 5:
-            res = "已收货";
-            break;
-          case 12:
-            res = "退款完成";
-            break;
-          default:
-            res = "订单有误";
-            break;
+    export default {
+        name: "myorder",
+       data(){
+         return{
+          newsList:[],
+          getclass: 0,
+          active: false,
+　　　　　 buttonlist: [
+　　　　　  {select:'全部订单'},
+　　　　　　{select:'待支付'},
+　　　　　　{select:'已取消的订单'},
+　　　　　　　   　],
+           drawer: false,
+           direction: 'rtl',
+           Myorder:[],
+           orderlist:[],
+           chakanorder:'',
+           dialogFormVisible: false,
+           form: {
+            Content: '',
+            OrderNum: '',
+            Star:4,
+          },
+        formLabelWidth: '120px'
         }
-        return res;
-      };
-    }
-  },
-  methods: {
-    open1() {
-      this.$notify({
-        title: "成功",
-        message: "这是一条成功的提示消息",
-        type: "success"
-      });
-    },
-    changeclass(indexs) {
-      this.getclass = indexs;
-    },
-    open2(item, index) {
-      let orderNum = item.ordernum;
+       },
+       computed:{
+              typelist() {
+          return function(i) {
+            console.log(i);
+            let res;
+            switch (Number(i)) {
+              case 0:
+                res = "未付款";
+                break;
+              case 2:
+                res = "已付款";
+                break;
+              case 3:
+                res = "未发货";
+                break;
+              case 4:
+                res = "已发货";
+                break;
+              case 5:
+                res = "已收货";
+                break;
+              case 12:
+                res = "退款完成";
+                break;
+              default:
+                res = "订单有误";
+                break;
+            }
+            return res;
+          };
+        },
+       },
+       methods: {
+        open1() {
+        this.$notify({
+          title: '成功',
+          message: '这是一条成功的提示消息',
+          type: 'success'
+        });
+      },
+        changeclass(indexs) {
+            this.getclass = indexs
+        },
+        open2(item,index) {
 
-      let state = 2;
-      let indexa = index;
-      updateOrderState(orderNum, state);
-      this.Myorder.splice(state + 1);
-      this.Myorder[2][indexa].State = 2;
-      this.$message({
-        message: "恭喜你，已经付款成功",
-        type: "success"
-      });
-    },
-    open3(item, index) {
-      let orderNum = item.ordernum;
-      let state = 12;
-      let indexa = index;
-      updateOrderState(orderNum, state);
-      this.Myorder[2][indexa].State = 12;
-      this.$message({
-        message: "已退款成功",
-        type: "success"
-      });
-    },
-    getMyOder(state) {
-      getMyOder(state).then(res => {
-        this.Myorder = res.data.data;
-        console.log(this.Myorder);
-      });
-    },
-    getchakanorder(item) {
-      this.chakanorder = item.ordernum;
-      console.log(this.chakanorder);
-    },
-    getplorder(item) {
-      this.form.OrderNum = item.ordernum;
-    },
-    pinglun(item, index, form) {
-      let data = form;
-      console.log(data);
-      addcomment(data).then(res => {
-        console.log(213213213213);
-        console.log(res);
-      });
+          let orderNum = item.ordernum
+
+          let state = 2
+          let indexa = index
+          updateOrderState(orderNum,state)
+          this.Myorder.splice(state + 1);
+         this.Myorder[2][indexa].State = 2
+        this.$message({
+          message: '恭喜你，已经付款成功',
+          type: 'success'
+        });
+      },
+        open3(item,index) {
+          let orderNum = item.ordernum
+          let state = 12
+          let indexa = index
+          updateOrderState(orderNum,state) 
+          this.Myorder[2][indexa].State = 12
+        this.$message({
+          message: '已退款成功',
+          type: 'success'
+        });
+      },
+        getMyOder(state){
+          getMyOder(state).then(res => {
+            this.Myorder =res.data.data;
+            console.log(333333444444);
+            console.log(res);
+            })
+        },
+        getchakanorder(item){
+            this.chakanorder = item.ordernum
+            console.log(this.chakanorder);
+        },
+        getplorder(item){
+          this.form.OrderNum = item.ordernum
+        },
+        pinglun(item,index,form) {
+          let data = form
+          console.log(data);
+          addcomment(data).then(res => {
+            console.log(213213213213);
+            console.log(res);
+          })
+        },
+        
+      },
+       created() {
+        this.getMyOder(-1)
+      } 
     }
-  },
-  created() {
-    this.getMyOder(0);
-  }
-};
 </script>
 
 <style scoped>
@@ -286,6 +257,7 @@ export default {
 
   /*background-color: #00aaf1;*/
 }
+
 .header {
   text-align: left;
   height: 128px;
@@ -379,11 +351,14 @@ h3 {
   background: 0 0;
 }
 .footer {
-  width: 920px;
-  background-color: #efefef;
-  padding-left: 50px;
   padding-top: 20px;
-  padding-bottom: 20px;
+  /* width: 920px; */
+  background-color: #efefef;
+
+  /* padding-left: 50px;
+ 
+  padding-bottom: 20px; */
+  /* margin: 0 auto; */
 }
 table {
   width: 920px;
@@ -399,53 +374,56 @@ th {
   transition: all 0.3s;
 }
 .footerorder {
-  text-align: center;
+  /* text-align: center; */
+  border-collapse: collapse;
+  width: 100%;
 }
+
 .footerorder td {
   color: #6b6b6b;
+  padding-left: 20px;
   font-family: "微软雅黑";
   line-height: 30px;
   font-size: 14px;
   height: 20px;
-}
-.footerorder span {
+ }
+ .footerorder span {
   color: #da5278;
-}
-.mem-btn {
-  width: 120px;
-  line-height: 28px;
-  border: 1px solid #da5278;
-  color: #da5278;
-  text-align: center;
-  text-decoration: none;
-  transition: all 0.4s ease 0s;
-  cursor: pointer;
-  background: 0 0;
-}
+ }
+ .mem-btn {
+    width: 120px;
+    line-height: 28px;
+    border: 1px solid #da5278;
+    color: #da5278;
+    text-align: center;
+    text-decoration: none;
+    transition: all .4s ease 0s;
+    cursor: pointer;
+    background: 0 0;
+ }
 .mem-btn:hover {
   color: aliceblue;
   background-color: #da5278;
 }
 .trout {
-  /* outline: 1px solid #da5278; */
-  border-bottom: 1px solid red;
+  border-bottom: 2px solid #fff;
 }
 .el-button {
-  display: inline-block;
-  line-height: 1;
-  white-space: nowrap;
-  cursor: pointer;
-  color: #606266;
-  -webkit-appearance: none;
-  text-align: center;
-  box-sizing: border-box;
-  outline: 0;
-  margin: 0;
-  transition: 0.1s;
-  font-weight: 500;
-  padding: 5px 20px;
-  font-size: 14px;
-  border-radius: 4px;
+    display: inline-block;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    color: #606266;
+    -webkit-appearance: none;
+    text-align: center;
+    box-sizing: border-box;
+    outline: 0;
+    margin: 0;
+    transition: .1s;
+    font-weight: 500;
+    padding: 5px 20px;
+    font-size: 14px;
+    border-radius: 4px;
 }
 
 .drawbox {
