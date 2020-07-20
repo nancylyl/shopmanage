@@ -52,6 +52,7 @@ export default [{
               path: '/PerCenter/Mypoints',
               name: 'Mypoints',
               component: Mypoints,
+
             },
             {
               path: '/PerCenter/MyCoupon',
@@ -78,7 +79,10 @@ export default [{
               name: 'ChangeAdd',
               component: ChangeAdd,
             },
-        
+
+
+
+
 
 
         ]
