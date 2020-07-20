@@ -147,17 +147,11 @@
         </div>
         <div class="otherbox" v-html="pro_data" :style="productshow"></div>
         <div class="otherbox" :style="commentaryshow">
-          <div v-if="this.comment==''">
-            <p>暂无评论...</p>  
+          <div class="talk" v-for="item in this.comment" :key="item.id" name="item.id">
+            <span class="tel">{{item.Name}}</span>
+            <div class="talktext">{{item.Content}}</div>
+            <div class="talkdate">{{item.CreateDate}}</div>
           </div>
-          <div v-if="this.comment!=''">
-              <div class="talk" v-for="item in this.comment" :key="item.id" name="item.id">
-              <span class="tel">{{item.Name}}</span>
-              <div class="talktext">{{item.Content}}</div>
-              <div class="talkdate">{{item.CreateDate}}</div>
-            </div>
-          </div>
-          
         </div>
       </div>
     </div>
@@ -170,6 +164,7 @@ import addcart from '@/components/commom/addcart'
 import { mapActions ,mapGetters } from 'vuex'
 import { getProductDetail, getComment } from '@/network/productdetails'
 import hotShop from '@/components/content/hotShop'
+import { isLogin } from "@/toolkit";
 export default {
   data() {
     return {
@@ -220,6 +215,15 @@ export default {
   },
   created() {
     this.getProductDetail()
+    getComment(this.$route.params.id).then(res => {
+      console.log( res.data)
+      this.comment = res.data.data;
+       console.log(this.comment);
+       this.comment.map((item, index) => {
+        return item.CreateDate = new Date(+new Date(item.CreateDate) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
+          console.log(item.CreateDate)
+       })
+    })   
   },
   watch: {
     $route(to, from) {
@@ -267,15 +271,8 @@ export default {
         //   console.log(res.data.data[0]);
         //   console.log(res.data.data[1]);
         //   console.log(res.data.data[2]);
-      }),
-      getComment(this.$route.params.id).then(res => {
-      this.comment = res.data.data;
-      //  console.log(this.comment);
-       this.comment.map((item, index) => {
-        return item.CreateDate = new Date(+new Date(item.CreateDate) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
-          console.log(item.CreateDate)
-       })
-    })       
+      })
+      
     },
     showdata() {
       this._data.productshow = { display: 'block' }
@@ -420,21 +417,59 @@ export default {
           }
         }   
     },
-    addcart(a, b, c, d, e, f, g, h, i, j, k) {      
+    addcart(a, b, c, d, e, f, g, h, i, j, k) {   
+       
       if(d!=''&&f!=''){
         if(e!= '' && g!='') {
-          this.sureadd(a, b, c, d, e, f, g, h, i, j, k)
+          if (!isLogin()) {
+            this.$message({
+              message: "您还没有登录！请先登录",
+              type: "warning"
+            });
+            setTimeout(() => {
+              this.$router.push({
+                path: `/denglu`
+              });
+            }, 300);
+          }else{
+            this.sureadd(a, b, c, d, e, f, g, h, i, j, k)
+          }  
+          
         }else{
           this.$message.error('请选择商品信息');
         }
       }else if(d!=''&&f==''){
         if(e!= '') {
-             this.sureadd(a, b, c, d, e, f, g, h, i, j, k)  
+          if (!isLogin()) {
+          this.$message({
+            message: "您还没有登录！请先登录",
+            type: "warning"
+          });
+          setTimeout(() => {
+            this.$router.push({
+              path: `/denglu`
+            });
+          }, 300);
+        }else{
+            this.sureadd(a, b, c, d, e, f, g, h, i, j, k)
+          }  
         }else{
           this.$message.error('请选择商品信息');
         }
       }else if(d ==''&&f==''){
-          this.sureadd(a, b, c, d, e, f, g, h, i, j, k)  
+        if (!isLogin()) {
+          this.$message({
+            message: "您还没有登录！请先登录",
+            type: "warning"
+          });
+          setTimeout(() => {
+            this.$router.push({
+              path: `/denglu`
+            });
+          }, 300);
+        } else{
+            this.sureadd(a, b, c, d, e, f, g, h, i, j, k)
+          }  
       }      
     },
     sureadd(a, b, c, d, e, f, g, h, i, j, k){
@@ -480,13 +515,7 @@ export default {
 </script> 
 <style lang="scss" scoped>
   @import "~assets/css/productdetails/productdetails.scss";
-  .otherbox{
-    p{
-      text-align: center;
-      margin-top: 50px;
-      font-size: 25px;
-    }
-  }
+
   .mask {
     background-color: transparent;
     opacity: 0;

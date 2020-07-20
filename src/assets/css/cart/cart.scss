@@ -5,13 +5,18 @@
     .logo {
         width: 250px;
         height: 100px;
-        margin-bottom: 20px;
         cursor: pointer;
     }
     
     .empty {
         height: 300px;
-        line-height: 300px;
+        line-height: 200px;
+        span {
+            font-size: 40px;
+        }
+        .goBuy {
+            margin: 0 auto;
+        }
     }
     
     .tittle {
@@ -40,9 +45,6 @@
         img {
             width: 80px;
             height: 80px;
-        }
-        .goBuy {
-            margin: 0 auto;
         }
     }
     

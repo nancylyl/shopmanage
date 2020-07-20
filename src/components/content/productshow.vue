@@ -58,7 +58,7 @@
         </ul>
       </div>
       <ul class="products" v-if="listpro.length > 0">
-        <li v-for="item in listpro" :key="item.id">
+        <li v-for="item in listpro" :key="item.id" class="items">
           <showbox
             :imgSrc="item.children"
             :price="item.Price"
