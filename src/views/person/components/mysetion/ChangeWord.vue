@@ -93,7 +93,7 @@ export default {
 }
 .box {
   width: 970px;
-  position: absolute;
+  /* position: absolute; */
   top: 60px;
   right: 7%;
 }

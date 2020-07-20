@@ -192,7 +192,7 @@ export default {
 .box {
   width: 970px;
   height: 496px;
-  position: absolute;
+  /* position: absolute; */
   top: 45px;
   right: 7%;
 }
