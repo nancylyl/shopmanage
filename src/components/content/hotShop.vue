@@ -52,7 +52,7 @@ export default {
   padding-left:30px;
   /* height: 1130px;
    */
-  border: 1px solid gray;
+  border: 1px solid #dcdcdc;
 }
 .#mainHot > a {
   display: inline-block;

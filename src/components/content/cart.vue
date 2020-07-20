@@ -2,7 +2,7 @@
   <div>
         <img class="logo" src="http://activity.dapuimg.com/2019082001logo.png" alt="大朴网" @click="tohome">       
         <div v-if="cartProducts == ''" class="empty">
-            <span style="font-size: 40px; ">您的购物车还是空的</span>
+            <span>您的购物车还是空的</span>
             <div class="goBuy">
                 <el-button type="info" @click="tohome">马上去购物</el-button>
             </div>  

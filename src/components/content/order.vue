@@ -147,6 +147,7 @@
       </div>
     </div>
     <button class="btn" @click="upOrder">提交订单</button>
+    <div class="clear"></div>
   </div>
 </template>
 <script>

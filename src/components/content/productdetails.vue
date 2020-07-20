@@ -164,6 +164,7 @@ import addcart from '@/components/commom/addcart'
 import { mapActions ,mapGetters } from 'vuex'
 import { getProductDetail, getComment } from '@/network/productdetails'
 import hotShop from '@/components/content/hotShop'
+import { isLogin } from "@/toolkit";
 export default {
   data() {
     return {
@@ -214,8 +215,15 @@ export default {
   },
   created() {
     this.getProductDetail()
-    // console.log(this.$route.params.id)
-   
+    getComment(this.$route.params.id).then(res => {
+      console.log( res.data)
+      this.comment = res.data.data;
+       console.log(this.comment);
+       this.comment.map((item, index) => {
+        return item.CreateDate = new Date(+new Date(item.CreateDate) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
+          console.log(item.CreateDate)
+       })
+    })   
   },
   watch: {
     $route(to, from) {
@@ -264,15 +272,7 @@ export default {
         //   console.log(res.data.data[1]);
         //   console.log(res.data.data[2]);
       })
-      getComment(this.$route.params.id).then(res => {
-      // console.log(res.data.data[2])
-      this.comment = res.data.data;
-       console.log(this.comment);
-       this.comment.map((item, index) => {
-        return item.CreateDate = new Date(+new Date(item.CreateDate) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
-          console.log(item.CreateDate)
-       })
-    })   
+      
     },
     showdata() {
       this._data.productshow = { display: 'block' }
@@ -407,27 +407,69 @@ export default {
         }
         else{
           this.disable = { cursor: 'not-allowed'}
-          this.$message.error('请选择商品信息');
         }
         }else if(a!=''&&c==''){
           if(b!= '') {
              this.disable = { cursor: 'pointer'};
           }
           else{
-          this.$message.error('请选择商品信息');
            this.disable = { cursor: 'not-allowed'}
           }
         }   
     },
-    addcart(a, b, c, d, e, f, g, h, i, j, k) {      
+    addcart(a, b, c, d, e, f, g, h, i, j, k) {   
+       
       if(d!=''&&f!=''){
         if(e!= '' && g!='') {
-          this.sureadd(a, b, c, d, e, f, g, h, i, j, k)
+          if (!isLogin()) {
+            this.$message({
+              message: "您还没有登录！请先登录",
+              type: "warning"
+            });
+            setTimeout(() => {
+              this.$router.push({
+                path: `/denglu`
+              });
+            }, 300);
+          }else{
+            this.sureadd(a, b, c, d, e, f, g, h, i, j, k)
+          }  
+          
+        }else{
+          this.$message.error('请选择商品信息');
         }
       }else if(d!=''&&f==''){
         if(e!= '') {
-             this.sureadd(a, b, c, d, e, f, g, h, i, j, k)  
+          if (!isLogin()) {
+          this.$message({
+            message: "您还没有登录！请先登录",
+            type: "warning"
+          });
+          setTimeout(() => {
+            this.$router.push({
+              path: `/denglu`
+            });
+          }, 300);
+        }else{
+            this.sureadd(a, b, c, d, e, f, g, h, i, j, k)
+          }  
+        }else{
+          this.$message.error('请选择商品信息');
         }
+      }else if(d ==''&&f==''){
+        if (!isLogin()) {
+          this.$message({
+            message: "您还没有登录！请先登录",
+            type: "warning"
+          });
+          setTimeout(() => {
+            this.$router.push({
+              path: `/denglu`
+            });
+          }, 300);
+        } else{
+            this.sureadd(a, b, c, d, e, f, g, h, i, j, k)
+          }  
       }      
     },
     sureadd(a, b, c, d, e, f, g, h, i, j, k){

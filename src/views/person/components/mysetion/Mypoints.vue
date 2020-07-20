@@ -7,7 +7,7 @@
           <tbody>
             <tr>
               <td class="td1">您目前的积分数:</td>
-              <td class="td2">{{totalScore}}</td>
+              <td class="td2">{{ totalScore }}</td>
               <td>
                 <a href="#" class="cBlue">查看积分明细</a>
               </td>
@@ -40,13 +40,23 @@
           <p>A. 纯文字评论不得少于10个字。</p>
           <p>B. 用户可对90天内的订单进行评论。</p>
           <p>积分奖品规则：</p>
-          <p>A. 文字评论奖励商品金额100%的积分数，即商品金额100元，奖励积分100</p>
-          <p>B. 晒图+文字奖励商品金额200%的积分数，即商品金额100元，奖励积分200。注意此规则和规则1不累计计算，也就是说发表文字和晒图同时最多奖励商品金额200%的积分数。</p>
+          <p>
+            A. 文字评论奖励商品金额100%的积分数，即商品金额100元，奖励积分100
+          </p>
+          <p>
+            B.
+            晒图+文字奖励商品金额200%的积分数，即商品金额100元，奖励积分200。注意此规则和规则1不累计计算，也就是说发表文字和晒图同时最多奖励商品金额200%的积分数。
+          </p>
           <p>C. 积分兑换比100：1，即100积分等于1元，可用于官网购物消费。</p>
           <p>D. 确认收货后15日内评论给予积分奖励，过时则不再给予积分奖励</p>
-          <p>E. 确认收货15天后再评论，无法获得原订单金额对应的积分。仅可获得50积分。</p>
+          <p>
+            E.
+            确认收货15天后再评论，无法获得原订单金额对应的积分。仅可获得50积分。
+          </p>
           <p>2、参加大朴网积分活动</p>
-          <p>参加大朴网不定期举行的积分活动，可以获得积分奖励，具体奖励以实际活动为准。</p>
+          <p>
+            参加大朴网不定期举行的积分活动，可以获得积分奖励，具体奖励以实际活动为准。
+          </p>
           <p>&nbsp;</p>
           <p>
             <strong>三、 积分如何使用？</strong>
@@ -63,19 +73,19 @@
 </template>
 
 <script>
-import { getUserInfo } from '../../../../toolkit'
+import { getUserInfo } from "../../../../toolkit";
 export default {
-  name: 'Mypoints',
+  name: "Mypoints",
   data() {
     return {
       totalScore: 0
-    }
+    };
   },
   created() {
-    console.log(getUserInfo())
-    this.totalScore = getUserInfo().SumScore
+    console.log(getUserInfo());
+    this.totalScore = getUserInfo().SumScore;
   }
-}
+};
 </script>
 
 <style scoped>
@@ -85,20 +95,22 @@ export default {
 }
 .box {
   width: 970px;
-  position: absolute;
-  top: 60px;
-  right: 7%;
+  /* position: absolute; */
+  /* overflow: hidden; */
+
+  /* height: 1200px; */
 }
 .header {
   width: 870px;
   height: 110px;
-  position: relative;
+  /* position: relative; */
   background-color: #efefef;
   margin-bottom: 20px;
   padding: 25px 50px;
+  overflow: hidden;
 }
 .title {
-  position: relative;
+  /* position: relative; */
   top: -5px;
   color: #6b6b6b;
   text-align: left;
@@ -127,12 +139,14 @@ td {
   border-bottom: solid 1px rgb(127, 91, 66);
 }
 .footer {
-  position: relative;
+  /* position: relative; */
   background-color: #efefef;
   margin-bottom: 20px;
   padding: 30px 50px;
+  overflow: hidden;
 }
 .text {
   text-align: left;
+  height: 500px;
 }
 </style>

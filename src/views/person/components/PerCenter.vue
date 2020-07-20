@@ -1,5 +1,5 @@
 <template>
-  <div id="PerCenter">
+  <div id="z">
     <tou></tou>
     <caiDan></caiDan>
   </div>
