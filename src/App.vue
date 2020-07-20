@@ -8,6 +8,9 @@
     </div>
     <router-view v-if="showRouter" />"
     <sidebar />
+    <div>
+      <myfooter />
+    </div>
   </div>
 </template>
 <script>
@@ -18,6 +21,7 @@ import productdeltails from '@/components/content/productdetails'
 import sidebar from '@/components/commom/sidebar'
 import person from '@/views/person/components/wode'
 import head from '@/views/person/components/head'
+import myfooter from '@/components/content/myfooter'
 import { isLogin } from './toolkit'
 
 export default {
@@ -98,7 +102,8 @@ export default {
     breadcrumbVue,
     productdeltails,
     sidebar,
-    person
+    person,
+    myfooter
   }
 }
 </script>
