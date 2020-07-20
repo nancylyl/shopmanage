@@ -12,12 +12,11 @@ $font-blue: #4e8fc2;
 $acolor: #7f5b42;
 .lifeapp {
     width: 90%;
-    margin-left: 5%;
-    margin-right: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    // margin-right: 15%;
     height: auto;
-    width: 1200px;
-    // margin-top: 10px;
-    margin: 5px auto;
+    margin-top: 10px;
     color: $font-grey;
     font-size: $font-size13;
     .sort {
@@ -45,19 +44,22 @@ $acolor: #7f5b42;
         }
     }
     .products {
+        width: 100%;
         display: flex;
         flex-wrap: wrap;
-        margin: 0 auto;
+        // margin: 0 auto;
         text-align: center;
-        width: 100%;
-        .items {
-            margin: 0 10px;
+        // padding-left: 40px;
+        li {
+            // width: 228px;
+            margin-left: 2%;
+            height: 400px;
         }
         .goods {
-            width: 218px;
+            // width: 228px;
             // height: 330px;
-            // margin: 0 5px;
-            border: 1px solid $bg-grey2;
+            // margin-right: 3%;
+            outline: 1px solid $bg-grey2;
             margin-bottom: 20px;
             .left {
                 position: absolute;
@@ -153,6 +155,7 @@ $acolor: #7f5b42;
             }
             .textHide {
                 overflow: hidden;
+                width: 190px;
                 text-overflow: ellipsis;
                 white-space: nowrap;
                 color: #6b6b6b;
@@ -174,7 +177,7 @@ $acolor: #7f5b42;
 }
 
 .name {
-    width: 1200px;
+    width: 100%;
     margin-top: 40px;
     height: 30px;
     line-height: 30px;
@@ -193,20 +196,17 @@ $acolor: #7f5b42;
 }
 
 .bedchose {
-    width: 1200px;
-    margin-left: 5%;
+    width: 85%;
+    margin-left: 7%;
     div {
         height: 40px;
-        width: 1180px;
-        margin-left: 10px;
         border-bottom: 1px solid $bg-grey2;
     }
     ul {
         display: flex;
         li {
-            color: #7F5B42;
-            margin-left: 15px;
-            // color: $font-grey;
+            margin-left: 10px;
+            color: $font-grey;
             line-height: 40px;
             font-size: $font-size13;
             a {
