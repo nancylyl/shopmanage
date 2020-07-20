@@ -12,6 +12,7 @@ import MyCollection from "../views/person/components/mysetion/MyCollection";
 import ChangeWord from "../views/person/components/mysetion/ChangeWord";
 import nav from "../views/person/components/nav";
 import ChangeAdd from "../views/person/components/mysetion/ChangeAdd";
+
 export default [{
 
         path: '/PerCenter',

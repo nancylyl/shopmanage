@@ -218,7 +218,8 @@
         getMyOder(state){
           getMyOder(state).then(res => {
             this.Myorder =res.data.data;
-            console.log(this.Myorder);
+            console.log(333333444444);
+            console.log(res);
             })
         },
         getchakanorder(item){
@@ -239,7 +240,7 @@
         
       },
        created() {
-        this.getMyOder(0)
+        this.getMyOder(-1)
       } 
     }
 </script>
