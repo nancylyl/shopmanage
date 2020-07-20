@@ -117,16 +117,24 @@
       <div style=" height:200px">
       <div class="jiesuan">
         <div>
-          <input type="checkbox"> 
-          <span style="color:#2980B9">使用优惠券</span>
+          <strong>积分抵用</strong>
         </div>
+        <p>使用规则：100积分可兑换1元（满500分可用）</p>
+        <p>  
+          <span>您目前的积分数：</span> 
+          <span style="color:#2980B9">{{ totalScore }} 分</span>
+          <span>本次可兑换金额：</span> 
+          <span style="color:#2980B9">{{ convert }} 元</span>
+        </p>
+        <p v-if="this.totalScore<500" style="color: red;">不符合积分使用规则，无可用积分</p>
         <div>
-          <input type="checkbox"> 
-          <span style="font-size:13px">支持礼品卡支付</span>
-        </div>
-        <div> 
-          <span style="color:#2980B9">订单备注：</span>
-           <input>
+          <input type="checkbox" :disabled="disable" :checked='check' @click="checkbox"> 
+          <span>使用积分</span><span v-if="this.check==true">(请输入需要兑换的积分数)</span>
+          <div v-if="this.check==true" >
+            <input style="margin-top: 15px;" type="number" v-model="inputNum" value="inputNum" @input="shuRuJiFen($event)">
+            <span>(兑换金额:<span style="color:#2980B9">{{inputNum/100}}元</span>)</span>
+          </div>
+         
         </div>
       </div>
        <div class="two">
@@ -135,13 +143,17 @@
             <label>商品金额</label>
             <span>¥{{totalPrice}}</span>
           </div>
+          <div>
+            <label>优惠金额</label>
+            <span>¥{{inputNum/100}}</span>
+          </div>
           <div style="border-bottom:1px solid black">
             <label>配送金额</label>
             <span>+¥{{freight}}</span>
           </div>
           <div style="padding-top:20px;color:red;font-size:20px;text-align:right;margin-bottom：10px">
              <label>应付金额：</label>
-            <span style="margin-left:0;margin-right:50px">¥{{totalPrice+freight}}元</span>
+            <span style="margin-left:0;margin-right:50px">¥{{totalPrice-inputNum/100+freight | numFilter}}元</span>
           </div>
         </div>
       </div>
@@ -151,6 +163,7 @@
   </div>
 </template>
 <script>
+import { getUserInfo } from "@/toolkit";
 import { mapGetters, mapActions } from 'vuex'
 import { addOrder } from '@/network/order'
 export default {
@@ -159,11 +172,27 @@ export default {
      return{
       totalPrice: 0,
       freight: 0,
-      Deltimeid: 0
+      Deltimeid: 0,
+      totalScore: 0,
+      disable: false,
+      check: false,
+      inputNum: 0,
+      read: false,
+      convert:0,
+
     }
+  },
+  watch:{
+    
   },
   created() {  
     // console.log(this.checkedData[0])
+     this.totalScore = getUserInfo().SumScore;
+    if(this.totalScore>=500){
+      this.disable = false
+    }else{
+      this.disable = true
+    }
     this.getSiteList()
     this.cartData.map((item, index) => {
       this.totalPrice += item.product_Price*item.num
@@ -173,9 +202,38 @@ export default {
     }else{
       this.freight = 12
     }
+    
+    this.convert= this.totalPrice > this.totalScore/100 ? this.totalScore/100 : this.totalPrice
+
   },
+  filters: {
+  numFilter (value) {
+    let realVal = ''
+    if (!isNaN(value) && value!== '') {
+      // 截取当前数据到小数点后两位
+      realVal = parseFloat(value).toFixed(2)
+    } else {
+      realVal = '--'
+    }
+    return realVal
+  }
+},
   methods:{
     ...mapActions(['getSiteList']),
+    shuRuJiFen(event){
+      let num= event.currentTarget.value
+      if(num<0){
+        this.inputNum = 0 
+      }
+      if(num>0){
+        this.inputNum = num > this.convert*100 ? this.convert*100 : num
+      }
+      console.log(this.inputNum)
+    },
+    checkbox(){
+      this.check =  !this.check
+      console.log(this.check )
+    },
     tohome(){
       this.$router.push("/home")
     },
