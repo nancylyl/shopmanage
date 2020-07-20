@@ -12,11 +12,12 @@ $font-blue: #4e8fc2;
 $acolor: #7f5b42;
 .lifeapp {
     width: 90%;
-    padding-left: 5%;
-    padding-right: 5%;
-    // margin-right: 15%;
+    margin-left: 5%;
+    margin-right: 5%;
     height: auto;
-    margin-top: 10px;
+    width: 1200px;
+    // margin-top: 10px;
+    margin: 5px auto;
     color: $font-grey;
     font-size: $font-size13;
     .sort {
@@ -44,22 +45,19 @@ $acolor: #7f5b42;
         }
     }
     .products {
-        width: 100%;
         display: flex;
         flex-wrap: wrap;
-        // margin: 0 auto;
+        margin: 0 auto;
         text-align: center;
-        // padding-left: 40px;
-        li {
-            // width: 228px;
-            margin-left: 2%;
-            height: 400px;
+        width: 100%;
+        .items {
+            margin: 0 10px;
         }
         .goods {
-            // width: 228px;
+            width: 218px;
             // height: 330px;
-            // margin-right: 3%;
-            outline: 1px solid $bg-grey2;
+            // margin: 0 5px;
+            border: 1px solid $bg-grey2;
             margin-bottom: 20px;
             .left {
                 position: absolute;
@@ -155,7 +153,6 @@ $acolor: #7f5b42;
             }
             .textHide {
                 overflow: hidden;
-                width: 190px;
                 text-overflow: ellipsis;
                 white-space: nowrap;
                 color: #6b6b6b;
@@ -196,8 +193,8 @@ $acolor: #7f5b42;
 }
 
 .bedchose {
-    width: 85%;
-    margin-left: 7%;
+    width: 1200px;
+    margin: 0 auto;
     div {
         height: 40px;
         border-bottom: 1px solid $bg-grey2;
