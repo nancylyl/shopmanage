@@ -27,7 +27,7 @@ const actions = {
 
     showCollect(UId)
       .then(rep=> {
-
+        console.log(rep.data);
         mypid = rep.data.data;
         console.log("mypid的长度是" + mypid.length);
         console.log(mypid);
