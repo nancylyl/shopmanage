@@ -2,60 +2,34 @@
   <div class="bedchose">
     <div>
       <ul>
-<<<<<<< HEAD
-        <li style="font-weight:bold;text-decoration:none;cursor: unset">
-          根数：
-        </li>
-=======
         <li style="font-weight:bold;text-decoration:none;cursor: unset">根数：</li>
->>>>>>> 2eff788efaa3814697419b520205fb295ff54425
         <li>
           <a
             href="javascript:;"
             :class="activeIndex == 0 ? 'selected' : ''"
             @click="searchByGS(0)"
-<<<<<<< HEAD
-            >全部</a
-          >
-=======
           >全部</a>
->>>>>>> 2eff788efaa3814697419b520205fb295ff54425
         </li>
         <li>
           <a
             href="javascript:;"
             :class="activeIndex == 1 ? 'selected' : ''"
             @click="searchByGS(1)"
-<<<<<<< HEAD
-            >240根</a
-          >
-=======
           >240根</a>
->>>>>>> 2eff788efaa3814697419b520205fb295ff54425
         </li>
         <li>
           <a
             href="javascript:;"
             :class="activeIndex == 2 ? 'selected' : ''"
             @click="searchByGS(2)"
-<<<<<<< HEAD
-            >300根</a
-          >
-=======
           >300根</a>
->>>>>>> 2eff788efaa3814697419b520205fb295ff54425
         </li>
         <li>
           <a
             href="javascript:;"
             :class="activeIndex == 3 ? 'selected' : ''"
             @click="searchByGS(3)"
-<<<<<<< HEAD
-            >350根</a
-          >
-=======
           >350根</a>
->>>>>>> 2eff788efaa3814697419b520205fb295ff54425
         </li>
         <li>
           <a
