@@ -14,7 +14,7 @@
       </div>
       <div class="season">
         <h3>我的订单</h3>
-        <div v-for="(items,indexs) in buttonlist" @click="changeclass(indexs)" :class="{'change':getclass == indexs}" class="daiZhiFu"  v-on:click="getMyOder(indexs)">{{ items.select }}</div>
+        <div v-for="(items,indexs) in buttonlist" @click="changeclass(indexs)" :class="{'change':getclass == indexs}" class="daiZhiFu"  v-on:click="getMyOder(indexs-1)">{{ items.select }}</div>
       </div>
       <div class="footer">
         <table class="footerorder">
@@ -28,7 +28,7 @@
             </thead>
             <tr v-for="(item, index) in Myorder[2]"
             :key="item.id"
-            name="item.id">
+            name="item.id" class="trout">
               <td>
                 订单编号：
                 <span>{{ item.ordernum }}</span>
@@ -38,16 +38,23 @@
               <td>{{ item.CreateDate | dateFmt('YYYY-MM-DD HH:mm:ss')}}</td>
               <td v-text="typelist(item.State)"></td>
               <td>  
-                  <div>
-                    <el-button  @click="open2" type="text" >
+                  <div v-if="item.State == 0">
+                    <el-button  @click="open2(item,index)" type="text" >
                       <div class="mem-btn">
                       付款
                       </div>
                     </el-button>
                   </div>
-                  <div>
-                    <el-button type="text" @click="dialogFormVisible = true">
+                  <div v-if="item.State >= 1 && item.State <= 5">
+                    <el-button  @click="open3(item,index)" type="text" >
                       <div class="mem-btn">
+                      退款
+                      </div>
+                    </el-button>
+                  </div>
+                  <div>
+                    <el-button type="text" @click="dialogFormVisible = true"  @click.native="getplorder(item)">
+                      <div v-if="item.State >= 1 && item.State <= 5 " class="mem-btn">
                         评论
                       </div>
                     </el-button>
@@ -67,12 +74,12 @@
                     <div slot="footer" class="dialog-footer">
                       <el-button @click="dialogFormVisible = false">取 消</el-button>
                       <el-button type="primary" plain
-                    @click="dialogFormVisible = false " @click.native="pinglun(form,index)">确 定
+                    @click="dialogFormVisible = false " @click.native="pinglun(item,index,form)">确 定
                       </el-button>
                     </div>
                   </el-dialog>
                   <div>
-                    <el-button type="text" @click="drawer = true">
+                    <el-button type="text" @click="drawer = true"  @click.native="getchakanorder(item)">
                       <div class="mem-btn">
                         查看
                       </div>
@@ -86,8 +93,8 @@
                     <div class="drawbox"  v-for="(itemp, indexp) in Myorder[1]" 
                     :key="item.id"
                     name="item.id" 
-                    v-if="item.ordernum == itemp.OrderNum">
-                        <div class="draw">
+                    v-if="chakanorder == itemp.OrderNum">
+                        <div class="draw drawname">
                           {{ itemp.Pro_Name }}
                         </div>
                         <div>
@@ -112,10 +119,13 @@
 <script>
   import { getMyOder } from '../../../../network/person'
   import { addcomment } from '@/network/addcomment'
+  import { updateOrderState } from '@/network/addcomment'
+
     export default {
         name: "myorder",
        data(){
          return{
+          newsList:[],
           getclass: 0,
           active: false,
 　　　　　 buttonlist: [
@@ -127,6 +137,7 @@
            direction: 'rtl',
            Myorder:[],
            orderlist:[],
+           chakanorder:'',
            dialogFormVisible: false,
            form: {
             Content: '',
@@ -142,10 +153,10 @@
             console.log(i);
             let res;
             switch (Number(i)) {
-              case 2:
+              case 0:
                 res = "未付款";
                 break;
-              case 1:
+              case 2:
                 res = "已付款";
                 break;
               case 3:
@@ -157,8 +168,8 @@
               case 5:
                 res = "已收货";
                 break;
-              case 5:
-                res = "已完成";
+              case 12:
+                res = "退款完成";
                 break;
               default:
                 res = "订单有误";
@@ -179,20 +190,50 @@
         changeclass(indexs) {
             this.getclass = indexs
         },
-        open2() {
+        open2(item,index) {
+
+          let orderNum = item.ordernum
+
+          let state = 2
+          let indexa = index
+          updateOrderState(orderNum,state)
+          this.Myorder.splice(state + 1);
+         this.Myorder[2][indexa].State = 2
         this.$message({
           message: '恭喜你，已经付款成功',
+          type: 'success'
+        });
+      },
+        open3(item,index) {
+          let orderNum = item.ordernum
+          let state = 12
+          let indexa = index
+          updateOrderState(orderNum,state) 
+          this.Myorder[2][indexa].State = 12
+        this.$message({
+          message: '已退款成功',
           type: 'success'
         });
       },
         getMyOder(state){
           getMyOder(state).then(res => {
             this.Myorder =res.data.data;
+            console.log(this.Myorder);
             })
         },
-        pinglun(data,index) {
-          data.OrderNum =this.Myorder[2][index].ordernum;
+        getchakanorder(item){
+            this.chakanorder = item.ordernum
+            console.log(this.chakanorder);
+        },
+        getplorder(item){
+          this.form.OrderNum = item.ordernum
+        },
+        pinglun(item,index,form) {
+          let data = form
+          console.log(data);
           addcomment(data).then(res => {
+            console.log(213213213213);
+            console.log(res);
           })
         },
         
@@ -278,6 +319,9 @@
     cursor: pointer;
     background: #da5278!important;
   }
+  .drawname {
+    width: 210px;
+  }
   .quanBu{
     width: 120px;
     height: 50px;
@@ -354,6 +398,9 @@
 .mem-btn:hover {
   color: aliceblue;
   background-color: #da5278;
+}
+.trout {
+  outline: 1px solid #da5278;
 }
 .el-button {
     display: inline-block;
