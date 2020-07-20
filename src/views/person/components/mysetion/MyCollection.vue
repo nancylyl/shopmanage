@@ -60,8 +60,6 @@
 <script>
 import { showCollect, CollectProSrc } from "@/network/showCollect";
 
-import  {showCollect,CollectProSrc} from '@/network/showCollect'
-
 import {mapActions,mapGetters} from 'vuex'
   export default {
     name: "MyCollection",
