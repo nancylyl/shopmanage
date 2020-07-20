@@ -70,21 +70,13 @@ $acolor: #7f5b42;
                 cursor: pointer;
             }
             .bigImgBox {
-<<<<<<< HEAD
-=======
                 position: relative;
->>>>>>> 2eff788efaa3814697419b520205fb295ff54425
                 width: 218px;
                 height: 218px;
                 z-index: 5;
                 overflow: hidden;
                 margin-bottom: 10px;
                 cursor: pointer;
-<<<<<<< HEAD
-                .big {
-                    width: 218px;
-                    height: 218px;
-=======
                 .hotflag {
                     position: absolute;
                     right: 10px;
@@ -121,7 +113,6 @@ $acolor: #7f5b42;
                     left: 0;
                     top: 0;
                     z-index: 1;
->>>>>>> 2eff788efaa3814697419b520205fb295ff54425
                     &:hover {
                         transform: scale(1.1);
                         transition: 2s;
@@ -136,7 +127,6 @@ $acolor: #7f5b42;
                 margin-bottom: 20px;
                 li:first-child {
                     margin-left: 15px;
-<<<<<<< HEAD
                 }
                 li {
                     float: left;
@@ -144,15 +134,6 @@ $acolor: #7f5b42;
                     height: 35px;
                     border: 2px solid #aaa7a6;
                 }
-=======
-                }
-                li {
-                    float: left;
-                    margin: 0 3px;
-                    height: 35px;
-                    border: 2px solid #aaa7a6;
-                }
->>>>>>> 2eff788efaa3814697419b520205fb295ff54425
                 .imgBorder {
                     border: 2px solid #b1544f;
                 }
