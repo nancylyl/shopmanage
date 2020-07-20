@@ -255,126 +255,6 @@
    width: 970px;
    height: 540px;
   position: absolute;
-<<<<<<< HEAD
-  top: 60px;
-  right: 7%;
-  /*background-color: #00aaf1;*/
-}
-.header {
-  text-align: left;
-  height: 128px;
-  position: relative;
-  line-height: 128px;
-  background-color: #efefef;
-  margin-bottom: 20px;
-  padding: 30px 50px;
-}
-.text {
-  display: inline-block;
-  width: 170px;
-  height: 100px;
-  position: absolute;
-  top: -20px;
-  left: 230px;
-}
-.tu {
-  overflow: hidden;
-  display: inline-block;
-}
-.name {
-  color: rgb(107, 107, 107);
-  font-size: 25px;
-  font-weight: bold;
-}
-p {
-  width: 170px;
-  margin-top: 20px;
-  height: 10px;
-  font-size: 14px;
-  color: #da5278;
-}
-.season {
-  width: 920px;
-  height: 142px;
-  position: relative;
-  background-color: #efefef;
-  margin-bottom: 20px;
-  padding-left: 50px;
-  padding-top: 20px;
-}
-h3 {
-  text-align: left;
-  color: #6b6b6b;
-}
-.change {
-  width: 120px;
-  height: 50px;
-  line-height: 50px;
-  margin-right: 10px;
-  float: left;
-  border: 1px solid #fff !important;
-  color: #fff !important;
-  text-align: center;
-  text-decoration: none;
-  transition: all 0.4s ease 0s;
-  cursor: pointer;
-  background: #da5278 !important;
-}
-.quanBu {
-  width: 120px;
-  height: 50px;
-  line-height: 50px;
-  margin-right: 10px;
-  float: left;
-  border: 1px solid #fff;
-  color: #fff;
-  text-align: center;
-  text-decoration: none;
-  transition: all 0.4s ease 0s;
-  cursor: pointer;
-  background: #da5278;
-}
-.daiZhiFu {
-  transition: all 0.3s;
-  width: 120px;
-  height: 50px;
-  line-height: 50px;
-  margin-right: 10px;
-  float: left;
-  border: 1px solid #da5278;
-  color: #da5278;
-  padding: 0px 10px;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  background: 0 0;
-}
-.footer {
-  width: 920px;
-  background-color: #efefef;
-  padding-left: 50px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-table {
-  width: 920px;
-}
-th {
-  font-weight: bold;
-  font-size: 14px;
-  color: #6b6b6b;
-}
-.daiZhiFu:hover {
-  color: whitesmoke;
-  background-color: #da5278;
-  transition: all 0.3s;
-}
-.footerorder {
-  text-align: center;
-}
-.footerorder td {
-  color: #6b6b6b;
-=======
    top: 60px;
    right: 7%;
    /*background-color: #00aaf1;*/
@@ -496,7 +376,6 @@ th {
  }
  .footerorder td {
   color: #6B6B6B;
->>>>>>> 1f8e4150623a52dc386dfd6093dbf4f276f77e60
   font-family: "微软雅黑";
   line-height: 30px;
   font-size: 14px;
