@@ -1,13 +1,11 @@
-import  {request} from "./request";
+import { request } from "./request";
 
 export function register(data) {
 
-  return request({
-    url:'/api/register.do',
+    return request({
+        url: '/api/register.do',
+        data: data,
+        method: 'post',
 
-    data:data,
-
-    method:'post',
-
-  })
+    })
 }

@@ -467,7 +467,7 @@ export default {
 
   .mask {
     background-color: transparent;
-    // opacity: 0;
+    opacity: 0;
     position: fixed;
     top: 0;
     left: 0;

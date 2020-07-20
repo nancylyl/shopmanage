@@ -3,6 +3,7 @@
     <!-- <em class="left" v-if="this.chooseUrl.length>=4">&lt;</em>
     <em class="right" v-if="this.chooseUrl.length>=4">&gt;</em>-->
     <router-link :to="{path: '/productdetails/' +Pro_Id }" class="bigImgBox" tag="div">
+      <div :class="getflag"></div>
       <img :src="bigImgUrl && require(`../../assets/images/${bigImgUrl}`)" class="big" />
     </router-link>
     <ul class="little">
@@ -34,7 +35,7 @@ export default {
       bigImgUrl: ''
     }
   },
-  props: ['imgSrc', 'price', 'tittle', 'Pro_Id'],
+  props: ['imgSrc', 'price', 'tittle', 'Pro_Id', 'Tag_Type'],
   components: {},
   created() {
     if (this.chooseUrl && this.chooseUrl.length > 0) {
@@ -56,6 +57,23 @@ export default {
         return imgSrc.Type == 2
       })
       return result
+    },
+    getflag: function() {
+      let classname = ''
+      switch (this.Tag_Type) {
+        case 1:
+          classname = 'hotflag'
+          break
+        case 2:
+          classname = 'hotflag'
+          break
+        case 3:
+          classname = 'newflag'
+          break
+        default:
+          classname = ''
+      }
+      return classname
     }
   },
   watch: {
