@@ -87,7 +87,7 @@ template {
   font-size: 12px;
   padding-top: 5px;
   text-align: left;
-  padding: 30px 0 0 30px;
+  padding: 30px 0 50px 30px;
 }
 .neiRong {
   /* padding-left: -100px; */
