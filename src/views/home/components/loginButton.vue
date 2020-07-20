@@ -49,7 +49,7 @@ export default {
     roleLink() {
       if (this.myLogin != '登录') {
         this.$router.push({
-          path: `/PerCenter`
+          path: `/PerCenter/myorder`
         })
       } else {
         this.$router.push({

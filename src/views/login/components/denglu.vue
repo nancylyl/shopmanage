@@ -70,7 +70,10 @@ export default {
           .then(res => {
             if (res.data.success) {
               this.$message("登录成功");
+              console.log(res.data.data);
               overUserInfo(res.data.data);
+              // console.log(window.pageConfig.userInfo);
+              // console.log(window.session.userInfo);
               setTimeout(() => {
                 window.location.href = "/";
               }, 200);

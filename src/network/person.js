@@ -1,9 +1,72 @@
 import { request } from "./request"
 
+<<<<<<< HEAD
+export function getUserInfo(id) {//获取个人资料
+  return request({
+    url: '/api/getUserInfo.do'
+  })
+}
+export function baoCunNew(data) {//个人资料保存
+   return request({
+     url: '/api/getUserBC.do',
+     data:data,
+     method:'post'
+   })
+}
+export function getMyOder(id) {//获取我的订单用户信息
+  return request({
+    url: '/api/getMyOder.do'
+  })
+}
+export function getComment(id) {//获取我的订单用户信息
+  return request({
+    url: '/api/getComment.do',
+    method:'post',
+    data:id
+  })
+}
+export function updataPass(data) {//获取我的订单用户信息
+  return request({
+    url: '/api/updataPass.do',
+    data:data,
+    method:'post'
+  })
+}export function addMyAddress(data) {//保存我的收获地址
+  return request({
+    url: '/api/addMyAddress.do',
+    data:data,
+    method:'post'
+  })
+}
+
+export function getMyAddress() {//获取我的收获地址
+  return request({
+    url: '/api/getMyAddress.do',
+
+  })
+}
+
+export function delMyAddress(data) {//删除我的订单用户信息
+  return request({
+    url: '/api/delMyAddress.do',
+    data:data,
+    method:'post'
+
+  })
+}
+export function updateMyAddress(data) {//删除我的订单用户信息
+  return request({
+    url: '/api/updateMyAddress.do',
+    data:data,
+    method:'post'
+
+  })
+=======
 export function getUserInfo(id) { //获取个人资料
     return request({
         url: '/api/getUserInfo.do'
     })
+>>>>>>> fa67c0233b1878b6edc9b02b6957cffdbe2409d0
 }
 export function baoCunNew(data) { //个人资料保存
     return request({
