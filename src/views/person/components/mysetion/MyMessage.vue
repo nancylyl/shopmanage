@@ -10,7 +10,7 @@
             <p class="p1">{{item.Message_Type}}</p>
              <p class="p2">{{item.Message_Text}}</p>
             <i @click="delmessage(item.Message_Id)">删除</i>
-             <p style="text-align: center;">2020-07-09 14:09:57</p>
+             <p style="text-align: center;">{{item.Message_Time | dateFmt('YYYY-MM-DD HH:mm:ss')}}</p>
           </div>
          
         </div>
