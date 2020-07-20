@@ -164,6 +164,7 @@ import addcart from '@/components/commom/addcart'
 import { mapActions ,mapGetters } from 'vuex'
 import { getProductDetail, getComment } from '@/network/productdetails'
 import hotShop from '@/components/content/hotShop'
+import { isLogin } from "@/toolkit";
 export default {
   data() {
     return {
@@ -418,15 +419,59 @@ export default {
           }
         }   
     },
-    addcart(a, b, c, d, e, f, g, h, i, j, k) {      
+    addcart(a, b, c, d, e, f, g, h, i, j, k) {   
+       
       if(d!=''&&f!=''){
         if(e!= '' && g!='') {
-          this.sureadd(a, b, c, d, e, f, g, h, i, j, k)
+          if (!isLogin()) {
+            this.$message({
+              message: "您还没有登录！请先登录",
+              type: "warning"
+            });
+            setTimeout(() => {
+              this.$router.push({
+                path: `/denglu`
+              });
+            }, 300);
+          }else{
+            this.sureadd(a, b, c, d, e, f, g, h, i, j, k)
+          }  
+          
+        }else{
+          this.$message.error('请选择商品信息');
         }
       }else if(d!=''&&f==''){
         if(e!= '') {
-             this.sureadd(a, b, c, d, e, f, g, h, i, j, k)  
+          if (!isLogin()) {
+          this.$message({
+            message: "您还没有登录！请先登录",
+            type: "warning"
+          });
+          setTimeout(() => {
+            this.$router.push({
+              path: `/denglu`
+            });
+          }, 300);
+        }else{
+            this.sureadd(a, b, c, d, e, f, g, h, i, j, k)
+          }  
+        }else{
+          this.$message.error('请选择商品信息');
         }
+      }else if(d ==''&&f==''){
+        if (!isLogin()) {
+          this.$message({
+            message: "您还没有登录！请先登录",
+            type: "warning"
+          });
+          setTimeout(() => {
+            this.$router.push({
+              path: `/denglu`
+            });
+          }, 300);
+        } else{
+            this.sureadd(a, b, c, d, e, f, g, h, i, j, k)
+          }  
       }      
     },
     sureadd(a, b, c, d, e, f, g, h, i, j, k){

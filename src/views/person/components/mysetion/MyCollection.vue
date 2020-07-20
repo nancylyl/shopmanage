@@ -4,7 +4,7 @@
       <div class="header">
         <h3>我的收藏</h3>
         <el-table
-          :data="showList"
+          :data="showCartList"
           style="width: 100%"
           empty-text="您的收藏空空如也.......">
 
@@ -64,7 +64,7 @@
 
 <script>
 
-// import  {showCollect,CollectProSrc} from '@/network/showCollect'
+import  {showCollect,CollectProSrc} from '@/network/showCollect'
 
 import {mapActions,mapGetters} from 'vuex'
   export default {
@@ -80,7 +80,7 @@ import {mapActions,mapGetters} from 'vuex'
       this.showList=this.$store.state.collectPro.collectProList;
     },
       methods:{
-        ...mapActions(['deleteCollect'])
+        ...mapActions(['showPro','deleteCollect'])
       },
     computed:{
         ...mapGetters(['showCartList'])

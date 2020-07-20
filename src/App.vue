@@ -35,10 +35,9 @@ export default {
       try {
         // console.log(to.path)
         if (
-          to.path.indexOf("person") > 0 ||
-          to.path.indexOf("order") > 0 ||
           to.path.indexOf("PerCenter") > 0 ||
-          to.path.indexOf("cat") > 0
+          to.path.indexOf("order") > 0 ||
+          to.path.indexOf("cart") > 0
         ) {
           if (!isLogin()) {
             this.$message({

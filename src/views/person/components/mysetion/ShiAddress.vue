@@ -24,7 +24,7 @@
                 <tr>
                   <td class="td1">收货人姓名：</td>
                   <td class="td2">
-                    <input v-model="S_Name" class="Input"  type="text">
+                    <input v-model="S_Name" class="Input" name="name" type="text">
                   </td>
                 </tr>
 
@@ -109,14 +109,14 @@
             </tr>
             <tr>
               <td height="64" align="right" valign="top">地区：</td>
-              <td colspan="4" align="left">{{huoQu[index].Province}}-{{huoQu[index].City}}-{{huoQu[index].Area}}</td>
+              <td colspan="4" align="left">{{huoQu[index].Province}}-{{huoQu[index].City}}-{{huoQu[index].Axis}}</td>
             </tr>
             <tr>
               <td height="64" align="right" valign="top">地址：</td>
               <td colspan="4" align="left">{{huoQu[index].Address}}</td>
             </tr>
             <tr class="Bg" style="background:#dedede;">
-              <td colspan="3" align="left"><a href="#" rel="_request"><input type="radio"  value="radiobutton" class="Radio" checked="checked"></a>
+              <td colspan="3" align="left"><a href="#" rel="_request"><input type="radio" name="radiobutton" value="radiobutton" class="Radio" checked="checked"></a>
                 默认</td>
               <td align="left"><router-link :to="{path:'/PerCenter/ChangeAdd',query: {name: huoQu[index].Id}}" class="cYellow">修改</router-link></td>
 <!--              "/PerCenter/ChangeAdd"-->
