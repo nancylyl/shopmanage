@@ -99,3 +99,15 @@ export function getMyOder(state) { //获取我的订单用户信息
         url: '/api/getMyOder.do?state=' + state
     })
 }
+export function getMymessage() { //我的消息
+    return request({
+        url: '/api/getMyMessage.do',
+
+    })
+}
+export function getDleMessage(id) { //删除我的消息
+    console.log(id)
+    return request({
+        url: '/api/deleteMyMessage.do?message_Id=' + id,
+    })
+}
