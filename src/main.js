@@ -4,10 +4,7 @@ import router from './router';
 import store from './store/index';
 import VueCookies from 'vue-cookies';
 import { Plugin } from "vue-fragment";
-<<<<<<< HEAD
-=======
 import moment from 'moment'
->>>>>>> 2eff788efaa3814697419b520205fb295ff54425
 import ElementUI from 'element-ui' // 引入饿了么的组件
 import 'element-ui/lib/theme-chalk/index.css' // 引入饿了么的组件样式
 
