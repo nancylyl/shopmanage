@@ -35,19 +35,19 @@
   </div>
 </template>
 <script>
-import { getProductListByKey } from '@/network/search.js'
-import loginBut from '@/views/home/components/loginButton.vue'
-import { mapGetters, mapActions } from 'vuex'
+import { getProductListByKey } from "@/network/search.js";
+import loginBut from "@/views/home/components/loginButton.vue";
+import { mapGetters, mapActions } from "vuex";
 export default {
-  name: 'search',
+  name: "search",
   data() {
     return {
       options: [],
-      keyvalue: '',
+      keyvalue: "",
       list: [],
       loading: false,
       states: []
-    }
+    };
   },
   mounted() {},
   components: {
@@ -55,36 +55,38 @@ export default {
   },
 
   methods: {
-    ...mapActions(['setKey']),
+    ...mapActions(["setKey"]),
 
     remoteMethod(query) {
-      if (query !== '') {
-        this.loading = true
+      this.keyvalue = query;
+      if (query !== "") {
+        this.loading = true;
         setTimeout(() => {
-          this.loading = false
+          this.loading = false;
           getProductListByKey(query).then(res => {
-            this.options = res.data.data
-          })
-        }, 200)
+            this.options = res.data.data;
+          });
+        }, 200);
       } else {
-        this.options = []
+        this.options = [];
       }
     },
     search() {
-      if (this.$route.path.indexOf('home') > 0 || this.$route.path == '/') {
+      if (this.$route.path.indexOf("home") > 0 || this.$route.path == "/") {
         this.$router.push({
           path: `/product`
-        })
+        });
       }
       //  console.log(this.$route.path)
     }
   },
   watch: {
     keyvalue: function() {
-      this.setKey(this.keyvalue)
+      console.log(this.keyvalue);
+      this.setKey(this.keyvalue);
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -118,8 +120,7 @@ export default {
   height: 30px;
   padding: 0px 0px;
   border: none;
-  background: url(http://activity.dapuimg.com/dapu_homeseach.png) no-repeat 7px
-    7px;
+  background: url(~assets/images/other/homeseach.png) no-repeat 7px 7px;
   background-color: rgba(255, 255, 255, 0);
   cursor: pointer;
   /* right: 5px; */

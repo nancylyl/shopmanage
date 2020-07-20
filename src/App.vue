@@ -3,16 +3,14 @@
     <div v-if="ishow">
       <shopMenu></shopMenu>
       <div class="nav">
-        <breadcrumbVue
-          v-if="
-            $store.state.shopmenustore.menulist.length > 0 &&
-              $store.state.shopmenustore.navbar
-          "
-        ></breadcrumbVue>
+        <breadcrumbVue v-if="showbreadcrumb"></breadcrumbVue>
       </div>
     </div>
     <router-view v-if="showRouter" />
     <sidebar />
+    <div>
+      <myfooter />
+    </div>
   </div>
 </template>
 <script>
@@ -23,11 +21,15 @@ import productdeltails from "@/components/content/productdetails";
 import sidebar from "@/components/commom/sidebar";
 import person from "@/views/person/components/wode";
 import head from "@/views/person/components/head";
+<<<<<<< HEAD
+=======
+import myfooter from "@/components/content/myfooter";
+>>>>>>> 2eff788efaa3814697419b520205fb295ff54425
 import { isLogin } from "./toolkit";
 
 export default {
+  name: "app",
   data() {
-    name: "app";
     return {};
   },
   created() {},
@@ -68,7 +70,8 @@ export default {
       if (
         this.$route.path.indexOf("PerCenter") > 0 ||
         this.$route.path.indexOf("denglu") > 0 ||
-        this.$route.path.indexOf("zhuce") > 0
+        this.$route.path.indexOf("zhuce") > 0 ||
+        this.$route.path.indexOf("forgetPwd") > 0
       ) {
         return false;
       } else {
@@ -81,7 +84,16 @@ export default {
         this.$store.state.shopmenustore.menulist.length > 0 ||
         this.$route.path.indexOf("PerCenter") > 0 ||
         this.$route.path.indexOf("denglu") > 0 ||
-        this.$route.path.indexOf("zhuce") > 0
+        this.$route.path.indexOf("zhuce") > 0 ||
+        this.$route.path.indexOf("forgetPwd") > 0
+      );
+    },
+    showbreadcrumb() {
+      return (
+        this.$store.state.shopmenustore.menulist.length > 0 &&
+        this.$store.state.shopmenustore.navbar &&
+        (this.$route.path.indexOf("home") == -1 ||
+          this.$route.path.indexOf("/") == 1)
       );
     }
   },
@@ -93,11 +105,13 @@ export default {
     breadcrumbVue,
     productdeltails,
     sidebar,
-    person
+    person,
+    myfooter
   }
 };
 </script>
-<style>
+<style lang="scss">
+@import "~assets/css/nomralize.min.css";
 @import "~assets/css/base.scss";
 @import "~assets/font/iconfont.css";
 </style>
