@@ -407,14 +407,12 @@ export default {
         }
         else{
           this.disable = { cursor: 'not-allowed'}
-          this.$message.error('请选择商品信息');
         }
         }else if(a!=''&&c==''){
           if(b!= '') {
              this.disable = { cursor: 'pointer'};
           }
           else{
-          this.$message.error('请选择商品信息');
            this.disable = { cursor: 'not-allowed'}
           }
         }   
