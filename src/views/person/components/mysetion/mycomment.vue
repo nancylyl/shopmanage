@@ -3,13 +3,65 @@
       <div class="box">
         <div class="header">
           <h3 class="myPL">我的评论</h3>
-          <p class="Num">已评论数: 0</p>
+          <p class="Num">已评论数: {{commentNum}}</p>
           <p class="Num">未评论数: 0</p>
         </div>
         <h3 class="NoComment">未评论列表</h3>
         <div class="No">暂无需要评论的商品</div>
         <h3 class="NoComment">已评论列表</h3>
-        <div class="No">您还没有评论过</div>
+        <div class="No">
+            <el-table
+              :data="mycomment"
+              style="width: 100%"
+              empty-text="您还没有评论过">
+
+              <el-table-column
+                prop="OId"
+                label="订单ID"
+                align="center">
+              </el-table-column>
+
+              <el-table-column
+                prop="pro_url"
+                label="商品图片"
+                width="180"
+                align="center"
+              >
+
+                <template slot-scope="scope">
+                  <img :src="require(`../../../../assets/images/${scope.row.pro_url}`)" alt="" width="40" height="40" class="head_pic"/>
+                </template>
+              </el-table-column>
+              <el-table-column
+                prop="pro_name"
+                label="商品名称"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="price"
+                label="价格"
+                width="180"
+                align="center">
+              </el-table-column>
+              <el-table-column
+                prop="Star"
+                label="打星"
+                width="180"
+                align="center">
+                <el-rate
+                  v-model="value"
+                  show-text>
+                </el-rate>
+              </el-table-column>
+
+              <el-table-column
+                prop="Content"
+                label="评论"
+                width="180"
+                align="center">
+              </el-table-column>
+            </el-table>
+        </div>
 <!--        <div class="YesNoComment">以评论列表</div>-->
         <div class="shuoMin"><p class="fB">评论说明:</p>
           <p class="one">1、只能对在半年内购买的商品进行评价；</p>
@@ -27,18 +79,25 @@
   // pro_title,--产品标题
   // Price --价格
   // pro_url --路径
-  import {getComment,} from '../../../../network/person'
+  import {getComment} from '@/network/person'
     export default {
       name: "mycomment",
         data() {
          return{
-           mycomment:[]
+           mycomment:[],
+           value: null,
+           commentNum:0    // 已经评论的数量
          }
         },
 
       beforeCreate(){
-        getComment()
+        let UId=window.pageConfig.userInfo.UId;
+        getComment(UId)
           .then(res=>{
+            // console.log(res.data);
+            console.log('开始评论');
+            // console.log(res.data.data.length);
+            this.commentNum=res.data.data.length;
             this.mycomment =res.data.data;
             console.log( this.mycomment);
 
@@ -96,7 +155,7 @@
     font-size: 12px;
     color: #6b6b6b;
     width: 910px;
-    height: 18px;
+    /*height: 18px;*/
     border: 1px solid #efefef;
     margin-bottom: 15px;
     padding: 30px 30px;

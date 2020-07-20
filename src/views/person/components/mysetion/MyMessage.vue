@@ -5,22 +5,83 @@
           <h3>我的消息</h3>
           <p>这里会发布一些通知，包括优惠券，积分等变动提醒等。如果有是什么宝贵意见也可以在这里提交给我们。</p>
         </div>
-        <div class="setion">
-          <div class="xiaoXi">
-            <p class="p1">订单创建提醒</p>
-            <p class="p2">尊敬的用户您好，您的订单已创建成功，订单号：20200709140794，我们会在确认订单之后尽快安排发货。</p>
-            <i>删除</i>
+        <div class="setion" >
+          <div class="xiaoXi" v-for="item in myNewMessage" :key="item.Message_Id" style="margin-top:20px">
+            <p class="p1">{{item.Message_Type}}</p>
+             <p class="p2">{{item.Message_Text}}</p>
+            <i @click="delmessage(item.Message_Id)">删除</i>
+             <p style="text-align: center;">2020-07-09 14:09:57</p>
           </div>
-          <p style="text-align: center;">2020-07-09 14:09:57</p>
+         
         </div>
       </div>
     </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+import { getMymessage } from "@/network/person";
+
     export default {
-        name: "MyMessage"
+        name: "MyMessage",
+        data(){
+          return{
+            myNewMessage:[],
+          };
+        },
+         created(){
+          // this.getMymessage();
+           getMymessage().then(res => {
+            console.log(res.data);
+            this.myNewMessage = res.data.data;
+            console.log(this.myNewMessage);
+
+            for(let i=0;i<this.myNewMessage.length;i++){   
+            if(this.myNewMessage[i].Message_Type==0){
+             this.myNewMessage[i].Message_Type="活动通知"
+            }
+           else if(this.myNewMessage[i].Message_Type==1){
+             this.myNewMessage[i].Message_Type="优惠券变动通知"
+            }
+            else if(this.myNewMessage[i].Message_Type==2){
+            this.myNewMessage[i].Message_Type="积分变动通知"
+            }            
+              console.log(this.myNewMessage[i].Message_Type)
+            }           
+           });     
+        },
+        methods:{
+          delmessage(Message_Id){
+            this.myNewMessage.map((item,index)=>{
+              if(item.Message_Id==Message_Id){
+                this.myNewMessage.splice(index,1);
+              }
+            })
+            console.log(Message_Id)
+          },
+          mytype2(){
+             console.log(this.myNewMessage)
+            this.myNewMessage.map((item,index)=>{
+              if(item.Message_Type==0){
+              return this.mytype="活动通知"
+            }
+            if(item.Message_Type==1){
+              return this.mytype="优惠券通知"
+            }
+            if(item.Message_Type==2){
+              return this.mytype="积分通知"
+            }
+            })
+            console.log(this.mytype)
+          }
+        },
+       
+         computed:{
+            ...mapGetters(['mymessage'])   
+
+        }
     }
+
 </script>
 
 <style scoped>

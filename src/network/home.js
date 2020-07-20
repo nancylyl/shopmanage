@@ -48,6 +48,7 @@ export function login(data) {
         method: 'post'
     })
 }
+
 // // post方式
 // export function getDetail(id) {
 //     return request({

@@ -354,7 +354,9 @@ export default {
 
     /*收藏产品*/
     tiaoShoucang(){
-      console.log(11111)
+      console.log(11111);
+
+
       /*弹出收藏框*/
       if(this.ifTan==false) {
         // this.$refs.son.myClose();
@@ -362,7 +364,14 @@ export default {
         console.log(this.ifTan)
       }
 
-      let UId=sessionStorage.myUser;
+      // let UId=sessionStorage.myUser;
+      let UId=window.pageConfig.userInfo.UId;
+      // console.log(this.$cookie.keys());
+      // console.log(this);
+      // console.log(this.$cookie);
+      // console.log(window.pageConfig.userInfo);
+      // console.log(window.pageConfig.userInfo.UId);
+
 
       if(UId!=undefined && UId!=''){
         let PId=this.$route.params.id;
@@ -467,7 +476,7 @@ export default {
 
   .mask {
     background-color: transparent;
-    // opacity: 0;
+    opacity: 0;
     position: fixed;
     top: 0;
     left: 0;
