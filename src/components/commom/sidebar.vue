@@ -48,7 +48,7 @@ export default {
       this.$router.push('/home')
     },
     toperson() {
-      this.$router.push('/PerCenter')
+      this.$router.push('/PerCenter/myorder')
     },
     tocart() {
       this.$router.push('/cart')
