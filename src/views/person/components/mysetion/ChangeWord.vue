@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { updataPass } from "../../../../network/person";
+import { updataPass } from "@/network/person";
 export default {
   name: "ChangeWord",
   data() {
@@ -60,7 +60,8 @@ export default {
       console.log(data);
       updataPass(data)
         .then(res => {
-          console.log(res.data.message);
+          console.log(res);
+          this.$message(res.data.message);
         })
         .catch(e => {
           console.log(e);

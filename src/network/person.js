@@ -23,7 +23,13 @@ export function getComment(id) { //获取我的订单用户信息
     })
 }
 
-
+export function updataPass(data) { //获取我的订单用户信息
+    return request({
+        url: '/api/updataPass.do',
+        data: data,
+        method: 'post'
+    })
+}
 
 
 export function addMyAddress(data) { //保存我的收获地址
