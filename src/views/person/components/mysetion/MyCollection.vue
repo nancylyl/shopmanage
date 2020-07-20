@@ -60,22 +60,21 @@
 <script>
 import { showCollect, CollectProSrc } from "@/network/showCollect";
 
-<<<<<<< HEAD
 import  {showCollect,CollectProSrc} from '@/network/showCollect'
 
 import {mapActions,mapGetters} from 'vuex'
   export default {
-      name: "MyCollection",
-      data(){
-        return {
-          showList:[]
-        }
-      },
-      created(){
+    name: "MyCollection",
+    data() {
+      return {
+        showList: []
+      }
+    },
+    created() {
       console.log("开始收藏");
       this.$store.dispatch('showPro');
       console.log(this.$store.state.collectPro.collectProList);
-      this.showList=this.$store.state.collectPro.collectProList;
+      this.showList = this.$store.state.collectPro.collectProList;
 
 
       /*let UId=window.pageConfig.userInfo.UId;
@@ -104,34 +103,15 @@ import {mapActions,mapGetters} from 'vuex'
           })
         })*/
     },
-      methods:{
-        ...mapActions(['showPro','deleteCollect'])
-      },
-    computed:{
-        ...mapGetters(['showCartList'])
+    methods: {
+      ...mapActions(['showPro', 'deleteCollect'])
+    },
+    computed: {
+      ...mapGetters(['showCartList'])
     }
-=======
-import { mapActions, mapGetters } from "vuex";
-export default {
-  name: "MyCollection",
-  data() {
-    return {
-      showList: []
-    };
-  },
-  created: function() {
-    this.$store.dispatch("showPro");
-    console.log(this.$store.state.collectPro.collectProList);
-    this.showList = this.$store.state.collectPro.collectProList;
-  },
-  methods: {
-    ...mapActions(["showPro", "deleteCollect"])
-  },
-  computed: {
-    ...mapGetters(["showCartList"])
->>>>>>> 7b6f6626245048a9f7a68b82defd25ed18ee070f
   }
-};
+
+
 </script>
 
 <style scoped>
