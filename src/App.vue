@@ -23,22 +23,36 @@ import productdeltails from "@/components/content/productdetails";
 import sidebar from "@/components/commom/sidebar";
 import person from "@/views/person/components/wode";
 import head from "@/views/person/components/head";
+import { isLogin } from "./toolkit";
 
 export default {
   data() {
     name: "app";
     return {};
   },
-  created() {
-    console.log("获取cookie");
-
-    console.log(this.$cookie.get("userinfo"));
-  },
+  created() {},
   watch: {
     $route(to, from) {
       try {
+        // console.log(to.path)
+        if (to.path.indexOf("person") > 0 || to.path.indexOf("order") > 0) {
+          if (!isLogin()) {
+            this.$message({
+              message: "您还没有登录！请先登录",
+              type: "warning"
+            });
+            setTimeout(() => {
+              this.$router.push({
+                path: `/denglu`
+              });
+            }, 300);
+          }
+        }
+
         let nav = this.$route.params.id;
         this.setNav(nav);
+        const header = document.querySelector(".header");
+        if (!header) return;
         document.querySelector(".header").className =
           "header submenu-panel-hide";
         setTimeout(() => {

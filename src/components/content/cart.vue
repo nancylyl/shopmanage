@@ -20,8 +20,6 @@
                 border
                 style="width: 85%; margin:0 auto;"
                 tooltip-effect="dark" 
-                @select='onTableSelect'
-                @select-all="selectAll"
                 @selection-change="handleSelectionChange">
                     <el-table-column
                     type="selection"
@@ -44,8 +42,7 @@
                             <span>¥{{scope.row.product_Price}}</span>
                         </template>
                     </el-table-column>
-                    <el-table-column
-                    
+                    <el-table-column                   
                     label="商品数量"
                     width="200"
                     show-overflow-tooltip>
@@ -86,7 +83,7 @@
                 </div>
                 <div class="mybutton">
                     <el-button type="info" @click="tohome">继续购物</el-button>
-                    <el-button v-model="disable" :disabled="disable" type="danger" @click="toOrder(multipleSelection)">去结算</el-button>
+                    <el-button :disabled="disable" type="danger" @click="toOrder(multipleSelection)">去结算</el-button>
                 </div>
             </div>
         </div>      
@@ -125,31 +122,18 @@
                 this.$router.push("/home")
             },
             handleSelectionChange(val) {
-                this.multipleSelection = val  
-                this.disable = !this.disable
-            },
-            onTableSelect(rows, row) {
-                let selected = rows.length && rows.indexOf(row) !== -1
-                // console.log(selected)  // true就是选中，0或者false是取消选中
-                if(selected){
-                    this.totalPrice += row.product_Price*row.num
-                }else{
-                    this.totalPrice -= row.product_Price*row.num
+                this.multipleSelection = val   
+                let resdata=JSON.parse(JSON.stringify(this.multipleSelection));    
+                // console.log(resdata)
+                if(resdata == ''){
+                    this.disable = true
+                } else {
+                    this.disable = false
                 }
-                
-            },
-            selectAll(selection){
-                let selected = selection.length
-                // console.log(selection)
-                // console.log(selected)
-                if(selected != 0){
-                    this.totalPrice = 0
-                selection.map((item,index)=>{      
+                this.totalPrice = 0;
+                resdata.map((item,index)=>{      
                     this.totalPrice += item.product_Price*item.num
                 })
-                }else{
-                    this.totalPrice = 0
-                }
             },
             isChang() {
                 this.totalPrice = 0

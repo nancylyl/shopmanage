@@ -25,10 +25,9 @@ export function getProductDetail(id) {
     })
 }
 //用户信息
-export function getUserInfo(id) {
+export function getMyUserInfo() {
     return request({
-        // url: '/api/getProductDetail.do?Pro_Id=1'//产品详情
-        url: '/api/getUserInfo' //用户信息
+        url: '/api/getUserInfo.do' //用户信息
     })
 }
 // 商品类别
@@ -49,6 +48,7 @@ export function login(data) {
         method: 'post'
     })
 }
+
 // // post方式
 // export function getDetail(id) {
 //     return request({
