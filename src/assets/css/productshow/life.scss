@@ -13,9 +13,11 @@ $acolor: #7f5b42;
 .lifeapp {
     width: 90%;
     margin-left: 5%;
-    margin-right: 15%;
+    margin-right: 5%;
     height: auto;
-    margin-top: 10px;
+    width: 1200px;
+    // margin-top: 10px;
+    margin: 5px auto;
     color: $font-grey;
     font-size: $font-size13;
     .sort {
@@ -47,12 +49,14 @@ $acolor: #7f5b42;
         flex-wrap: wrap;
         margin: 0 auto;
         text-align: center;
-        padding-left: 40px;
         width: 100%;
+        .items {
+            margin: 0 10px;
+        }
         .goods {
             width: 218px;
             // height: 330px;
-            margin: 0 5px;
+            // margin: 0 5px;
             border: 1px solid $bg-grey2;
             margin-bottom: 20px;
             .left {
