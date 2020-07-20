@@ -64,7 +64,7 @@
 
 <script>
 
-// import  {showCollect,CollectProSrc} from '@/network/showCollect'
+import  {showCollect,CollectProSrc} from '@/network/showCollect'
 
 import {mapActions,mapGetters} from 'vuex'
   export default {
@@ -74,10 +74,38 @@ import {mapActions,mapGetters} from 'vuex'
           showList:[]
         }
       },
-    created:function(){
+      created(){
+      console.log("开始收藏");
       this.$store.dispatch('showPro');
       console.log(this.$store.state.collectPro.collectProList);
       this.showList=this.$store.state.collectPro.collectProList;
+
+
+      /*let UId=window.pageConfig.userInfo.UId;
+      let mypid;//图片ID
+
+      showCollect(UId)
+        .then(rep=> {
+          console.log(rep.data);
+          mypid = rep.data.data;
+          console.log("mypid的长度是" + mypid.length);
+          console.log(mypid);
+
+          let mm = mypid.forEach(item => {
+            console.log(item);
+            CollectProSrc(item.PId)
+              .then(rep => {
+                console.log(rep.data.data[0]);
+                let mma = Object.assign(rep.data.data[0], {PId: item.PId})
+                console.log(mma)
+                // state.collectProList.push(mma);
+                this.showList.push(mma);
+              })
+              .catch(e => {
+                console.log(e);
+              })
+          })
+        })*/
     },
       methods:{
         ...mapActions(['deleteCollect'])

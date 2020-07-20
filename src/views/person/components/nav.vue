@@ -9,8 +9,8 @@
         <router-link to="/PerCenter/mycomment" class="dingDan2"
           >我的评论</router-link
         >
-      </div>
-      <div class="geRen">
+<!--      </div>-->
+<!--      <div class="geRen">-->
         <p class="dingDan1">个人中心</p>
         <router-link to="/PerCenter/personalData" class="dingDan2"
           >个人资料</router-link
@@ -41,6 +41,9 @@
         <router-view></router-view>
       </div>
     </div>
+    <div class="both">
+
+    </div>
   </div>
 </template>
 
@@ -55,9 +58,12 @@ export default {
   /* position: absolute; */
   /* top: 60px;
   left: 80px; */
-  width: 180px;
-  height: 464px;
-  margin: 50px 0 10 20px;
+  /*width: 180px;*/
+  /*height: 464px;*/
+  width: 100%;
+  margin: 50px 0 10px 20px;
+
+  display: flex;
 
   padding-left: 20px;
   color: #808080;
@@ -67,6 +73,8 @@ export default {
 .dingDan {
   text-align: left;
   padding-top: 30px;
+  width: 15%;
+  height: 100%;
 }
 .dingDan1 {
   color: #6b6b6b;
@@ -93,5 +101,11 @@ template {
   top: -60px;
   left: 300px;
   width: 970px;
+  /*width: 85%;
+  height: 100%;*/
 }
+
+ .both {
+   clear: both;
+ }
 </style>
