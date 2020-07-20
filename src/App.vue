@@ -34,7 +34,12 @@ export default {
     $route(to, from) {
       try {
         // console.log(to.path)
-        if (to.path.indexOf("person") > 0 || to.path.indexOf("order") > 0) {
+        if (
+          to.path.indexOf("person") > 0 ||
+          to.path.indexOf("order") > 0 ||
+          to.path.indexOf("PerCenter") > 0 ||
+          to.path.indexOf("cat") > 0
+        ) {
           if (!isLogin()) {
             this.$message({
               message: "您还没有登录！请先登录",
