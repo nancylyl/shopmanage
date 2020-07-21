@@ -18,9 +18,9 @@ export function updataUserInfo(data) { //个人资料保存
 //     url: '/api/getMyOder.do'
 //   })
 // }
-export function getComment() { //获取我的订单用户信息
+export function getComment(currentPage, pageSize) { //获取我的订单用户信息
     return request({
-        url: '/api/getComment.do'
+        url: '/api/getComment.do?currentPage=' + currentPage + '&pageSize=' + pageSize,
     })
 }
 
@@ -99,9 +99,11 @@ export function getMyOder(state) { //获取我的订单用户信息
         url: '/api/getMyOder.do?state=' + state
     })
 }
-export function getMymessage() { //我的消息
+export function getMymessage(currentPage, pageSize) { //我的消息
+    console.log(currentPage, pageSize);
+
     return request({
-        url: '/api/getMyMessage.do',
+        url: '/api/getMyMessage.do?currentPage=' + currentPage + '&pageSize=' + pageSize,
 
     })
 }
@@ -111,9 +113,9 @@ export function getDleMessage(id) { //删除我的消息
         url: '/api/deleteMyMessage.do?message_Id=' + id,
     })
 }
-export function getPoints() { //积分详情
+export function getPoints(currentPage, pageSize) { //积分详情
     return request({
-        url: '/api/getMyIntegralDetail.do',
+        url: '/api/getMyIntegralDetail.do?currentPage=' + currentPage + '&pageSize=' + pageSize
 
     })
 }

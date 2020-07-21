@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="season">
-        <h3>我的订单</h3>
+        <h3 class="myh3">我的订单</h3>
         <div v-for="(items,indexs) in buttonlist" @click="changeclass(indexs)" :class="{'change':getclass == indexs}" class="daiZhiFu"  v-on:click="getMyOder(indexs-1)">{{ items.select }}</div>
       </div>
       <div class="footer">
@@ -52,29 +52,35 @@
                       </div>
                     </el-button>
                   </div>
-                  <div>
+                  <div v-if="item.State >= 1 && item.State <= 5 ">
                     <el-button type="text" @click="dialogFormVisible = true"  @click.native="getplorder(item)">
-                      <div v-if="item.State >= 1 && item.State <= 5 " class="mem-btn">
+                      <div  class="mem-btn">
                         评论
                       </div>
                     </el-button>
                   </div>
                   <el-dialog title="订单评价" :visible.sync="dialogFormVisible">
-                    <el-form :model="form">
+                    <el-form :model="form" :rules="rules2" ref="registerForm">
                       <el-form-item label="请为订单打分" :label-width="formLabelWidth">
                         <el-rate
                           v-model="form.Star"
                           show-text>
                         </el-rate>
                       </el-form-item>
-                      <el-form-item label="请您评价订单" :label-width="formLabelWidth">
-                        <el-input v-model="form.Content" autocomplete="off"></el-input>
+                
+
+                      <el-form-item label="请您评价订单"  prop="Content":label-width="formLabelWidth" 
+                      >
+                        <el-input v-model="form.Content" type="textarea"
+                        :rows="2"
+                        placeholder="请输入内容" autocomplete="off"  
+                      ></el-input>
                       </el-form-item>
                     </el-form>
                     <div slot="footer" class="dialog-footer">
                       <el-button @click="dialogFormVisible = false">取 消</el-button>
                       <el-button type="primary" plain
-                    @click="dialogFormVisible = false " @click.native="pinglun(item,index,form)">确 定
+                    @click=" open4(item,index,form)" @click.native="pinglun(item,index,form)">确 定
                       </el-button>
                     </div>
                   </el-dialog>
@@ -125,6 +131,12 @@
         name: "myorder",
        data(){
          return{
+          rules2: {
+                        Content: [
+                          {required: true, message: '请输入评价内容', trigger: 'blur'},
+                          {min:1,message:'请输入内容',trigger:'blur'}
+                        ]
+                      },
           newsList:[],
           getclass: 0,
           active: false,
@@ -150,7 +162,6 @@
        computed:{
               typelist() {
           return function(i) {
-            console.log(i);
             let res;
             switch (Number(i)) {
               case 0:
@@ -215,6 +226,17 @@
           type: 'success'
         });
       },
+      open4(item,index,form) {
+        if (form.Content != '') {
+          this.$message({
+          message: '评论已提交成功',
+          type: 'success'
+        });
+        this.dialogFormVisible = false;
+        } else {
+          this.$message.error('请输入有效的评论内容');
+        }
+      },
         getMyOder(state){
           getMyOder(state).then(res => {
             this.Myorder =res.data.data;
@@ -230,12 +252,12 @@
           this.form.OrderNum = item.ordernum
         },
         pinglun(item,index,form) {
-          let data = form
-          console.log(data);
+          if (form.Content != '') {
+            let data = form
           addcomment(data).then(res => {
-            console.log(213213213213);
-            console.log(res);
           })
+          form.Content = ''
+         }
         },
         
       },
@@ -246,6 +268,10 @@
 </script>
 
 <style scoped>
+  * {
+    margin: 0;
+    padding: 0;
+  }
 .active {
   color: red;
 }
@@ -266,6 +292,9 @@
   background-color: #efefef;
   margin-bottom: 20px;
   padding: 30px 50px;
+}
+.myh3 {
+  padding-bottom: 10px;
 }
 .text {
   display: inline-block;
@@ -366,6 +395,7 @@ table {
 th {
   font-weight: bold;
   font-size: 14px;
+  padding-bottom: 10px;
   color: #6b6b6b;
 }
 .daiZhiFu:hover {
@@ -381,7 +411,6 @@ th {
 
 .footerorder td {
   color: #6b6b6b;
-  padding-left: 20px;
   font-family: "微软雅黑";
   line-height: 30px;
   font-size: 14px;
