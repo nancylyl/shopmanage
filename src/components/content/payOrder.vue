@@ -25,17 +25,17 @@
         </div>
         <div style="border-left:1px solid;padding-left:20px;" v-if="this.payorder!=''">
           <table style="font-size:14px">
-            <tr>
+            <tr >
               <td>
                 <span>订单编号：{{this.payorder[0].OrderNum}}</span>
               </td>
             </tr>
             <tr>
-              <td>应付金额：¥{{allPrice}}</td>
+              <td style="text-align:left">应付金额：¥{{allPrice}}</td>
             </tr>
             <tr>
-              <td>应付期限：{{paydate | formatDateTime}}</td>
-              <span style="color:red;margin-left:-70px">（请您在24小时内完成支付，否则订单会被自动取消)</span>
+              <td style="text-align:left">应付期限：{{paydate | formatDateTime}}</td>
+              <span style="color:red;margin-left:-60px">（请您在24小时内完成支付，否则订单会被自动取消)</span>
             </tr>
           </table>
           <el-table

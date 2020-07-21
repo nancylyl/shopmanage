@@ -62,7 +62,7 @@
                     style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"
                   >
                     <img
-                      src="https://activity.dapuimg.com/beijing%E5%B7%A5%E5%95%86%E5%B1%80icon%20.png"
+                     src="..\..\..\src\assets\images\other\gongshang.png"
                       style="float:left;width: 14px;height: 16px;"
                     />
                     <p
@@ -76,7 +76,7 @@
                     style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"
                   >
                     <img
-                      src="http://activity.dapuimg.com/dapu_icon-police.png"
+                      src="..\..\..\src\assets\images\other\police.png"
                       style="float:left;margin-left:20px;"
                     />
                     <p
