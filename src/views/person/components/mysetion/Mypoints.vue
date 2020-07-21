@@ -12,7 +12,7 @@
                 <router-link to="/PerCenter/Mypoints/pointsDetail" style="color:#4E8FC2">查看积分明细</router-link>
                 <!-- <a href="/PerCenter/pointsDetail" class="cBlue">查看积分明细</a> -->
                 <!-- <button @click="goto()">查看积分明细</button>
-                 -->
+                -->
               </td>
             </tr>
             <tr>
@@ -43,9 +43,7 @@
           <p>A. 纯文字评论不得少于10个字。</p>
           <p>B. 用户可对90天内的订单进行评论。</p>
           <p>积分奖品规则：</p>
-          <p>
-            A. 文字评论奖励商品金额100%的积分数，即商品金额100元，奖励积分100
-          </p>
+          <p>A. 文字评论奖励商品金额100%的积分数，即商品金额100元，奖励积分100</p>
           <p>
             B.
             晒图+文字奖励商品金额200%的积分数，即商品金额100元，奖励积分200。注意此规则和规则1不累计计算，也就是说发表文字和晒图同时最多奖励商品金额200%的积分数。
@@ -57,9 +55,7 @@
             确认收货15天后再评论，无法获得原订单金额对应的积分。仅可获得50积分。
           </p>
           <p>2、参加大朴网积分活动</p>
-          <p>
-            参加大朴网不定期举行的积分活动，可以获得积分奖励，具体奖励以实际活动为准。
-          </p>
+          <p>参加大朴网不定期举行的积分活动，可以获得积分奖励，具体奖励以实际活动为准。</p>
           <p>&nbsp;</p>
           <p>
             <strong>三、 积分如何使用？</strong>
@@ -76,25 +72,25 @@
 </template>
 
 <script>
-import { getUserInfo } from "../../../../toolkit";
+import { getMyUserInfo } from '@/network/home'
 export default {
-  name: "Mypoints",
+  name: 'Mypoints',
   data() {
     return {
       totalScore: 0
-    };
+    }
   },
   created() {
-    console.log(getUserInfo());
-    this.totalScore = getUserInfo().SumScore;
+    getMyUserInfo().then(res => {
+      this.totalScore = res.data.data[0].SumScore
+    })
   },
-  methods:{
-    goto(){
-
-      this.$router.push('/PerCenter/Mypoints/pointsDetail');
+  methods: {
+    goto() {
+      this.$router.push('/PerCenter/Mypoints/pointsDetail')
     }
   }
-};
+}
 </script>
 
 <style scoped>
@@ -129,7 +125,7 @@ td {
   height: 30px;
 }
 .td1 {
-  width: 102px;
+  width: 122px;
   padding-right: 15px;
 }
 .td2 {

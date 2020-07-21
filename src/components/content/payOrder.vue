@@ -25,7 +25,7 @@
         </div>
         <div style="border-left:1px solid;padding-left:20px;" v-if="this.payorder!=''">
           <table style="font-size:14px">
-            <tr >
+            <tr>
               <td>
                 <span>订单编号：{{this.payorder[0].OrderNum}}</span>
               </td>
@@ -42,7 +42,8 @@
             :data="cartData"
             style="width: 100%"
             :header-cell-style="rowclass"
-            :cell-style="cellstyle">
+            :cell-style="cellstyle"
+          >
             <el-table-column prop="date" label="商品信息" width="300">
               <template slot-scope="scope">
                 <router-link
@@ -83,7 +84,7 @@
             <p>如果订单的含有赠送的优惠券将在订单完成时赠送</p>
             <p>
               您现在可以：
-              <router-link to="/PerCenter" style="color:#4E8FC2">查看订单</router-link>
+              <router-link to="/PerCenter/myorder" style="color:#4E8FC2">查看订单</router-link>
             </p>
           </div>
         </div>
@@ -100,11 +101,11 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-import { getcartlist } from "@/network/order";
-import { getPayOder, addPayOder } from "@/network/payOrder";
+import { mapGetters } from 'vuex'
+import { getcartlist } from '@/network/order'
+import { getPayOder, addPayOder } from '@/network/payOrder'
 export default {
-  name: "payOrder",
+  name: 'payOrder',
   data() {
     return {
       payorder: [],
@@ -114,78 +115,79 @@ export default {
       paydate: new Date(),
       allPrice: 0,
       cartData: []
-    };
+    }
   },
 
   components: {},
   filters: {
     formatDateTime(value) {
-      let date = new Date(value);
-      let y = date.getFullYear();
-      let MM = date.getMonth() + 1;
-      MM = MM < 10 ? "0" + MM : MM;
-      let d = date.getDate();
-      d = d < 10 ? "0" + d : d;
-      d += 1;
-      let h = date.getHours();
-      h = h < 10 ? "0" + h : h;
-      let m = date.getMinutes();
-      m = m < 10 ? "0" + m : m;
-      let s = date.getSeconds();
-      s = s < 10 ? "0" + s : s;
-      return y + "-" + MM + "-" + d + " " + h + ":" + m + ":" + s;
+      let date = new Date(value)
+      let y = date.getFullYear()
+      let MM = date.getMonth() + 1
+      MM = MM < 10 ? '0' + MM : MM
+      let d = date.getDate()
+      d = d < 10 ? '0' + d : d
+      d += 1
+      let h = date.getHours()
+      h = h < 10 ? '0' + h : h
+      let m = date.getMinutes()
+      m = m < 10 ? '0' + m : m
+      let s = date.getSeconds()
+      s = s < 10 ? '0' + s : s
+      return y + '-' + MM + '-' + d + ' ' + h + ':' + m + ':' + s
     }
   },
-  beforCreate() {
-
-  },
+  beforCreate() {},
   created() {
-    this.getPayOder();
-    this.cartData = JSON.parse(localStorage.getItem("k"));
+    this.getPayOder()
+    this.cartData = JSON.parse(localStorage.getItem('k'))
     // this.allPrice
-    this.cartData.map((item,index)=>{
-      this.allPrice += item.num*item.product_Price
+    this.cartData.map((item, index) => {
+      this.allPrice += item.num * item.product_Price
     })
-    console.log(this.allPrice);
+    console.log(this.allPrice)
   },
   methods: {
     rowclass() {
-      return "color:black;font-size:14px;border:1px solid #DDDDDD;";
+      return 'color:black;font-size:14px;border:1px solid #DDDDDD;'
     },
     cellstyle() {
-      return "border:1px solid #DDDDDD;font-size:13px";
+      return 'border:1px solid #DDDDDD;font-size:13px'
     },
     handleSelectionChange(val) {
-      this.multipleSelection = val;
+      this.multipleSelection = val
     },
     getPayOder() {
       getPayOder().then(res => {
         // console.log(res);
-        this.payorder = res.data.data[1];
+        this.payorder = res.data.data[1]
         // console.log(this.payorder);
-      });
+      })
     },
     addPayOder() {
       addPayOder(this.payorder[0].OrderNum).then(res => {
-        console.log(res.data.success);
+        console.log(res.data.success)
         if (res.data.success == true) {
-          this.$message("支付成功");
+          this.$message({
+            type: 'success',
+            message: '支付成功'
+          })
           setTimeout(() => {
             this.$router.push({
               path: `/home`
-            });
-          }, 200);
-          this.cartData = [];
-          localStorage.setItem("k", JSON.stringify(this.cartData));
+            })
+          }, 200)
+          this.cartData = []
+          localStorage.setItem('k', JSON.stringify(this.cartData))
         }
-      });
+      })
     }
   },
   computed: {
-    ...mapGetters(["checkedData"])
+    ...mapGetters(['checkedData'])
   }
-};
+}
 </script>
 <style scoped lang="scss">
-@import "~assets/css/cart/payOrder.scss";
+@import '~assets/css/cart/payOrder.scss';
 </style>

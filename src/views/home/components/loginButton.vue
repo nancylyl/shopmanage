@@ -2,11 +2,11 @@
   <div>
     <div id="mylogin">
       <!--      <router-link to="/denglu">-->
-      <a href @click="roleLink" class="login">{{myLogin}}</a>
+      <a href @click="roleLink">{{myLogin}}</a>
       <!--      </router-link>-->
       <span>|</span>
       <!--      <router-link to="/zhuce">-->
-      <a href class="zhuce" @click="quitUser">{{myRegis}}</a>
+      <a href class="zhuce" @click="quitUser" id='myReg'>{{myRegis}}</a>
       <!--      </router-link>-->
     </div>
   </div>
@@ -56,7 +56,9 @@ export default {
           path: `/denglu`
         })
       }
-    }
+    },
+
+    
   },
   created() {
     getMyUserInfo().then(res => {
@@ -69,6 +71,13 @@ export default {
         this.myLogin = '登录'
         this.myRegis = '注册'
       }
+
+
+      setInterval(() => {
+        if(this.myLogin.length>=8){
+          document.getElementById('mylogin').style.width='140px';
+        }
+      }, 200);
     })
   }
 }
@@ -76,31 +85,28 @@ export default {
 
 <style scoped>
 #mylogin {
-  display: flex;
-  /* width: 100px; */
+  width: 100px;
   height: 40px;
   background-color: rgb(177, 84, 79);
   line-height: 40px;
+  /* font: 12px/1.5 Arial,simsun; */
 }
 a {
-  display: inline-block;
-  padding: 0 10px;
   color: white;
   text-decoration: none;
   font-size: 12px;
-  min-width: 30px;
 }
 span {
-  display: inline-block;
   color: white;
   margin-left: 5px;
 }
 .zhuce {
-  display: inline-block;
-  padding: 0 10px;
-  width: 30px;
+  margin-left: 5px;
 }
 a:hover {
   color: rgba(255, 255, 255, 0.5);
+}
+#myReg{
+  width: 40px;
 }
 </style>
