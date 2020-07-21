@@ -9,6 +9,6 @@ export function getPayOder() {
 export function addPayOder(orderNum) {
     //console.log(data)
     return request({
-        url: 'api/updateOrderState.do?state=2&orderNum=' + orderNum,
+        url: 'api/updateOrderState.do?state=5&orderNum=' + orderNum,
     })
 }

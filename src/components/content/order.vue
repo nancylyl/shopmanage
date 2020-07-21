@@ -131,7 +131,7 @@
           <input type="checkbox" :disabled="disable" :checked='check' @click="checkbox"> 
           <span>使用积分</span><span v-if="this.check==true">(请输入需要兑换的积分数)</span>
           <div v-if="this.check==true" >
-            <input style="margin-top: 15px;" type="number"  v-model="inputNum" value="inputNum" @input="shuRuJiFen($event)">
+            <input style="margin-top: 15px;" type="number"  v-model="inputNum" value="inputNum" @input="shuRuJiFen($event)" @change="jifen($event)">
             <span>(兑换金额:<span style="color:#2980B9">{{inputNum/100}}元</span>)</span>
           </div>
          
@@ -225,11 +225,14 @@ export default {
 },
   methods:{
     ...mapActions(['getSiteList']),
-    shuRuJiFen(event){
+    jifen(event){
       let num = Math.round(event.currentTarget.value)   
       if(num < 500){
-        this.inputNum = 500 
+        this.inputNum = 500
       }
+    },
+    shuRuJiFen(event){
+      let num = Math.round(event.currentTarget.value)   
       if(num > 500){
         this.inputNum = num> this.convert*100 ? this.convert*100 : num
           if (/[^\d]/g.test(this.inputNum)) {
@@ -246,7 +249,7 @@ export default {
       }
     },
     tohome(){
-      this.$router.push("/home")
+      this.$router.push("/home")  
     },
     indexSelect(event){
       this.Deltimeid = event.target.value
@@ -264,7 +267,7 @@ export default {
           }
         }
       }
-        this.$router.push("/payOrder")
+        this.$router.push({path:"/payOrder",query: {key:this.totalPrice-this.inputNum/100+this.freight}})
         let orderList = []         
         this.cartData.map((item, index) => {
           orderList.push({

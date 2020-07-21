@@ -101,18 +101,9 @@ export default {
       console.log(typeof Phone)
       let PassWord = this.PassWord
       let data = { Phone, PassWord }
-      console.log(data);
+      console.log(data)
 
-      let temp=/^1(3|5|7|8|9)\d{9}$/.test(this.Phone);
-
-
-      if(this.Phone=='' || temp==false){
-        this.$message({
-              message: '手机号错误',
-              type: 'warning'
-            })
-      }else {
-        register(data)
+      register(data)
         .then(res => {
           // console.log(res.data.message);
           console.log(res)
@@ -143,30 +134,13 @@ export default {
         .catch(e => {
           console.log(e)
         })
-      }
-
-      
     },
 
     tishi() {
       document.getElementById('tishi').style.display = 'block'
     },
     xiaoshi() {
-      if(this.Phone!=''){
-        if(/^1(3|5|7|8|9)\d{9}$/.test(this.Phone)){
-          this.$message({
-            message:'该手机号可用',
-            type:'success'
-          });
-          document.getElementById('tishi').style.display = 'none';
-        }else {
-          document.getElementById('tishi').style.display = 'block';
-        }
-      }else if(this.Phone==''){
-          document.getElementById('tishi').style.display = 'none';
-      }
-
-      
+      document.getElementById('tishi').style.display = 'none'
     }
   }
 }
@@ -183,8 +157,7 @@ export default {
 #zhuceBox {
   width: 520px;
   height: 390px;
-  /* background-color: rgba(246, 248, 249, 0.81); */
-  background-color: white;
+  background-color: rgba(246, 248, 249, 0.81);
   position: absolute;
   top: 10px;
   margin-left: 470px;
@@ -290,7 +263,7 @@ input {
   margin-top: 20px;
 }
 #box6 {
-  margin-top: 10px;
+  margin-top: 20px;
   font-size: 12px;
   height: 16px;
   line-height: 16px;
@@ -308,7 +281,7 @@ input {
   vertical-align: middle;
 }
 #box7 {
-  margin-top: 10px;
+  margin-top: 20px;
 }
 #box7 input {
   width: 200px;
@@ -324,7 +297,6 @@ input {
 }
 #box7 span {
   font-size: 12px;
-  margin-left: 3px;
 }
 #box7 a {
   font-size: 12px;
@@ -349,7 +321,6 @@ input {
   width: 230px;
   overflow: hidden;
   display: none;
-  text-align: left;
 }
 #box1 {
   position: relative;
