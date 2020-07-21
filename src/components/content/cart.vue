@@ -100,7 +100,8 @@
                 discountts: 0,
                 totalPrice: 0,
                 isshow:"",
-                disable: true
+                disable: true,
+                cartProducts:[]
             }
         },
         created() {
@@ -111,16 +112,36 @@
                     this.isshow = false
                 }
             })
+            this.cartProducts = JSON.parse(localStorage.getItem("key"));
+            console.log(this.cartProducts)
         },
         methods:{
-            ...mapActions(['delProduct','delAll','submitOrder']),
-            toOrder(value) {
-                this.$router.push("/order");             
-                this.$store.dispatch("submitOrder",value) 
+             // 删除购物车指定商品
+            delProduct(product) {
+                this.cartProducts.map((item, index) => {
+                    if (item.id == product.id && item.Title1value == product.Title1value && item.Title2value == product.Title2value) {
+                    this.cartProducts.splice(index, 1)
+                    localStorage.setItem("key", JSON.stringify(this.cartProducts));
+                    this.$message("删除成功");
+                    }
+                })
             },
+            // 清除购物车
+            delAll(){
+               this.cartProducts = []; 
+               localStorage.setItem("key", JSON.stringify(this.cartProducts));
+                this.$message("清除成功");
+            },
+            // 提交购物车
+            toOrder(value) {
+                this.$router.push("/order");      
+                localStorage.setItem("k", JSON.stringify(value));
+            },
+            // 跳转到首页
             tohome(){
                 this.$router.push("/home")
             },
+            // 复选框操作
             handleSelectionChange(val) {
                 this.multipleSelection = val   
                 let resdata=JSON.parse(JSON.stringify(this.multipleSelection));    
@@ -135,6 +156,7 @@
                     this.totalPrice += item.product_Price*item.num
                 })
             },
+            // 计数器数量变化
             isChang() {
                 this.totalPrice = 0
                 this.multipleSelection.map((item,index)=>{ 
@@ -143,10 +165,6 @@
                 })
                 }
             },
-        computed:{
-            ...mapGetters(['cartProducts','cartData'])   
-
-        },
     }
 </script>
 <style scoped lang="scss">

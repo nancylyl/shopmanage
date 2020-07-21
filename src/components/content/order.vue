@@ -179,15 +179,15 @@ export default {
       inputNum: 0,
       read: false,
       convert:0,
-
+      cartProducts: [],
+      cartData: []
     }
-  },
-  watch:{
-    
   },
   created() {  
     // console.log(this.checkedData[0])
-     this.totalScore = getUserInfo().SumScore;
+    this.totalScore = getUserInfo().SumScore;
+    this.cartProducts = JSON.parse(localStorage.getItem("key"));
+    this.cartData = JSON.parse(localStorage.getItem("k"));
     if(this.totalScore>=500){
       this.disable = false
     }else{
@@ -202,22 +202,20 @@ export default {
     }else{
       this.freight = 12
     }
-    
     this.convert= this.totalPrice > this.totalScore/100 ? this.totalScore/100 : this.totalPrice
-
   },
   filters: {
-  numFilter (value) {
-    let realVal = ''
-    if (!isNaN(value) && value!== '') {
-      // 截取当前数据到小数点后两位
-      realVal = parseFloat(value).toFixed(2)
-    } else {
-      realVal = '--'
+    numFilter (value) {
+      let realVal = ''
+      if (!isNaN(value) && value!== '') {
+        // 截取当前数据到小数点后两位
+        realVal = parseFloat(value).toFixed(2)
+      } else {
+        realVal = '--'
+      }
+      return realVal
     }
-    return realVal
-  }
-},
+  },
   methods:{
     ...mapActions(['getSiteList']),
     shuRuJiFen(event){
@@ -250,6 +248,7 @@ export default {
         for(let j=this.cartProducts.length-1;j>=0;j--){
           if(this.cartData[i].id == this.cartProducts[j].id &&this.cartData[i].Title1value == this.cartProducts[j].Title1value && this.cartData[i].Title2value == this.cartProducts[j].Title2value){
               this.cartProducts.splice(j, 1)
+              localStorage.setItem("key", JSON.stringify(this.cartProducts));
           }
         }
       }
@@ -288,7 +287,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['siteList','cartData','checkedData','cartProducts']),
+    ...mapGetters(['siteList','checkedData']),
     defaultSite: function () {
       return this.siteList.filter(function (siteList) {
         return siteList.Is_True==1
