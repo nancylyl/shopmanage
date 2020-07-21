@@ -62,7 +62,7 @@
                     style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"
                   >
                     <img
-                     src="..\..\..\src\assets\images\other\gongshang.png"
+                      src="..\..\..\src\assets\images\other\gongshang.png"
                       style="float:left;width: 14px;height: 16px;"
                     />
                     <p
