@@ -42,7 +42,7 @@
                       type="url"
                       rel="nofollow"
                     >手机大朴</a>
-                    <span>|</span>
+                    <span> |</span>
                   </li>
                   <li>
                     <select id="selectop" style="padding: 1px 0px;margin-left:5px">
@@ -53,9 +53,9 @@
                     </select>
                   </li>
                 </ul>
-                <div>Copyright © 2013-2018 dapu.com 北京大朴至向家居设计有限公司</div>
+                <div style="margin-top:-20px">Copyright © 2013-2018 dapu.com 北京大朴至向家居设计有限公司</div>
                 <div>京ICP备12027522号 京ICP证130030号</div>
-                <div style="width:300px;margin:0 auto; padding:5px 0;">
+                <div style="width:300px;margin:0 auto; padding:5px 0;display:flex">
                   <a
                     target="_blank"
                     href="https://activity.dapuimg.com/%E5%8C%97%E4%BA%AC%E5%A4%A7%E6%9C%B4%E8%90%A5%E4%B8%9A%E6%89%A7%E7%85%A7.jpg"
