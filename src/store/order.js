@@ -4,6 +4,7 @@ import { getAddresslist } from '@/network/order'
 Vue.use(Vuex);
 const state = {
     siteData: [], // 收货地址信息
+    cartData: [], // 提交的购物车信息
     checkedData: [{
         payway: '网上支付',
         whichway: '支付宝',
@@ -12,7 +13,7 @@ const state = {
 }
 const getters = {
     siteList: state => state.siteData,
-    // cartData: state => state.cartData,
+    cartData: state => state.cartData,
     checkedData: state => state.checkedData,
 }
 const actions = {
@@ -28,12 +29,21 @@ const actions = {
                 console.log(e)
             })
     },
+    // 提交购物车
+    submitOrder(context, obj) {
+        context.commit("submitOrder", obj);
+    },
 }
 const mutations = {
     // 获取收货地址信息
     getSiteList(state, data) {
         state.siteData = data;
         // console.log(state.siteData);
+    },
+    // 提交购物车 
+    submitOrder(state, value) {
+        state.cartData = value
+        console.log(state.cartData)
     },
 }
 export default {
