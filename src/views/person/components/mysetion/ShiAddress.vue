@@ -111,7 +111,7 @@
               <tr>
                 <td class="td1">固定电话：</td>
                 <td class="td2">
-                  <input autocomplete="off" class="Input" v-model="Tel" @blur="search4" type="text" />
+                  <input autocomplete="off" class="Input" v-model="Tel"  type="text" />
                   <span v-if="yz5">固定电话不能为空</span>
                 </td>
               </tr>
@@ -122,7 +122,6 @@
                     autocomplete="off"
                     class="Input"
                     v-model="Mail"
-                    @blur="search5"
                     type="text"
                   />
                   <span v-if="yz6">邮政编码不能为空</span>
@@ -138,65 +137,67 @@
           </table>
         </div>
       </form>
-      <div class="SHXX2" v-for="(item,index) in huoQu" v-if="huoQu.length>0">
-        <table class="TableBoderNone">
-          <tbody>
-            <tr>
-              <td class="td1">收货人姓名：</td>
-              <td colspan="4" class="td2">{{item.S_Name}}</td>
-            </tr>
-            <tr>
-              <td align="right">手机号码：</td>
-              <td colspan="4" align="left">{{item.Phone}}</td>
-            </tr>
-            <tr>
-              <td align="right">固定电话：</td>
-              <td colspan="4" align="left">{{item.Tel}}</td>
-            </tr>
-            <tr>
-              <td align="right">邮政编码：</td>
-              <td colspan="4" align="left">{{item.Mail}}</td>
-            </tr>
-            <tr>
-              <td height="64" align="right" valign="top">地区：</td>
-              <td colspan="4" align="left">{{item.Province}}-{{item.City}}-{{item.Area}}</td>
-            </tr>
-            <tr>
-              <td height="64" align="right" valign="top">地址：</td>
-              <td colspan="4" align="left">{{item.Address}}</td>
-            </tr>
-            <tr class="Bg" style="background:#dedede;">
-              <td colspan="3" align="left">
-                <a href="#" rel="_request" v-if="item.Is_True==1">
-                  <!--                <input type="radio" name="radiobutton" value="radiobutton" class="Radio" checked="checked">-->
-                  <el-radio v-model="radio" @change="moren(item)" label="1">默认</el-radio>
-                </a>
-                <a href v-else-if="item.Is_True==0">
-                  <el-radio v-model="radio" @change="moren(item)" label="0">默认</el-radio>
-                </a>
+     <div class="forBOx">
+       <div class="SHXX2" v-for="(item,index) in huoQu" v-if="huoQu.length>0">
+         <table class="TableBoderNone">
+           <tbody>
+           <tr>
+             <td class="td1">收货人姓名：</td>
+             <td colspan="4" class="td2">{{item.S_Name}}</td>
+           </tr>
+           <tr>
+             <td align="right">手机号码：</td>
+             <td colspan="4" align="left">{{item.Phone}}</td>
+           </tr>
+           <tr>
+             <td align="right">固定电话：</td>
+             <td colspan="4" align="left">{{item.Tel}}</td>
+           </tr>
+           <tr>
+             <td align="right">邮政编码：</td>
+             <td colspan="4" align="left">{{item.Mail}}</td>
+           </tr>
+           <tr>
+             <td height="64" align="right" valign="top">地区：</td>
+             <td colspan="4" align="left">{{item.Province}}-{{item.City}}-{{item.Area}}</td>
+           </tr>
+           <tr>
+             <td height="64" align="right" valign="top">地址：</td>
+             <td colspan="4" align="left">{{item.Address}}</td>
+           </tr>
+           <tr class="Bg" style="background:#dedede;">
+             <td colspan="3" align="left">
+               <a href="#" rel="_request" v-if="item.Is_True==1">
+                 <!--                <input type="radio" name="radiobutton" value="radiobutton" class="Radio" checked="checked">-->
+                 <el-radio v-model="radio" @change="moren(item)" label="1">默认</el-radio>
+               </a>
+               <a href v-else-if="item.Is_True==0">
+                 <el-radio v-model="radio" @change="moren(item)" label="0">默认</el-radio>
+               </a>
 
-                <!--                默认-->
-              </td>
-              <td align="left">
-                <router-link
-                  :to="{path:'/PerCenter/ChangeAdd',query: {name: huoQu[index].Id,Phone:huoQu[index].Phone,S_Name:huoQu[index].S_Name,
+               <!--                默认-->
+             </td>
+             <td align="left">
+               <router-link
+                 :to="{path:'/PerCenter/ChangeAdd',query: {name: huoQu[index].Id,Phone:huoQu[index].Phone,S_Name:huoQu[index].S_Name,
               Tel: huoQu[index].Tel,Mail: huoQu[index].Mail,PCA:{Province:huoQu[index].Province,City:huoQu[index].City,Area:huoQu[index].Area},Address:huoQu[index].Address,
               Is_True:huoQu[index].Is_True}}"
-                  class="cYellow"
-                >修改</router-link>
-              </td>
-              <!--              "/PerCenter/ChangeAdd"-->
-              <td align="left">
-                <div class="cYellow">
-                  <el-button type="text" @click="del(huoQu[index].Id)">
-                    <span class="color">删除</span>
-                  </el-button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+                 class="cYellow"
+               >修改</router-link>
+             </td>
+             <!--              "/PerCenter/ChangeAdd"-->
+             <td align="left">
+               <div class="cYellow">
+                 <el-button type="text" @click="del(huoQu[index].Id)">
+                   <span class="color">删除</span>
+                 </el-button>
+               </div>
+             </td>
+           </tr>
+           </tbody>
+         </table>
+       </div>
+     </div>
     </div>
   </div>
 </template>
@@ -463,20 +464,21 @@ export default {
       if (S_Name == '') {
         this.yz1 = true
         this.cj = true
-      } else if (Address == '') {
+      } if (Address == '') {
         this.yz3 = true
         this.cj = true
-      } else if (Mail == '') {
-        this.yz6 = true
-        this.cj = true
-      } else if (Phone == '') {
+      } if (Phone == '') {
         this.yz4 = true
         this.cj = true
-      } else if (Tel == '') {
+      } if (Tel == '') {
         this.yz5 = true
         this.cj = true
       }
-      // else if (this.selected==""){
+      if (Mail == '') {
+        this.yz6 = true
+        this.cj = true
+      }
+        // else if (this.selected==""){
       //   this.yz7=true;
       //   this.cj=true
       // }
@@ -635,7 +637,7 @@ table {
 }
 .sesion {
   width: 936px;
-  height: 230px;
+  height: 250px;
   border: none;
   margin: 0 auto;
   border-bottom: 1px dashed #ddd;
@@ -735,6 +737,7 @@ select {
   margin: 10px 10px;
   padding: 5px;
   border-radius: 8px 8px 8px 8px;
+  background-color: rgb(239,239,239);
   border: 1px solid #dedede;
 }
 .td1 {
@@ -766,4 +769,8 @@ select {
 span {
   color: red;
 }
+  .forBOx{
+    width: 970px;
+    background-color: rgb(239,239,239);
+  }
 </style>

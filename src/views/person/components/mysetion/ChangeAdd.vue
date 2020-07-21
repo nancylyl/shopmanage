@@ -2,7 +2,7 @@
   <div>
     <div class="box">
       <div class="BdTop">
-        <span>修改收货地址</span>
+        <span class="title">修改收货地址</span>
       </div>
       <form action>
         <div class="sesion">
@@ -94,7 +94,7 @@
               <tr>
                 <td class="td1">邮政编码：</td>
                 <td class="td2">
-                  <input v-model="Mail" class="Input" name="name" @blur="search5" type="text" />
+                  <input v-model="Mail" class="Input" name="name"  type="text" />
                   <span v-if="yz4">邮政编码不能为空</span>
                 </td>
               </tr>
@@ -260,27 +260,29 @@ export default {
         Id
       }
       console.log(data)
-      if (City === undefined || Province === undefined || Area === undefined) {
-        Province = this.myPCA[0].Province
-        City = this.myPCA[0].City
-        Area = this.myPCA[0].Area
-      }
+
       if (S_Name == '') {
-        this.yz1 = true
+        this.yz1 = true;
         this.cj = true
-      } else if (Address == '') {
-        this.yz3 = true
+      } if (Address == '') {
+        this.yz3 = true;
         this.cj = true
-      } else if (Mail == '') {
-        this.yz6 = true
+      } if (Phone == '') {
+        this.yz4 = true;
         this.cj = true
-      } else if (Phone == '') {
-        this.yz4 = true
+      } if (Tel == '') {
+        this.yz5 = true;
         this.cj = true
-      } else if (Tel == '') {
-        this.yz5 = true
+      }
+      if (Mail == '') {
+        this.yz6 = true;
         this.cj = true
-      } else {
+      }else {
+        if (City === undefined || Province === undefined || Area === undefined) {
+          Province = this.myPCA[0].Province
+          City = this.myPCA[0].City
+          Area = this.myPCA[0].Area
+        }
         updateMyAddress(data)
           .then(res => {
             console.log(res.data.message)
@@ -410,7 +412,7 @@ table {
 }
 .sesion {
   width: 756px;
-  height: 270px;
+  height: 290px;
   border: none;
   margin: 0 auto;
   border-bottom: 1px dashed #ddd;
@@ -524,4 +526,7 @@ span {
 .infotips {
   color: #6b6b6b;
 }
+  .title{
+    color: #6b6b6b;
+  }
 </style>

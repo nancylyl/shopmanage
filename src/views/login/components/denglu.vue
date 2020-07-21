@@ -69,8 +69,11 @@ export default {
         login(data)
           .then(res => {
             if (res.data.success) {
-              this.$message('登录成功')
-              console.log(res.data.data)
+              this.$message({
+                message: '登录成功！',
+                type: 'success'
+              })
+              //console.log(res.data.data)
               overUserInfo(res.data.data)
               // console.log(window.pageConfig.userInfo);
               // console.log(window.session.userInfo);

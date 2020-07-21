@@ -39,6 +39,7 @@
             </tr>
           </table>
           <el-table
+            v-if="cartData!=''"
             :data="cartData"
             style="width: 100%"
             :header-cell-style="rowclass"
