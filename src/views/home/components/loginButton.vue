@@ -88,6 +88,7 @@ a {
   color: white;
   text-decoration: none;
   font-size: 12px;
+  min-width: 30px;
 }
 span {
   display: inline-block;
