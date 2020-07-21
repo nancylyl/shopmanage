@@ -41,21 +41,28 @@
                   <div v-if="item.State == 0">
                     <el-button  @click="open2(item,index)" type="text" >
                       <div class="mem-btn">
-                      付款
+                      确认付款
                       </div>
                     </el-button>
                   </div>
-                  <div v-if="item.State >= 1 && item.State <= 5">
+                  <div v-if="item.State == 2">
                     <el-button  @click="open3(item,index)" type="text" >
                       <div class="mem-btn">
-                      退款
+                      申请退款
                       </div>
                     </el-button>
                   </div>
-                  <div v-if="item.State >= 1 && item.State <= 5 ">
+                  <div v-if="item.State == 2">
+                    <el-button  @click="open5(item,index)" type="text" >
+                      <div class="mem-btn">
+                      确认收货
+                      </div>
+                    </el-button>
+                  </div>
+                  <div v-if="item.State == 5">
                     <el-button type="text" @click="dialogFormVisible = true"  @click.native="getplorder(item)">
                       <div  class="mem-btn">
-                        评论
+                        订单评论
                       </div>
                     </el-button>
                   </div>
@@ -87,7 +94,7 @@
                   <div>
                     <el-button type="text" @click="drawer = true"  @click.native="getchakanorder(item)">
                       <div class="mem-btn">
-                        查看
+                        查看详情
                       </div>
                     </el-button>
                   </div>
@@ -202,16 +209,14 @@
             this.getclass = indexs
         },
         open2(item,index) {
-
           let orderNum = item.ordernum
-
           let state = 2
           let indexa = index
           updateOrderState(orderNum,state)
           this.Myorder.splice(state + 1);
          this.Myorder[2][indexa].State = 2
         this.$message({
-          message: '恭喜你，已经付款成功',
+          message: '商品已付款成功',
           type: 'success'
         });
       },
@@ -222,7 +227,7 @@
           updateOrderState(orderNum,state) 
           this.Myorder[2][indexa].State = 12
         this.$message({
-          message: '已退款成功',
+          message: '商品已退款成功',
           type: 'success'
         });
       },
@@ -236,17 +241,24 @@
         } else {
           this.$message.error('请输入有效的评论内容');
         }
+      },open5(item,index) {
+          let orderNum = item.ordernum
+          let state = 5
+          let indexa = index
+          updateOrderState(orderNum,state) 
+          this.Myorder[2][indexa].State = 5
+        this.$message({
+          message: '商品已成功收货',
+          type: 'success'
+        });
       },
         getMyOder(state){
           getMyOder(state).then(res => {
             this.Myorder =res.data.data;
-            console.log(333333444444);
-            console.log(res);
             })
         },
         getchakanorder(item){
             this.chakanorder = item.ordernum
-            console.log(this.chakanorder);
         },
         getplorder(item){
           this.form.OrderNum = item.ordernum
