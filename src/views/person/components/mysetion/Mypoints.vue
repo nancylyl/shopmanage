@@ -9,7 +9,10 @@
               <td class="td1">您目前的积分数:</td>
               <td class="td2">{{ totalScore }}</td>
               <td>
-                <a href="#" class="cBlue">查看积分明细</a>
+                <router-link to="/PerCenter/Mypoints/pointsDetail" style="color:#4E8FC2">查看积分明细</router-link>
+                <!-- <a href="/PerCenter/pointsDetail" class="cBlue">查看积分明细</a> -->
+                <!-- <button @click="goto()">查看积分明细</button>
+                 -->
               </td>
             </tr>
             <tr>
@@ -84,6 +87,12 @@ export default {
   created() {
     console.log(getUserInfo());
     this.totalScore = getUserInfo().SumScore;
+  },
+  methods:{
+    goto(){
+
+      this.$router.push('/PerCenter/Mypoints/pointsDetail');
+    }
   }
 };
 </script>
