@@ -2,7 +2,7 @@
   <div>
     <div id="mylogin">
       <!--      <router-link to="/denglu">-->
-      <a href @click="roleLink">{{myLogin}}</a>
+      <a href @click="roleLink" class="login">{{myLogin}}</a>
       <!--      </router-link>-->
       <span>|</span>
       <!--      <router-link to="/zhuce">-->
@@ -76,22 +76,28 @@ export default {
 
 <style scoped>
 #mylogin {
-  width: 100px;
+  display: flex;
+  /* width: 100px; */
   height: 40px;
   background-color: rgb(177, 84, 79);
   line-height: 40px;
 }
 a {
+  display: inline-block;
+  padding: 0 10px;
   color: white;
   text-decoration: none;
   font-size: 12px;
 }
 span {
+  display: inline-block;
   color: white;
   margin-left: 5px;
 }
 .zhuce {
-  margin-left: 5px;
+  display: inline-block;
+  padding: 0 10px;
+  width: 30px;
 }
 a:hover {
   color: rgba(255, 255, 255, 0.5);
