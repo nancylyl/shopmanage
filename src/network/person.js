@@ -111,3 +111,9 @@ export function getDleMessage(id) { //删除我的消息
         url: '/api/deleteMyMessage.do?message_Id=' + id,
     })
 }
+export function getPoints() { //积分详情
+    return request({
+        url: '/api/getMyIntegralDetail.do',
+
+    })
+}

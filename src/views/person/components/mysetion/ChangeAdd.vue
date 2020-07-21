@@ -97,7 +97,7 @@
 
 <script>
   import { province, city, area } from '../../../../network/vue-area.js'
-  import {updateMyAddress} from "../../../../network/person"
+  import {updateMyAddress} from "../../../../network/person";
     export default {
         name: "ChangeAdd",
       data () {
@@ -105,7 +105,7 @@
           ID:"",
           se1:false,
           se2:false,
-          radio: '0',
+          radio: '',
           neiRong:'1',
           selected: '',
           citySelected: '',
@@ -174,6 +174,7 @@
         },
         xiuGai() {
 
+
           let S_Name = this.S_Name; // S_Name,  --收货人
           let Province = this.selected.name; // Province, --省份
           console.log(typeof Province);
@@ -184,7 +185,14 @@
           let Phone = this.Phone;// Phone,--电话
           let Tel = this.Tel; // Tel, --手机
           let Is_True = this.radio;// Is_True--是否是默认地址
-          let Id = this.$route.query.name
+          let Id = this.$route.query.name;
+          if (City===undefined||Province===undefined||Area===undefined){
+            Province=this.myPCA[0].Province
+            City=this.myPCA[0].City
+            Area=this.myPCA[0].Area
+          }
+
+
           console.log(Id)
 
           let data = {S_Name, Province, City, Area, Address, Mail, Phone, Tel, Is_True, Id};
@@ -196,6 +204,10 @@
             .catch(e => {
               console.log(e)
             })
+
+
+
+
           this.$router.go(-1)
           this.$message({
             message: '修改成功',
@@ -262,10 +274,13 @@
         let Mail = this.$route.query.Mail
         let Tel = this.$route.query.Tel
         let Is_True = this.$route.query.Is_True
+        this.radio=Is_True
        console.log(Is_True)
        this.S_Name=S_Name;
        if (Is_True==1){
-         this.radio=1
+         this.radio="1"
+       }else {
+         this.radio="0"
        }
        //  this.selected=Province
        //  console.log(this.selected)

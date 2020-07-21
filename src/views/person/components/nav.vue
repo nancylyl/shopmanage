@@ -4,39 +4,19 @@
       <div>
         <div class="dingDan">
           <p class="dingDan1">订单中心</p>
-          <router-link to="/PerCenter/myorder" class="dingDan2"
-            >我的订单</router-link
-          >
-          <router-link to="/PerCenter/mycomment" class="dingDan2"
-            >我的评论</router-link
-          >
+          <router-link to="/PerCenter/myorder" class="dingDan2">我的订单</router-link>
+          <router-link to="/PerCenter/mycomment" class="dingDan2">我的评论</router-link>
         </div>
         <div class="geRen">
           <p class="dingDan1">个人中心</p>
-          <router-link to="/PerCenter/personalData" class="dingDan2"
-            >个人资料</router-link
-          >
-          <router-link to="/PerCenter/ShiAddress" class="dingDan2"
-            >收货地址</router-link
-          >
-          <router-link to="/PerCenter/Information" class="dingDan2"
-            >发票信息</router-link
-          >
-          <router-link to="/PerCenter/Mypoints" class="dingDan2"
-            >我的积分</router-link
-          >
-          <!-- <router-link to="/PerCenter/MyCoupon" class="dingDan2"
-            >我的优惠券</router-link
-          > -->
-          <router-link to="/PerCenter/MyMessage" class="dingDan2"
-            >我的消息</router-link
-          >
-          <router-link to="/PerCenter/MyCollection" class="dingDan2"
-            >我的收藏</router-link
-          >
-          <router-link to="/PerCenter/ChangeWord" class="dingDan2"
-            >修改密码</router-link
-          >
+          <router-link to="/PerCenter/personalData" class="dingDan2">个人资料</router-link>
+          <router-link to="/PerCenter/ShiAddress" class="dingDan2">收货地址</router-link>
+          <router-link to="/PerCenter/Information" class="dingDan2">发票信息</router-link>
+          <router-link to="/PerCenter/Mypoints" class="dingDan2">我的积分</router-link>
+          <router-link to="/PerCenter/Mypoints/pointsDetail" class="dingDan2">积分详情</router-link>
+          <router-link to="/PerCenter/MyMessage" class="dingDan2">我的消息</router-link>
+          <router-link to="/PerCenter/MyCollection" class="dingDan2">我的收藏</router-link>
+          <router-link to="/PerCenter/ChangeWord" class="dingDan2">修改密码</router-link>
         </div>
       </div>
       <div class="neiRong">
@@ -48,8 +28,8 @@
 
 <script>
 export default {
-  name: "navheader"
-};
+  name: 'navheader'
+}
 </script>
 
 <style scoped>

@@ -9,21 +9,17 @@
           <tbody class="body1">
             <tr>
               <td id="add" class="td">
-                <input
-                  type="button"
-                  @click="chuangjian"
-                  class="Inputbut pointer"
-                  value="创建新地址"
-                />
+                <input type="button" @click="chuangjian" class="Inputbut pointer" value="创建新地址" />
               </td>
               <td class="td2">
-                物流配送网络覆盖全国，异地购物，全国配送，方便快捷，送装及时。<br />
+                物流配送网络覆盖全国，异地购物，全国配送，方便快捷，送装及时。
+                <br />
               </td>
             </tr>
           </tbody>
         </table>
       </div>
-      <div class="content" v-if="huoQu==''">暂无收货地址</div>
+      <div class="content" v-if="adds">暂无收货地址</div>
 
       <form action="/addMyAddress.do" v-if="cj" method="post">
         <div class="sesion">
@@ -48,12 +44,8 @@
                           class="select-box t-city"
                           @change="show"
                         >
-                          <option value="" label="">请选择省</option>
-                          <option
-                            v-for="(item, index) in provinceL"
-                            :value="item"
-                            >{{ item.name }}</option
-                          >
+                          <option value label>请选择省</option>
+                          <option v-for="(item,index) in provinceL" :value="item">{{ item.name }}</option>
                         </select>
                       </div>
                       <div class="select-l g-f-l g-ml-5">
@@ -64,12 +56,8 @@
                           v-show="se1"
                           @change="show2"
                         >
-                          <option value="">请选择市</option>
-                          <option
-                            v-for="(item, index) in cityL"
-                            :value="item"
-                            >{{ item.name }}</option
-                          >
+                          <option value>请选择市</option>
+                          <option v-for="(item,index) in cityL" :value="item">{{ item.name }}</option>
                         </select>
                       </div>
                       <div class="select-l g-f-l g-ml-5">
@@ -79,17 +67,11 @@
                           class="select-box t-city"
                           v-show="se2"
                         >
-                          <option value="">请选择区县</option>
-                          <option
-                            v-for="(item, index) in areaL"
-                            :value="item"
-                            >{{ item.name }}</option
-                          >
+                          <option value>请选择区县</option>
+                          <option v-for="(item,index) in areaL" :value="item">{{ item.name }}</option>
                         </select>
                       </div>
-                      <div v-show="notice.province">
-                        请选择{{ provinceMsg }}
-                      </div>
+                      <div v-show="notice.province">请选择{{ provinceMsg }}</div>
                     </div>
                     <!--                   <a href="javascript:;" @click="submitCity()">提交</a>-->
                   </div>
@@ -98,132 +80,90 @@
               <tr>
                 <td class="td1">地址：</td>
                 <td class="td2">
-                  <textarea
-                    class="dizhi"
-                    type="textarea"
-                    v-model="Address"
-                    rows="2"
-                    cols="30"
-                  ></textarea>
+                  <textarea class="dizhi" type="textarea" v-model="Address" rows="2" cols="30"></textarea>
                 </td>
               </tr>
               <tr>
                 <td class="td1">手机号码：</td>
                 <td class="td2">
-                  <input
-                    autocomplete="off"
-                    class="Input"
-                    v-model="Phone"
-                    type="text"
-                  />
+                  <input autocomplete="off" class="Input" v-model="Phone" type="text" />
                 </td>
               </tr>
               <tr>
                 <td class="td1">固定电话：</td>
                 <td class="td2">
-                  <input
-                    autocomplete="off"
-                    class="Input"
-                    v-model="Tel"
-                    type="text"
-                  />
+                  <input autocomplete="off" class="Input" v-model="Tel" type="text" />
                 </td>
               </tr>
               <tr>
                 <td class="td1">邮政编码：</td>
                 <td class="td2">
-                  <input
-                    autocomplete="off"
-                    class="Input"
-                    v-model="Mail"
-                    type="text"
-                  />
+                  <input autocomplete="off" class="Input" v-model="Mail" type="text" />
                 </td>
               </tr>
               <td class="td1"></td>
               <td class="td2">
                 <!--                  <button class="queDing" @click="chuangjianQD" type="button">确定</button>-->
-                <el-button :plain="true" @click="chuangjianQD" class="queDing"
-                  >确定</el-button
-                >
+                <el-button :plain="true" @click="chuangjianQD" class="queDing">确定</el-button>
               </td>
               <tr></tr>
             </tbody>
           </table>
         </div>
       </form>
-      <div class="SHXX2" v-for="(item, index) in huoQu" v-if="huoQu.length > 0">
+      <div class="SHXX2" v-for="(item,index) in huoQu" v-if="huoQu.length>0">
         <table class="TableBoderNone">
           <tbody>
             <tr>
               <td class="td1">收货人姓名：</td>
-              <td colspan="4" class="td2">{{ huoQu[index].S_Name }}</td>
+              <td colspan="4" class="td2">{{item.S_Name}}</td>
             </tr>
             <tr>
               <td align="right">手机号码：</td>
-              <td colspan="4" align="left">{{ huoQu[index].Phone }}</td>
+              <td colspan="4" align="left">{{item.Phone}}</td>
             </tr>
             <tr>
               <td align="right">固定电话：</td>
-              <td colspan="4" align="left">{{ huoQu[index].Tel }}</td>
+              <td colspan="4" align="left">{{item.Tel}}</td>
             </tr>
             <tr>
               <td align="right">邮政编码：</td>
-              <td colspan="4" align="left">{{ huoQu[index].Mail }}</td>
+              <td colspan="4" align="left">{{item.Mail}}</td>
             </tr>
             <tr>
               <td height="64" align="right" valign="top">地区：</td>
-              <td colspan="4" align="left">
-                {{ huoQu[index].Province }}-{{ huoQu[index].City }}-{{
-                  huoQu[index].Area
-                }}
-              </td>
+              <td colspan="4" align="left">{{item.Province}}-{{item.City}}-{{item.Area}}</td>
             </tr>
             <tr>
               <td height="64" align="right" valign="top">地址：</td>
-              <td colspan="4" align="left">{{ huoQu[index].Address }}</td>
+              <td colspan="4" align="left">{{item.Address}}</td>
             </tr>
             <tr class="Bg" style="background:#dedede;">
               <td colspan="3" align="left">
-                <a href="#" rel="_request"
-                  ><input
-                    type="radio"
-                    name="radiobutton"
-                    value="radiobutton"
-                    class="Radio"
-                    checked="checked"
-                /></a>
-                默认
+                <a href="#" rel="_request" v-if="item.Is_True==1">
+                  <!--                <input type="radio" name="radiobutton" value="radiobutton" class="Radio" checked="checked">-->
+                  <el-radio v-model="radio" @change="moren(item)" label="1">默认</el-radio>
+                </a>
+                <a href v-else-if="item.Is_True==0">
+                  <el-radio v-model="radio" @change="moren(item)" label="0">默认</el-radio>
+                </a>
+
+                <!--                默认-->
               </td>
               <td align="left">
                 <router-link
-                  :to="{
-                    path: '/PerCenter/ChangeAdd',
-                    query: {
-                      name: huoQu[index].Id,
-                      Phone: huoQu[index].Phone,
-                      S_Name: huoQu[index].S_Name,
-                      Tel: huoQu[index].Tel,
-                      Mail: huoQu[index].Mail,
-                      PCA: {
-                        Province: huoQu[index].Province,
-                        City: huoQu[index].City,
-                        Area: huoQu[index].Area
-                      },
-                      Address: huoQu[index].Address,
-                      Is_True: huoQu[index].Is_True
-                    }
-                  }"
+                  :to="{path:'/PerCenter/ChangeAdd',query: {name: huoQu[index].Id,Phone:huoQu[index].Phone,S_Name:huoQu[index].S_Name,
+              Tel: huoQu[index].Tel,Mail: huoQu[index].Mail,PCA:{Province:huoQu[index].Province,City:huoQu[index].City,Area:huoQu[index].Area},Address:huoQu[index].Address,
+              Is_True:huoQu[index].Is_True}}"
                   class="cYellow"
-                  >修改</router-link
-                >
+                >修改</router-link>
               </td>
               <!--              "/PerCenter/ChangeAdd"-->
               <td align="left">
                 <div class="cYellow">
-                  <el-button type="text" @click="del(huoQu[index].Id)"
-                    ><span class="color">删除</span></el-button
-                  >
+                  <el-button type="text" @click="del(huoQu[index].Id)">
+                    <span class="color">删除</span>
+                  </el-button>
                 </div>
               </td>
             </tr>
@@ -235,145 +175,200 @@
 </template>
 
 <script>
-import { province, city, area } from "../../../../network/vue-area.js";
+import { province, city, area } from '../../../../network/vue-area.js'
 import {
   addMyAddress,
   getMyAddress,
-  delMyAddress
-} from "../../../../network/person";
+  delMyAddress,
+  updateMyAddress
+} from '../../../../network/person'
 export default {
-  name: "ShiAddress",
+  name: 'ShiAddress',
   data() {
     return {
       cj: false,
       se1: false,
       se2: false,
       adds: true,
+      ws: [],
       counter: [],
       huoQu: [],
-      selected: "",
-      citySelected: "",
-      areaSelected: "",
-      S_Name: "",
-      Address: "",
-      Mail: "",
-      Phone: "",
-      Tel: "",
-      Is_True: "",
+      radio: '1',
+      selected: '',
+      citySelected: '',
+      areaSelected: '',
+      S_Name: '',
+      Address: '',
+      Mail: '',
+      Phone: '',
+      Tel: '',
+      Is_True: '',
       provinceL: [],
       cityL: [],
       areaL: [],
-      selectedData: "",
-      citySelectedData: "",
-      areaSelectedData: "",
-      provinceMsg: "",
+      selectedData: '',
+      citySelectedData: '',
+      areaSelectedData: '',
+      provinceMsg: '',
       notice: {
         province: false
       }
-    };
+    }
   },
   created() {},
 
   mounted() {
-    this.provinceL = [...province]; /*取出省市数据*/
+    this.provinceL = [...province] /*取出省市数据*/
     // this.cityList = [...city]
   },
   watch: {
     selected: function() {
       // 清除区县
-      this.citySelected = {};
-      this.cityL = city.filter(item => item.parentId == this.selected.code);
+      this.citySelected = {}
+      this.cityL = city.filter(item => item.parentId == this.selected.code)
       for (const i in this.cityL) {
         if (
           this.cityL[i].code == this.citySelectedData &&
           this.cityL[i].parentId == this.selected.code
         ) {
-          this.citySelected = this.cityL[i];
+          this.citySelected = this.cityL[i]
         }
       }
     },
     citySelected: function() {
-      this.areaSelected = {};
+      this.areaSelected = {}
       if (this.citySelected) {
         this.areaL = area.filter(
           item => item.parentId === this.citySelected.code
-        );
+        )
       }
       for (const i in this.areaL) {
         if (
           this.areaL[i].code == this.areaSelectedData &&
           this.areaL[i].parentId == this.citySelected.code
         ) {
-          this.areaSelected = this.areaL[i];
+          this.areaSelected = this.areaL[i]
         }
       }
     }
   },
   methods: {
     del(id) {
-      let Id = id;
-      let data = { Id };
-      console.log(data);
+      let Id = id
+      let data = { Id }
+      console.log(data)
       delMyAddress(data)
         .then(res => {
-          console.log(res.data.message);
+          console.log(res.data.message)
         })
         .catch(e => {
-          console.log(e);
-        });
+          console.log(e)
+        })
 
-      this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
-        type: "warning"
+      this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
       })
         .then(() => {
           this.$message({
-            type: "success",
-            message: "删除成功!"
-          });
+            type: 'success',
+            message: '删除成功!'
+          })
+          getMyAddress()
+            .then(res => {
+              this.huoQu = res.data.data
+              console.log(this.huoQu)
+            })
+            .catch(e => {
+              console.log(e)
+            })
         })
         .catch(() => {
           this.$message({
-            type: "info",
-            message: "已取消删除"
-          });
-        });
-      getMyAddress()
+            type: 'info',
+            message: '已取消删除'
+          })
+        })
+    },
+
+    moren(item) {
+      console.log(item)
+      this.radio = 1
+      let Is_True = 1
+      let S_Name = item.S_Name // S_Name,  --收货人
+      let Province = item.Province // Province, --省份
+      let City = item.City // City, --城市
+      let Area = item.Area // AREA, --区域
+      let Address = item.Address // Address, --地址
+      let Mail = item.Mail // Mail, --邮编
+      let Phone = item.Phone // Phone,--电话
+      let Tel = item.Tel // Tel, --手机
+      let Id = item.Id
+      console.log(Tel)
+      let data = {
+        Is_True,
+        S_Name,
+        Province,
+        City,
+        Area,
+        Address,
+        Mail,
+        Phone,
+        Tel,
+        Id
+      }
+      updateMyAddress(data)
         .then(res => {
-          this.huoQu = res.data.data;
-          console.log(this.huoQu);
+          console.log(res.data.message)
+          console.log(1111111)
         })
         .catch(e => {
-          console.log(e);
-        });
+          console.log(e)
+        })
+      this.$router.go(0)
+
+      // getMyAddress()
+      //   .then(res=>{
+      //     this.huoQu =res.data.data;
+      //     this.ws.push(this.huoQu)
+      //     console.log(this.huoQu);
+      //     console.log(this.ws)
+      //   })
+      //   .catch(e => {
+      //     console.log(e)
+      //   })
+      // this.huoQu=1
     },
 
     show() {
-      this.se1 = true;
+      this.se1 = true
     },
     show2() {
-      this.se2 = true;
+      this.se2 = true
     },
     chuangjian() {
       // this.document.getElementById(cj).style.display="block"
-      this.cj = true;
+      this.cj = true
     },
 
     chuangjianQD() {
-      this.cj = false;
-      this.counter.push({});
-      let S_Name = this.S_Name; // S_Name,  --收货人
-      let Province = this.selected.name; // Province, --省份
-      console.log(typeof Province);
-      let City = this.citySelected.name; // City, --城市
-      let Area = this.areaSelected.name; // AREA, --区域
-      let Address = this.Address; // Address, --地址
-      let Mail = this.Mail; // Mail, --邮编
-      let Phone = this.Phone; // Phone,--电话
-      let Tel = this.Tel; // Tel, --手机
-      let Is_True = 0; // Is_True--是否是默认地址
-      let UId = 3;
+      this.cj = false
+      this.counter.push({})
+      let S_Name = this.S_Name // S_Name,  --收货人
+      let Province = this.selected.name // Province, --省份
+      console.log(typeof Province)
+      let City = this.citySelected.name // City, --城市
+      let Area = this.areaSelected.name // AREA, --区域
+      let Address = this.Address // Address, --地址
+      let Mail = this.Mail // Mail, --邮编
+      let Phone = this.Phone // Phone,--电话
+      let Tel = this.Tel // Tel, --手机
+      let Is_True = 0 // Is_True--是否是默认地址
+      if (this.huoQu.length == 0) {
+        Is_True = 1
+      }
+      let UId = 3
 
       let data = {
         S_Name,
@@ -386,37 +381,33 @@ export default {
         Tel,
         Is_True,
         UId
-      };
-      console.log(data);
+      }
+      console.log(data)
       addMyAddress(data)
         .then(res => {
-          console.log(res.data.message);
+          console.log(res.data.message)
         })
         .catch(e => {
-          console.log(e);
+          console.log(e)
         })
-
-        .catch(e => {
-          console.log(e);
-        });
       this.$message({
-        message: "添加成功",
-        type: "success"
-      });
+        message: '添加成功',
+        type: 'success'
+      })
       getMyAddress().then(res => {
-        this.huoQu = res.data.data;
-        console.log(this.huoQu);
-      });
-      this.adds = false;
+        this.huoQu = res.data.data
+        console.log(this.huoQu)
+      })
+      this.adds = false
     },
     /*从后台获取用户提交的省市区信息*/
     getCity(addr) {
-      this.citySelectedData = addr.City;
-      this.areaSelectedData = addr.County;
+      this.citySelectedData = addr.City
+      this.areaSelectedData = addr.County
       for (const i in this.provinceL) {
         if (Number(addr.Province) == this.provinceL[i].code) {
-          this.selectedData = this.provinceL[i].name;
-          this.selected = this.provinceL[i];
+          this.selectedData = this.provinceL[i].name
+          this.selected = this.provinceL[i]
         }
       }
     },
@@ -427,41 +418,41 @@ export default {
             return
           }*/
       /*没有默认选择时*/
-      if (this.selected == "") {
-        this.notice.province = true;
-        this.provinceMsg = "省";
-        return;
+      if (this.selected == '') {
+        this.notice.province = true
+        this.provinceMsg = '省'
+        return
       } else {
-        this.notice.province = false;
+        this.notice.province = false
       }
       if (this.citySelected == undefined) {
-        this.notice.province = true;
-        this.provinceMsg = "市";
-        return;
+        this.notice.province = true
+        this.provinceMsg = '市'
+        return
       } else {
-        this.notice.province = false;
+        this.notice.province = false
       }
       if (this.areaSelected == undefined) {
-        this.notice.province = true;
-        this.provinceMsg = "区县";
-        return;
+        this.notice.province = true
+        this.provinceMsg = '区县'
+        return
       } else {
-        this.notice.province = false;
+        this.notice.province = false
       }
-      console.log("提交成功");
+      console.log('提交成功')
     }
   },
   beforeCreate() {
     getMyAddress()
       .then(res => {
-        this.huoQu = res.data.data;
-        console.log(this.huoQu);
+        this.huoQu = res.data.data
+        console.log(this.huoQu)
       })
       .catch(e => {
-        console.log(e);
-      });
+        console.log(e)
+      })
   }
-};
+}
 </script>
 
 <style scoped>
@@ -469,8 +460,8 @@ export default {
   background-color: rgb(239, 239, 239);
   width: 970px;
   /* position: absolute; */
-  top: 60px;
-  right: 7%;
+  /* top: 60px;
+  right: 7%; */
 }
 .header {
   border-radius: 2px;

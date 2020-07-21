@@ -42,7 +42,7 @@
                       type="url"
                       rel="nofollow"
                     >手机大朴</a>
-                    <span>|</span>
+                    <span> |</span>
                   </li>
                   <li>
                     <select id="selectop" style="padding: 1px 0px;margin-left:5px">
@@ -53,16 +53,16 @@
                     </select>
                   </li>
                 </ul>
-                <div>Copyright © 2013-2018 dapu.com 北京大朴至向家居设计有限公司</div>
+                <div style="margin-top:-20px">Copyright © 2013-2018 dapu.com 北京大朴至向家居设计有限公司</div>
                 <div>京ICP备12027522号 京ICP证130030号</div>
-                <div style="width:300px;margin:0 auto; padding:5px 0;">
+                <div style="width:300px;margin:0 auto; padding:5px 0;display:flex">
                   <a
                     target="_blank"
                     href="https://activity.dapuimg.com/%E5%8C%97%E4%BA%AC%E5%A4%A7%E6%9C%B4%E8%90%A5%E4%B8%9A%E6%89%A7%E7%85%A7.jpg"
                     style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"
                   >
                     <img
-                      src="https://activity.dapuimg.com/beijing%E5%B7%A5%E5%95%86%E5%B1%80icon%20.png"
+                      src="..\..\..\src\assets\images\other\gongshang.png"
                       style="float:left;width: 14px;height: 16px;"
                     />
                     <p
@@ -76,7 +76,7 @@
                     style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"
                   >
                     <img
-                      src="http://activity.dapuimg.com/dapu_icon-police.png"
+                      src="..\..\..\src\assets\images\other\police.png"
                       style="float:left;margin-left:20px;"
                     />
                     <p
