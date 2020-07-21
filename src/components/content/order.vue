@@ -196,7 +196,7 @@ export default {
         this.disable = true
       }
       this.convert= this.totalPrice > this.totalScore/100 ? this.totalScore/100 : this.totalPrice
-      console.log(this.totalScore)
+      // console.log(this.totalScore)
     })
       
     //  this.totalScore = getUserInfo().SumScore;
@@ -244,7 +244,6 @@ export default {
       if(this.check==false){
         this.inputNum = ""
       }
-      console.log(this.check )
     },
     tohome(){
       this.$router.push("/home")
