@@ -112,8 +112,7 @@ export default {
       discountts: 0,
       totalPrice: 0,
       paydate: new Date(),
-      allPrice: 0,
-      cartData: []
+      allPrice: 0
     };
   },
 
@@ -141,7 +140,6 @@ export default {
   },
   created() {
     this.getPayOder();
-    this.cartData = JSON.parse(localStorage.getItem("k"));
     // this.allPrice
     this.cartData.map((item,index)=>{
       this.allPrice += item.num*item.product_Price
@@ -175,14 +173,12 @@ export default {
               path: `/home`
             });
           }, 200);
-          this.cartData = [];
-          localStorage.setItem("k", JSON.stringify(this.cartData));
         }
       });
     }
   },
   computed: {
-    ...mapGetters(["checkedData"])
+    ...mapGetters(["checkedData", "cartData"])
   }
 };
 </script>

@@ -131,7 +131,7 @@
           <input type="checkbox" :disabled="disable" :checked='check' @click="checkbox"> 
           <span>使用积分</span><span v-if="this.check==true">(请输入需要兑换的积分数)</span>
           <div v-if="this.check==true" >
-            <input style="margin-top: 15px;" type="number" v-model="inputNum" value="inputNum" @input="shuRuJiFen($event)">
+            <input style="margin-top: 15px;" type="number"  v-model="inputNum" value="inputNum" @input="shuRuJiFen($event)">
             <span>(兑换金额:<span style="color:#2980B9">{{inputNum/100}}元</span>)</span>
           </div>
          
@@ -163,7 +163,9 @@
   </div>
 </template>
 <script>
+
 import { getUserInfo } from "@/toolkit";
+import { getMyUserInfo } from '@/network/home'
 import { mapGetters, mapActions } from 'vuex'
 import { addOrder } from '@/network/order'
 export default {
@@ -176,23 +178,28 @@ export default {
       totalScore: 0,
       disable: false,
       check: false,
-      inputNum: 0,
+      inputNum: '',
       read: false,
       convert:0,
-      cartProducts: [],
-      cartData: []
     }
+  },
+  watch:{
+    
   },
   created() {  
     // console.log(this.checkedData[0])
-    this.totalScore = getUserInfo().SumScore;
-    this.cartProducts = JSON.parse(localStorage.getItem("key"));
-    this.cartData = JSON.parse(localStorage.getItem("k"));
-    if(this.totalScore>=500){
-      this.disable = false
-    }else{
-      this.disable = true
-    }
+    getMyUserInfo().then(res => {
+      this.totalScore = res.data.data[0].SumScore
+      if(this.totalScore>=500){
+        this.disable = false
+      }else{
+        this.disable = true
+      }
+      this.convert= this.totalPrice > this.totalScore/100 ? this.totalScore/100 : this.totalPrice
+      console.log(this.totalScore)
+    })
+      
+    //  this.totalScore = getUserInfo().SumScore;
     this.getSiteList()
     this.cartData.map((item, index) => {
       this.totalPrice += item.product_Price*item.num
@@ -201,35 +208,42 @@ export default {
       this.freight = 0
     }else{
       this.freight = 12
-    }
-    this.convert= this.totalPrice > this.totalScore/100 ? this.totalScore/100 : this.totalPrice
+    }   
+    
   },
   filters: {
-    numFilter (value) {
-      let realVal = ''
-      if (!isNaN(value) && value!== '') {
-        // 截取当前数据到小数点后两位
-        realVal = parseFloat(value).toFixed(2)
-      } else {
-        realVal = '--'
-      }
-      return realVal
+  numFilter (value) {
+    let realVal = ''
+    if (!isNaN(value) && value!== '') {
+      // 截取当前数据到小数点后两位
+      realVal = parseFloat(value).toFixed(2)
+    } else {
+      realVal = '--'
     }
-  },
+    return realVal
+  }
+},
   methods:{
     ...mapActions(['getSiteList']),
     shuRuJiFen(event){
-      let num= event.currentTarget.value
-      if(num<0){
-        this.inputNum = 0 
+      let num = Math.round(event.currentTarget.value)   
+      if(num < 500){
+        this.inputNum = 500 
       }
-      if(num>0){
-        this.inputNum = num > this.convert*100 ? this.convert*100 : num
+      if(num > 500){
+        this.inputNum = num> this.convert*100 ? this.convert*100 : num
+          if (/[^\d]/g.test(this.inputNum)) {
+          this.$vux.toast.text(this.$t("m.recharge.onlyInteger"));
+          this.inputNum = "";
+        }
       }
-      console.log(this.inputNum)
+      // console.log(this.inputNum)
     },
     checkbox(){
       this.check =  !this.check
+      if(this.check==false){
+        this.inputNum = ""
+      }
       console.log(this.check )
     },
     tohome(){
@@ -248,7 +262,6 @@ export default {
         for(let j=this.cartProducts.length-1;j>=0;j--){
           if(this.cartData[i].id == this.cartProducts[j].id &&this.cartData[i].Title1value == this.cartProducts[j].Title1value && this.cartData[i].Title2value == this.cartProducts[j].Title2value){
               this.cartProducts.splice(j, 1)
-              localStorage.setItem("key", JSON.stringify(this.cartProducts));
           }
         }
       }
@@ -280,14 +293,14 @@ export default {
                 Deltime:  this.Deltimeid   // 送货时间种类  
             })
         })
-      addOrder(orderList,this.inputNum)
+      addOrder(orderList)
       }else{
         this.$message.error('请选择收货地址');
       }
     }
   },
   computed: {
-    ...mapGetters(['siteList','checkedData']),
+    ...mapGetters(['siteList','cartData','checkedData','cartProducts']),
     defaultSite: function () {
       return this.siteList.filter(function (siteList) {
         return siteList.Is_True==1

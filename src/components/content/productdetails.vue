@@ -195,9 +195,7 @@ export default {
       allnum: 0,
       allprice: 0,
       ifTan: false,
-      comment: [] ,
-      added: [],
-      cartProducts: []
+      comment: [] 
       // pid:
     }
   },
@@ -419,7 +417,6 @@ export default {
           }
         }   
     },
-    // 添加购物车
     addcart(a, b, c, d, e, f, g, h, i, j, k) {   
        
       if(d!=''&&f!=''){
@@ -478,7 +475,7 @@ export default {
     sureadd(a, b, c, d, e, f, g, h, i, j, k){
       console.log(a, b, c, d, e, f, g, h, i, j,k)
       this.visible = true;
-      let obj = {
+      this.addToCart({
         id: a,
         product_Name: b,
         product_Price: c,
@@ -490,22 +487,14 @@ export default {
         img: i,
         stock: j,
         Score: k
-      };
-      let record = this.added.find(selfitem => selfitem.id == obj.id && selfitem.Title1value == obj.Title1value && selfitem.Title2value == obj.Title2value)
-        if (record) {
-            record.num += obj.num
-        } else {
-            this.added.push({...obj })
-        }
-        localStorage.setItem("key", JSON.stringify(this.added));
-        this.cartProducts = JSON.parse(localStorage.getItem("key"));
+      })
       // 购物车弹框显示数据
       this.allkind = this.cartProducts.length
       this.allnum = 0;
       this.allprice = 0;
       this.cartProducts.map((item, index) => {         
-      this.allnum += item.num
-      this.allprice += item.num*item.product_Price
+        this.allnum += item.num
+        this.allprice += item.num*item.product_Price
         // console.log(this.allkind+'==='+this.allnum+'==='+this.allprice)
       })
     },
@@ -520,7 +509,7 @@ export default {
     }
   },
   computed:{
-    // ...mapGetters(['cartProducts'])        
+    ...mapGetters(['cartProducts'])       
   }
 }
 </script> 
