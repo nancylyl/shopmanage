@@ -143,7 +143,7 @@ export default {
     // this.cartData.map((item, index) => {
     //   this.allPrice += item.num * item.product_Price
     // })
-    this.allPrice=this.$route.query.obj;
+    this.allPrice = this.$route.query.obj
     console.log(this.allPrice)
   },
   methods: {
@@ -173,7 +173,7 @@ export default {
           })
           setTimeout(() => {
             this.$router.push({
-              path: `/home`
+              path: `/PerCenter/myorder`
             })
           }, 200)
           this.cartData = []

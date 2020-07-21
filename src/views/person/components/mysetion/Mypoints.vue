@@ -72,7 +72,7 @@
 </template>
 
 <script>
-import { getUserInfo } from '../../../../toolkit'
+import { getMyUserInfo } from '@/network/home'
 export default {
   name: 'Mypoints',
   data() {
@@ -126,7 +126,7 @@ td {
   height: 30px;
 }
 .td1 {
-  width: 102px;
+  width: 112px;
   padding-right: 15px;
 }
 .td2 {

@@ -264,11 +264,12 @@
           this.form.OrderNum = item.ordernum
         },
         pinglun(item,index,form) {
+          console.log(555555555555555555);
+            console.log(form);
           if (form.Content != '') {
             let data = form
           addcomment(data).then(res => {
           })
-          form.Content = ''
          }
         },
         
