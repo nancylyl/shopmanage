@@ -82,6 +82,7 @@ export default {
   },
   created() {
     getMyUserInfo().then(res => {
+      console.log(res.data)
       this.totalScore = res.data.data[0].SumScore
     })
   },
