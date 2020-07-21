@@ -26,7 +26,7 @@
         <div style="border-left:1px solid;padding-left:20px;" v-if="this.payorder!=''">
           <table style="font-size:14px">
             <tr>
-              <td>
+              <td style="text-align:left">
                 <span>订单编号：{{this.payorder[0].OrderNum}}</span>
               </td>
             </tr>
@@ -138,12 +138,13 @@ export default {
   },
   beforCreate() {},
   created() {
-    this.getPayOder();
-    this.allPrice = this.$route.query.key
-    // this.cartData.map((item,index)=>{
-    //   this.allPrice += item.num*item.product_Price
+    this.getPayOder()
+    // this.allPrice
+    // this.cartData.map((item, index) => {
+    //   this.allPrice += item.num * item.product_Price
     // })
-    console.log(this.allPrice);
+    this.allPrice=this.$route.query.obj;
+    console.log(this.allPrice)
   },
   methods: {
     rowclass() {
@@ -158,8 +159,7 @@ export default {
     getPayOder() {
       getPayOder().then(res => {
         // console.log(res);
-        this.payorder = res.data.data[1];
-
+        this.payorder = res.data.data[1]
         // console.log(this.payorder);
       })
     },

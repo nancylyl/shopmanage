@@ -267,7 +267,7 @@ export default {
           }
         }
       }
-        this.$router.push({path:"/payOrder",query: {key:this.totalPrice-this.inputNum/100+this.freight}})
+        this.$router.push({path:"/payOrder",query: {obj:this.totalPrice-this.inputNum/100+this.freight}})
         let orderList = []         
         this.cartData.map((item, index) => {
           orderList.push({
