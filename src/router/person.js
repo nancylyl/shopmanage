@@ -13,7 +13,6 @@ import ChangeWord from "../views/person/components/mysetion/ChangeWord";
 import nav from "../views/person/components/nav";
 import ChangeAdd from "../views/person/components/mysetion/ChangeAdd";
 import pointsDetail from "../views/person/components/mysetion/pointsDetail";
-
 export default [{
 
         path: '/PerCenter',
@@ -85,7 +84,6 @@ export default [{
                 name: 'pointsDetail',
                 component: pointsDetail
             },
-
 
 
 
