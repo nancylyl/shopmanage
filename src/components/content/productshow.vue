@@ -115,7 +115,7 @@ export default {
 
       console.log(this.currentPage)
       let data = {
-        PageCount: 16,
+        PageCount: 20,
         CurrentPage: this.currentPage,
         key: this.key,
         orderby: this.orderby, //排序方式
