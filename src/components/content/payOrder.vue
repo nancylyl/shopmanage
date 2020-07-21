@@ -140,10 +140,10 @@ export default {
   },
   created() {
     this.getPayOder();
-    // this.allPrice
-    this.cartData.map((item,index)=>{
-      this.allPrice += item.num*item.product_Price
-    })
+    this.allPrice = this.$route.query.key
+    // this.cartData.map((item,index)=>{
+    //   this.allPrice += item.num*item.product_Price
+    // })
     console.log(this.allPrice);
   },
   methods: {
@@ -160,6 +160,7 @@ export default {
       getPayOder().then(res => {
         // console.log(res);
         this.payorder = res.data.data[1];
+
         // console.log(this.payorder);
       });
     },
