@@ -13,11 +13,11 @@ export function getPayBylist() {
         url: '/api/getPayBy.do',
     })
 }
-export  function  addOrder(data)  {   
-    console.log(data)    
+export  function  addOrder(data, score)  {    
     return  request({        
-        url:   '/api/addOrder.do',     
-        data:   { data },
+        url:   '/api/addOrder.do',
+             
+        data:   { data, score },
         method:   'post'    
     })
 }

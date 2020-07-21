@@ -281,7 +281,7 @@ export default {
                 Deltime:  this.Deltimeid   // 送货时间种类  
             })
         })
-      addOrder(orderList)
+      addOrder(orderList,this.inputNum)
       }else{
         this.$message.error('请选择收货地址');
       }
