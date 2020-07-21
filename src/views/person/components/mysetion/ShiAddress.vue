@@ -275,20 +275,20 @@ export default {
             type: 'success',
             message: '删除成功!'
           })
+          getMyAddress()
+            .then(res => {
+              this.huoQu = res.data.data
+              console.log(this.huoQu)
+            })
+            .catch(e => {
+              console.log(e)
+            })
         })
         .catch(() => {
           this.$message({
             type: 'info',
             message: '已取消删除'
           })
-        })
-      getMyAddress()
-        .then(res => {
-          this.huoQu = res.data.data
-          console.log(this.huoQu)
-        })
-        .catch(e => {
-          console.log(e)
         })
     },
 
@@ -365,6 +365,9 @@ export default {
       let Phone = this.Phone // Phone,--电话
       let Tel = this.Tel // Tel, --手机
       let Is_True = 0 // Is_True--是否是默认地址
+      if (this.huoQu.length == 0) {
+        Is_True = 1
+      }
       let UId = 3
 
       let data = {
