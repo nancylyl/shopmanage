@@ -263,7 +263,7 @@ input {
   margin-top: 20px;
 }
 #box6 {
-  margin-top: 20px;
+  margin-top: 10px;
   font-size: 12px;
   height: 16px;
   line-height: 16px;
@@ -281,7 +281,7 @@ input {
   vertical-align: middle;
 }
 #box7 {
-  margin-top: 20px;
+  margin-top: 3px;
 }
 #box7 input {
   width: 200px;

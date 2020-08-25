@@ -3,8 +3,15 @@
     <div class="mask" v-show="visible" @click="visible=false"></div>
     <div class="mask" v-show="ifTan" @click="ifTan=false"></div>
     <div>
-      <addcart @showbox="toshow" v-show="visible" :isshow='visible' :kind = this.allkind :totalNum = this.allnum :totalPrice = this.allprice />
-    </div>    
+      <addcart
+        @showbox="toshow"
+        v-show="visible"
+        :isshow="visible"
+        :kind="this.allkind"
+        :totalNum="this.allnum"
+        :totalPrice="this.allprice"
+      />
+    </div>
     <section class="details" v-if="this.productlist.length>0">
       <div class="boxleft">
         <div class="picbox">
@@ -42,10 +49,12 @@
 
         <myCollect class="tanchuK" v-if="ifTan" ref="son">
           <template slot="mySlot">
-            <img src="../../assets/images/home/cha2.jpg" alt="" @click="guanbi">
+            <img src="../../assets/images/home/cha2.jpg" alt @click="guanbi" />
           </template>
           <template slot="mySlot2">
-            <router-link to="/PerCenter/MyCollection"><a href="" class="myMy" >我的收藏</a></router-link>
+            <router-link to="/PerCenter/MyCollection">
+              <a href class="myMy">我的收藏</a>
+            </router-link>
           </template>
         </myCollect>
 
@@ -89,12 +98,12 @@
               <p class="score-name">销量</p>
             </li>
             <li>
-              <p class="score-num">{{ productlist[0].CNum }}</p>
+              <p class="score-num">{{comment.length }}</p>
               <p class="score-name">用户评论数</p>
             </li>
             <li>
               <p class="score-num">{{ productlist[0].Score }}</p>
-              <p class="score-name">评论送积分</p>
+              <p class="score-name">购买送积分</p>
             </li>
           </ul>
         </div>
@@ -102,19 +111,27 @@
         <div id="goods-spec" class="goods-spec">
           <div class="spec-item specItem">
             <span class="buttontitle">{{ Pro_Spe_Title1 }}</span>
-            <div class="rightdiv1" v-for="(item,index) in shopbutton1" :key="index" >
-                <span class="title1" :class="activeClass == index ? 'redBorder':''" @click="value1(item,index)">{{ item }}</span>
+            <div class="rightdiv1" v-for="(item,index) in shopbutton1" :key="index">
+              <span
+                class="title1"
+                :class="activeClass == index ? 'redBorder':''"
+                @click="value1(item,index)"
+              >{{ item }}</span>
             </div>
             <br />
             <br />
             <span class="buttontitle">{{ Pro_Spe_Title2 }}</span>
             <div class="rightdiv1" v-for="(item,index) in shopbutton2" :key="item.id">
-              <span class="title2" :class="activeClass1 == index ? 'redBorder':''" @click="value2(item,index)">{{ item }}</span>
+              <span
+                class="title2"
+                :class="activeClass1 == index ? 'redBorder':''"
+                @click="value2(item,index)"
+              >{{ item }}</span>
             </div>
           </div>
         </div>
         <div class="buyinfo clearfix">
-          数量: 
+          数量:
           <el-input-number
             class="elbutton"
             size="small"
@@ -158,13 +175,13 @@
   </div>
 </template>
 <script>
-import  myCollect from '@/views/home/components/myCollect.vue'
-import {collectPro} from "@/network/collectPro";
+import myCollect from '@/views/home/components/myCollect.vue'
+import { collectPro } from '@/network/collectPro'
 import addcart from '@/components/commom/addcart'
-import { mapActions ,mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import { getProductDetail, getComment } from '@/network/productdetails'
 import hotShop from '@/components/content/hotShop'
-import { isLogin } from "@/toolkit";
+import { isLogin } from '@/toolkit'
 export default {
   data() {
     return {
@@ -195,7 +212,7 @@ export default {
       allnum: 0,
       allprice: 0,
       ifTan: false,
-      comment: [] 
+      comment: []
       // pid:
     }
   },
@@ -215,15 +232,21 @@ export default {
   },
   created() {
     this.getProductDetail()
-    getComment(this.$route.params.id).then(res => {
-      console.log( res.data)
-      this.comment = res.data.data;
-       console.log(this.comment);
-       this.comment.map((item, index) => {
-        return item.CreateDate = new Date(+new Date(item.CreateDate) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
-          console.log(item.CreateDate)
-       })
-    })   
+    // getComment(this.$route.params.id).then(res => {
+    //   console.log('3333333333333')
+    //   console.log(res.data)
+    //   this.comment = res.data.data
+    //   console.log(this.comment)
+    //   this.comment.map((item, index) => {
+    //     return (item.CreateDate = new Date(
+    //       +new Date(item.CreateDate) + 8 * 3600 * 1000
+    //     )
+    //       .toISOString()
+    //       .replace(/T/g, ' ')
+    //       .replace(/\.[\d]{3}Z/, ''))
+    //     console.log(item.CreateDate)
+    //   })
+    // })
   },
   watch: {
     $route(to, from) {
@@ -240,9 +263,25 @@ export default {
     ...mapActions(['addToCart']),
     getProductDetail() {
       getProductDetail(this.$route.params.id).then(res => {
+        console.log('33333333333333999999')
+        console.log(res.data)
         this.pro_Id = this.$route.params.id
         this.productlist = res.data.data[0]
         let piclist2 = res.data.data[1]
+
+        //我的评论
+        this.comment = res.data.data[2]
+        console.log(this.comment)
+        this.comment.map((item, index) => {
+          return (item.CreateDate = new Date(
+            +new Date(item.CreateDate) + 8 * 3600 * 1000
+          )
+            .toISOString()
+            .replace(/T/g, ' ')
+            .replace(/\.[\d]{3}Z/, ''))
+          console.log(item.CreateDate)
+        })
+
         var newArr = piclist2.filter(item => item.Type == 3) //遍历数组拿到类型为3的数组
         this.piclist = newArr
 
@@ -272,7 +311,6 @@ export default {
         //   console.log(res.data.data[1]);
         //   console.log(res.data.data[2]);
       })
-      
     },
     showdata() {
       this._data.productshow = { display: 'block' }
@@ -347,134 +385,128 @@ export default {
       larger.style.display = 'none'
       shadow.style.display = 'none'
     },
-      /*关闭弹出框*/
-    guanbi(){
-      this.ifTan=false;
+    /*关闭弹出框*/
+    guanbi() {
+      this.ifTan = false
     },
 
     /*收藏产品*/
-    tiaoShoucang(){
-      console.log(11111);
-
+    tiaoShoucang() {
+      console.log(11111)
 
       /*弹出收藏框*/
-      if(this.ifTan==false) {
+      if (this.ifTan == false) {
         // this.$refs.son.myClose();
-        this.ifTan = true;
+        this.ifTan = true
         console.log(this.ifTan)
       }
 
       // let UId=sessionStorage.myUser;
-      let UId=window.pageConfig.userInfo.UId;
+      let UId = window.pageConfig.userInfo.UId
       // console.log(this.$cookie.keys());
       // console.log(this);
       // console.log(this.$cookie);
       // console.log(window.pageConfig.userInfo);
       // console.log(window.pageConfig.userInfo.UId);
 
-
-      if(UId!=undefined && UId!=''){
-        let PId=this.$route.params.id;
+      if (UId != undefined && UId != '') {
+        let PId = this.$route.params.id
         // console.log(proId);
-        let data={UId,PId};
+        let data = { UId, PId }
         // let data={PId}
         collectPro(data)
-          .then(resp=>{
-              console.log(resp.data.message);
+          .then(resp => {
+            console.log(resp.data.message)
           })
-          .catch(e=>{
-            console.log(e);
-          });
+          .catch(e => {
+            console.log(e)
+          })
       }
     },
     toshow(visible) {
-        this.visible = false;
+      this.visible = false
     },
-    value1(text,index) {
+    value1(text, index) {
       this.Title1_value = text
-      this.activeClass = index; 
+      this.activeClass = index
       // console.log(index,text)
     },
-    value2(text,index) {
+    value2(text, index) {
       this.Title2_value = text
-      this.activeClass1 = index; 
+      this.activeClass1 = index
       //  console.log(index,text)
     },
-    enter(a,b,c,d) {
-      if(a!=''&&c!=''){
-        if(b!= '' && d!='') {
-         this.disable = { cursor: 'pointer'};
+    enter(a, b, c, d) {
+      if (a != '' && c != '') {
+        if (b != '' && d != '') {
+          this.disable = { cursor: 'pointer' }
+        } else {
+          this.disable = { cursor: 'not-allowed' }
         }
-        else{
-          this.disable = { cursor: 'not-allowed'}
+      } else if (a != '' && c == '') {
+        if (b != '') {
+          this.disable = { cursor: 'pointer' }
+        } else {
+          this.disable = { cursor: 'not-allowed' }
         }
-        }else if(a!=''&&c==''){
-          if(b!= '') {
-             this.disable = { cursor: 'pointer'};
-          }
-          else{
-           this.disable = { cursor: 'not-allowed'}
-          }
-        }   
+      }
     },
-    addcart(a, b, c, d, e, f, g, h, i, j, k) {   
-       
-      if(d!=''&&f!=''){
-        if(e!= '' && g!='') {
+    addcart(a, b, c, d, e, f, g, h, i, j, k) {
+      if (d != '' && f != '') {
+        if (e != '' && g != '') {
           if (!isLogin()) {
             this.$message({
-              message: "您还没有登录！请先登录",
-              type: "warning"
-            });
+              message: '您还没有登录！请先登录',
+              type: 'warning'
+            })
             setTimeout(() => {
               this.$router.push({
                 path: `/denglu`
-              });
-            }, 300);
-          }else{
+              })
+            }, 300)
+          } else {
             this.sureadd(a, b, c, d, e, f, g, h, i, j, k)
-          }  
-          
-        }else{
-          this.$message.error('请选择商品信息');
+          }
+        } else {
+          this.$message.error('请选择商品信息')
         }
-      }else if(d!=''&&f==''){
-        if(e!= '') {
+      } else if (d != '' && f == '') {
+        if (e != '') {
           if (!isLogin()) {
-          this.$message({
-            message: "您还没有登录！请先登录",
-            type: "warning"
-          });
-          setTimeout(() => {
-            this.$router.push({
-              path: `/denglu`
-            });
-          }, 300);
-        }else{
+            this.$message({
+              message: '您还没有登录！请先登录',
+              type: 'warning'
+            })
+            setTimeout(() => {
+              this.$router.push({
+                path: `/denglu`
+              })
+            }, 300)
+          } else {
             this.sureadd(a, b, c, d, e, f, g, h, i, j, k)
-          }  
-        }else{
-          this.$message.error('请选择商品信息');
+          }
+        } else {
+          this.$message.error('请选择商品信息')
         }
-      }else if(d ==''&&f==''){
+      } else if (d == '' && f == '') {
         if (!isLogin()) {
           this.$message({
-            message: "您还没有登录！请先登录",
-            type: "warning"
-          });
+            message: '您还没有登录！请先登录',
+            type: 'warning'
+          })
           setTimeout(() => {
             this.$router.push({
               path: `/denglu`
-            });
-          }, 300);
-        } else{
-            this.sureadd(a, b, c, d, e, f, g, h, i, j, k)
-          }  
-      }      
+            })
+          }, 300)
+        } else {
+          this.sureadd(a, b, c, d, e, f, g, h, i, j, k)
+        }
+      }
     },
-    sureadd(a, b, c, d, e, f, g, h, i, j, k){
-      console.log(a, b, c, d, e, f, g, h, i, j,k)
-      this.visible = true;
+    sureadd(a, b, c, d, e, f, g, h, i, j, k) {
+      console.log(a, b, c, d, e, f, g, h, i, j, k)
+      this.visible = true
       this.addToCart({
         id: a,
         product_Name: b,
@@ -490,11 +522,11 @@ export default {
       })
       // 购物车弹框显示数据
       this.allkind = this.cartProducts.length
-      this.allnum = 0;
-      this.allprice = 0;
-      this.cartProducts.map((item, index) => {         
+      this.allnum = 0
+      this.allprice = 0
+      this.cartProducts.map((item, index) => {
         this.allnum += item.num
-        this.allprice += item.num*item.product_Price
+        this.allprice += item.num * item.product_Price
         // console.log(this.allkind+'==='+this.allnum+'==='+this.allprice)
       })
     },
@@ -508,40 +540,40 @@ export default {
       // this.getProductDetail();
     }
   },
-  computed:{
-    ...mapGetters(['cartProducts'])       
+  computed: {
+    ...mapGetters(['cartProducts'])
   }
 }
 </script> 
 <style lang="scss" scoped>
-  @import "~assets/css/productdetails/productdetails.scss";
+@import '~assets/css/productdetails/productdetails.scss';
 
-  .mask {
-    background-color: transparent;
-    opacity: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1
-  }
-    /*收藏*/
-  .tanchuK {
-    /*margin-top:300px;*/
-    /*margin-left: 320px;*/
-    position: fixed;
-    top: 50%;
-    margin-top: -100px;
-    left: 50%;
-    margin-left: -200px;
-    z-index: 20;
-  }
-  .myMy {
-    color: red;
-    text-decoration: none;
-  }
-  .myMy:hover {
-    text-decoration: underline;
-  }
+.mask {
+  background-color: transparent;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+/*收藏*/
+.tanchuK {
+  /*margin-top:300px;*/
+  /*margin-left: 320px;*/
+  position: fixed;
+  top: 50%;
+  margin-top: -100px;
+  left: 50%;
+  margin-left: -200px;
+  z-index: 20;
+}
+.myMy {
+  color: red;
+  text-decoration: none;
+}
+.myMy:hover {
+  text-decoration: underline;
+}
 </style>
